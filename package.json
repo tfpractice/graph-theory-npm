@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/tfpractice/graph-theory-npm/issues"
   },
-  "homepage": "https://github.com/tfpractice/graph-theory-npm#readme"
+  "homepage": "https://github.com/tfpractice/graph-theory-npm#readme",
+  "devDependencies": {
+    "jasmine": "^2.4.1"
+  }
 }
