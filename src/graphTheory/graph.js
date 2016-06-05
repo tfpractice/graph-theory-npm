@@ -4,16 +4,21 @@ var Edge = require('./edge');
  * @exports Graph
  * @constructor
  * @memberOf! module:graphTheory
- * @property {Vertex[]} vertices the graph's vertices
- * @property {Edge[]} edges the graph's edges
  */
 function Graph() {
+    /**
+     * the graph's vertices
+     * @type {Vertex[]}
+     */
     this.vertices = [];
+    /**
+     * the graph's edges
+     * @type {Edge[]}
+     */
     this.edges = [];
 
 }
 /**
- * @method module:graphTheory.Graph#addVertex
  * adds a vertex to the vertices array, if not already contained
  * @param {Vertex} vertex the new vertex
  */
