@@ -1,5 +1,5 @@
 describe('Edge', function() {
-    var GR = require('../graphTheory');
+    var GR = require('../src/graphTheory');
     var myEdge;
     var la = new GR.Vertex("LA");
     var nyc = new GR.Vertex("NYC");

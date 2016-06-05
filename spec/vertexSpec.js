@@ -1,5 +1,5 @@
 describe('Vertex', function() {
-    var GR = require('../graphTheory');
+    var GR = require('../src/graphTheory');
     var myVertex;
 
     beforeEach(function() {
