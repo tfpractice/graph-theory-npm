@@ -2,7 +2,6 @@ var Vertex = require('./vertex');
 /**
  * represents an Edge
  * @exports Edge
- * @alias Edge
  * @constructor
  * @memberOf! module:graphTheory
  * @param {Vertex}     sVertex source vertex
