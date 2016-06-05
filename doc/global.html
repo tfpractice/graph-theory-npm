@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Source: graphTheory/edge.js</title>
+	<title>DocStrap Global</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,55 +72,480 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: graphTheory/edge.js</h1>
-    
+	<h1 class="page-title">Global</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">var Vertex = require('./vertex');
-/**
- * represents an Edge
- * @exports Edge
- * @alias Edge
- * @constructor
- * @memberOf! module:graphTheory
- * @param {Vertex}     sVertex source vertex
- * @param {Vertex}     dVertex destination vertex
- * @param {Number} w weight
- * @property {Vertex} source the source vertex
- * @property {Vertex} dest the destination vertex
- * @property {Number} w the weight of the edge
- */
-module.exports = function Edge(sVertex = new Vertex(), dVertex = new Vertex(), w = 0) {
-    /**
-     * the source vertex
-     * @type {Vertex}
-     */
-    this.source = sVertex;
-    /**
-     * the destination vertex
-     * @type {Vertex}
-     */
-    this.dest = dVertex;
-    /**
-     * the weight of the edge
-     * @type {Number}
-     */
-    this.weight = w;
-};
 
-/**
- * [An Edge]{@link module:graphTheory.Edge}
- * @typedef {module:graphTheory.Edge} Edge
- */</pre>
-    </article>
+<header>
+    
+        <h2>
+        
+        </h2>
+        
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+
+        
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="module:graphTheory.Graph#addVertex
+adds a vertex to the vertices array, if not already contained"><span class="type-signature"></span>module:graphTheory.Graph#addVertex
+adds a vertex to the vertices array, if not already contained(vertex)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>vertex</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Vertex">Vertex</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the new vertex</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-15">line 15</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        <dl>
+                
+<hr>
+<dt class="name" id="Edge">
+    <h4>Edge</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <a href="module-graphTheory.Edge.html"><code>An Edge</code></a>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="module-graphTheory.Edge.html">module:graphTheory.Edge</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-33">line 33</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id="Graph">
+    <h4>Graph</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <a href="module-graphTheory.Graph.html"><code>A Graph</code></a>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="module-graphTheory.Graph.html">module:graphTheory.Graph</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-197">line 197</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            
+                
+<hr>
+<dt class="name" id="Vertex">
+    <h4>Vertex</h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        <a href="module-graphTheory.Vertex.html"><code>A Vertex</code></a>
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="module-graphTheory.Vertex.html">module:graphTheory.Vertex</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_vertex.js.html">graphTheory/vertex.js</a>,
+				 <a href="graphTheory_vertex.js.html#sunlight-1-line-16">line 16</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+            </dl>
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -130,6 +555,10 @@ module.exports = function Edge(sVertex = new Vertex(), dVertex = new Vertex(), w
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>

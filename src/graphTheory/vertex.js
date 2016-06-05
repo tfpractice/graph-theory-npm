@@ -1,8 +1,9 @@
 /**
+ * represent a Vertex
  * @exports Vertex
  * @constructor
- * @memberOf! module:graphTheory
- * @param {String} [label = 'default'] the vertex label
+ * @memberOf module:graphTheory
+ * @param {String} [label = 'default']  [label property]{@link module:graphTheory.Vertex#label}
  */
 module.exports = function Vertex(label = 'default') {
     /**
@@ -11,3 +12,8 @@ module.exports = function Vertex(label = 'default') {
      */
     this.label = label;
 };
+
+/**
+ * [A Vertex]{@link module:graphTheory.Vertex}
+ * @typedef {module:graphTheory.Vertex} Vertex
+ */

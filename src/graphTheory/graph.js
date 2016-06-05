@@ -1,8 +1,9 @@
 var Edge = require('./edge');
 /**
- * represents a graph
- * @module graphTheory/graph
- * @class Graph
+ * represents a Graph
+ * @exports Graph
+ * @constructor
+ * @memberOf! module:graphTheory
  * @property {Vertex[]} vertices the graph's vertices
  * @property {Edge[]} edges the graph's edges
  */
@@ -192,3 +193,8 @@ Graph.prototype.dijkstra = function(initVert, termVert) {
     };
 };
 module.exports = Graph;
+
+/**
+ * [A Graph]{@link module:graphTheory.Graph}
+ * @typedef {module:graphTheory.Graph} Graph
+ */
