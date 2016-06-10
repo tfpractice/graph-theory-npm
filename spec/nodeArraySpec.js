@@ -30,4 +30,9 @@ describe('Node', function() {
             expect(myArray.contains(myNode)).toBeTrue();
         });
     });
+    describe('isNode(nodeArg', () => {
+        it('returns true if nodeArg is an instanceof Node', function() {
+            expect(myArray.isNode(myNode)).toBeTrue();
+        });
+    });
 });

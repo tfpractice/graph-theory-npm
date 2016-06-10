@@ -1,3 +1,5 @@
+var Node = require('./node');
+
 class NodeArray extends Array {
     // constructor(args) {
     // 	// code
@@ -5,6 +7,9 @@ class NodeArray extends Array {
     contains(node) {
         return this.some(el => (el.isIdentical(node) === true));
         // methods
+    }
+    isNode(nodeArg) {
+        return nodeArg instanceof Node;
     }
 }
 
