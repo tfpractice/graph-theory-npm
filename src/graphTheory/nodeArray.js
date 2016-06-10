@@ -3,7 +3,7 @@ class NodeArray extends Array {
     // 	// code
     // }
     contains(node) {
-        return this.filter(el => this.isIdentical(el === true));
+        return this.some(el => (el.isIdentical(node) === true));
         // methods
     }
 }

@@ -6,7 +6,7 @@ describe('Node', function() {
         myNode = new GR.Node("NYC", {
             name: "NYC"
         });
-        myArray = new GR.NodeArray();
+        myArray = new GR.NodeArray(myNode);
     });
 
 
@@ -24,5 +24,10 @@ describe('Node', function() {
         // it('initialzies with a data object', function() {
         // expect(myNode.data).toBeObject();
         // });
+    });
+    describe('contains()', () => {
+        it('checks if any of the elements are equivalent to that provided', function() {
+            expect(myArray.contains(myNode)).toBeTrue();
+        });
     });
 });
