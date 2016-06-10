@@ -27,7 +27,6 @@ class Node {
     }
     isIdentical(newNode) {
         return (this.label) ? this.label == newNode.label : false;
-        // return this.label == newNode.label;
     }
 }
 
