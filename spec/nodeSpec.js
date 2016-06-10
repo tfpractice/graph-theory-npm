@@ -16,10 +16,8 @@ describe('Node', function() {
         it('defaults label to undefined', function() {
             var newV = new GR.Node();
             expect(newV.label).toBeUndefined();
-            // expect(newV.label).toEqual('default');
         });
         it('initialzies with a data object', function() {
-            console.log(myNode.data);
             expect(myNode.data).toBeObject();
         });
     });

@@ -1,6 +1,5 @@
 describe('Graph', function() {
     var GR = require('../src/graphTheory');
-    require('jasmine-expect');
     var myGraph;
     var bostonV;
     beforeEach(function() {
