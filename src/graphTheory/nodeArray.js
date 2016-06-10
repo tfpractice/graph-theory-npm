@@ -1,15 +1,15 @@
 var Node = require('./node');
 
 class NodeArray extends Array {
-    // constructor(args) {
-    // 	// code
-    // }
-    contains(node) {
-        return this.some(el => (el.isIdentical(node) === true));
-        // methods
+
+    contains(argNode) {
+        return this.some(el => (el.isIdentical(argNode) === true));
     }
-    isNode(nodeArg) {
-        return nodeArg instanceof Node;
+    isNode(argNode) {
+        return argNode instanceof Node;
+    }
+    push(argNode) {
+        return (this.isNode(argNode) && !(this.contains(argNode))) ? super.push(argNode) : false;
     }
 }
 
