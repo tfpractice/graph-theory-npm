@@ -82,7 +82,6 @@ describe('Graph', function() {
         describe('hasPath', function() {
             it('determines if a path exists between to vertices in a graph', function() {
                 var result = myGraph.hasPath(v1, v3);
-                console.log(result);
                 expect(myGraph.hasPath(v1, v3)).toBeTrue();
             });
         });

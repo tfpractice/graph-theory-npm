@@ -96,7 +96,7 @@ Graph.prototype.depthSearch = function(initVert) {
     currEdges.forEach(function(cEdge) {
         this.depthVisit(cEdge, dPath);
     }, this);
-    console.log(dPath);
+    // console.log(dPath);
     return dPath;
 };
 /**
@@ -135,7 +135,7 @@ Graph.prototype.breadthSearch = function(initVert) {
         level++;
 
     }
-    console.log(bPath);
+    // console.log(bPath);
     return bPath;
 
 };
@@ -147,8 +147,8 @@ Graph.prototype.breadthSearch = function(initVert) {
  */
 Graph.prototype.hasPath = function(initVert, termVert) {
     var bPath = this.breadthSearch(initVert);
-    console.log("hasPath method was called");
-    console.log(bPath);
+    // console.log("hasPath method was called");
+    // console.log(bPath);
     if (bPath[termVert.label] == undefined) {
         return false;
     } else if (bPath[termVert.label] != undefined) {
