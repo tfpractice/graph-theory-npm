@@ -1,4 +1,4 @@
-var Edge = require('./edge');
+var Edge = require('./directedEdge');
 /**
  * represents a Graph
  * @exports Graph
