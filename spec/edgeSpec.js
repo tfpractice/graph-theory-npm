@@ -4,7 +4,7 @@ describe('Edge', function() {
     var la = new GR.Vertex("LA");
     var nyc = new GR.Vertex("NYC");
     beforeEach(function() {
-        myEdge = new GR.Edge(nyc, la, 10);
+        myEdge = new GR.DirectedEdge(nyc, la, 10);
     });
 
     describe('init', function() {
@@ -22,7 +22,7 @@ describe('Edge', function() {
         describe('when initialized without params', () => {
             var dEdge;
             beforeEach(function() {
-                dEdge = new GR.Edge();
+                dEdge = new GR.DirectedEdge();
             });
             it('initializes with default source', function() {
                 // expect(dEdge.source.label).toBe('default');

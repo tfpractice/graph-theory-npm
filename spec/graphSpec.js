@@ -22,7 +22,7 @@ describe('Graph', function() {
 
     describe('addEdge', function() {
         it('appends a new edge to the edges array', function() {
-            var tempEdge = new GR.Edge(bostonV, tampaV, 10);
+            var tempEdge = new GR.DirectedEdge(bostonV, tampaV, 10);
             myGraph.addEdge(bostonV, tampaV, 10);
             expect(myGraph.edges).toContain(tempEdge);
         });
