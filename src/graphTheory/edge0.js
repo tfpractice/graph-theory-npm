@@ -1,7 +1,7 @@
 var Node = require('./node');
 var NodeArray = require('./nodeArray');
 
-class Edge0 {
+class Edge {
     constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
 
         this.nodes = NodeArray.of(n1, n2);
@@ -21,4 +21,4 @@ class Edge0 {
     }
     // methods
 }
-module.exports = Edge0;
+module.exports = Edge;
