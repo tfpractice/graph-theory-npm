@@ -1,35 +1,24 @@
-var Vertex = require('./vertex');
-/**
- * represents an Edge
- * @exports Edge
- * @constructor
- * @memberOf! module:graphTheory
- * @param {Vertex}     sVertex source vertex
- * @param {Vertex}     dVertex destination vertex
- * @param {Number} w weight
- * @property {Vertex} source the source vertex
- * @property {Vertex} dest the destination vertex
- * @property {Number} w the weight of the edge
- */
-module.exports = function Edge(sVertex = new Vertex(), dVertex = new Vertex(), w = 0) {
-    /**
-     * the source vertex
-     * @type {Vertex}
-     */
-    this.source = sVertex;
-    /**
-     * the destination vertex
-     * @type {Vertex}
-     */
-    this.dest = dVertex;
-    /**
-     * the weight of the edge
-     * @type {Number}
-     */
-    this.weight = w;
-};
+var Node = require('./node');
+var NodeArray = require('./nodeArray');
 
-/**
- * [An Edge]{@link module:graphTheory.Edge}
- * @typedef {module:graphTheory.Edge} Edge
- */
+class Edge {
+    constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
+
+        this.nodes = NodeArray.of(n1, n2);
+        this.weight = weight;
+        this.label = `${n1.label}_${n2.label}`;
+    }
+
+    isEquivalent(edgeArg) {
+        return (this.label) ? this.label === edgeArg.label : false;
+    }
+    containsNode(nodeArg) {
+        return this.nodes.contains(nodeArg);
+        // return this.nodes.indexOf(node) > -1;
+    }
+    getNeighbor(nodeArg) {
+        return this.nodes.find(currNode => currNode != nodeArg);
+    }
+    // methods
+}
+module.exports = Edge;

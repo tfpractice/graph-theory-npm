@@ -1,6 +1,6 @@
 var Node = require('./node');
 var NodeArray = require('./nodeArray');
-var Edge = require('./edge0');
+var Edge = require('./edge');
 
 
 class DirectedEdge extends Edge {
