@@ -7,7 +7,7 @@ class EdgeArray extends Array {
         return this.some(el => (el.isEquivalent(argEdge) === true));
     }
     isEdge(argEdge) {
-        return argEdge instanceof Node;
+        return argEdge instanceof Edge;
     }
     push(argEdge) {
         return (this.isEdge(argEdge) && !(this.contains(argEdge))) ? super.push(argEdge) : false;
