@@ -24,12 +24,12 @@ describe('Edge0', function() {
                 dEdge = new GR.Edge();
             });
             it('initializes with anonymous nodes ', function() {
-                console.log(dEdge.label);
+                expect(dEdge.nodes[0].label).toBeUndefined();
                 // expect(dEdge.source.label).toBe('default');
             });
-            // it('initializes with default dest', function() {
-            // expect(dEdge.dest.label).toBe('default');
-            // });
+            it('initializes with label "undefined_undefined" dest', function() {
+                expect(dEdge.label).toBe('undefined_undefined');
+            });
             it('initializes with default weight 0', function() {
                 expect(dEdge.weight).toBe(0);
             });
