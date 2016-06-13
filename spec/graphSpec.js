@@ -37,12 +37,12 @@ describe('Graph', function() {
             myGraph.addEdge(v4, v5, 8);
             myGraph.addEdge(v5, v1, 10);
         });
-        // describe('getEdges ', function() {
-        // it('returns all edges with a particular source Node ', function() {
-        // var e12 = myGraph.edges[0];
-        // expect(myGraph.getEdges(v1)).toContain(e12);
-        // });
-        // });
+        describe('getEdges ', function() {
+            it('returns all edges with a particular source Node ', function() {
+                var e12 = myGraph.edges[0];
+                expect(myGraph.getEdges(v1)).toContain(e12);
+            });
+        });
         // describe('getNeighbors', function() {
         // it('returns all nodes adjacent to a given vertex', function() {
         // expect(myGraph.getNeighbors(v1)).toContain(v2);
