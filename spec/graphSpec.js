@@ -72,12 +72,12 @@ describe('Graph', function() {
                 expect(myGraph.breadthSearch(v1)).toBeObject();
             });
         });
-        // describe('hasPath', function() {
-        // it('determines if a path exists between to nodes in a graph', function() {
-        // var result = myGraph.hasPath(v1, v3);
-        // expect(myGraph.hasPath(v1, v3)).toBeTrue();
-        // });
-        // });
+        describe('hasPath', function() {
+            it('determines if a path exists between to nodes in a graph', function() {
+                var result = myGraph.hasPath(v1, v3);
+                expect(myGraph.hasPath(v1, v3)).toBeTrue();
+            });
+        });
         // describe('dijkstra', function() {
         // it('finds the shortest path between two nodes', function() {
         // });

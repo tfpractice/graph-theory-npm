@@ -128,27 +128,21 @@ Graph.prototype.breadthSearch = function(initNode) {
 /**
  * check if a path exists between two nodes
  * @param  {Node}  initNode the initial node
- * @param  {Node}  termVert the terminal node
+ * @param  {Node}  termNode the terminal node
  * @return {Boolean} a path exists between the two nodes
  */
-Graph.prototype.hasPath = function(initNode, termVert) {
+Graph.prototype.hasPath = function(initNode, termNode) {
     var bPath = this.breadthSearch(initNode);
-    // console.log("hasPath method was called");
-    // console.log(bPath);
-    if (bPath[termVert.label] == undefined) {
-        return false;
-    } else if (bPath[termVert.label] != undefined) {
-        return true;
-    };
+    return bPath[termNode.label] ? true : false;
 };
 /**
  * performs dijkstras algorithm for shortest paths between two nodes
  * @param  {Node}  initNode the initial node
- * @param  {Node}  termVert the terminal node
+ * @param  {Node}  termNode the terminal node
  * @return {Object} a shortest path between nodes
  */
-Graph.prototype.dijkstra = function(initNode, termVert) {
-    if (this.hasPath(initNode, termVert) == false) {
+Graph.prototype.dijkstra = function(initNode, termNode) {
+    if (this.hasPath(initNode, termNode) == false) {
         return false;
     } else {
         var reachables = this.breadthSearch(initNode);
