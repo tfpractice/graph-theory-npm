@@ -21,7 +21,6 @@ function Graph() {
      * @type {Edge[]}
      */
     this.edges = new EdgeArray();
-
 }
 /**
  * adds a node to the nodes array, if not already contained
@@ -53,14 +52,7 @@ Graph.prototype.getEdges = function(nodeArg) {
  * @return {Node[]} the neighboring nodes
  */
 Graph.prototype.getNeighbors = function(nodeArg) {
-    var currNode = nodeArg;
-    var currEdges = this.getEdges(currNode);
-    // return currEdges.map(function(tempEdge) {
-    //     return tempEdge.dest;
-    // }, this);
-    return currEdges.map(tempEdge => tempEdge.getNeighbor(nodeArg));
-
-
+    return this.getEdges(nodeArg).map(tempEdge => tempEdge.getNeighbor(nodeArg));
 };
 /**
  * adds each node connected to an edge to a (depth) path
@@ -68,27 +60,25 @@ Graph.prototype.getNeighbors = function(nodeArg) {
  * @param  {Object} dPath a key value store of node's and distances
  */
 Graph.prototype.depthVisit = function(edge, dPath) {
-    var dNode = edge.dest;
-
-    if (dPath[dNode.label] == undefined) {
+    var dNode = edge.nodes.find(currNode => dPath[currNode.label] == undefined);
+    if (dNode) {
+        var predNode = edge.getNeighbor(dNode);
         dPath[dNode.label] = {
-            pred: edge.source,
-            pathWeight: ((dPath[edge.source.label].pathWeight) + edge.weight)
+            pred: predNode,
+            pathWeight: ((dPath[predNode.label].pathWeight) + edge.weight)
         };
-        var destEdges = this.getEdges(dNode);
-        destEdges.forEach(function(dEdge) {
-            this.depthVisit(dEdge, dPath);
-        }, this);
-
+        // var destEdges =;
+        this.getEdges(dNode).forEach(dEdge => this.depthVisit(dEdge, dPath));
     };
+    return dPath;
 };
 /**
  * depth first search, adds all connected nodes to node (depth) path
- * @param  {Node} initVert inital node
+ * @param  {Node} initNode inital node
  * @return {Object} a key-value store of nodes and edge distances
  */
-Graph.prototype.depthSearch = function(initVert) {
-    var initV = initVert;
+Graph.prototype.depthSearch = function(initNode) {
+    var initV = initNode;
     var dPath = {
         initialNode: initV
     };
@@ -97,21 +87,24 @@ Graph.prototype.depthSearch = function(initVert) {
         pathWeight: 0
     };
     var currEdges = this.getEdges(initV);
-    currEdges.forEach(function(cEdge) {
-        this.depthVisit(cEdge, dPath);
-    }, this);
-    // console.log(dPath);
+
+    currEdges.forEach(currEdge => {
+        this.depthVisit(currEdge, dPath);
+        console.log('****');
+        console.log(this.depthVisit(currEdge, dPath));
+    });
+
     return dPath;
 };
 /**
  * breadth first search, adds all connected nodes to node (breadth) path
- * @param  {Node} initVert inital node
+ * @param  {Node} initNode inital node
  * @return {Object} a key-value store of nodes and edge distances
  */
-Graph.prototype.breadthSearch = function(initVert) {
-    var initV = initVert;
+Graph.prototype.breadthSearch = function(initNode) {
+    var initV = initNode;
     var bPath = {
-        initialNode: initVert
+        initialNode: initNode
     };
     bPath[initV.label] = {
         pred: null,
@@ -121,9 +114,7 @@ Graph.prototype.breadthSearch = function(initVert) {
     var bQueue = [initV];
     while (bQueue.length > 0) {
         var currV = bQueue.shift();
-
         var currNeighbors = this.getNeighbors(currV);
-
         var frontier = [];
         currNeighbors.forEach(function function_name(nNode) {
             if (bPath[nNode.label] == undefined) {
@@ -131,26 +122,23 @@ Graph.prototype.breadthSearch = function(initVert) {
                     pred: currV,
                     depth: level
                 };
-
                 frontier.push(nNode);
             };
         }, this);
         bQueue = frontier;
         level++;
-
     }
     // console.log(bPath);
     return bPath;
-
 };
 /**
  * check if a path exists between two nodes
- * @param  {Node}  initVert the initial node
+ * @param  {Node}  initNode the initial node
  * @param  {Node}  termVert the terminal node
  * @return {Boolean} a path exists between the two nodes
  */
-Graph.prototype.hasPath = function(initVert, termVert) {
-    var bPath = this.breadthSearch(initVert);
+Graph.prototype.hasPath = function(initNode, termVert) {
+    var bPath = this.breadthSearch(initNode);
     // console.log("hasPath method was called");
     // console.log(bPath);
     if (bPath[termVert.label] == undefined) {
@@ -161,15 +149,15 @@ Graph.prototype.hasPath = function(initVert, termVert) {
 };
 /**
  * performs dijkstras algorithm for shortest paths between two nodes
- * @param  {Node}  initVert the initial node
+ * @param  {Node}  initNode the initial node
  * @param  {Node}  termVert the terminal node
  * @return {Object} a shortest path between nodes
  */
-Graph.prototype.dijkstra = function(initVert, termVert) {
-    if (this.hasPath(initVert, termVert) == false) {
+Graph.prototype.dijkstra = function(initNode, termVert) {
+    if (this.hasPath(initNode, termVert) == false) {
         return false;
     } else {
-        var reachables = this.breadthSearch(initVert);
+        var reachables = this.breadthSearch(initNode);
         var inspectionQueue = [initV];
         var solutionSet = {};
         solutionSet[initV.label] = {
@@ -179,7 +167,6 @@ Graph.prototype.dijkstra = function(initVert, termVert) {
         while (inspectionQueue.lenght > 0) {
             var currV = inspectionQueue.shift();
             var currEdges = this.getEdges(currV);
-
             currEdges.forEach(function(tempEdge) {
                 var currWeight = reachables[tempEdge.dest.label].pathWeight;
                 var dijkstraWeight = solutionSet[tempEdge.source.label].pathWeight + tempEdge.weight;
@@ -195,14 +182,11 @@ Graph.prototype.dijkstra = function(initVert, termVert) {
                     };
                 }
             }, this);
-
-
         }
         return solutionSet;
     };
 };
 module.exports = Graph;
-
 /**
  * [A Graph]{@link module:graphTheory.Graph}
  * @typedef {module:graphTheory.Graph} Graph

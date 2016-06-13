@@ -48,15 +48,26 @@ describe('Graph', function() {
                 expect(myGraph.getNeighbors(v1)).toContain(v2);
             });
         });
-        // describe('depthSearch', function() {
-        // it('returns an object recording each reachable vertex from a given source', function() {
-        // expect(myGraph.depthSearch(v1)).toBeObject();
-        // });
-        // });
-        // describe('depthVisit', function() {
-        // it('visits all the adjacent nodes and places them into an object', function() {
-        // });
-        // });
+        describe('depthSearch', function() {
+            it('returns an object recording each reachable vertex from a given source', function() {
+                expect(myGraph.depthSearch(v1)).toBeObject();
+            });
+        });
+        describe('depthVisit', function() {
+            it('visits all the adjacent nodes and places them into an object', function() {
+                // console.log(myGraph.deptV(v1));
+                var vEdge = myGraph.getEdges(v1)[0];
+                var dPath = {
+                    v1: {
+                        pred: null,
+                        pathWeight: 0
+                    }
+                };
+                expect(myGraph.depthVisit(vEdge, dPath)).toBeObject();
+
+            });
+
+        });
         // describe('breadthSearch', function() {
         // it('retunrs an object containgin all nodes reachable from a given vertex ', function() {
         // expect(myGraph.breadthSearch(v1)).toBeObject();
