@@ -3,17 +3,19 @@ describe('NodeArray', function() {
     var Node = GR.Node;
     var myNode, myArray, myAltArray, n1, n2, n3, n4;
     beforeEach(function() {
-        n1 = new GR.Node(n1);
-        n2 = new GR.Node(n2);
-        n3 = new GR.Node(n3);
-        n4 = new GR.Node(n4);
+        n1 = new GR.Node("n1");
+        n2 = new GR.Node("n2");
+        n3 = new GR.Node("n3");
+        n4 = new GR.Node("n4");
         myNode = new GR.Node("NYC", {
             name: "NYC"
         });
         myArray = new GR.NodeArray(myNode);
-        myArray.push(n3, n4);
+        myArray.push(n3);
+        myArray.push(n4);
         myAltArray = new GR.NodeArray(n1);
-        myAltArray.push(n2, n3);
+        myAltArray.push(n2);
+        myAltArray.push(n3);
     });
     describe('init', function() {
         it('is a typeof Array', function() {
@@ -53,6 +55,11 @@ describe('NodeArray', function() {
     describe('intersection(altArray)', function() {
         it('retuns an array of nodes shared by two nodeArrays', function() {
             expect(myArray.intersection(myAltArray)).toBeArray();
+        });
+    });
+    describe('intersects', function() {
+        it('determines if two arrays share any nodes', function() {
+            expect(myArray.intersects(myAltArray)).toBeTrue();
         });
     });
 

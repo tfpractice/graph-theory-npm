@@ -14,6 +14,11 @@ class NodeArray extends Array {
     intersection(altArray) {
         return this.filter(currNode => altArray.contains(currNode) === true);
     }
+    intersects(altArray) {
+        console.log(this);
+        console.log(altArray);
+        return this.some(currNode => altArray.contains(currNode) === true);
+    }
 }
 
 module.exports = NodeArray;
