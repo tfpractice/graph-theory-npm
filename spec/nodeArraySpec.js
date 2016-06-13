@@ -62,5 +62,10 @@ describe('NodeArray', function() {
             expect(myArray.intersects(myAltArray)).toBeTrue();
         });
     });
+    describe('difference', function() {
+        it('returns an array of nodes not contained in the operating array', function() {
+            expect(myArray.difference(myAltArray)).toBeArray();
+        });
+    });
 
 });
