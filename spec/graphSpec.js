@@ -43,11 +43,11 @@ describe('Graph', function() {
                 expect(myGraph.getEdges(v1)).toContain(e12);
             });
         });
-        // describe('getNeighbors', function() {
-        // it('returns all nodes adjacent to a given vertex', function() {
-        // expect(myGraph.getNeighbors(v1)).toContain(v2);
-        // });
-        // });
+        describe('getNeighbors', function() {
+            it('returns all nodes adjacent to a given vertex', function() {
+                expect(myGraph.getNeighbors(v1)).toContain(v2);
+            });
+        });
         // describe('depthSearch', function() {
         // it('returns an object recording each reachable vertex from a given source', function() {
         // expect(myGraph.depthSearch(v1)).toBeObject();

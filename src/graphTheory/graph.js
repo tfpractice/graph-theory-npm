@@ -45,9 +45,6 @@ Graph.prototype.addEdge = function(sNode, dNode, weight) {
  * @return {Edge[]} the edges connected to source
  */
 Graph.prototype.getEdges = function(nodeArg) {
-    // return this.edges.filter(function(tempEdge) {
-    //     return tempEdge.source == node;
-    // }, this);
     return this.edges.filter(tempEdge => tempEdge.containsNode(nodeArg) === true);
 };
 /**
@@ -55,12 +52,15 @@ Graph.prototype.getEdges = function(nodeArg) {
  * @param  {Node} sNode the source node
  * @return {Node[]} the neighboring nodes
  */
-Graph.prototype.getNeighbors = function(sNode) {
-    var currNode = sNode;
+Graph.prototype.getNeighbors = function(nodeArg) {
+    var currNode = nodeArg;
     var currEdges = this.getEdges(currNode);
-    return currEdges.map(function(tempEdge) {
-        return tempEdge.dest;
-    }, this);
+    // return currEdges.map(function(tempEdge) {
+    //     return tempEdge.dest;
+    // }, this);
+    return currEdges.map(tempEdge => tempEdge.getNeighbor(nodeArg));
+
+
 };
 /**
  * adds each node connected to an edge to a (depth) path
