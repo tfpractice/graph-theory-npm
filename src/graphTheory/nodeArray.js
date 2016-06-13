@@ -34,6 +34,10 @@ class NodeArray extends Array {
         return diffArray;
 
     }
+    hasDistinctNodes(altArray) {
+        return altArray.some(altNode => !this.contains(altNode));
+    }
+
 }
 
 module.exports = NodeArray;

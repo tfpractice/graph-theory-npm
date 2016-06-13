@@ -67,5 +67,9 @@ describe('NodeArray', function() {
             expect(myArray.difference(myAltArray)).toBeArray();
         });
     });
-
+    describe('hasDistinctNodes', function() {
+        it('determines if there are distinct nodes between arrays', function() {
+            expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
+        });
+    });
 });
