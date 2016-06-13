@@ -14,6 +14,7 @@ describe('EdgeArray', function() {
         it('is a typeof Array', function() {
             expect(myArray instanceof Array).toBeTrue();
         });
+
     });
     describe('contains()', () => {
         it('checks if any of the elements are equivalent to that provided', function() {
@@ -43,6 +44,12 @@ describe('EdgeArray', function() {
                 myArray.push(2);
                 expect(myArray.length).toEqual(currLength);
             });
+        });
+
+    });
+    describe('getNodes', () => {
+        it('maps each of the edges nodes to a new nodeArray  ', function() {
+            expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
         });
     });
 
