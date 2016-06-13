@@ -45,9 +45,10 @@ Graph.prototype.addEdge = function(sNode, dNode, weight) {
  * @return {Edge[]} the edges connected to source
  */
 Graph.prototype.getEdges = function(node) {
-    return this.edges.filter(function(tempEdge) {
-        return tempEdge.source == node;
-    }, this);
+    // return this.edges.filter(function(tempEdge) {
+    //     return tempEdge.source == node;
+    // }, this);
+    return this.edges.filter(tempEdge => tempEdge.contains(nodeArg) === true);
 };
 /**
  *
