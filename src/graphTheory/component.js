@@ -13,10 +13,10 @@ class Component {
     }
     addNode(nodeArg) {
         this.nodes.push(nodeArg);
-        // methods
+        this.arity++;
     }
     connected(n1, n2) {
-        return (this.nodes.contains(n1) && this.nodes.contains(n2));
+        return (this.containsNode(n1) && this.containsNode(n2));
     }
 }
 

@@ -71,11 +71,7 @@ describe('Component', function() {
     //            expect(myComponent.playerCheck(my2Component)).toBeTrue();
     //        });
     //    });
-    //    describe('difference', function() {
-    //        it('returns an array of nodes not contained in the operating array', function() {
-    //            expect(myComponent.difference(my2Component)).toBeArray();
-    //        });
-    //    });
+
     //    describe('hasDistinctNodes', function() {
     //        it('determines if there are distinct nodes between componnts', function() {
     //            expect(myComponent.hasDistinctNodes(my2Component)).toBeTrue();
@@ -86,12 +82,12 @@ describe('Component', function() {
     //            expect(myComponent.union(my2Component)).toBeArray();
     //        });
     //    });
-    //    describe('addNode', function() {
-    //        it('adds a node to the component', function() {
-    //            myComponent.addNode(n3);
-    //            expect(myComponent.arity).toBe(3);
-    //        });
-    //    });
+    describe('addNode', function() {
+        it('adds a node to the component', function() {
+            myComponent.addNode(tampaV);
+            expect(myComponent.arity).toBe(2);
+        });
+    });
     //    describe('unionize', function() {
     //        it('sets the nodes to be the union of the two components', function() {
     //            myComponent.unionize(my2Component);
