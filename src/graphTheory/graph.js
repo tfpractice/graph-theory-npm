@@ -67,7 +67,6 @@ Graph.prototype.depthVisit = function(edge, dPath) {
             pred: predNode,
             pathWeight: ((dPath[predNode.label].pathWeight) + edge.weight)
         };
-        // var destEdges =;
         this.getEdges(dNode).forEach(dEdge => this.depthVisit(dEdge, dPath));
     };
     return dPath;
@@ -78,21 +77,17 @@ Graph.prototype.depthVisit = function(edge, dPath) {
  * @return {Object} a key-value store of nodes and edge distances
  */
 Graph.prototype.depthSearch = function(initNode) {
-    var initV = initNode;
+    var initNode = initNode;
     var dPath = {
-        initialNode: initV
+        initialNode: initNode
     };
-    dPath[initV.label] = {
+    dPath[initNode.label] = {
         pred: null,
         pathWeight: 0
     };
-    var currEdges = this.getEdges(initV);
+    var currEdges = this.getEdges(initNode);
 
-    currEdges.forEach(currEdge => {
-        this.depthVisit(currEdge, dPath);
-        console.log('****');
-        console.log(this.depthVisit(currEdge, dPath));
-    });
+    currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
 
     return dPath;
 };
@@ -102,21 +97,21 @@ Graph.prototype.depthSearch = function(initNode) {
  * @return {Object} a key-value store of nodes and edge distances
  */
 Graph.prototype.breadthSearch = function(initNode) {
-    var initV = initNode;
+    var initNode = initNode;
     var bPath = {
         initialNode: initNode
     };
-    bPath[initV.label] = {
+    bPath[initNode.label] = {
         pred: null,
         depth: 0
     };
     var level = 1;
-    var bQueue = [initV];
+    var bQueue = [initNode];
     while (bQueue.length > 0) {
         var currV = bQueue.shift();
         var currNeighbors = this.getNeighbors(currV);
         var frontier = [];
-        currNeighbors.forEach(function function_name(nNode) {
+        currNeighbors.forEach(function(nNode) {
             if (bPath[nNode.label] == undefined) {
                 bPath[nNode.label] = {
                     pred: currV,
@@ -128,7 +123,6 @@ Graph.prototype.breadthSearch = function(initNode) {
         bQueue = frontier;
         level++;
     }
-    // console.log(bPath);
     return bPath;
 };
 /**
@@ -158,9 +152,9 @@ Graph.prototype.dijkstra = function(initNode, termVert) {
         return false;
     } else {
         var reachables = this.breadthSearch(initNode);
-        var inspectionQueue = [initV];
+        var inspectionQueue = [initNode];
         var solutionSet = {};
-        solutionSet[initV.label] = {
+        solutionSet[initNode.label] = {
             pred: null,
             pathWeight: 0
         };

@@ -55,7 +55,6 @@ describe('Graph', function() {
         });
         describe('depthVisit', function() {
             it('visits all the adjacent nodes and places them into an object', function() {
-                // console.log(myGraph.deptV(v1));
                 var vEdge = myGraph.getEdges(v1)[0];
                 var dPath = {
                     v1: {
@@ -68,11 +67,11 @@ describe('Graph', function() {
             });
 
         });
-        // describe('breadthSearch', function() {
-        // it('retunrs an object containgin all nodes reachable from a given vertex ', function() {
-        // expect(myGraph.breadthSearch(v1)).toBeObject();
-        // });
-        // });
+        describe('breadthSearch', function() {
+            it('retunrs an object containgin all nodes reachable from a given vertex ', function() {
+                expect(myGraph.breadthSearch(v1)).toBeObject();
+            });
+        });
         // describe('hasPath', function() {
         // it('determines if a path exists between to nodes in a graph', function() {
         // var result = myGraph.hasPath(v1, v3);
