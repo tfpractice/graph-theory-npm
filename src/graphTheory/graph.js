@@ -1,4 +1,9 @@
+var Node = require('./node');
+var NodeArray = require('./nodeArray');
 var Edge = require('./directedEdge');
+var EdgeArray = require('./edgeArray');
+// var Edge = require('./edge');
+// var DirectedEdge = require('./directedEdge');
 /**
  * represents a Graph
  * @exports Graph
@@ -7,53 +12,51 @@ var Edge = require('./directedEdge');
  */
 function Graph() {
     /**
-     * the graph's vertices
-     * @type {Vertex[]}
+     * the graph's nodes
+     * @type {Node[]}
      */
-    this.vertices = [];
+    this.nodes = new NodeArray();
     /**
      * the graph's edges
      * @type {Edge[]}
      */
-    this.edges = [];
+    this.edges = new EdgeArray();
 
 }
 /**
- * adds a vertex to the vertices array, if not already contained
- * @param {Vertex} vertex the new vertex
+ * adds a node to the nodes array, if not already contained
+ * @param {Node} node the new node
  */
-Graph.prototype.addVertex = function(vertex) {
-    if (this.vertices.indexOf(vertex) == -1) {
-        this.vertices.push(vertex);
-    };
+Graph.prototype.addNode = function(node) {
+    this.nodes.push(node);
 };
 /**
- * creates a new edge given two vertices
- * @param {Vertex} sVertex source vertex
- * @param {Vertex} dVertex destination vertex
+ * creates a new edge given two nodes
+ * @param {Node} sNode source node
+ * @param {Node} dNode destination node
  * @param {Number} weight weight of new edge
  */
-Graph.prototype.addEdge = function(sVertex, dVertex, weight) {
-    var tempEdge = new Edge(sVertex, dVertex, weight);
+Graph.prototype.addEdge = function(sNode, dNode, weight) {
+    var tempEdge = new Edge(sNode, dNode, weight);
     this.edges.push(tempEdge);
 };
 /**
- * @param  {Vertex} vertex source vertex
+ * @param  {Node} node source node
  * @return {Edge[]} the edges connected to source
  */
-Graph.prototype.getEdges = function(vertex) {
+Graph.prototype.getEdges = function(node) {
     return this.edges.filter(function(tempEdge) {
-        return tempEdge.source == vertex;
+        return tempEdge.source == node;
     }, this);
 };
 /**
  *
- * @param  {Vertex} sVertex the source vertex
- * @return {Vertex[]} the neighboring nodes
+ * @param  {Node} sNode the source node
+ * @return {Node[]} the neighboring nodes
  */
-Graph.prototype.getNeighbors = function(sVertex) {
-    var currVertex = sVertex;
-    var currEdges = this.getEdges(currVertex);
+Graph.prototype.getNeighbors = function(sNode) {
+    var currNode = sNode;
+    var currEdges = this.getEdges(currNode);
     return currEdges.map(function(tempEdge) {
         return tempEdge.dest;
     }, this);
@@ -64,14 +67,14 @@ Graph.prototype.getNeighbors = function(sVertex) {
  * @param  {Object} dPath a key value store of node's and distances
  */
 Graph.prototype.depthVisit = function(edge, dPath) {
-    var dVertex = edge.dest;
+    var dNode = edge.dest;
 
-    if (dPath[dVertex.label] == undefined) {
-        dPath[dVertex.label] = {
+    if (dPath[dNode.label] == undefined) {
+        dPath[dNode.label] = {
             pred: edge.source,
             pathWeight: ((dPath[edge.source.label].pathWeight) + edge.weight)
         };
-        var destEdges = this.getEdges(dVertex);
+        var destEdges = this.getEdges(dNode);
         destEdges.forEach(function(dEdge) {
             this.depthVisit(dEdge, dPath);
         }, this);
@@ -79,14 +82,14 @@ Graph.prototype.depthVisit = function(edge, dPath) {
     };
 };
 /**
- * depth first search, adds all connected nodes to vertex (depth) path
- * @param  {Vertex} initVert inital vertex
+ * depth first search, adds all connected nodes to node (depth) path
+ * @param  {Node} initVert inital node
  * @return {Object} a key-value store of nodes and edge distances
  */
 Graph.prototype.depthSearch = function(initVert) {
     var initV = initVert;
     var dPath = {
-        initialVertex: initV
+        initialNode: initV
     };
     dPath[initV.label] = {
         pred: null,
@@ -100,14 +103,14 @@ Graph.prototype.depthSearch = function(initVert) {
     return dPath;
 };
 /**
- * breadth first search, adds all connected nodes to vertex (breadth) path
- * @param  {Vertex} initVert inital vertex
+ * breadth first search, adds all connected nodes to node (breadth) path
+ * @param  {Node} initVert inital node
  * @return {Object} a key-value store of nodes and edge distances
  */
 Graph.prototype.breadthSearch = function(initVert) {
     var initV = initVert;
     var bPath = {
-        initialVertex: initVert
+        initialNode: initVert
     };
     bPath[initV.label] = {
         pred: null,
@@ -121,14 +124,14 @@ Graph.prototype.breadthSearch = function(initVert) {
         var currNeighbors = this.getNeighbors(currV);
 
         var frontier = [];
-        currNeighbors.forEach(function function_name(nVertex) {
-            if (bPath[nVertex.label] == undefined) {
-                bPath[nVertex.label] = {
+        currNeighbors.forEach(function function_name(nNode) {
+            if (bPath[nNode.label] == undefined) {
+                bPath[nNode.label] = {
                     pred: currV,
                     depth: level
                 };
 
-                frontier.push(nVertex);
+                frontier.push(nNode);
             };
         }, this);
         bQueue = frontier;
@@ -141,8 +144,8 @@ Graph.prototype.breadthSearch = function(initVert) {
 };
 /**
  * check if a path exists between two nodes
- * @param  {Vertex}  initVert the initial vertex
- * @param  {Vertex}  termVert the terminal vertex
+ * @param  {Node}  initVert the initial node
+ * @param  {Node}  termVert the terminal node
  * @return {Boolean} a path exists between the two nodes
  */
 Graph.prototype.hasPath = function(initVert, termVert) {
@@ -157,8 +160,8 @@ Graph.prototype.hasPath = function(initVert, termVert) {
 };
 /**
  * performs dijkstras algorithm for shortest paths between two nodes
- * @param  {Vertex}  initVert the initial vertex
- * @param  {Vertex}  termVert the terminal vertex
+ * @param  {Node}  initVert the initial node
+ * @param  {Node}  termVert the terminal node
  * @return {Object} a shortest path between nodes
  */
 Graph.prototype.dijkstra = function(initVert, termVert) {
