@@ -15,8 +15,6 @@ class NodeArray extends Array {
         return this.filter(currNode => altArray.contains(currNode) === true);
     }
     intersects(altArray) {
-        console.log(this);
-        console.log(altArray);
         return this.some(currNode => altArray.contains(currNode) === true);
     }
     difference(altArray) {
@@ -43,6 +41,10 @@ class NodeArray extends Array {
         altArray.filter(altNode => uArray.push(altNode));
         return uArray;
     }
+    unionize(altArray) {
+        this.difference(altArray).forEach(dNode => this.push(dNode));
+    }
+
 
 }
 

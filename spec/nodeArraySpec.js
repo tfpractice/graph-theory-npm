@@ -77,4 +77,12 @@ describe('NodeArray', function() {
             expect(myArray.union(myAltArray)).toBeArray();
         });
     });
+    describe('unionize', function() {
+        it('combines the nodes of both arrays', function() {
+            myArray.unionize(myAltArray);
+            var nodeUnion = myArray.union(myAltArray);
+
+            expect(myArray).toEqual(nodeUnion);
+        });
+    });
 });
