@@ -1,12 +1,21 @@
 describe('NodeArray', function() {
     var GR = require('../src/graphTheory');
     var Node = GR.Node;
-    var myNode, myArray;
+    var myNode, myArray, myAltArray, n1, n2, n3, n4;
     beforeEach(function() {
+        n1 = new GR.Node("n1");
+        n2 = new GR.Node("n2");
+        n3 = new GR.Node("n3");
+        n4 = new GR.Node("n4");
         myNode = new GR.Node("NYC", {
             name: "NYC"
         });
         myArray = new GR.NodeArray(myNode);
+        myArray.push(n3);
+        myArray.push(n4);
+        myAltArray = new GR.NodeArray(n1);
+        myAltArray.push(n2);
+        myAltArray.push(n3);
     });
     describe('init', function() {
         it('is a typeof Array', function() {
@@ -43,5 +52,37 @@ describe('NodeArray', function() {
             });
         });
     });
+    describe('intersection(altArray)', function() {
+        it('retuns an array of nodes shared by two nodeArrays', function() {
+            expect(myArray.intersection(myAltArray)).toBeArray();
+        });
+    });
+    describe('intersects', function() {
+        it('determines if two arrays share any nodes', function() {
+            expect(myArray.intersects(myAltArray)).toBeTrue();
+        });
+    });
+    describe('difference', function() {
+        it('returns an array of nodes not contained in the operating array', function() {
+            expect(myArray.difference(myAltArray)).toBeArray();
+        });
+    });
+    describe('hasDistinctNodes', function() {
+        it('determines if there are distinct nodes between arrays', function() {
+            expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
+        });
+    });
+    describe('union', function() {
+        it('returns an array of all nodes between two array', function() {
+            expect(myArray.union(myAltArray)).toBeArray();
+        });
+    });
+    describe('unionize', function() {
+        it('combines the nodes of both arrays', function() {
+            myArray.unionize(myAltArray);
+            var nodeUnion = myArray.union(myAltArray);
 
+            expect(myArray).toEqual(nodeUnion);
+        });
+    });
 });
