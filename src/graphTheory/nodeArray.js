@@ -11,6 +11,9 @@ class NodeArray extends Array {
     push(argNode) {
         return (this.isNode(argNode) && !(this.contains(argNode))) ? super.push(argNode) : false;
     }
+    intersection(altArray) {
+        this.filter(currNode => altArray.contains(currNode) === true);
+    }
 }
 
 module.exports = NodeArray;
