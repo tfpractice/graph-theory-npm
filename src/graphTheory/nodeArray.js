@@ -12,7 +12,7 @@ class NodeArray extends Array {
         return (this.isNode(argNode) && !(this.contains(argNode))) ? super.push(argNode) : false;
     }
     intersection(altArray) {
-        this.filter(currNode => altArray.contains(currNode) === true);
+        return this.filter(currNode => altArray.contains(currNode) === true);
     }
 }
 
