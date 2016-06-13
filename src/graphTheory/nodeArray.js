@@ -37,6 +37,12 @@ class NodeArray extends Array {
     hasDistinctNodes(altArray) {
         return altArray.some(altNode => !this.contains(altNode));
     }
+    union(altArray) {
+        let uArray = new NodeArray();
+        this.filter(currNode => uArray.push(currNode));
+        altArray.filter(altNode => uArray.push(altNode));
+        return uArray;
+    }
 
 }
 

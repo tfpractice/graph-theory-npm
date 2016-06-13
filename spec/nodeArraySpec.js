@@ -72,4 +72,9 @@ describe('NodeArray', function() {
             expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
         });
     });
+    describe('union', function() {
+        it('returns an array of all nodes between two array', function() {
+            expect(myArray.union(myAltArray)).toBeArray();
+        });
+    });
 });
