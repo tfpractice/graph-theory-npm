@@ -2,6 +2,7 @@ var Node = require('./node');
 var NodeArray = require('./nodeArray');
 var Edge = require('./directedEdge');
 var EdgeArray = require('./edgeArray');
+var Component = require('./component');
 // var Edge = require('./edge');
 // var DirectedEdge = require('./directedEdge');
 /**

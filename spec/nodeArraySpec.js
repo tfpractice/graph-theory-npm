@@ -1,12 +1,19 @@
 describe('NodeArray', function() {
     var GR = require('../src/graphTheory');
     var Node = GR.Node;
-    var myNode, myArray;
+    var myNode, myArray, myAltArray, n1, n2, n3, n4;
     beforeEach(function() {
+        n1 = new GR.Node(n1);
+        n2 = new GR.Node(n2);
+        n3 = new GR.Node(n3);
+        n4 = new GR.Node(n4);
         myNode = new GR.Node("NYC", {
             name: "NYC"
         });
         myArray = new GR.NodeArray(myNode);
+        myArray.push(n3, n4);
+        myAltArray = new GR.NodeArray(n1);
+        myAltArray.push(n2, n3);
     });
     describe('init', function() {
         it('is a typeof Array', function() {
@@ -41,6 +48,11 @@ describe('NodeArray', function() {
                 myArray.push(2);
                 expect(myArray.length).toEqual(currLength);
             });
+        });
+    });
+    describe('intersection(altArray)', function() {
+        it('retuns an array of nodes shared by two nodeArrays', function() {
+            expect(myArray.intersection(myAltArray)).toBeArray();
         });
     });
 
