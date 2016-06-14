@@ -6,11 +6,13 @@ var EdgeArray = require('./edgeArray');
 class EdgeComponent {
     constructor(e1) {
         this.edges = new EdgeArray(e1);
-        this.arity = this.edges.length;
+
         this.nodes = this.getNodes();
+        this.resetArity();
+
     }
     resetArity() {
-        this.arity = this.edges.length;
+        this.arity = this.nodes.length;
     }
     containsEdge(edgeArg) {
         return this.edges.contains(edgeArg);

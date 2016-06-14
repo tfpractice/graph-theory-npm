@@ -60,11 +60,10 @@ describe('EdgeComponent', function() {
             expect(myComponent.edges).toBeArray();
         });
         it('initializes with a nodes array', function() {
-            // console.log(myComponent.nodes);
             expect(myComponent.nodes).toBeArray();
         });
         it('initializes with an arity of 1', function() {
-            // expect(myComponent.arity).toEqual(1);
+            expect(myComponent.arity).toEqual(2);
         });
     });
     describe('#containsEdge', function() {
@@ -74,7 +73,7 @@ describe('EdgeComponent', function() {
     });
     describe('resetArity()', function() {
         it('sets the arity attribute to the number of edges', function() {
-            expect(myComponent.arity).toEqual(1);
+            expect(myComponent.arity).toEqual(2);
         });
     });
     describe('getNodes', () => {
