@@ -4,10 +4,7 @@ var Edge = require('./edge');
 var DirectedEdge = require('./directedEdge');
 
 class EdgeArray extends Array {
-    // constructor() {
-    // super();
-    // this.nodes = new NodeArray();
-    // }
+
     contains(argEdge) {
         return this.some(el => (el.isEquivalent(argEdge) === true));
     }
@@ -19,7 +16,7 @@ class EdgeArray extends Array {
     }
     getNodes() {
         return this.reduce((nArray, e) => {
-            nArray.push(e.nodes);
+            nArray.unionize(e.nodes);
             return nArray;
         }, new NodeArray());
     }
@@ -48,9 +45,8 @@ class EdgeArray extends Array {
     }
     union(altArray) {
         let uArray = new EdgeArray();
-        this.filter(currEdge => uArray.push(currEdge));
-        altArray.filter(altEdge => uArray.push(altEdge));
-        // console.log(uArray);
+        this.forEach(currEdge => uArray.push(currEdge));
+        altArray.forEach(altEdge => uArray.push(altEdge));
         return uArray;
     }
     unionize(altArray) {

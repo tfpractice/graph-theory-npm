@@ -37,8 +37,8 @@ class NodeArray extends Array {
     }
     union(altArray) {
         let uArray = new NodeArray();
-        this.filter(currNode => uArray.push(currNode));
-        altArray.filter(altNode => uArray.push(altNode));
+        this.forEach(currNode => uArray.push(currNode));
+        altArray.forEach(altNode => uArray.push(altNode));
         return uArray;
     }
     unionize(altArray) {
