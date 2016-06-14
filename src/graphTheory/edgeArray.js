@@ -46,15 +46,16 @@ class EdgeArray extends Array {
     hasDistinctEdges(altArray) {
         return altArray.some(altEdge => !this.contains(altEdge));
     }
-    // union(altArray) {
-    // let uArray = new NodeArray();
-    // this.filter(currEdge => uArray.push(currEdge));
-    // altArray.filter(altEdge => uArray.push(altEdge));
-    // return uArray;
-    // }
-    // unionize(altArray) {
-    // this.difference(altArray).forEach(dNode => this.push(dNode));
-    // }
+    union(altArray) {
+        let uArray = new EdgeArray();
+        this.filter(currEdge => uArray.push(currEdge));
+        altArray.filter(altEdge => uArray.push(altEdge));
+        // console.log(uArray);
+        return uArray;
+    }
+    unionize(altArray) {
+        this.difference(altArray).forEach(dEdge => this.push(dEdge));
+    }
 
 }
 module.exports = EdgeArray;

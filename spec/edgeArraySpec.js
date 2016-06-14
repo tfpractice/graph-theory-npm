@@ -95,6 +95,18 @@ describe('EdgeArray', function() {
                 expect(bArray.hasDistinctEdges(cArray)).toBeTrue();
             });
         });
+        describe('union', function() {
+            it('returns an array of all nodes between two array', function() {
+                expect(bArray.union(cArray)).toBeArray();
+            });
+        });
+        describe('unionize', function() {
+            it('combines the nodes of both arrays', function() {
+                bArray.unionize(cArray);
+                var edgeUnion = bArray.union(cArray);
+                expect(bArray).toEqual(edgeUnion);
+            });
+        });
     });
 
 });
