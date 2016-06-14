@@ -9,3 +9,4 @@ exports.Edge = require('./graphTheory/edge');
 exports.EdgeArray = require('./graphTheory/edgeArray');
 exports.Graph = require('./graphTheory/graph');
 exports.Component = require('./graphTheory/component');
+exports.EdgeComponent = require('./graphTheory/edgeComponent');
