@@ -85,6 +85,16 @@ describe('EdgeArray', function() {
                 expect(bArray.intersects(cArray)).toBeTrue();
             });
         });
+        describe('difference', function() {
+            it('returns an array of nodes not contained in the operating array', function() {
+                expect(bArray.difference(cArray)).toBeArray();
+            });
+        });
+        describe('hasDistinctEdges', function() {
+            it('determines if there are distinct nodes between arrays', function() {
+                expect(bArray.hasDistinctEdges(cArray)).toBeTrue();
+            });
+        });
     });
 
 });

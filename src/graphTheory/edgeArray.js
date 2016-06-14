@@ -29,28 +29,27 @@ class EdgeArray extends Array {
     intersects(altArray) {
         return this.some(currEdge => altArray.contains(currEdge) === true);
     }
-    // difference(altArray) {
-    // let diffArray = new NodeArray();
+    difference(altArray) {
+        let diffArray = new EdgeArray();
 
-    // this.reduce((dArray, currEdge) => {
-    // if (!altArray.contains(currEdge)) dArray.push(currEdge);
-    // return dArray;
-    // }, diffArray);
-    // altArray.reduce((dArray, altNode) => {
-    // if (!this.contains(altNode)) dArray.push(altNode);
-    // return dArray;
-    // }, diffArray);
+        this.reduce((dArray, currEdge) => {
+            if (!altArray.contains(currEdge)) dArray.push(currEdge);
+            return dArray;
+        }, diffArray);
+        altArray.reduce((dArray, altEdge) => {
+            if (!this.contains(altEdge)) dArray.push(altEdge);
+            return dArray;
+        }, diffArray);
+        return diffArray;
 
-    // return diffArray;
-
-    // }
-    // hasDistinctNodes(altArray) {
-    // return altArray.some(altNode => !this.contains(altNode));
-    // }
+    }
+    hasDistinctEdges(altArray) {
+        return altArray.some(altEdge => !this.contains(altEdge));
+    }
     // union(altArray) {
     // let uArray = new NodeArray();
     // this.filter(currEdge => uArray.push(currEdge));
-    // altArray.filter(altNode => uArray.push(altNode));
+    // altArray.filter(altEdge => uArray.push(altEdge));
     // return uArray;
     // }
     // unionize(altArray) {
