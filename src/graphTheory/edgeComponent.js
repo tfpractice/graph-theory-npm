@@ -7,6 +7,7 @@ class EdgeComponent {
     constructor(e1) {
         this.edges = new EdgeArray(e1);
         this.arity = this.edges.length;
+        this.nodes = this.getNodes();
     }
     resetArity() {
         this.arity = this.edges.length;

@@ -59,9 +59,10 @@ describe('EdgeComponent', function() {
         it('initializes with an array of edges', function() {
             expect(myComponent.edges).toBeArray();
         });
-        // it('initializes with a player', function() {
-        // expect(myComponent.player).toBe(p1);
-        // });
+        it('initializes with a nodes array', function() {
+            // console.log(myComponent.nodes);
+            expect(myComponent.nodes).toBeArray();
+        });
         it('initializes with an arity of 1', function() {
             // expect(myComponent.arity).toEqual(1);
         });
