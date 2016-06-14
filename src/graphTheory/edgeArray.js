@@ -23,7 +23,39 @@ class EdgeArray extends Array {
             return nArray;
         }, new NodeArray());
     }
-    //
-    // methods
+    intersection(altArray) {
+        return this.filter(currEdge => altArray.contains(currEdge) === true);
+    }
+    intersects(altArray) {
+        return this.some(currEdge => altArray.contains(currEdge) === true);
+    }
+    difference(altArray) {
+        let diffArray = new EdgeArray();
+
+        this.reduce((dArray, currEdge) => {
+            if (!altArray.contains(currEdge)) dArray.push(currEdge);
+            return dArray;
+        }, diffArray);
+        altArray.reduce((dArray, altEdge) => {
+            if (!this.contains(altEdge)) dArray.push(altEdge);
+            return dArray;
+        }, diffArray);
+        return diffArray;
+
+    }
+    hasDistinctEdges(altArray) {
+        return altArray.some(altEdge => !this.contains(altEdge));
+    }
+    union(altArray) {
+        let uArray = new EdgeArray();
+        this.filter(currEdge => uArray.push(currEdge));
+        altArray.filter(altEdge => uArray.push(altEdge));
+        // console.log(uArray);
+        return uArray;
+    }
+    unionize(altArray) {
+        this.difference(altArray).forEach(dEdge => this.push(dEdge));
+    }
+
 }
 module.exports = EdgeArray;
