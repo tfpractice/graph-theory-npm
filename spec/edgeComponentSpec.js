@@ -76,9 +76,9 @@ describe('EdgeComponent', function() {
     });
 
 
-    describe('#containsNode', function() {
-        it('checks if a node is already present in the nodes array', function() {
-            // expect(myComponent.containsNode(bostonV)).toBeTrue();
+    describe('#containsEdge', function() {
+        it('checks if a edge is already present in the edges array', function() {
+            expect(myComponent.containsEdge(e1)).toBeTrue();
         });
     });
     //    describe('intersection', function() {
