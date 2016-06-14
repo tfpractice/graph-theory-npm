@@ -85,7 +85,6 @@ describe('EdgeComponent', function() {
         it('adds an edge to the array if not present', function() {
             myComponent.addEdge(e2);
             expect(myComponent.containsEdge(e2)).toBeTruthy();
-            // myComponent.getNodes();
         });
     });
     describe('updateNodes', () => {

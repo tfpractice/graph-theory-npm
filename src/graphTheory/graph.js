@@ -22,6 +22,7 @@ function Graph() {
      * @type {Edge[]}
      */
     this.edges = new EdgeArray();
+    this.components = [];
 }
 /**
  * adds a node to the nodes array, if not already contained
