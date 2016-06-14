@@ -84,8 +84,16 @@ describe('EdgeComponent', function() {
     describe('addEdge', () => {
         it('adds an edge to the array if not present', function() {
             myComponent.addEdge(e2);
+            expect(myComponent.containsEdge(e2)).toBeTruthy();
             // myComponent.getNodes();
         });
+    });
+    describe('updateNodes', () => {
+        it('updates the nodes attribute', function() {
+            myComponent.updateNodes();
+            expect(myComponent.arity).toEqual(2);
+        });
+
     });
     describe('nodeMap()', () => {
         it('returns a mapped array of each edges nodes', function() {
