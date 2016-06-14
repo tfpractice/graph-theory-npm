@@ -81,6 +81,11 @@ describe('EdgeComponent', function() {
             expect(myComponent.containsEdge(e1)).toBeTrue();
         });
     });
+    describe('resetArity()', function() {
+        it('sets the arity attribute to the number of edges', function() {
+            expect(myComponent.arity).toEqual(1);
+        });
+    });
     //    describe('intersection', function() {
     //        it('retuns an array of nodes shared by two components', function() {
     //            expect(myComponent.intersection(my2Component)).toBeArray();

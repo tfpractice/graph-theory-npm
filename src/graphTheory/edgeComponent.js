@@ -6,7 +6,10 @@ var EdgeArray = require('./edgeArray');
 class EdgeComponent {
     constructor(e1) {
         this.edges = new EdgeArray(e1);
-
+        this.arity = this.edges.length;
+    }
+    resetArity() {
+        this.arity = this.edges.length;
     }
     containsEdge(edgeArg) {
         return this.edges.contains(edgeArg);
@@ -14,10 +17,9 @@ class EdgeComponent {
     // containsEdge(edgeArg) {
     // return this.edges.contains(edgeArg);
     // }
-    // addEdge(edgeArg) {
-    // this.edges.push(edgeArg);
-    // this.arity++;
-    // }
+    addEdge(edgeArg) {
+        this.edges.push(edgeArg);
+    }
     // connected(n1, n2) {
     // return (this.containsEdge(n1) && this.containsEdge(n2));
     // }
