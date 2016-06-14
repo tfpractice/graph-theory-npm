@@ -24,26 +24,8 @@ class EdgeComponent {
         return this.edges.map(currEdge => currEdge.nodes);
     }
     getNodes() {
-        var eAN = this.edges.getNodes();
-        console.log(eAN);
-        var compNodes = new NodeArray();
-        // console.log(compNodes);
-        // compNodes.push(this.nodes[0][0]);
-        var result = [...this.nodeMap()];
-        var r2 = this.nodeMap();
-        var r3 = result.reduce((nArray, nextArray) => {
-            // nArray.push(...nextArray);
-            // nArray.push(nextArray);
-        }, compNodes);
-        console.log(result);
-        // console.log('***********');
+        return this.edges.getNodes();
 
-        // console.log(r2);
-
-        // console.log('***********');
-
-        // console.log(r3);
-        return result;
     }
     // connected(n1, n2) {
     // return (this.containsEdge(n1) && this.containsEdge(n2));
