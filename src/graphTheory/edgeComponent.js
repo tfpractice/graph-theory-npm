@@ -14,9 +14,6 @@ class EdgeComponent {
     containsEdge(edgeArg) {
         return this.edges.contains(edgeArg);
     }
-    // containsEdge(edgeArg) {
-    // return this.edges.contains(edgeArg);
-    // }
     addEdge(edgeArg) {
         this.edges.push(edgeArg);
     }
@@ -25,12 +22,6 @@ class EdgeComponent {
     }
     getNodes() {
         return this.edges.getNodes();
-
     }
-    // connected(n1, n2) {
-    // return (this.containsEdge(n1) && this.containsEdge(n2));
-    // }
-
-    // methods
 }
 module.exports = EdgeComponent;

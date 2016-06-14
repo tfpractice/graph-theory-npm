@@ -4,10 +4,7 @@ var Edge = require('./edge');
 var DirectedEdge = require('./directedEdge');
 
 class EdgeArray extends Array {
-    // constructor() {
-    // super();
-    // this.nodes = new NodeArray();
-    // }
+
     contains(argEdge) {
         return this.some(el => (el.isEquivalent(argEdge) === true));
     }
