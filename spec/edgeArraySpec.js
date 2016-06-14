@@ -51,6 +51,8 @@ describe('EdgeArray', function() {
     });
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
+            // console.log(myArray.getNodes());
+            // console.log(myArray);
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
         });
     });
