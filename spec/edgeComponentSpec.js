@@ -28,18 +28,8 @@ describe('EdgeComponent', function() {
         myComponent = new GR.EdgeComponent(e1);
         myComponent.addEdge(e2);
         myComponent.addEdge(e3);
-
-
-
-
-
-
-
-
-
     });
     // });
-
     //fdescribe('Component', function() {
     //    var n1, n2, n3, n4, n5, relCode, p1, p2, t1, t2, t3, t4, myComponent, my2Component, oComponenet;
     //    beforeEach(function() {
@@ -76,8 +66,6 @@ describe('EdgeComponent', function() {
             // expect(myComponent.arity).toEqual(1);
         });
     });
-
-
     describe('#containsEdge', function() {
         it('checks if a edge is already present in the edges array', function() {
             expect(myComponent.containsEdge(e1)).toBeTrue();
@@ -99,6 +87,11 @@ describe('EdgeComponent', function() {
             // myComponent.getNodes();
         });
     });
+    describe('nodeMap()', () => {
+        it('returns a mapped array of each edges nodes', function() {
+            expect(myComponent.nodeMap()).toBeArray();
+        });
+    });
     //    describe('intersection', function() {
     //        it('retuns an array of nodes shared by two components', function() {
     //            expect(myComponent.intersection(my2Component)).toBeArray();
@@ -114,7 +107,6 @@ describe('EdgeComponent', function() {
     //            expect(myComponent.playerCheck(my2Component)).toBeTrue();
     //        });
     //    });
-
     //    describe('hasDistinctNodes', function() {
     //        it('determines if there are distinct nodes between componnts', function() {
     //            expect(myComponent.hasDistinctNodes(my2Component)).toBeTrue();
@@ -135,7 +127,6 @@ describe('EdgeComponent', function() {
     //        it('sets the nodes to be the union of the two components', function() {
     //            myComponent.unionize(my2Component);
     //            var nodeUnion = myComponent.union(my2Component);
-
     //           expect(myComponent.nodes).toEqual(nodeUnion);
     //        });
     //    });
