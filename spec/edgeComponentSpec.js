@@ -26,6 +26,8 @@ describe('EdgeComponent', function() {
         cArray = new GR.EdgeArray(e2);
         cArray.push(e3);
         myComponent = new GR.EdgeComponent(e1);
+        myComponent.addEdge(e2);
+        myComponent.addEdge(e3);
 
 
 
@@ -84,6 +86,17 @@ describe('EdgeComponent', function() {
     describe('resetArity()', function() {
         it('sets the arity attribute to the number of edges', function() {
             expect(myComponent.arity).toEqual(1);
+        });
+    });
+    describe('getNodes', () => {
+        it('returns an flattened map of each edges nodes', function() {
+            expect(myComponent.getNodes()).toBeArray();
+        });
+    });
+    describe('addEdge', () => {
+        it('adds an edge to the array if not present', function() {
+            myComponent.addEdge(e2);
+            // myComponent.getNodes();
         });
     });
     //    describe('intersection', function() {

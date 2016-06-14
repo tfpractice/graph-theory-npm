@@ -20,6 +20,11 @@ class EdgeComponent {
     addEdge(edgeArg) {
         this.edges.push(edgeArg);
     }
+    getNodes() {
+        var result = this.edges.map(currEdge => currEdge.nodes);
+        // var sRes = (...result);
+        return result;
+    }
     // connected(n1, n2) {
     // return (this.containsEdge(n1) && this.containsEdge(n2));
     // }
