@@ -98,6 +98,9 @@ class Graph {
     addComponent(compArg) {
         this.components.push(compArg);
     }
+    hasIntersectingComponent(compArg) {
+        return this.components.some(currComp => currComp.intersects(compArg));
+    }
     depthTraverse(initNode) {
         var currComponent = new EdgeComponent();
         var currEdges = this.getEdges(initNode);
@@ -106,7 +109,8 @@ class Graph {
             currComponent.addEdge(currEdge);
             this.visitComponent(nabe, currComponent);
         });
-
+        this.addComponent(currComponent);
+        console.log(this.components);
         return currComponent;
 
     }

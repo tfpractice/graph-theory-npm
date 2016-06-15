@@ -84,8 +84,12 @@ describe('Graph', function() {
                 testNode = myGraph.nodes[0];
                 testNabe = myGraph.getNeighbors(testNode)[0];
                 testEdge = myGraph.edges[0];
+                secondEdge = myGraph.edges[1];
                 testComp = new GR.EdgeComponent();
+                altComp = new GR.EdgeComponent()
                 testComp.addEdge(testEdge);
+                altComp.addEdge(testEdge);
+                altComp.addEdge(secondEdge);
                 myGraph.addEdge(v2, v3, 4);
                 myGraph.addEdge(v2, v4, 6);
                 myGraph.addEdge(v2, v5, 8);
@@ -114,6 +118,12 @@ describe('Graph', function() {
                 it('returns a component containing all nodes reachable from init', function() {
                     expect(myGraph.visitComponent(testNode, testComp) instanceof GR.EdgeComponent).toBeTruthy();
 
+                });
+            });
+            describe('hasIntersectingComponent(compArg)', () => {
+                it('returns a boolena regarding any connecting components already present', function() {
+                    myGraph.addComponent(altComp);
+                    expect(myGraph.hasIntersectingComponent(altComp)).toBeTrue();
                 });
             });
         });
