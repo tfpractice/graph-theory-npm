@@ -31,6 +31,12 @@ class EdgeComponent {
     nodeMap() {
         return this.edges.map(currEdge => currEdge.nodes);
     }
+    intersects(compArg) {
+        return this.nodes.intersects(compArg.nodes);
+    }
+    intersection(compArg) {
+        return this.nodes.intersection(compArg.nodes);
+    }
 
 }
 module.exports = EdgeComponent;

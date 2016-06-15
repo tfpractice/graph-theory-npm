@@ -4,6 +4,7 @@ describe('EdgeComponent', function() {
     var bostonV;
     var myComponent;
     var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, bArray, cArray;
+    var altComp;
     beforeEach(function() {
         myGraph = new GR.Graph();
         bostonV = new GR.Node("boston");
@@ -29,6 +30,9 @@ describe('EdgeComponent', function() {
         myComponent.addEdge(e1);
         myComponent.addEdge(e2);
         myComponent.addEdge(e3);
+        altComp = new GR.EdgeComponent();
+        altComp.addEdge(e1);
+        altComp.addEdge(e4);
     });
 
     describe('init', function() {
@@ -83,12 +87,51 @@ describe('EdgeComponent', function() {
         });
     });
 
-    describe('addNode', function() {
-        it('adds a node to the component', function() {
-            // myComponent.addNode(tampaV);
-            // expect(myComponent.arity).toBe(2);
+    // describe('addNode', function() {
+    //     it('adds a node to the component', function() {
+    //         // myComponent.addNode(tampaV);
+    //         // expect(myComponent.arity).toBe(2);
+    //     });
+    // });
+    describe('intersects(compArg)', () => {
+        it('returns a boolean describing the presence of a node in both components', function() {
+            // altComp.addEdge(e1);
+            expect(myComponent.intersects(altComp)).toBeTrue();
         });
     });
+    describe('intersection(altArray)', function() {
+        it('retuns an array of nodes shared by two nodeArrays', function() {
+            expect(myComponent.intersection(altComp)).toBeArray();
+        });
+    });
+    // describe('intersects', function() {
+    //     it('determines if two arrays share any nodes', function() {
+    //         expect(myArray.intersects(myAltArray)).toBeTrue();
+    //     });
+    // });
+    // describe('difference', function() {
+    //     it('returns an array of nodes not contained in the operating array', function() {
+    //         expect(myArray.difference(myAltArray)).toBeArray();
+    //     });
+    // });
+    // describe('hasDistinctNodes', function() {
+    //     it('determines if there are distinct nodes between arrays', function() {
+    //         expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
+    //     });
+    // });
+    // describe('union', function() {
+    //     it('returns an array of all nodes between two array', function() {
+    //         expect(myArray.union(myAltArray)).toBeArray();
+    //     });
+    // });
+    // describe('unionize', function() {
+    //     it('combines the nodes of both arrays', function() {
+    //         myArray.unionize(myAltArray);
+    //         var nodeUnion = myArray.union(myAltArray);
+
+    //         expect(myArray).toEqual(nodeUnion);
+    //     });
+    // });
     //    describe('unionize', function() {
     //        it('sets the nodes to be the union of the two components', function() {
     //            myComponent.unionize(my2Component);
