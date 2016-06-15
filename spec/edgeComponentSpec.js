@@ -121,7 +121,7 @@ describe('EdgeComponent', function() {
     // });
     describe('union', function() {
         it('returns an array of all nodes between two array', function() {
-            console.log(myComponent.intersection(altComp));
+            // console.log(myComponent.intersection(altComp));
             expect(myComponent.union(altComp)).toBeArray();
         });
     });

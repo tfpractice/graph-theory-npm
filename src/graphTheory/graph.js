@@ -96,7 +96,24 @@ class Graph {
         return dPath;
     }
     addComponent(compArg) {
-        this.components.push(compArg);
+        // if (!this.hasIntersectingComponent(compArg)) {
+        //     this.components.push(compArg);
+        // }
+        this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
+    }
+    findIntersectingComponent(compArg) {
+        return this.components.find(currComp => currComp.intersects(compArg) === true);
+    }
+    mergeComponents(origComp, newComp) {
+        origComp.unionize(newComp);
+
+    }
+    intergrateComponent(compArg) {
+        var oComp = this.findIntersectingComponent(compArg);
+        this.mergeComponents(oComp, compArg);
+    }
+    hasIntersectingComponent(compArg) {
+        return this.components.some(currComp => currComp.intersects(compArg));
     }
     depthTraverse(initNode) {
         var currComponent = new EdgeComponent();
@@ -106,7 +123,8 @@ class Graph {
             currComponent.addEdge(currEdge);
             this.visitComponent(nabe, currComponent);
         });
-
+        this.addComponent(currComponent);
+        // console.log(this.components);
         return currComponent;
 
     }

@@ -84,18 +84,34 @@ describe('Graph', function() {
                 testNode = myGraph.nodes[0];
                 testNabe = myGraph.getNeighbors(testNode)[0];
                 testEdge = myGraph.edges[0];
+                secondEdge = myGraph.edges[1];
                 testComp = new GR.EdgeComponent();
+                altComp = new GR.EdgeComponent()
                 testComp.addEdge(testEdge);
+                altComp.addEdge(testEdge);
+                altComp.addEdge(secondEdge);
                 myGraph.addEdge(v2, v3, 4);
                 myGraph.addEdge(v2, v4, 6);
                 myGraph.addEdge(v2, v5, 8);
                 myGraph.addEdge(v2, v1, 10)
             });
             describe('addComponent(compArg)', () => {
-                it('adds a component to the components array', function() {
-                    myGraph.addComponent(testComp);
-                    expect(myGraph.components.length).toEqual(1);
+                describe('when component is unique/has no intersecting components', () => {
+                    it('adds a component to the components array', function() {
+                        myGraph.addComponent(testComp);
+                        expect(myGraph.components.length).toEqual(1);
+                    });
                 });
+                describe('when an intersecting component is present', () => {
+                    it('intergrates the new component with the current', function() {
+                        myGraph.addComponent(testComp);
+                        myGraph.addComponent(altComp);
+                        expect(myGraph.components.length).toEqual(1);
+
+
+                    });
+                });
+
             });
             describe('depthTraverse(initNode)', () => {
                 it('returns an edgeComponent containing all nodes reachable via initNode', function() {
@@ -113,6 +129,34 @@ describe('Graph', function() {
             describe('visitComponent(nodeArg, compArg)', () => {
                 it('returns a component containing all nodes reachable from init', function() {
                     expect(myGraph.visitComponent(testNode, testComp) instanceof GR.EdgeComponent).toBeTruthy();
+
+                });
+            });
+            describe('hasIntersectingComponent(compArg)', () => {
+                it('returns a boolena regarding any connecting components already present', function() {
+                    myGraph.addComponent(altComp);
+                    expect(myGraph.hasIntersectingComponent(altComp)).toBeTrue();
+                });
+            });
+            describe('findIntersectingComponent(compArg)', function() {
+                it('returns the component intersecting with the specified compArg', function() {
+                    myGraph.addComponent(testComp);
+                    myGraph.addComponent(altComp);
+                    expect(myGraph.findIntersectingComponent(altComp)).toEqual(testComp);
+                });
+            });
+            describe('mergeComponents)origComp, newComp)', function() {
+                it('unionizes the two components', function() {
+                    myGraph.mergeComponents(testComp, altComp);
+                    expect(testComp.edges).toContain(secondEdge);
+                });
+            });
+            describe('intergrateComponent(compArg)', function() {
+                it('find an intersecting component and mergess it with compArg', function() {
+                    myGraph.addComponent(testComp);
+                    myGraph.addComponent(altComp);
+                    myGraph.intergrateComponent(altComp);
+                    expect(testComp.edges).toContain(secondEdge);
 
                 });
             });
