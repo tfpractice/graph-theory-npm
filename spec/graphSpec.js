@@ -84,11 +84,23 @@ describe('Graph', function() {
                 testNode = myGraph.nodes[0];
                 testNabe = myGraph.getNeighbors(testNode)[0];
                 testEdge = myGraph.edges[0];
-                testComp = new GR.EdgeComponent(testEdge);
+                testComp = new GR.EdgeComponent();
+                testComp.addEdge(testEdge);
+                myGraph.addEdge(v2, v3, 4);
+                myGraph.addEdge(v2, v4, 6);
+                myGraph.addEdge(v2, v5, 8);
+                myGraph.addEdge(v2, v1, 10)
             });
-
+            describe('addComponent(compArg)', () => {
+                it('adds a component to the components array', function() {
+                    myGraph.addComponent(testComp);
+                    expect(myGraph.components.length).toEqual(1);
+                });
+            });
             describe('depthTraverse(initNode)', () => {
-                it('returns a component containing all nodes reachable via initNode', function() {
+                it('returns an edgeComponent containing all nodes reachable via initNode', function() {
+                    myGraph.depthTraverse(v2);
+                    expect(myGraph.depthTraverse(v2) instanceof GR.EdgeComponent).toBeTruthy();
 
                 });
 
@@ -100,7 +112,8 @@ describe('Graph', function() {
             });
             describe('visitComponent(nodeArg, compArg)', () => {
                 it('returns a component containing all nodes reachable from init', function() {
-                    // console.log(myGraph.visitComponent(testNode, testComp));
+                    expect(myGraph.visitComponent(testNode, testComp) instanceof GR.EdgeComponent).toBeTruthy();
+
                 });
             });
         });
