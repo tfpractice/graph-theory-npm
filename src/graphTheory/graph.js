@@ -109,7 +109,7 @@ class Graph {
 
         // currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
         currEdges.forEach(currEdge => {
-            var newComp = new EdgeComponent(currEdge);
+            var newComp = new EdgeComponent();
             this.componentVisit(newComp);
         });
 

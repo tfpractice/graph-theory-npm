@@ -4,17 +4,21 @@ var Edge = require('./directedEdge');
 var EdgeArray = require('./edgeArray');
 
 class EdgeComponent {
-    constructor(e1) {
-        this.edges = new EdgeArray(e1);
-        this.nodes = this.getNodes();
-        this.resetArity();
+    constructor() {
+        this.edges = new EdgeArray();
+        this.nodes = new NodeArray();
+        this.arity = 0;
 
     }
     resetArity() {
         this.arity = this.nodes.length;
     }
+    getNodes() {
+        return this.edges.getNodes();
+    }
     updateNodes() {
         this.nodes = this.getNodes();
+        this.resetArity();
 
     }
     containsEdge(edgeArg) {
@@ -27,8 +31,6 @@ class EdgeComponent {
     nodeMap() {
         return this.edges.map(currEdge => currEdge.nodes);
     }
-    getNodes() {
-        return this.edges.getNodes();
-    }
+
 }
 module.exports = EdgeComponent;
