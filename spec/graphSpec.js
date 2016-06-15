@@ -114,10 +114,14 @@ describe('Graph', function() {
 
             });
             describe('depthTraverse(initNode)', () => {
-                it('returns an edgeComponent containing all nodes reachable via initNode', function() {
+                it('returns a path[Map] containing all nodes reachable via initNode', function() {
                     myGraph.depthTraverse(v2);
-                    expect(myGraph.depthTraverse(v2) instanceof GR.EdgeComponent).toBeTruthy();
+                    expect(myGraph.depthTraverse(v2) instanceof Map).toBeTruthy();
 
+                });
+                it('augments or adds a component to the array', function() {
+                    myGraph.depthTraverse(v2);
+                    expect(myGraph.components.length).toEqual(1);
                 });
 
             });

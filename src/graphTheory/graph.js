@@ -94,9 +94,6 @@ class Graph {
         return dPath;
     }
     addComponent(compArg) {
-        // if (!this.hasIntersectingComponent(compArg)) {
-        //     this.components.push(compArg);
-        // }
         this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
     }
     findIntersectingComponent(compArg) {
@@ -119,43 +116,25 @@ class Graph {
             pred: null,
             pathWeight: 0
         });
-        var currEdges = this.getEdges(initNode);
-        currEdges.forEach(currEdge => {
-            var nabe = currEdge.getNeighbor(initNode);
-            currComponent.addEdge(currEdge);
-            path.set(nabe, {
-                pred: initNode,
-                pathWeight: 0
-            });
-
-            this.visitComponent(path, currComponent);
-        });
+        this.visitComponent(path, currComponent);
         this.addComponent(currComponent);
-        return currComponent;
+        return path;
     }
     getUnvisitedEdges(nodeArg, compArg) {
-        // var unnabe = this.getUnvisitedNeighbors(nodeArg, compArg);
         return this.getEdges(nodeArg).filter(currEdge => {
             var nNode = currEdge.getNeighbor(nodeArg)
             return !compArg.containsNode(nNode);
-            // return unnabe.indexOf(nNode) > -1;
         });
     }
     getUnvisitedNeighbors(nodeArg, compArg) {
         return this.getNeighbors(nodeArg).filter(currNode => !(compArg.containsNode(currNode)));
     }
     visitComponent(pathArg, compArg) {
-
         var nodeArg = [...pathArg.keys()].pop();
-        var nb = this.getNeighbors(nodeArg);
-        var nabeArray = NodeArray.of(...nb);
-        var diffNabez = compArg.nodes.difference(nabeArray);
         var nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
         if (nextEdges.length === 0) {
-            return compArg;
+            return pathArg;
         } else {
-            console.log(nextEdges);
-
             nextEdges.forEach(currEdge => {
                 var nabe = currEdge.getNeighbor(nodeArg);
                 compArg.addEdge(currEdge);
