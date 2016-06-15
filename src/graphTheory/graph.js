@@ -216,8 +216,8 @@ class Graph {
      * @return {Boolean} a path exists between the two nodes
      */
     hasPath(initNode, termNode) {
-        var bPath = this.breadthSearch(initNode);
-        return bPath[termNode.label] ? true : false;
+        var bPath = this.bfs(initNode);
+        return bPath.has(termNode);
     }
     /**
      * performs dijkstras algorithm for shortest paths between two nodes
