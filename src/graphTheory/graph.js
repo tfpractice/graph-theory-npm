@@ -107,6 +107,11 @@ class Graph {
         origComp.unionize(newComp);
 
     }
+    intergrateComponent(compArg) {
+        var oComp = this.findIntersectingComponent(compArg);
+        console.log(oComp);
+        this.mergeComponents(oComp, compArg);
+    }
     hasIntersectingComponent(compArg) {
         return this.components.some(currComp => currComp.intersects(compArg));
     }

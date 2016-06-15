@@ -139,6 +139,15 @@ describe('Graph', function() {
                     expect(testComp.edges).toContain(secondEdge);
                 });
             });
+            describe('intergrateComponent(compArg)', function() {
+                it('find an intersecting component and mergess it with compArg', function() {
+                    myGraph.addComponent(testComp);
+                    myGraph.addComponent(altComp);
+                    myGraph.intergrateComponent(altComp);
+                    expect(testComp.edges).toContain(secondEdge);
+
+                });
+            });
         });
         // describe('dijkstra', function() {
         // it('finds the shortest path between two nodes', function() {
