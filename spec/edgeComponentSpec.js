@@ -109,29 +109,29 @@ describe('EdgeComponent', function() {
     //         expect(myArray.intersects(myAltArray)).toBeTrue();
     //     });
     // });
-    // describe('difference', function() {
-    //     it('returns an array of nodes not contained in the operating array', function() {
-    //         expect(myArray.difference(myAltArray)).toBeArray();
-    //     });
-    // });
+    describe('difference', function() {
+        it('returns an array of nodes not contained in the operating array', function() {
+            // expect(myComponent.difference(altComp)).toBeArray();
+        });
+    });
     // describe('hasDistinctNodes', function() {
     //     it('determines if there are distinct nodes between arrays', function() {
     //         expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
     //     });
     // });
-    // describe('union', function() {
-    //     it('returns an array of all nodes between two array', function() {
-    //         expect(myArray.union(myAltArray)).toBeArray();
-    //     });
-    // });
-    // describe('unionize', function() {
-    //     it('combines the nodes of both arrays', function() {
-    //         myArray.unionize(myAltArray);
-    //         var nodeUnion = myArray.union(myAltArray);
-
-    //         expect(myArray).toEqual(nodeUnion);
-    //     });
-    // });
+    describe('union', function() {
+        it('returns an array of all nodes between two array', function() {
+            console.log(myComponent.intersection(altComp));
+            expect(myComponent.union(altComp)).toBeArray();
+        });
+    });
+    describe('unionize', function() {
+        it('combines the nodes of both arrays', function() {
+            myComponent.unionize(altComp);
+            var edgeUnion = myComponent.union(altComp);
+            expect(myComponent.edges).toEqual(edgeUnion);
+        });
+    });
     //    describe('unionize', function() {
     //        it('sets the nodes to be the union of the two components', function() {
     //            myComponent.unionize(my2Component);

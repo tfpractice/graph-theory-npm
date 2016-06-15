@@ -37,6 +37,15 @@ class EdgeComponent {
     intersection(compArg) {
         return this.nodes.intersection(compArg.nodes);
     }
+    difference(compArg) {
+        return this.nodes.difference(compArg.nodes);
+    }
+    union(compArg) {
+        return this.edges.union(compArg.edges);
+    }
+    unionize(compArg) {
+        this.edges.unionize(compArg.edges);
+    }
 
 }
 module.exports = EdgeComponent;
