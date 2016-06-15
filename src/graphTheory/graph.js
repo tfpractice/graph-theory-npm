@@ -134,7 +134,15 @@ class Graph {
         return currComponent;
     }
     getUnvisitedEdges(nodeArg, compArg) {
-        return this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
+        // var unnabe = this.getUnvisitedNeighbors(nodeArg, compArg);
+        return this.getEdges(nodeArg).filter(currEdge => {
+            var nNode = currEdge.getNeighbor(nodeArg)
+            return !compArg.containsNode(nNode);
+            // return unnabe.indexOf(nNode) > -1;
+        });
+    }
+    getUnvisitedNeighbors(nodeArg, compArg) {
+        return this.getNeighbors(nodeArg).filter(currNode => !(compArg.containsNode(currNode)));
     }
     visitComponent(pathArg, compArg) {
 
@@ -146,6 +154,8 @@ class Graph {
         if (nextEdges.length === 0) {
             return compArg;
         } else {
+            console.log(nextEdges);
+
             nextEdges.forEach(currEdge => {
                 var nabe = currEdge.getNeighbor(nodeArg);
                 compArg.addEdge(currEdge);
