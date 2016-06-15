@@ -90,9 +90,7 @@ class Graph {
             pathWeight: 0
         };
         var currEdges = this.getEdges(initNode);
-
         currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
-
         return dPath;
     }
     addComponent(compArg) {
@@ -106,7 +104,6 @@ class Graph {
     }
     mergeComponents(origComp, newComp) {
         origComp.unionize(newComp);
-
     }
     intergrateComponent(compArg) {
         var oComp = this.findIntersectingComponent(compArg);
@@ -126,27 +123,21 @@ class Graph {
         this.addComponent(currComponent);
         // console.log(this.components);
         return currComponent;
-
     }
     getUnvisitedEdges(nodeArg, compArg) {
         return this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
     }
     visitComponent(nodeArg, compArg) {
-
         var nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
         if (nextEdges.length === 0) {
             return compArg;
         } else {
             nextEdges.forEach(currEdge => {
-
                 var nabe = currEdge.getNeighbor(nodeArg);
                 compArg.addEdge(currEdge);
                 this.visitComponent(nabe, compArg);
             });
-
         }
-
-
     }
     /**
      * breadth first search, adds all connected nodes to node (breadth) path
@@ -181,6 +172,27 @@ class Graph {
             level++;
         }
         return bPath;
+    }
+    bfs(initNode) {
+        var initNode = initNode;
+        var bComp = new EdgeComponent();
+        var level = 1;
+        var bQueue = new NodeArray();
+        bQueue.push(initNode);
+        while (bQueue.length > 0) {
+            var currV = bQueue.shift();
+            var currEdges = this.getEdges(currV);
+            var frontier = new NodeArray();
+            currEdges.forEach((nEdge) => {
+                if (!bComp.containsEdge(nEdge)) {
+                    bComp.addEdge(nEdge);
+                    frontier.push(nEdge.getNeighbor(currV));
+                }
+            });
+            bQueue = frontier;
+            level++;
+        }
+        return bComp;
     }
     /**
      * check if a path exists between two nodes

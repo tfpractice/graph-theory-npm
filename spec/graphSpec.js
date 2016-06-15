@@ -156,6 +156,7 @@ describe('Graph', function() {
                     myGraph.addComponent(testComp);
                     myGraph.addComponent(altComp);
                     myGraph.intergrateComponent(altComp);
+                    myGraph.bfs(v3);
                     expect(testComp.edges).toContain(secondEdge);
 
                 });
