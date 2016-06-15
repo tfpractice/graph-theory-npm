@@ -96,7 +96,7 @@ class Graph {
     }
 
     depthTraverse(initNode) {
-        var currComponent = new Component(initNode);
+        var currComponent = new EdgeComponent();
         var initNode = initNode;
         var dPath = {
             initialNode: initNode
@@ -109,19 +109,19 @@ class Graph {
 
         // currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
         currEdges.forEach(currEdge => {
-            var newComp = new EdgeComponent();
-            this.componentVisit(newComp);
+            currComponent.addEdge(currEdge);
+            this.visitComponent(initNode, newComp);
         });
 
         return dPath;
     }
-    componentVisit(nodeArg, compArg) {
+    visitComponent(nodeArg, compArg) {
         var nextEdges = this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
         if (nextEdges.length === 0) {
             return compArg;
         } else {
             var nextNeighbors = nextEdges.map(nextEdge => nextEdge.getNeighbor(nodeArg));
-            nextNeighbors.forEach(nNode => this.componentVisit(nNode, compArg));
+            nextNeighbors.forEach(nNode => this.visitComponent(nNode, compArg));
 
         }
 

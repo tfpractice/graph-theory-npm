@@ -79,15 +79,18 @@ describe('Graph', function() {
             });
         });
         describe('depthTraverse(initNode)', () => {
+            it('returns a component containing all nodes reachable via initNode', function() {
+
+            });
 
         });
-        describe('componentVisit(nodeArg, compArg)', () => {
+        describe('visitComponent(nodeArg, compArg)', () => {
             it('returns a component containing all nodes reachable from init', function() {
                 var testNode = myGraph.nodes[0];
                 var testNabe = myGraph.getNeighbors(testNode)[0];
                 var testEdge = myGraph.edges[0];
                 var testComp = new GR.EdgeComponent(testEdge);
-                // console.log(myGraph.componentVisit(testNode, testComp));
+                // console.log(myGraph.visitComponent(testNode, testComp));
             });
         });
         // describe('dijkstra', function() {
