@@ -96,9 +96,10 @@ class Graph {
         return dPath;
     }
     addComponent(compArg) {
-        if (!this.hasIntersectingComponent(compArg)) {
-            this.components.push(compArg);
-        }
+        // if (!this.hasIntersectingComponent(compArg)) {
+        //     this.components.push(compArg);
+        // }
+        this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
     }
     findIntersectingComponent(compArg) {
         return this.components.find(currComp => currComp.intersects(compArg) === true);
@@ -109,7 +110,6 @@ class Graph {
     }
     intergrateComponent(compArg) {
         var oComp = this.findIntersectingComponent(compArg);
-        console.log(oComp);
         this.mergeComponents(oComp, compArg);
     }
     hasIntersectingComponent(compArg) {
@@ -124,7 +124,7 @@ class Graph {
             this.visitComponent(nabe, currComponent);
         });
         this.addComponent(currComponent);
-        console.log(this.components);
+        // console.log(this.components);
         return currComponent;
 
     }

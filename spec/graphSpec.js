@@ -96,10 +96,22 @@ describe('Graph', function() {
                 myGraph.addEdge(v2, v1, 10)
             });
             describe('addComponent(compArg)', () => {
-                it('adds a component to the components array', function() {
-                    myGraph.addComponent(testComp);
-                    expect(myGraph.components.length).toEqual(1);
+                describe('when component is unique/has no intersecting components', () => {
+                    it('adds a component to the components array', function() {
+                        myGraph.addComponent(testComp);
+                        expect(myGraph.components.length).toEqual(1);
+                    });
                 });
+                describe('when an intersecting component is present', () => {
+                    it('intergrates the new component with the current', function() {
+                        myGraph.addComponent(testComp);
+                        myGraph.addComponent(altComp);
+                        expect(myGraph.components.length).toEqual(1);
+
+
+                    });
+                });
+
             });
             describe('depthTraverse(initNode)', () => {
                 it('returns an edgeComponent containing all nodes reachable via initNode', function() {

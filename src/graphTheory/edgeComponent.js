@@ -45,6 +45,8 @@ class EdgeComponent {
     }
     unionize(compArg) {
         this.edges.unionize(compArg.edges);
+        this.updateNodes();
+
     }
 
 }
