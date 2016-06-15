@@ -114,20 +114,34 @@ class Graph {
     }
     depthTraverse(initNode) {
         var currComponent = new EdgeComponent();
+        var path = new Map();
+        path.set(initNode, {
+            pred: null,
+            pathWeight: 0
+        });
         var currEdges = this.getEdges(initNode);
         currEdges.forEach(currEdge => {
             var nabe = currEdge.getNeighbor(initNode);
             currComponent.addEdge(currEdge);
-            this.visitComponent(nabe, currComponent);
+            path.set(nabe, {
+                pred: initNode,
+                pathWeight: 0
+            });
+
+            this.visitComponent(path, currComponent);
         });
         this.addComponent(currComponent);
-        // console.log(this.components);
         return currComponent;
     }
     getUnvisitedEdges(nodeArg, compArg) {
         return this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
     }
-    visitComponent(nodeArg, compArg) {
+    visitComponent(pathArg, compArg) {
+
+        var nodeArg = [...pathArg.keys()].pop();
+        var nb = this.getNeighbors(nodeArg);
+        var nabeArray = NodeArray.of(...nb);
+        var diffNabez = compArg.nodes.difference(nabeArray);
         var nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
         if (nextEdges.length === 0) {
             return compArg;
@@ -135,7 +149,11 @@ class Graph {
             nextEdges.forEach(currEdge => {
                 var nabe = currEdge.getNeighbor(nodeArg);
                 compArg.addEdge(currEdge);
-                this.visitComponent(nabe, compArg);
+                pathArg.set(nabe, {
+                    pred: nodeArg,
+                    pathWeight: (pathArg.get(nodeArg).pathWeight + currEdge.weight)
+                });
+                this.visitComponent(pathArg, compArg);
             });
         }
     }
