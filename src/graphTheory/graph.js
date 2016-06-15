@@ -3,6 +3,7 @@ var NodeArray = require('./nodeArray');
 var Edge = require('./edge');
 var EdgeArray = require('./edgeArray');
 var Component = require('./component');
+var EdgeComponent = require('./edgeComponent');
 // var Edge = require('./edge');
 // var DirectedEdge = require('./directedEdge');
 /**
@@ -94,34 +95,36 @@ class Graph {
 
         return dPath;
     }
-
+    addComponent(compArg) {
+        this.components.push(compArg);
+    }
     depthTraverse(initNode) {
-        var currComponent = new Component(initNode);
-        var initNode = initNode;
-        var dPath = {
-            initialNode: initNode
-        };
-        dPath[initNode.label] = {
-            pred: null,
-            pathWeight: 0
-        };
+        var currComponent = new EdgeComponent();
         var currEdges = this.getEdges(initNode);
-
-        // currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
         currEdges.forEach(currEdge => {
-            var newComp = new EdgeComponent();
-            this.componentVisit(newComp);
+            var nabe = currEdge.getNeighbor(initNode);
+            currComponent.addEdge(currEdge);
+            this.visitComponent(nabe, currComponent);
         });
 
-        return dPath;
+        return currComponent;
+
     }
-    componentVisit(nodeArg, compArg) {
-        var nextEdges = this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
+    getUnvisitedEdges(nodeArg, compArg) {
+        return this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
+    }
+    visitComponent(nodeArg, compArg) {
+
+        var nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
         if (nextEdges.length === 0) {
             return compArg;
         } else {
-            var nextNeighbors = nextEdges.map(nextEdge => nextEdge.getNeighbor(nodeArg));
-            nextNeighbors.forEach(nNode => this.componentVisit(nNode, compArg));
+            nextEdges.forEach(currEdge => {
+
+                var nabe = currEdge.getNeighbor(nodeArg);
+                compArg.addEdge(currEdge);
+                this.visitComponent(nabe, compArg);
+            });
 
         }
 

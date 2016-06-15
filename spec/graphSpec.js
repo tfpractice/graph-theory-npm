@@ -78,16 +78,43 @@ describe('Graph', function() {
                 expect(myGraph.hasPath(v1, v3)).toBeTrue();
             });
         });
-        describe('depthTraverse(initNode)', () => {
+        describe('travesals', () => {
+            var testNode, testNabe, testEdge, testComp;
+            beforeEach(function() {
+                testNode = myGraph.nodes[0];
+                testNabe = myGraph.getNeighbors(testNode)[0];
+                testEdge = myGraph.edges[0];
+                testComp = new GR.EdgeComponent();
+                testComp.addEdge(testEdge);
+                myGraph.addEdge(v2, v3, 4);
+                myGraph.addEdge(v2, v4, 6);
+                myGraph.addEdge(v2, v5, 8);
+                myGraph.addEdge(v2, v1, 10)
+            });
+            describe('addComponent(compArg)', () => {
+                it('adds a component to the components array', function() {
+                    myGraph.addComponent(testComp);
+                    expect(myGraph.components.length).toEqual(1);
+                });
+            });
+            describe('depthTraverse(initNode)', () => {
+                it('returns an edgeComponent containing all nodes reachable via initNode', function() {
+                    myGraph.depthTraverse(v2);
+                    expect(myGraph.depthTraverse(v2) instanceof GR.EdgeComponent).toBeTruthy();
 
-        });
-        describe('componentVisit(nodeArg, compArg)', () => {
-            it('returns a component containing all nodes reachable from init', function() {
-                var testNode = myGraph.nodes[0];
-                var testNabe = myGraph.getNeighbors(testNode)[0];
-                var testEdge = myGraph.edges[0];
-                var testComp = new GR.EdgeComponent(testEdge);
-                // console.log(myGraph.componentVisit(testNode, testComp));
+                });
+
+            });
+            describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+                it('returns all edges not yet included in the given component', function() {
+                    expect(myGraph.getUnvisitedEdges(testNode, testComp)).toBeArray();
+                });
+            });
+            describe('visitComponent(nodeArg, compArg)', () => {
+                it('returns a component containing all nodes reachable from init', function() {
+                    expect(myGraph.visitComponent(testNode, testComp) instanceof GR.EdgeComponent).toBeTruthy();
+
+                });
             });
         });
         // describe('dijkstra', function() {
