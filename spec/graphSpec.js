@@ -18,7 +18,7 @@ describe('Graph', function() {
     });
     describe('addEdge', function() {
         it('appends a new edge to the edges array', function() {
-            var tempEdge = new GR.DirectedEdge(bostonV, tampaV, 10);
+            var tempEdge = new GR.Edge(bostonV, tampaV, 10);
             myGraph.addEdge(bostonV, tampaV, 10);
             expect(myGraph.edges).toContain(tempEdge);
         });
@@ -76,6 +76,18 @@ describe('Graph', function() {
             it('determines if a path exists between to nodes in a graph', function() {
                 var result = myGraph.hasPath(v1, v3);
                 expect(myGraph.hasPath(v1, v3)).toBeTrue();
+            });
+        });
+        describe('depthTraverse(initNode)', () => {
+
+        });
+        describe('componentVisit(nodeArg, compArg)', () => {
+            it('returns a component containing all nodes reachable from init', function() {
+                var testNode = myGraph.nodes[0];
+                var testNabe = myGraph.getNeighbors(testNode)[0];
+                var testEdge = myGraph.edges[0];
+                var testComp = new GR.EdgeComponent(testEdge);
+                // console.log(myGraph.componentVisit(testNode, testComp));
             });
         });
         // describe('dijkstra', function() {

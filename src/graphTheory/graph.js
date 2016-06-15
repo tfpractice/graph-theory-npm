@@ -1,6 +1,6 @@
 var Node = require('./node');
 var NodeArray = require('./nodeArray');
-var Edge = require('./directedEdge');
+var Edge = require('./edge');
 var EdgeArray = require('./edgeArray');
 var Component = require('./component');
 // var Edge = require('./edge');
@@ -95,6 +95,38 @@ class Graph {
         return dPath;
     }
 
+    depthTraverse(initNode) {
+        var currComponent = new Component(initNode);
+        var initNode = initNode;
+        var dPath = {
+            initialNode: initNode
+        };
+        dPath[initNode.label] = {
+            pred: null,
+            pathWeight: 0
+        };
+        var currEdges = this.getEdges(initNode);
+
+        // currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
+        currEdges.forEach(currEdge => {
+            var newComp = new EdgeComponent(currEdge);
+            this.componentVisit(newComp);
+        });
+
+        return dPath;
+    }
+    componentVisit(nodeArg, compArg) {
+        var nextEdges = this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
+        if (nextEdges.length === 0) {
+            return compArg;
+        } else {
+            var nextNeighbors = nextEdges.map(nextEdge => nextEdge.getNeighbor(nodeArg));
+            nextNeighbors.forEach(nNode => this.componentVisit(nNode, compArg));
+
+        }
+
+
+    }
     /**
      * breadth first search, adds all connected nodes to node (breadth) path
      * @param  {Node} initNode inital node
