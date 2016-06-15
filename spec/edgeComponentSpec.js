@@ -25,45 +25,27 @@ describe('EdgeComponent', function() {
         bArray.push(e1);
         cArray = new GR.EdgeArray(e2);
         cArray.push(e3);
-        myComponent = new GR.EdgeComponent(e1);
+        myComponent = new GR.EdgeComponent();
+        myComponent.addEdge(e1);
         myComponent.addEdge(e2);
         myComponent.addEdge(e3);
     });
-    // });
-    //fdescribe('Component', function() {
-    //    var n1, n2, n3, n4, n5, relCode, p1, p2, t1, t2, t3, t4, myComponent, my2Component, oComponenet;
-    //    beforeEach(function() {
-    //        n1 = new GR.Node(2, 3);
-    //        n2 = new GR.Node(3, 2);
-    //        n3 = new GR.Node(4, 1);
-    //        n4 = new GR.Node(1, 4);
-    //        n5 = new GR.Node(1, 3);
-    //        relCode = "rt";
-    //        n1.setNeighbor(relCode, n2);
-    //        p1 = new GR.Player("Jill");
-    //        p2 = new GR.Player("Jack");
-    //        t1 = new GR.Token(p1, "#ff00ff");
-    //        t2 = new GR.Token(p1, "#ff00ff");
-    //        t3 = new GR.Token(p2, "#ff00ff");
-    //        t4 = new GR.Token(p2, "#ff00ff");
-    //        // n1.placeToken(t1);
-    //        // n2.placeToken(t1);
-    //        // n3.placeToken(t2);
-    //        // n4.placeToken(t3);
-    //        // n5.placeToken(t4);
-    //        myComponent = new GR.Component(n1, n2, relCode);
-    //        my2Component = new GR.Component(n2, n3, "rt")
-    //        oComponenet = new GR.Component(n3, n4, "ct");
-    //    });
+
     describe('init', function() {
-        it('initializes with an array of edges', function() {
-            expect(myComponent.edges).toBeArray();
-        });
-        it('initializes with a nodes array', function() {
-            expect(myComponent.nodes).toBeArray();
-        });
-        it('initializes with an arity of 1', function() {
-            expect(myComponent.arity).toEqual(2);
+        describe('defaults', function() {
+            var defComp;
+            beforeEach(function() {
+                defComp = new GR.EdgeComponent();
+            });
+            it('initializes with an array of edges', function() {
+                expect(defComp.edges).toBeArray();
+            });
+            it('initializes with a nodes array', function() {
+                expect(defComp.nodes).toBeArray();
+            });
+            it('initializes with an arity of 1', function() {
+                expect(defComp.arity).toEqual(0);
+            });
         });
     });
     describe('#containsEdge', function() {
@@ -73,7 +55,8 @@ describe('EdgeComponent', function() {
     });
     describe('resetArity()', function() {
         it('sets the arity attribute to the number of edges', function() {
-            expect(myComponent.arity).toEqual(2);
+            myComponent.resetArity();
+            expect(myComponent.arity).toEqual(5);
         });
     });
     describe('getNodes', () => {
@@ -90,7 +73,7 @@ describe('EdgeComponent', function() {
     describe('updateNodes', () => {
         it('updates the nodes attribute', function() {
             myComponent.updateNodes();
-            expect(myComponent.arity).toEqual(2);
+            expect(myComponent.arity).toEqual(5);
         });
 
     });
@@ -99,31 +82,7 @@ describe('EdgeComponent', function() {
             expect(myComponent.nodeMap()).toBeArray();
         });
     });
-    //    describe('intersection', function() {
-    //        it('retuns an array of nodes shared by two components', function() {
-    //            expect(myComponent.intersection(my2Component)).toBeArray();
-    //        });
-    //    });
-    //    describe('intersects', function() {
-    //        it('determines if two components share nodes', function() {
-    //            expect(myComponent.intersects(my2Component)).toBeTrue();
-    //        });
-    //    });
-    //    describe('playerCheck', function() {
-    //        it('determines of two components have the smae owner', function() {
-    //            expect(myComponent.playerCheck(my2Component)).toBeTrue();
-    //        });
-    //    });
-    //    describe('hasDistinctNodes', function() {
-    //        it('determines if there are distinct nodes between componnts', function() {
-    //            expect(myComponent.hasDistinctNodes(my2Component)).toBeTrue();
-    //        });
-    //    });
-    //    describe('union', function() {
-    //        it('returns an array of all nodes between two componenets', function() {
-    //            expect(myComponent.union(my2Component)).toBeArray();
-    //        });
-    //    });
+
     describe('addNode', function() {
         it('adds a node to the component', function() {
             // myComponent.addNode(tampaV);
