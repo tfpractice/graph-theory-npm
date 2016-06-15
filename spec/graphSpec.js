@@ -132,7 +132,9 @@ describe('Graph', function() {
             });
             describe('visitComponent(nodeArg, compArg)', () => {
                 it('returns a component containing all nodes reachable from init', function() {
-                    // expect(myGraph.visitComponent(testNode, testComp) instanceof GR.EdgeComponent).toBeTruthy();
+                    var dPath = myGraph.depthTraverse(v2);
+                    var dComp = myGraph.components[0];
+                    expect(myGraph.visitComponent(dPath, dComp) instanceof Map).toBeTrue();
 
                 });
             });
@@ -163,6 +165,11 @@ describe('Graph', function() {
                     myGraph.bfs(v3);
                     expect(testComp.edges).toContain(secondEdge);
 
+                });
+            });
+            describe('bfs(initNode)', () => {
+                it('returns a path[Map] of nodes reachable in BreadthFirstSearch', function() {
+                    expect(myGraph.bfs(v2) instanceof Map).toBeTrue();
                 });
             });
         });

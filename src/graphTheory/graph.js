@@ -181,25 +181,33 @@ class Graph {
         return bPath;
     }
     bfs(initNode) {
-        var initNode = initNode;
         var bComp = new EdgeComponent();
+        var bPath = new Map();
+        bPath.set(initNode, {
+            pred: null,
+            depth: 0
+        });
         var level = 1;
         var bQueue = new NodeArray();
         bQueue.push(initNode);
         while (bQueue.length > 0) {
             var currV = bQueue.shift();
-            var currEdges = this.getEdges(currV);
+            var currEdges = this.getUnvisitedEdges(currV, bComp);
             var frontier = new NodeArray();
             currEdges.forEach((nEdge) => {
-                if (!bComp.containsEdge(nEdge)) {
-                    bComp.addEdge(nEdge);
-                    frontier.push(nEdge.getNeighbor(currV));
-                }
+                let nNode = nEdge.getNeighbor(currV);
+                bPath.set(nNode, {
+                    pred: currV,
+                    depth: level
+                });
+                bComp.addEdge(nEdge);
+                frontier.push(nNode);
             });
             bQueue = frontier;
             level++;
         }
-        return bComp;
+        this.addComponent(bComp);
+        return bPath;
     }
     /**
      * check if a path exists between two nodes
