@@ -24,6 +24,9 @@ class EdgeComponent {
     containsEdge(edgeArg) {
         return this.edges.contains(edgeArg);
     }
+    containsNode(nodeArg) {
+        return this.nodes.contains(nodeArg);
+    }
     addEdge(edgeArg) {
         this.edges.push(edgeArg);
         this.updateNodes();

@@ -57,6 +57,11 @@ describe('EdgeComponent', function() {
             expect(myComponent.containsEdge(e1)).toBeTrue();
         });
     });
+    describe('#containsNode(nodeArg)', () => {
+        it('returns true if nodeArg is present in nodes', function() {
+            expect(myComponent.containsNode(n10)).toBeTrue();
+        });
+    });
     describe('resetArity()', function() {
         it('sets the arity attribute to the number of edges', function() {
             myComponent.resetArity();
