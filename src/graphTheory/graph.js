@@ -96,7 +96,15 @@ class Graph {
         return dPath;
     }
     addComponent(compArg) {
-        this.components.push(compArg);
+        if (!this.hasIntersectingComponent(compArg)) {
+            this.components.push(compArg);
+        }
+    }
+    findIntersectingComponent(compArg) {
+        return this.components.find(currComp => currComp.intersects(compArg) === true);
+    }
+    mergeComponents(origComp, newComp) {
+
     }
     hasIntersectingComponent(compArg) {
         return this.components.some(currComp => currComp.intersects(compArg));

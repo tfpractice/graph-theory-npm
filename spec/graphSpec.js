@@ -126,6 +126,13 @@ describe('Graph', function() {
                     expect(myGraph.hasIntersectingComponent(altComp)).toBeTrue();
                 });
             });
+            describe('findIntersectingComponent(compArg)', function() {
+                it('returns the component intersecting with the specified compArg', function() {
+                    myGraph.addComponent(testComp);
+                    myGraph.addComponent(altComp);
+                    expect(myGraph.findIntersectingComponent(altComp)).toEqual(testComp);
+                });
+            });
         });
         // describe('dijkstra', function() {
         // it('finds the shortest path between two nodes', function() {
