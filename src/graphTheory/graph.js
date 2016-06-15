@@ -115,6 +115,9 @@ class Graph {
 
         return dPath;
     }
+    getUnvisitedEdges(nodeArg, compArg) {
+        return this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
+    }
     visitComponent(nodeArg, compArg) {
         var nextEdges = this.getEdges(nodeArg).filter(currEdge => !(compArg.containsEdge(currEdge)));
         if (nextEdges.length === 0) {

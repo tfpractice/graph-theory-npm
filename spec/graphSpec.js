@@ -78,19 +78,30 @@ describe('Graph', function() {
                 expect(myGraph.hasPath(v1, v3)).toBeTrue();
             });
         });
-        describe('depthTraverse(initNode)', () => {
-            it('returns a component containing all nodes reachable via initNode', function() {
-
+        describe('travesals', () => {
+            var testNode, testNabe, testEdge, testComp;
+            beforeEach(function() {
+                testNode = myGraph.nodes[0];
+                testNabe = myGraph.getNeighbors(testNode)[0];
+                testEdge = myGraph.edges[0];
+                testComp = new GR.EdgeComponent(testEdge);
             });
 
-        });
-        describe('visitComponent(nodeArg, compArg)', () => {
-            it('returns a component containing all nodes reachable from init', function() {
-                var testNode = myGraph.nodes[0];
-                var testNabe = myGraph.getNeighbors(testNode)[0];
-                var testEdge = myGraph.edges[0];
-                var testComp = new GR.EdgeComponent(testEdge);
-                // console.log(myGraph.visitComponent(testNode, testComp));
+            describe('depthTraverse(initNode)', () => {
+                it('returns a component containing all nodes reachable via initNode', function() {
+
+                });
+
+            });
+            describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+                it('returns all edges not yet included in the given component', function() {
+                    expect(myGraph.getUnvisitedEdges(testNode, testComp)).toBeArray();
+                });
+            });
+            describe('visitComponent(nodeArg, compArg)', () => {
+                it('returns a component containing all nodes reachable from init', function() {
+                    // console.log(myGraph.visitComponent(testNode, testComp));
+                });
             });
         });
         // describe('dijkstra', function() {
