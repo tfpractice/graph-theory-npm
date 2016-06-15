@@ -104,6 +104,7 @@ class Graph {
         return this.components.find(currComp => currComp.intersects(compArg) === true);
     }
     mergeComponents(origComp, newComp) {
+        origComp.unionize(newComp);
 
     }
     hasIntersectingComponent(compArg) {

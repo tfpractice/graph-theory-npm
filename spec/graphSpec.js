@@ -133,6 +133,12 @@ describe('Graph', function() {
                     expect(myGraph.findIntersectingComponent(altComp)).toEqual(testComp);
                 });
             });
+            describe('mergeComponents)origComp, newComp)', function() {
+                it('unionizes the two components', function() {
+                    myGraph.mergeComponents(testComp, altComp);
+                    expect(testComp.edges).toContain(secondEdge);
+                });
+            });
         });
         // describe('dijkstra', function() {
         // it('finds the shortest path between two nodes', function() {
