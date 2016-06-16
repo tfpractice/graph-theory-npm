@@ -9,8 +9,7 @@ This packages provides a number of classes that facilitate exploring graph based
   npm install git://github.com/tfpractice/graph-theory-npm.git --save
 
 ## Usage
-
-     The three primary classes in the library are Node, Graph, and Edge, which can provide useful functionlaity when determining relationships between a multifaceted set of related objects.
+The three primary classes in the library are Node, Graph, and Edge, which can provide useful functionlaity when determining relationships between a multifaceted set of related objects.
 
 
 ### Nodes
@@ -25,7 +24,7 @@ This packages provides a number of classes that facilitate exploring graph based
     These three nodes now exist independent of each other until brought together by edges.
 
 ### Edges
-    Edges provide a relation between two nodes, and can be given a certain "weight". In this example, the weight could act as a distance between them.
+Edges provide a relation between two nodes, and can be given a certain "weight". In this example, the weight could act as a distance between them.
     
     var mw_p = new GT.Edge(mwk, phil, 400),
         p_nyc = new GT.Edge(phil, nyc, 200),
