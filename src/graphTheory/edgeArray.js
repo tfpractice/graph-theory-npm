@@ -4,10 +4,7 @@ var Edge = require('./edge');
 var DirectedEdge = require('./directedEdge');
 
 class EdgeArray extends Array {
-    // constructor() {
-    // super();
-    // this.nodes = new NodeArray();
-    // }
+
     contains(argEdge) {
         return this.some(el => (el.isEquivalent(argEdge) === true));
     }
@@ -19,11 +16,42 @@ class EdgeArray extends Array {
     }
     getNodes() {
         return this.reduce((nArray, e) => {
-            nArray.push(e.nodes);
+            nArray.unionize(e.nodes);
             return nArray;
         }, new NodeArray());
     }
-    //
-    // methods
+    intersection(altArray) {
+        return this.filter(currEdge => altArray.contains(currEdge) === true);
+    }
+    intersects(altArray) {
+        return this.some(currEdge => altArray.contains(currEdge) === true);
+    }
+    difference(altArray) {
+        let diffArray = new EdgeArray();
+
+        this.reduce((dArray, currEdge) => {
+            if (!altArray.contains(currEdge)) dArray.push(currEdge);
+            return dArray;
+        }, diffArray);
+        altArray.reduce((dArray, altEdge) => {
+            if (!this.contains(altEdge)) dArray.push(altEdge);
+            return dArray;
+        }, diffArray);
+        return diffArray;
+
+    }
+    hasDistinctEdges(altArray) {
+        return altArray.some(altEdge => !this.contains(altEdge));
+    }
+    union(altArray) {
+        let uArray = new EdgeArray();
+        this.forEach(currEdge => uArray.push(currEdge));
+        altArray.forEach(altEdge => uArray.push(altEdge));
+        return uArray;
+    }
+    unionize(altArray) {
+        this.difference(altArray).forEach(dEdge => this.push(dEdge));
+    }
+
 }
 module.exports = EdgeArray;

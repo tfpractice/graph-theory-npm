@@ -1,8 +1,9 @@
 var Node = require('./node');
 var NodeArray = require('./nodeArray');
-var Edge = require('./directedEdge');
+var Edge = require('./edge');
 var EdgeArray = require('./edgeArray');
 var Component = require('./component');
+var EdgeComponent = require('./edgeComponent');
 // var Edge = require('./edge');
 // var DirectedEdge = require('./directedEdge');
 /**
@@ -11,169 +12,213 @@ var Component = require('./component');
  * @constructor
  * @memberOf! module:graphTheory
  */
-function Graph() {
-    /**
-     * the graph's nodes
-     * @type {Node[]}
-     */
-    this.nodes = new NodeArray();
-    /**
-     * the graph's edges
-     * @type {Edge[]}
-     */
-    this.edges = new EdgeArray();
-}
-/**
- * adds a node to the nodes array, if not already contained
- * @param {Node} node the new node
- */
-Graph.prototype.addNode = function(node) {
-    this.nodes.push(node);
-};
-/**
- * creates a new edge given two nodes
- * @param {Node} sNode source node
- * @param {Node} dNode destination node
- * @param {Number} weight weight of new edge
- */
-Graph.prototype.addEdge = function(sNode, dNode, weight) {
-    var tempEdge = new Edge(sNode, dNode, weight);
-    this.edges.push(tempEdge);
-};
-/**
- * @param  {Node} node source node
- * @return {Edge[]} the edges connected to source
- */
-Graph.prototype.getEdges = function(nodeArg) {
-    return this.edges.filter(tempEdge => tempEdge.containsNode(nodeArg) === true);
-};
-/**
- *
- * @param  {Node} sNode the source node
- * @return {Node[]} the neighboring nodes
- */
-Graph.prototype.getNeighbors = function(nodeArg) {
-    return this.getEdges(nodeArg).map(tempEdge => tempEdge.getNeighbor(nodeArg));
-};
-/**
- * adds each node connected to an edge to a (depth) path
- * @param  {Edge} edge  the source edge
- * @param  {Object} dPath a key value store of node's and distances
- */
-Graph.prototype.depthVisit = function(edge, dPath) {
-    var dNode = edge.nodes.find(currNode => dPath[currNode.label] == undefined);
-    if (dNode) {
-        var predNode = edge.getNeighbor(dNode);
-        dPath[dNode.label] = {
-            pred: predNode,
-            pathWeight: ((dPath[predNode.label].pathWeight) + edge.weight)
-        };
-        this.getEdges(dNode).forEach(dEdge => this.depthVisit(dEdge, dPath));
-    };
-    return dPath;
-};
-/**
- * depth first search, adds all connected nodes to node (depth) path
- * @param  {Node} initNode inital node
- * @return {Object} a key-value store of nodes and edge distances
- */
-Graph.prototype.depthSearch = function(initNode) {
-    var initNode = initNode;
-    var dPath = {
-        initialNode: initNode
-    };
-    dPath[initNode.label] = {
-        pred: null,
-        pathWeight: 0
-    };
-    var currEdges = this.getEdges(initNode);
-
-    currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
-
-    return dPath;
-};
-/**
- * breadth first search, adds all connected nodes to node (breadth) path
- * @param  {Node} initNode inital node
- * @return {Object} a key-value store of nodes and edge distances
- */
-Graph.prototype.breadthSearch = function(initNode) {
-    var initNode = initNode;
-    var bPath = {
-        initialNode: initNode
-    };
-    bPath[initNode.label] = {
-        pred: null,
-        depth: 0
-    };
-    var level = 1;
-    var bQueue = [initNode];
-    while (bQueue.length > 0) {
-        var currV = bQueue.shift();
-        var currNeighbors = this.getNeighbors(currV);
-        var frontier = [];
-        currNeighbors.forEach(function(nNode) {
-            if (bPath[nNode.label] == undefined) {
-                bPath[nNode.label] = {
-                    pred: currV,
-                    depth: level
-                };
-                frontier.push(nNode);
-            };
-        }, this);
-        bQueue = frontier;
-        level++;
+class Graph {
+    constructor() {
+        /**
+         * the graph's nodes
+         * @type {Node[]}
+         */
+        this.nodes = new NodeArray();
+        /**
+         * the graph's edges
+         * @type {Edge[]}
+         */
+        this.edges = new EdgeArray();
+        this.components = [];
     }
-    return bPath;
-};
-/**
- * check if a path exists between two nodes
- * @param  {Node}  initNode the initial node
- * @param  {Node}  termNode the terminal node
- * @return {Boolean} a path exists between the two nodes
- */
-Graph.prototype.hasPath = function(initNode, termNode) {
-    var bPath = this.breadthSearch(initNode);
-    return bPath[termNode.label] ? true : false;
-};
-/**
- * performs dijkstras algorithm for shortest paths between two nodes
- * @param  {Node}  initNode the initial node
- * @param  {Node}  termNode the terminal node
- * @return {Object} a shortest path between nodes
- */
-Graph.prototype.dijkstra = function(initNode, termNode) {
-    if (this.hasPath(initNode, termNode) == false) {
-        return false;
-    } else {
-        var reachables = this.breadthSearch(initNode);
-        var inspectionQueue = [initNode];
-        var solutionSet = {};
-        solutionSet[initNode.label] = {
+    /**
+     * adds a node to the nodes array, if not already contained
+     * @param {Node} node the new node
+     */
+    addNode(node) {
+        this.nodes.push(node);
+    }
+    /**
+     * creates a new edge given two nodes
+     * @param {Node} sNode source node
+     * @param {Node} dNode destination node
+     * @param {Number} weight weight of new edge
+     */
+    addEdge(sNode, dNode, weight) {
+        var tempEdge = new Edge(sNode, dNode, weight);
+        this.edges.push(tempEdge);
+    }
+    /**
+     * @param  {Node} node source node
+     * @return {Edge[]} the edges connected to source
+     */
+    getEdges(nodeArg) {
+        return this.edges.filter(tempEdge => tempEdge.containsNode(nodeArg) === true);
+    }
+    /**
+     *
+     * @param  {Node} sNode the source node
+     * @return {Node[]} the neighboring nodes
+     */
+    getNeighbors(nodeArg) {
+        return this.getEdges(nodeArg).map(tempEdge => tempEdge.getNeighbor(nodeArg));
+    }
+    /**
+     * adds each node connected to an edge to a (depth) path
+     * @param  {Edge} edge  the source edge
+     * @param  {Object} dPath a key value store of node's and distances
+     */
+    visitComponent(pathArg, compArg) {
+        var nodeArg = [...pathArg.keys()].pop();
+        var nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
+        if (nextEdges.length === 0) {
+            return pathArg;
+        } else {
+            let predWeight = pathArg.get(nodeArg).pathWeight;
+            let predCount = pathArg.get(nodeArg).edgeCount;
+            nextEdges.forEach(currEdge => {
+                var nabe = currEdge.getNeighbor(nodeArg);
+                compArg.addEdge(currEdge);
+                pathArg.set(nabe, {
+                    pred: nodeArg,
+                    edgeCount: predCount + 1,
+                    pathWeight: predWeight + currEdge.weight
+                });
+                this.visitComponent(pathArg, compArg);
+            });
+        }
+    }
+    /**
+     * depth first search, adds all connected nodes to node (depth) path
+     * @param  {Node} initNode inital node
+     * @return {Object} a key-value store of nodes and edge distances
+     */
+    depthTraverse(initNode) {
+        var currComponent = new EdgeComponent();
+        var path = new Map();
+        path.set(initNode, {
             pred: null,
+            edgeCount: 0,
             pathWeight: 0
-        };
-        while (inspectionQueue.lenght > 0) {
-            var currV = inspectionQueue.shift();
-            var currEdges = this.getEdges(currV);
-            currEdges.forEach(function(tempEdge) {
-                var currWeight = reachables[tempEdge.dest.label].pathWeight;
-                var dijkstraWeight = solutionSet[tempEdge.source.label].pathWeight + tempEdge.weight;
-                if (solutionSet[tempEdge.dest.label] == false) {
-                    inspectionQueue.push(tempEdge.dest);
-                    if (currWeight > dijkstraWeight) {
-                        solutionSet[tempEdge.dest.label] = {
-                            pred: (tempEdge.source),
-                            pathWeight: dijkstraWeight
-                        };
-                    } else {
-                        solutionSet[tempEdge.dest.label] = bPath[tempEdge.dest.label];
-                    };
+        });
+        this.visitComponent(path, currComponent);
+        this.addComponent(currComponent);
+        return path;
+    }
+    addComponent(compArg) {
+        this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
+    }
+    findIntersectingComponent(compArg) {
+        return this.components.find(currComp => currComp.intersects(compArg) === true);
+    }
+    mergeComponents(origComp, newComp) {
+        origComp.unionize(newComp);
+    }
+    intergrateComponent(compArg) {
+        var oComp = this.findIntersectingComponent(compArg);
+        this.mergeComponents(oComp, compArg);
+    }
+    hasIntersectingComponent(compArg) {
+        return this.components.some(currComp => currComp.intersects(compArg));
+    }
+
+    getUnvisitedEdges(nodeArg, compArg) {
+        return this.getEdges(nodeArg).filter(currEdge => {
+            var nNode = currEdge.getNeighbor(nodeArg)
+            return !compArg.containsNode(nNode);
+        });
+    }
+    getUnvisitedNeighbors(nodeArg, compArg) {
+        return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
+    }
+    /**
+     * breadth first search, adds all connected nodes to node (breadth) path
+     * @param  {Node} initNode inital node
+     * @return {Object} a key-value store of nodes and edge distances
+     */
+
+    bfs(initNode) {
+        var bComp = new EdgeComponent();
+        var bPath = new Map();
+        bPath.set(initNode, {
+            pred: null,
+            pathWeight: 0,
+            edgeCount: 0
+        });
+        var level = 1;
+        var bQueue = new NodeArray();
+        bQueue.push(initNode);
+        while (bQueue.length > 0) {
+            var currN = bQueue.shift();
+            var currEdges = this.getUnvisitedEdges(currN, bComp);
+            var frontier = new NodeArray();
+            let predWeight = bPath.get(currN).pathWeight;
+            let predCount = bPath.get(currN).edgeCount;
+            currEdges.forEach((nEdge) => {
+                // let pWeight = 
+                let nNode = nEdge.getNeighbor(currN);
+                bPath.set(nNode, {
+                    pred: currN,
+                    edgeCount: level,
+                    pathWeight: predWeight + nEdge.weight
+                });
+                bComp.addEdge(nEdge);
+                frontier.push(nNode);
+            });
+            bQueue = frontier;
+            level++;
+        }
+        this.addComponent(bComp);
+        return bPath;
+    }
+    /**
+     * check if a path exists between two nodes
+     * @param  {Node}  initNode the initial node
+     * @param  {Node}  termNode the terminal node
+     * @return {Boolean} a path exists between the two nodes
+     */
+    hasPath(initNode, termNode) {
+        var bPath = this.bfs(initNode);
+        return bPath.has(termNode);
+    }
+    /**
+     * performs dijkstras algorithm for shortest paths between two nodes
+     * @param  {Node}  initNode the initial node
+     * @param  {Node}  termNode the terminal node
+     * @return {Object} a shortest path between nodes
+     */
+    dijkstra(initNode) {
+        var reachables = this.bfs(initNode);
+        var inspectionQueue = new NodeArray(initNode);
+        var solutionSet = new Map();
+        solutionSet.set(initNode, {
+            pred: null,
+            edgeCount: 0,
+            pathWeight: 0
+        });
+        while (inspectionQueue.length > 0) {
+            var currN = inspectionQueue.shift();
+            var currEdges = this.getEdges(currN);
+
+            currEdges.forEach((tempEdge) => {
+                let nNode = tempEdge.getNeighbor(currN);
+                var rNodeEntry = reachables.get(nNode);
+                var currWeight = rNodeEntry.pathWeight;
+                var sPred = solutionSet.get(currN);
+                var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
+                var dMap = {
+                    pred: currN,
+                    edgeCount: sPred.edgeCount + 1,
+                    pathWeight: dijkstraWeight
+                };
+                var sMap = (dijkstraWeight < currWeight) ? dMap : rNodeEntry;
+                if (!solutionSet.has(nNode)) {
+                    inspectionQueue.push(nNode);
+                    solutionSet.set(nNode, sMap);
                 }
-            }, this);
+            });
         }
         return solutionSet;
-    };
+    }
+    shortestPath(initNode, termNode) {
+        var dijkMap = this.dijkstra(initNode);
+        return dijkMap.has(termNode) ? dijkMap.get(termNode) : null;
+    }
 };
 module.exports = Graph;
 /**
