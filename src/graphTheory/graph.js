@@ -239,8 +239,7 @@ class Graph {
             return false;
         } else {
             var reachables = this.bfs(initNode);
-            var inspectionQueue = new NodeArray();
-            inspectionQueue.push(initNode);
+            var inspectionQueue = new NodeArray(initNode);
             var solutionSet = new Map();
             solutionSet.set(initNode, {
                 pred: null,
