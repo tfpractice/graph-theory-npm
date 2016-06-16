@@ -242,13 +242,13 @@ class Graph {
         } else {
             // var reachables = this.breadthSearch(initNode);
             var reachables = this.bfs(initNode);
-            console.log(reachables);
             var inspectionQueue = new NodeArray();
             inspectionQueue.push(initNode);
             // var solutionSet = {};
             var solutionSet = new Map();
             solutionSet.set(initNode, {
                 pred: null,
+                edgeCount: 0,
                 pathWeight: 0
             });
             // solutionSet[initNode.label] = {
@@ -278,10 +278,12 @@ class Graph {
 
                     var rMap = {
                         pred: rPred,
+                        edgeCount: rNode.edgeCount,
                         pathWeight: rNode.pathWeight
                     };
                     var dMap = {
                         pred: currN,
+                        edgeCount: sPred.edgeCount + 1,
                         pathWeight: dijkstraWeight
                     };
                     var sMap = (dijkstraWeight < currWeight) ? dMap : rMap;

@@ -213,7 +213,25 @@ describe('Graph', function() {
         });
         describe('dijkstra', function() {
             it('finds the shortest path between two nodes', function() {
-                myGraph.dijkstra(v1, v2);
+                expect(myGraph.dijkstra(v1, v2) instanceof Map).toBeTrue();
+            });
+            describe('retun values', () => {
+                var dijkKeys;
+                beforeEach(function() {
+                    dijkKeys = myGraph.dijkstra(v1, v2).get(v5);
+                });
+                it('maps the values to an object with keys for predecessor(pred), edgeCount, and pathWeight', function() {
+                    expect(dijkKeys).toBeObject();
+                });
+                it('has a pred[Node/null] value', function() {
+                    expect(dijkKeys.pred instanceof GR.Node).toBeTrue();
+                });
+                it('has a edgeCount[Number] value', function() {
+                    expect(dijkKeys.edgeCount).toBeNumber();
+                });
+                it('has a pathWeight[Number] value', function() {
+                    expect(dijkKeys.pathWeight).toBeNumber();
+                });
             });
         });
     });
