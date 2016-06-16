@@ -189,7 +189,8 @@ class Graph {
         var bPath = new Map();
         bPath.set(initNode, {
             pred: null,
-            depth: 0
+            pathWeight: 0,
+            edgeCount: 0
         });
         var level = 1;
         var bQueue = new NodeArray();
@@ -198,11 +199,17 @@ class Graph {
             var currN = bQueue.shift();
             var currEdges = this.getUnvisitedEdges(currN, bComp);
             var frontier = new NodeArray();
+
+            let predWeight = bPath.get(currN).pathWeight;
+            let predCount = bPath.get(currN).edgeCount;
+
             currEdges.forEach((nEdge) => {
+                // let pWeight = 
                 let nNode = nEdge.getNeighbor(currN);
                 bPath.set(nNode, {
                     pred: currN,
-                    depth: level
+                    edgeCount: level,
+                    pathWeight: predWeight + nEdge.weight
                 });
                 bComp.addEdge(nEdge);
                 frontier.push(nNode);

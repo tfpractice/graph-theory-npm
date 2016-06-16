@@ -190,6 +190,25 @@ describe('Graph', function() {
                 it('returns a path[Map] of nodes reachable in BreadthFirstSearch', function() {
                     expect(myGraph.bfs(v2) instanceof Map).toBeTrue();
                 });
+                describe('retun values', () => {
+                    var bfsKeys;
+                    beforeEach(function() {
+                        bfsKeys = myGraph.bfs(v2).get(v1);
+                    });
+                    it('maps the values to an object with keys for predecessor(pred), edgeCount, and pathWeight', function() {
+                        expect(bfsKeys).toBeObject();
+                    });
+                    it('has a pred[Node/null] value', function() {
+                        expect(bfsKeys.pred instanceof GR.Node).toBeTrue();
+                    });
+                    it('has a edgeCount[Number] value', function() {
+                        expect(bfsKeys.edgeCount).toBeNumber();
+                    });
+                    it('has a pathWeight[Number] value', function() {
+                        expect(bfsKeys.pathWeight).toBeNumber();
+                    });
+                });
+
             });
         });
         describe('dijkstra', function() {
