@@ -241,7 +241,8 @@ class Graph {
             return false;
         } else {
             // var reachables = this.breadthSearch(initNode);
-            var reachables = this.depthTraverse(initNode);
+            var reachables = this.bfs(initNode);
+            console.log(reachables);
             var inspectionQueue = new NodeArray();
             inspectionQueue.push(initNode);
             // var solutionSet = {};
