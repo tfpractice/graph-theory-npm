@@ -125,8 +125,6 @@ describe('Graph', function() {
                         dfsKeys = myGraph.depthTraverse(v2).get(v1);
                     });
                     it('maps the values to an object with keys for predecessor(pred), edgeCount, and pathWeight', function() {
-                        // expect(dfsKeys).toContain(member or substring);
-                        console.log(dfsKeys);
                         expect(dfsKeys).toBeObject();
                     });
                     it('has a pred[Node/null] value', function() {
