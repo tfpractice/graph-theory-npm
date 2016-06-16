@@ -173,9 +173,10 @@ describe('Graph', function() {
                 });
             });
         });
-        // describe('dijkstra', function() {
-        // it('finds the shortest path between two nodes', function() {
-        // });
-        // });
+        describe('dijkstra', function() {
+            it('finds the shortest path between two nodes', function() {
+                myGraph.dijkstra(v1, v2);
+            });
+        });
     });
 });

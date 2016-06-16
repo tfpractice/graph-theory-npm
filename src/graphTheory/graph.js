@@ -163,13 +163,13 @@ class Graph {
         var level = 1;
         var bQueue = [initNode];
         while (bQueue.length > 0) {
-            var currV = bQueue.shift();
-            var currNeighbors = this.getNeighbors(currV);
+            var currN = bQueue.shift();
+            var currNeighbors = this.getNeighbors(currN);
             var frontier = [];
             currNeighbors.forEach(function(nNode) {
                 if (bPath[nNode.label] == undefined) {
                     bPath[nNode.label] = {
-                        pred: currV,
+                        pred: currN,
                         depth: level
                     };
                     frontier.push(nNode);
@@ -191,13 +191,13 @@ class Graph {
         var bQueue = new NodeArray();
         bQueue.push(initNode);
         while (bQueue.length > 0) {
-            var currV = bQueue.shift();
-            var currEdges = this.getUnvisitedEdges(currV, bComp);
+            var currN = bQueue.shift();
+            var currEdges = this.getUnvisitedEdges(currN, bComp);
             var frontier = new NodeArray();
             currEdges.forEach((nEdge) => {
-                let nNode = nEdge.getNeighbor(currV);
+                let nNode = nEdge.getNeighbor(currN);
                 bPath.set(nNode, {
-                    pred: currV,
+                    pred: currN,
                     depth: level
                 });
                 bComp.addEdge(nEdge);
@@ -226,36 +226,68 @@ class Graph {
      * @return {Object} a shortest path between nodes
      */
     dijkstra(initNode, termNode) {
-        if (this.hasPath(initNode, termNode) == false) {
+        if (this.hasPath(initNode, termNode) === false) {
             return false;
         } else {
-            var reachables = this.breadthSearch(initNode);
-            var inspectionQueue = [initNode];
-            var solutionSet = {};
-            solutionSet[initNode.label] = {
+            // var reachables = this.breadthSearch(initNode);
+            var reachables = this.depthTraverse(initNode);
+            var inspectionQueue = new NodeArray();
+            inspectionQueue.push(initNode);
+            // var solutionSet = {};
+            var solutionSet = new Map();
+            solutionSet.set(initNode, {
                 pred: null,
                 pathWeight: 0
-            };
-            while (inspectionQueue.lenght > 0) {
-                var currV = inspectionQueue.shift();
-                var currEdges = this.getEdges(currV);
+            });
+            // solutionSet[initNode.label] = {
+            //     pred: null,
+            //     pathWeight: 0
+            // };
+            while (inspectionQueue.length > 0) {
+                var currN = inspectionQueue.shift();
+                var currEdges = this.getEdges(currN);
+
                 currEdges.forEach(function(tempEdge) {
-                    var currWeight = reachables[tempEdge.dest.label].pathWeight;
-                    var dijkstraWeight = solutionSet[tempEdge.source.label].pathWeight + tempEdge.weight;
-                    if (solutionSet[tempEdge.dest.label] == false) {
-                        inspectionQueue.push(tempEdge.dest);
-                        if (currWeight > dijkstraWeight) {
-                            solutionSet[tempEdge.dest.label] = {
-                                pred: (tempEdge.source),
-                                pathWeight: dijkstraWeight
-                            };
-                        } else {
-                            solutionSet[tempEdge.dest.label] = bPath[tempEdge.dest.label];
-                        };
+                    let nNode = tempEdge.getNeighbor(currN);
+                    var rPred = reachables.get(nNode).pred;
+                    var rNode = reachables.get(nNode);
+                    var sPred = solutionSet.get(currN);
+
+
+                    // var pathMap = new Map();
+
+
+                    // var currWeight = reachables[tempEdge.dest.label].pathWeight;
+                    var currWeight = rNode.pathWeight;
+                    // var dijkstraWeight = solutionSet[tempEdge.source.label].pathWeight + tempEdge.weight;
+                    var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
+                    var possibleWeights = [currWeight, dijkstraWeight];
+                    var smallerWeight = Math.min(...possibleWeights);
+
+                    var rMap = {
+                        pred: rPred,
+                        pathWeight: rNode.pathWeight
+                    };
+                    var dMap = {
+                        pred: currN,
+                        pathWeight: dijkstraWeight
+                    };
+                    var sMap = (dijkstraWeight < currWeight) ? dMap : rMap;
+                    // var betterPred = dPath
+                    // if (solutionSet[tempEdge.dest.label] == false) {
+                    if (!solutionSet.has(nNode)) {
+                        inspectionQueue.push(nNode);
+                        solutionSet.set(nNode, sMap);
+
                     }
+                    console.log('************');
+                    console.log(nNode);
+                    console.log(solutionSet.get(nNode))
                 }, this);
             }
+            console.log(solutionSet);
             return solutionSet;
+
         }
     }
 };
