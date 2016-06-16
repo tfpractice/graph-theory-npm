@@ -234,42 +234,42 @@ class Graph {
      * @param  {Node}  termNode the terminal node
      * @return {Object} a shortest path between nodes
      */
-    dijkstra(initNode, termNode) {
-        if (this.hasPath(initNode, termNode) === false) {
-            return false;
-        } else {
-            var reachables = this.bfs(initNode);
-            var inspectionQueue = new NodeArray(initNode);
-            var solutionSet = new Map();
-            solutionSet.set(initNode, {
-                pred: null,
-                edgeCount: 0,
-                pathWeight: 0
-            });
-            while (inspectionQueue.length > 0) {
-                var currN = inspectionQueue.shift();
-                var currEdges = this.getEdges(currN);
+    dijkstra(initNode) {
+        // if (this.hasPath(initNode, termNode) === false) {
+        // return false;
+        // } else {
+        var reachables = this.bfs(initNode);
+        var inspectionQueue = new NodeArray(initNode);
+        var solutionSet = new Map();
+        solutionSet.set(initNode, {
+            pred: null,
+            edgeCount: 0,
+            pathWeight: 0
+        });
+        while (inspectionQueue.length > 0) {
+            var currN = inspectionQueue.shift();
+            var currEdges = this.getEdges(currN);
 
-                currEdges.forEach((tempEdge) => {
-                    let nNode = tempEdge.getNeighbor(currN);
-                    var rNodeEntry = reachables.get(nNode);
-                    var currWeight = rNodeEntry.pathWeight;
-                    var sPred = solutionSet.get(currN);
-                    var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
-                    var dMap = {
-                        pred: currN,
-                        edgeCount: sPred.edgeCount + 1,
-                        pathWeight: dijkstraWeight
-                    };
-                    var sMap = (dijkstraWeight < currWeight) ? dMap : rNodeEntry;
-                    if (!solutionSet.has(nNode)) {
-                        inspectionQueue.push(nNode);
-                        solutionSet.set(nNode, sMap);
-                    }
-                });
-            }
-            return solutionSet;
+            currEdges.forEach((tempEdge) => {
+                let nNode = tempEdge.getNeighbor(currN);
+                var rNodeEntry = reachables.get(nNode);
+                var currWeight = rNodeEntry.pathWeight;
+                var sPred = solutionSet.get(currN);
+                var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
+                var dMap = {
+                    pred: currN,
+                    edgeCount: sPred.edgeCount + 1,
+                    pathWeight: dijkstraWeight
+                };
+                var sMap = (dijkstraWeight < currWeight) ? dMap : rNodeEntry;
+                if (!solutionSet.has(nNode)) {
+                    inspectionQueue.push(nNode);
+                    solutionSet.set(nNode, sMap);
+                }
+            });
         }
+        return solutionSet;
+        // }
     }
 };
 module.exports = Graph;
