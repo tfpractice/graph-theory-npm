@@ -235,9 +235,6 @@ class Graph {
      * @return {Object} a shortest path between nodes
      */
     dijkstra(initNode) {
-        // if (this.hasPath(initNode, termNode) === false) {
-        // return false;
-        // } else {
         var reachables = this.bfs(initNode);
         var inspectionQueue = new NodeArray(initNode);
         var solutionSet = new Map();
@@ -269,7 +266,6 @@ class Graph {
             });
         }
         return solutionSet;
-        // }
     }
     shortestPath(initNode, termNode) {
         var dijkMap = this.dijkstra(initNode);
