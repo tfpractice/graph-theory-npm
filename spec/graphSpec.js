@@ -119,6 +119,27 @@ describe('Graph', function() {
                     expect(myGraph.depthTraverse(v2) instanceof Map).toBeTruthy();
 
                 });
+                describe('retun values', () => {
+                    var dfsKeys;
+                    beforeEach(function() {
+                        dfsKeys = myGraph.depthTraverse(v2).get(v1);
+                    });
+                    it('maps the values to an object with keys for predecessor(pred), edgeCount, and pathWeight', function() {
+                        // expect(dfsKeys).toContain(member or substring);
+                        console.log(dfsKeys);
+                        expect(dfsKeys).toBeObject();
+                    });
+                    it('has a pred[Node/null] value', function() {
+                        expect(dfsKeys.pred instanceof GR.Node).toBeTrue();
+                    });
+                    it('has a edgeCount[Number] value', function() {
+                        expect(dfsKeys.edgeCount).toBeNumber();
+                    });
+                    it('has a pathWeight[Number] value', function() {
+                        expect(dfsKeys.pathWeight).toBeNumber();
+                    });
+                });
+
                 it('augments or adds a component to the array', function() {
                     myGraph.depthTraverse(v2);
                     expect(myGraph.components.length).toEqual(1);
