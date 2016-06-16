@@ -234,5 +234,10 @@ describe('Graph', function() {
                 });
             });
         });
+        describe('shortestPath(initNode,termNode)', () => {
+            it('reutns the dijkstra entry for the termNode', function() {
+                expect(myGraph.shortestPath(v1, v2) instanceof Object).toBeTrue();
+            });
+        });
     });
 });

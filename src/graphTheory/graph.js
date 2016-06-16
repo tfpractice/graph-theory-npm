@@ -271,6 +271,10 @@ class Graph {
         return solutionSet;
         // }
     }
+    shortestPath(initNode, termNode) {
+        var dijkMap = this.dijkstra(initNode);
+        return dijkMap.has(termNode) ? dijkMap.get(termNode) : null;
+    }
 };
 module.exports = Graph;
 /**
