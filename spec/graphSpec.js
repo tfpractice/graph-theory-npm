@@ -67,11 +67,7 @@ describe('Graph', function() {
             });
 
         });
-        describe('breadthSearch', function() {
-            it('retunrs an object containgin all nodes reachable from a given vertex ', function() {
-                expect(myGraph.breadthSearch(v1)).toBeObject();
-            });
-        });
+
         describe('hasPath', function() {
             it('determines if a path exists between to nodes in a graph', function() {
                 var result = myGraph.hasPath(v1, v3);

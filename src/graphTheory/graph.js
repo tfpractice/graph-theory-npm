@@ -155,35 +155,7 @@ class Graph {
      * @param  {Node} initNode inital node
      * @return {Object} a key-value store of nodes and edge distances
      */
-    breadthSearch(initNode) {
-        var initNode = initNode;
-        var bPath = {
-            initialNode: initNode
-        };
-        bPath[initNode.label] = {
-            pred: null,
-            depth: 0
-        };
-        var level = 1;
-        var bQueue = [initNode];
-        while (bQueue.length > 0) {
-            var currN = bQueue.shift();
-            var currNeighbors = this.getNeighbors(currN);
-            var frontier = [];
-            currNeighbors.forEach(function(nNode) {
-                if (bPath[nNode.label] == undefined) {
-                    bPath[nNode.label] = {
-                        pred: currN,
-                        depth: level
-                    };
-                    frontier.push(nNode);
-                };
-            }, this);
-            bQueue = frontier;
-            level++;
-        }
-        return bPath;
-    }
+
     bfs(initNode) {
         var bComp = new EdgeComponent();
         var bPath = new Map();
