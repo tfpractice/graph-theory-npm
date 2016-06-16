@@ -48,25 +48,7 @@ describe('Graph', function() {
                 expect(myGraph.getNeighbors(v1)).toContain(v2);
             });
         });
-        // describe('depthSearch', function() {
-        //     it('returns an object recording each reachable vertex from a given source', function() {
-        //         expect(myGraph.depthSearch(v1)).toBeObject();
-        //     });
-        // });
-        // describe('depthVisit', function() {
-        // it('visits all the adjacent nodes and places them into an object', function() {
-        // var vEdge = myGraph.getEdges(v1)[0];
-        // var dPath = {
-        // v1: {
-        // pred: null,
-        // pathWeight: 0
-        // }
-        // };
-        // expect(myGraph.depthVisit(vEdge, dPath)).toBeObject();
 
-        // });
-
-        // });
 
         describe('hasPath', function() {
             it('determines if a path exists between to nodes in a graph', function() {
