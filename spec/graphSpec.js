@@ -48,30 +48,8 @@ describe('Graph', function() {
                 expect(myGraph.getNeighbors(v1)).toContain(v2);
             });
         });
-        describe('depthSearch', function() {
-            it('returns an object recording each reachable vertex from a given source', function() {
-                expect(myGraph.depthSearch(v1)).toBeObject();
-            });
-        });
-        describe('depthVisit', function() {
-            it('visits all the adjacent nodes and places them into an object', function() {
-                var vEdge = myGraph.getEdges(v1)[0];
-                var dPath = {
-                    v1: {
-                        pred: null,
-                        pathWeight: 0
-                    }
-                };
-                expect(myGraph.depthVisit(vEdge, dPath)).toBeObject();
 
-            });
 
-        });
-        describe('breadthSearch', function() {
-            it('retunrs an object containgin all nodes reachable from a given vertex ', function() {
-                expect(myGraph.breadthSearch(v1)).toBeObject();
-            });
-        });
         describe('hasPath', function() {
             it('determines if a path exists between to nodes in a graph', function() {
                 var result = myGraph.hasPath(v1, v3);
@@ -213,7 +191,30 @@ describe('Graph', function() {
         });
         describe('dijkstra', function() {
             it('finds the shortest path between two nodes', function() {
-                myGraph.dijkstra(v1, v2);
+                expect(myGraph.dijkstra(v1, v2) instanceof Map).toBeTrue();
+            });
+            describe('retun values', () => {
+                var dijkKeys;
+                beforeEach(function() {
+                    dijkKeys = myGraph.dijkstra(v1, v2).get(v5);
+                });
+                it('maps the values to an object with keys for predecessor(pred), edgeCount, and pathWeight', function() {
+                    expect(dijkKeys).toBeObject();
+                });
+                it('has a pred[Node/null] value', function() {
+                    expect(dijkKeys.pred instanceof GR.Node).toBeTrue();
+                });
+                it('has a edgeCount[Number] value', function() {
+                    expect(dijkKeys.edgeCount).toBeNumber();
+                });
+                it('has a pathWeight[Number] value', function() {
+                    expect(dijkKeys.pathWeight).toBeNumber();
+                });
+            });
+        });
+        describe('shortestPath(initNode,termNode)', () => {
+            it('reutns the dijkstra entry for the termNode', function() {
+                expect(myGraph.shortestPath(v1, v2) instanceof Object).toBeTrue();
             });
         });
     });

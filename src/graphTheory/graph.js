@@ -63,73 +63,6 @@ class Graph {
      * @param  {Edge} edge  the source edge
      * @param  {Object} dPath a key value store of node's and distances
      */
-    depthVisit(edge, dPath) {
-        var dNode = edge.nodes.find(currNode => dPath[currNode.label] == undefined);
-        if (dNode) {
-            var predNode = edge.getNeighbor(dNode);
-            dPath[dNode.label] = {
-                pred: predNode,
-                pathWeight: ((dPath[predNode.label].pathWeight) + edge.weight)
-            };
-            this.getEdges(dNode).forEach(dEdge => this.depthVisit(dEdge, dPath));
-        };
-        return dPath;
-    }
-    /**
-     * depth first search, adds all connected nodes to node (depth) path
-     * @param  {Node} initNode inital node
-     * @return {Object} a key-value store of nodes and edge distances
-     */
-    depthSearch(initNode) {
-        var initNode = initNode;
-        var dPath = {
-            initialNode: initNode
-        };
-        dPath[initNode.label] = {
-            pred: null,
-            pathWeight: 0
-        };
-        var currEdges = this.getEdges(initNode);
-        currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
-        return dPath;
-    }
-    addComponent(compArg) {
-        this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
-    }
-    findIntersectingComponent(compArg) {
-        return this.components.find(currComp => currComp.intersects(compArg) === true);
-    }
-    mergeComponents(origComp, newComp) {
-        origComp.unionize(newComp);
-    }
-    intergrateComponent(compArg) {
-        var oComp = this.findIntersectingComponent(compArg);
-        this.mergeComponents(oComp, compArg);
-    }
-    hasIntersectingComponent(compArg) {
-        return this.components.some(currComp => currComp.intersects(compArg));
-    }
-    depthTraverse(initNode) {
-        var currComponent = new EdgeComponent();
-        var path = new Map();
-        path.set(initNode, {
-            pred: null,
-            edgeCount: 0,
-            pathWeight: 0
-        });
-        this.visitComponent(path, currComponent);
-        this.addComponent(currComponent);
-        return path;
-    }
-    getUnvisitedEdges(nodeArg, compArg) {
-        return this.getEdges(nodeArg).filter(currEdge => {
-            var nNode = currEdge.getNeighbor(nodeArg)
-            return !compArg.containsNode(nNode);
-        });
-    }
-    getUnvisitedNeighbors(nodeArg, compArg) {
-        return this.getNeighbors(nodeArg).filter(currNode => !(compArg.containsNode(currNode)));
-    }
     visitComponent(pathArg, compArg) {
         var nodeArg = [...pathArg.keys()].pop();
         var nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
@@ -151,39 +84,54 @@ class Graph {
         }
     }
     /**
+     * depth first search, adds all connected nodes to node (depth) path
+     * @param  {Node} initNode inital node
+     * @return {Object} a key-value store of nodes and edge distances
+     */
+    depthTraverse(initNode) {
+        var currComponent = new EdgeComponent();
+        var path = new Map();
+        path.set(initNode, {
+            pred: null,
+            edgeCount: 0,
+            pathWeight: 0
+        });
+        this.visitComponent(path, currComponent);
+        this.addComponent(currComponent);
+        return path;
+    }
+    addComponent(compArg) {
+        this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
+    }
+    findIntersectingComponent(compArg) {
+        return this.components.find(currComp => currComp.intersects(compArg) === true);
+    }
+    mergeComponents(origComp, newComp) {
+        origComp.unionize(newComp);
+    }
+    intergrateComponent(compArg) {
+        var oComp = this.findIntersectingComponent(compArg);
+        this.mergeComponents(oComp, compArg);
+    }
+    hasIntersectingComponent(compArg) {
+        return this.components.some(currComp => currComp.intersects(compArg));
+    }
+
+    getUnvisitedEdges(nodeArg, compArg) {
+        return this.getEdges(nodeArg).filter(currEdge => {
+            var nNode = currEdge.getNeighbor(nodeArg)
+            return !compArg.containsNode(nNode);
+        });
+    }
+    getUnvisitedNeighbors(nodeArg, compArg) {
+        return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
+    }
+    /**
      * breadth first search, adds all connected nodes to node (breadth) path
      * @param  {Node} initNode inital node
      * @return {Object} a key-value store of nodes and edge distances
      */
-    breadthSearch(initNode) {
-        var initNode = initNode;
-        var bPath = {
-            initialNode: initNode
-        };
-        bPath[initNode.label] = {
-            pred: null,
-            depth: 0
-        };
-        var level = 1;
-        var bQueue = [initNode];
-        while (bQueue.length > 0) {
-            var currN = bQueue.shift();
-            var currNeighbors = this.getNeighbors(currN);
-            var frontier = [];
-            currNeighbors.forEach(function(nNode) {
-                if (bPath[nNode.label] == undefined) {
-                    bPath[nNode.label] = {
-                        pred: currN,
-                        depth: level
-                    };
-                    frontier.push(nNode);
-                };
-            }, this);
-            bQueue = frontier;
-            level++;
-        }
-        return bPath;
-    }
+
     bfs(initNode) {
         var bComp = new EdgeComponent();
         var bPath = new Map();
@@ -199,10 +147,8 @@ class Graph {
             var currN = bQueue.shift();
             var currEdges = this.getUnvisitedEdges(currN, bComp);
             var frontier = new NodeArray();
-
             let predWeight = bPath.get(currN).pathWeight;
             let predCount = bPath.get(currN).edgeCount;
-
             currEdges.forEach((nEdge) => {
                 // let pWeight = 
                 let nNode = nEdge.getNeighbor(currN);
@@ -236,70 +182,42 @@ class Graph {
      * @param  {Node}  termNode the terminal node
      * @return {Object} a shortest path between nodes
      */
-    dijkstra(initNode, termNode) {
-        if (this.hasPath(initNode, termNode) === false) {
-            return false;
-        } else {
-            // var reachables = this.breadthSearch(initNode);
-            var reachables = this.depthTraverse(initNode);
-            var inspectionQueue = new NodeArray();
-            inspectionQueue.push(initNode);
-            // var solutionSet = {};
-            var solutionSet = new Map();
-            solutionSet.set(initNode, {
-                pred: null,
-                pathWeight: 0
+    dijkstra(initNode) {
+        var reachables = this.bfs(initNode);
+        var inspectionQueue = new NodeArray(initNode);
+        var solutionSet = new Map();
+        solutionSet.set(initNode, {
+            pred: null,
+            edgeCount: 0,
+            pathWeight: 0
+        });
+        while (inspectionQueue.length > 0) {
+            var currN = inspectionQueue.shift();
+            var currEdges = this.getEdges(currN);
+
+            currEdges.forEach((tempEdge) => {
+                let nNode = tempEdge.getNeighbor(currN);
+                var rNodeEntry = reachables.get(nNode);
+                var currWeight = rNodeEntry.pathWeight;
+                var sPred = solutionSet.get(currN);
+                var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
+                var dMap = {
+                    pred: currN,
+                    edgeCount: sPred.edgeCount + 1,
+                    pathWeight: dijkstraWeight
+                };
+                var sMap = (dijkstraWeight < currWeight) ? dMap : rNodeEntry;
+                if (!solutionSet.has(nNode)) {
+                    inspectionQueue.push(nNode);
+                    solutionSet.set(nNode, sMap);
+                }
             });
-            // solutionSet[initNode.label] = {
-            //     pred: null,
-            //     pathWeight: 0
-            // };
-            while (inspectionQueue.length > 0) {
-                var currN = inspectionQueue.shift();
-                var currEdges = this.getEdges(currN);
-
-                currEdges.forEach(function(tempEdge) {
-                    let nNode = tempEdge.getNeighbor(currN);
-                    var rPred = reachables.get(nNode).pred;
-                    var rNode = reachables.get(nNode);
-                    var sPred = solutionSet.get(currN);
-
-
-                    // var pathMap = new Map();
-
-
-                    // var currWeight = reachables[tempEdge.dest.label].pathWeight;
-                    var currWeight = rNode.pathWeight;
-                    // var dijkstraWeight = solutionSet[tempEdge.source.label].pathWeight + tempEdge.weight;
-                    var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
-                    var possibleWeights = [currWeight, dijkstraWeight];
-                    var smallerWeight = Math.min(...possibleWeights);
-
-                    var rMap = {
-                        pred: rPred,
-                        pathWeight: rNode.pathWeight
-                    };
-                    var dMap = {
-                        pred: currN,
-                        pathWeight: dijkstraWeight
-                    };
-                    var sMap = (dijkstraWeight < currWeight) ? dMap : rMap;
-                    // var betterPred = dPath
-                    // if (solutionSet[tempEdge.dest.label] == false) {
-                    if (!solutionSet.has(nNode)) {
-                        inspectionQueue.push(nNode);
-                        solutionSet.set(nNode, sMap);
-
-                    }
-                    // console.log('************');
-                    // console.log(nNode);
-                    // console.log(solutionSet.get(nNode))
-                }, this);
-            }
-            // console.log(solutionSet);
-            return solutionSet;
-
         }
+        return solutionSet;
+    }
+    shortestPath(initNode, termNode) {
+        var dijkMap = this.dijkstra(initNode);
+        return dijkMap.has(termNode) ? dijkMap.get(termNode) : null;
     }
 };
 module.exports = Graph;
