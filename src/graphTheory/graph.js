@@ -63,73 +63,6 @@ class Graph {
      * @param  {Edge} edge  the source edge
      * @param  {Object} dPath a key value store of node's and distances
      */
-    depthVisit(edge, dPath) {
-        var dNode = edge.nodes.find(currNodeEntry => dPath[currNodeEntry.label] == undefined);
-        if (dNode) {
-            var predNode = edge.getNeighbor(dNode);
-            dPath[dNode.label] = {
-                pred: predNode,
-                pathWeight: ((dPath[predNode.label].pathWeight) + edge.weight)
-            };
-            this.getEdges(dNode).forEach(dEdge => this.depthVisit(dEdge, dPath));
-        };
-        return dPath;
-    }
-    /**
-     * depth first search, adds all connected nodes to node (depth) path
-     * @param  {Node} initNode inital node
-     * @return {Object} a key-value store of nodes and edge distances
-     */
-    depthSearch(initNode) {
-        var initNode = initNode;
-        var dPath = {
-            initialNode: initNode
-        };
-        dPath[initNode.label] = {
-            pred: null,
-            pathWeight: 0
-        };
-        var currEdges = this.getEdges(initNode);
-        currEdges.forEach(currEdge => this.depthVisit(currEdge, dPath));
-        return dPath;
-    }
-    addComponent(compArg) {
-        this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
-    }
-    findIntersectingComponent(compArg) {
-        return this.components.find(currComp => currComp.intersects(compArg) === true);
-    }
-    mergeComponents(origComp, newComp) {
-        origComp.unionize(newComp);
-    }
-    intergrateComponent(compArg) {
-        var oComp = this.findIntersectingComponent(compArg);
-        this.mergeComponents(oComp, compArg);
-    }
-    hasIntersectingComponent(compArg) {
-        return this.components.some(currComp => currComp.intersects(compArg));
-    }
-    depthTraverse(initNode) {
-        var currComponent = new EdgeComponent();
-        var path = new Map();
-        path.set(initNode, {
-            pred: null,
-            edgeCount: 0,
-            pathWeight: 0
-        });
-        this.visitComponent(path, currComponent);
-        this.addComponent(currComponent);
-        return path;
-    }
-    getUnvisitedEdges(nodeArg, compArg) {
-        return this.getEdges(nodeArg).filter(currEdge => {
-            var nNode = currEdge.getNeighbor(nodeArg)
-            return !compArg.containsNode(nNode);
-        });
-    }
-    getUnvisitedNeighbors(nodeArg, compArg) {
-        return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
-    }
     visitComponent(pathArg, compArg) {
         var nodeArg = [...pathArg.keys()].pop();
         var nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
@@ -149,6 +82,49 @@ class Graph {
                 this.visitComponent(pathArg, compArg);
             });
         }
+    }
+    /**
+     * depth first search, adds all connected nodes to node (depth) path
+     * @param  {Node} initNode inital node
+     * @return {Object} a key-value store of nodes and edge distances
+     */
+    depthTraverse(initNode) {
+        var currComponent = new EdgeComponent();
+        var path = new Map();
+        path.set(initNode, {
+            pred: null,
+            edgeCount: 0,
+            pathWeight: 0
+        });
+        this.visitComponent(path, currComponent);
+        this.addComponent(currComponent);
+        return path;
+    }
+    addComponent(compArg) {
+        this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
+    }
+    findIntersectingComponent(compArg) {
+        return this.components.find(currComp => currComp.intersects(compArg) === true);
+    }
+    mergeComponents(origComp, newComp) {
+        origComp.unionize(newComp);
+    }
+    intergrateComponent(compArg) {
+        var oComp = this.findIntersectingComponent(compArg);
+        this.mergeComponents(oComp, compArg);
+    }
+    hasIntersectingComponent(compArg) {
+        return this.components.some(currComp => currComp.intersects(compArg));
+    }
+
+    getUnvisitedEdges(nodeArg, compArg) {
+        return this.getEdges(nodeArg).filter(currEdge => {
+            var nNode = currEdge.getNeighbor(nodeArg)
+            return !compArg.containsNode(nNode);
+        });
+    }
+    getUnvisitedNeighbors(nodeArg, compArg) {
+        return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
     }
     /**
      * breadth first search, adds all connected nodes to node (breadth) path
