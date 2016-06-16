@@ -64,7 +64,7 @@ class Graph {
      * @param  {Object} dPath a key value store of node's and distances
      */
     depthVisit(edge, dPath) {
-        var dNode = edge.nodes.find(currNode => dPath[currNode.label] == undefined);
+        var dNode = edge.nodes.find(currNodeEntry => dPath[currNodeEntry.label] == undefined);
         if (dNode) {
             var predNode = edge.getNeighbor(dNode);
             dPath[dNode.label] = {
@@ -128,7 +128,7 @@ class Graph {
         });
     }
     getUnvisitedNeighbors(nodeArg, compArg) {
-        return this.getNeighbors(nodeArg).filter(currNode => !(compArg.containsNode(currNode)));
+        return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
     }
     visitComponent(pathArg, compArg) {
         var nodeArg = [...pathArg.keys()].pop();
@@ -249,26 +249,19 @@ class Graph {
             while (inspectionQueue.length > 0) {
                 var currN = inspectionQueue.shift();
                 var currEdges = this.getEdges(currN);
+
                 currEdges.forEach((tempEdge) => {
                     let nNode = tempEdge.getNeighbor(currN);
-                    var rPred = reachables.get(nNode).pred;
-                    var rNode = reachables.get(nNode);
+                    var rNodeEntry = reachables.get(nNode);
+                    var currWeight = rNodeEntry.pathWeight;
                     var sPred = solutionSet.get(currN);
-                    var currWeight = rNode.pathWeight;
                     var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
-                    var possibleWeights = [currWeight, dijkstraWeight];
-                    var smallerWeight = Math.min(...possibleWeights);
-                    var rMap = {
-                        pred: rPred,
-                        edgeCount: rNode.edgeCount,
-                        pathWeight: rNode.pathWeight
-                    };
                     var dMap = {
                         pred: currN,
                         edgeCount: sPred.edgeCount + 1,
                         pathWeight: dijkstraWeight
                     };
-                    var sMap = (dijkstraWeight < currWeight) ? dMap : rMap;
+                    var sMap = (dijkstraWeight < currWeight) ? dMap : rNodeEntry;
                     if (!solutionSet.has(nNode)) {
                         inspectionQueue.push(nNode);
                         solutionSet.set(nNode, sMap);
