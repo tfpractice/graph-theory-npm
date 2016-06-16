@@ -199,10 +199,8 @@ class Graph {
             var currN = bQueue.shift();
             var currEdges = this.getUnvisitedEdges(currN, bComp);
             var frontier = new NodeArray();
-
             let predWeight = bPath.get(currN).pathWeight;
             let predCount = bPath.get(currN).edgeCount;
-
             currEdges.forEach((nEdge) => {
                 // let pWeight = 
                 let nNode = nEdge.getNeighbor(currN);
@@ -240,42 +238,27 @@ class Graph {
         if (this.hasPath(initNode, termNode) === false) {
             return false;
         } else {
-            // var reachables = this.breadthSearch(initNode);
             var reachables = this.bfs(initNode);
             var inspectionQueue = new NodeArray();
             inspectionQueue.push(initNode);
-            // var solutionSet = {};
             var solutionSet = new Map();
             solutionSet.set(initNode, {
                 pred: null,
                 edgeCount: 0,
                 pathWeight: 0
             });
-            // solutionSet[initNode.label] = {
-            //     pred: null,
-            //     pathWeight: 0
-            // };
             while (inspectionQueue.length > 0) {
                 var currN = inspectionQueue.shift();
                 var currEdges = this.getEdges(currN);
-
-                currEdges.forEach(function(tempEdge) {
+                currEdges.forEach((tempEdge) => {
                     let nNode = tempEdge.getNeighbor(currN);
                     var rPred = reachables.get(nNode).pred;
                     var rNode = reachables.get(nNode);
                     var sPred = solutionSet.get(currN);
-
-
-                    // var pathMap = new Map();
-
-
-                    // var currWeight = reachables[tempEdge.dest.label].pathWeight;
                     var currWeight = rNode.pathWeight;
-                    // var dijkstraWeight = solutionSet[tempEdge.source.label].pathWeight + tempEdge.weight;
                     var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
                     var possibleWeights = [currWeight, dijkstraWeight];
                     var smallerWeight = Math.min(...possibleWeights);
-
                     var rMap = {
                         pred: rPred,
                         edgeCount: rNode.edgeCount,
@@ -287,21 +270,13 @@ class Graph {
                         pathWeight: dijkstraWeight
                     };
                     var sMap = (dijkstraWeight < currWeight) ? dMap : rMap;
-                    // var betterPred = dPath
-                    // if (solutionSet[tempEdge.dest.label] == false) {
                     if (!solutionSet.has(nNode)) {
                         inspectionQueue.push(nNode);
                         solutionSet.set(nNode, sMap);
-
                     }
-                    // console.log('************');
-                    // console.log(nNode);
-                    // console.log(solutionSet.get(nNode))
-                }, this);
+                });
             }
-            // console.log(solutionSet);
             return solutionSet;
-
         }
     }
 };
