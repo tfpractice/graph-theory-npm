@@ -114,6 +114,7 @@ class Graph {
         var path = new Map();
         path.set(initNode, {
             pred: null,
+            edgeCount: 0,
             pathWeight: 0
         });
         this.visitComponent(path, currComponent);
@@ -135,12 +136,15 @@ class Graph {
         if (nextEdges.length === 0) {
             return pathArg;
         } else {
+            let predWeight = pathArg.get(nodeArg).pathWeight;
+            let predCount = pathArg.get(nodeArg).edgeCount;
             nextEdges.forEach(currEdge => {
                 var nabe = currEdge.getNeighbor(nodeArg);
                 compArg.addEdge(currEdge);
                 pathArg.set(nabe, {
                     pred: nodeArg,
-                    pathWeight: (pathArg.get(nodeArg).pathWeight + currEdge.weight)
+                    edgeCount: predCount + 1,
+                    pathWeight: predWeight + currEdge.weight
                 });
                 this.visitComponent(pathArg, compArg);
             });
@@ -185,7 +189,8 @@ class Graph {
         var bPath = new Map();
         bPath.set(initNode, {
             pred: null,
-            depth: 0
+            pathWeight: 0,
+            edgeCount: 0
         });
         var level = 1;
         var bQueue = new NodeArray();
@@ -194,11 +199,17 @@ class Graph {
             var currN = bQueue.shift();
             var currEdges = this.getUnvisitedEdges(currN, bComp);
             var frontier = new NodeArray();
+
+            let predWeight = bPath.get(currN).pathWeight;
+            let predCount = bPath.get(currN).edgeCount;
+
             currEdges.forEach((nEdge) => {
+                // let pWeight = 
                 let nNode = nEdge.getNeighbor(currN);
                 bPath.set(nNode, {
                     pred: currN,
-                    depth: level
+                    edgeCount: level,
+                    pathWeight: predWeight + nEdge.weight
                 });
                 bComp.addEdge(nEdge);
                 frontier.push(nNode);
@@ -280,12 +291,12 @@ class Graph {
                         solutionSet.set(nNode, sMap);
 
                     }
-                    console.log('************');
-                    console.log(nNode);
-                    console.log(solutionSet.get(nNode))
+                    // console.log('************');
+                    // console.log(nNode);
+                    // console.log(solutionSet.get(nNode))
                 }, this);
             }
-            console.log(solutionSet);
+            // console.log(solutionSet);
             return solutionSet;
 
         }
