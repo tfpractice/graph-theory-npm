@@ -1,4 +1,4 @@
-# graph-theory-npm (v2.0.0-alpha)
+# graph-theory-npm (v2.1.0-alpha)
 =========
 A Node.js library implementation of basic graph theory.
 
@@ -72,8 +72,14 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Release History
 
-* 1.0.0 Initial release
+* 2.1.0-alpha 2016-06-16
+** arrow functions
+** tba
 * 2.0.0-alpha 
 ** Transitions from function based class declaration to ES6 class syntax
 ** Implements nodeArray and EdgeArray as native Array extensions
 ** Adds Component class for exploiring dynamic connectivity. 
+* 1.0.0 Initial release
+
+
+
