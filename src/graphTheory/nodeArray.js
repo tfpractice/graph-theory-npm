@@ -1,22 +1,56 @@
 var Node = require('./node');
-
+/**
+ * represents a set of Nodes
+ * @exports NodeArray
+ * @constructor
+ * @memberOf! module:graphTheory
+ */
 class NodeArray extends Array {
-
+    /**
+     * checks for presence of node in this set
+     * @param  {Node} argNode [description]
+     * @return {Boolean}
+     */
     contains(argNode) {
         return this.some(el => (el.isIdentical(argNode) === true));
     }
+    /**
+     * checks type of argument for Node status
+     * @param  {Node} argNode
+     * @return {Boolean}
+     */
     isNode(argNode) {
         return argNode instanceof Node;
     }
+    /**
+     * adds a node to this set
+     * @param  {Node} argNode
+     * @return {Boolean}
+     */
     push(argNode) {
         return (this.isNode(argNode) && !(this.contains(argNode))) ? super.push(argNode) : false;
     }
+    /**
+     * returns an array shared nodes between two sets
+     * @param  {NodeArray} altArray the array to check
+     * @return {NodeArray} the shared nodes
+     */
     intersection(altArray) {
         return this.filter(currNode => altArray.contains(currNode) === true);
     }
+    /**
+     * checks for presence of shared nodes between two sets
+     * @param  {NodeArray} altArray the array to check
+     * @return {Boolean}
+     */
     intersects(altArray) {
         return this.some(currNode => altArray.contains(currNode) === true);
     }
+    /**
+     * returns an array nodes in this array not included in the alternate array
+     * @param  {NodeArray} altArray the array to check
+     * @return {NodeArray} the unshared nodes
+     */
     difference(altArray) {
         let diffArray = new NodeArray();
 
@@ -32,15 +66,29 @@ class NodeArray extends Array {
         return diffArray;
 
     }
+    /**
+     * checks for presence of unshared nodes between two sets
+     * @param  {NodeArray} altArray the array to check
+     * @return {Boolean}
+     */
     hasDistinctNodes(altArray) {
         return altArray.some(altNode => !this.contains(altNode));
     }
+    /**
+     * returns a combined array of nodes belonging to this and the alternate arrays
+     * @param  {NodeArray} altArray the array to combine
+     * @return {NodeArray} the nodes
+     */
     union(altArray) {
         let uArray = new NodeArray();
         this.forEach(currNode => uArray.push(currNode));
         altArray.forEach(altNode => uArray.push(altNode));
         return uArray;
     }
+    /**
+     * combines all the nodes into this nodeArray
+     * @param  {NodeArray} altArray the array to check
+     */
     unionize(altArray) {
         this.difference(altArray).forEach(dNode => this.push(dNode));
     }
