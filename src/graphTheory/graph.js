@@ -89,8 +89,8 @@ class Graph {
      * @return {Object} a key-value store of nodes and edge distances
      */
     depthTraverse(initNode) {
-        var currComponent = new EdgeComponent();
-        var path = new Map();
+        let currComponent = new EdgeComponent();
+        let path = new Map();
         path.set(initNode, {
             pred: null,
             edgeCount: 0,
@@ -101,7 +101,7 @@ class Graph {
         return path;
     }
     addComponent(compArg) {
-        this.hasIntersectingComponent(compArg) ? this.intergrateComponent(compArg) : this.components.push(compArg);
+        this.hasIntersectingComponent(compArg) ? this.integrateComponent(compArg) : this.components.push(compArg);
     }
     findIntersectingComponent(compArg) {
         return this.components.find(currComp => currComp.intersects(compArg) === true);
@@ -109,8 +109,8 @@ class Graph {
     mergeComponents(origComp, newComp) {
         origComp.unionize(newComp);
     }
-    intergrateComponent(compArg) {
-        var oComp = this.findIntersectingComponent(compArg);
+    integrateComponent(compArg) {
+        let oComp = this.findIntersectingComponent(compArg);
         this.mergeComponents(oComp, compArg);
     }
     hasIntersectingComponent(compArg) {
@@ -215,10 +215,28 @@ class Graph {
         }
         return solutionSet;
     }
+
     shortestPath(initNode, termNode) {
-        var dijkMap = this.dijkstra(initNode);
-        return dijkMap.has(termNode) ? dijkMap.get(termNode) : null;
+        if (!this.hasPath(initNode, termNode)) {
+            return false;
+        } else {
+            let dijkMap = this.dijkstra(initNode);
+            let currN = termNode;
+            let currEntry = dijkMap.get(currN);
+            let predN = currEntry.pred;
+            let path = new Map();
+
+            while (currN != initNode) {
+                path.set(currN, currEntry);
+                currN = predN;
+                currEntry = dijkMap.get(currN);
+                predN = currEntry.pred;
+            }
+
+            return path;
+        }
     }
+
 };
 module.exports = Graph;
 /**

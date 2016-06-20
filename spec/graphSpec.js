@@ -81,7 +81,7 @@ describe('Graph', function() {
                     });
                 });
                 describe('when an intersecting component is present', () => {
-                    it('intergrates the new component with the current', function() {
+                    it('integrates the new component with the current', function() {
                         myGraph.addComponent(testComp);
                         myGraph.addComponent(altComp);
                         expect(myGraph.components.length).toEqual(1);
@@ -154,11 +154,11 @@ describe('Graph', function() {
                     expect(testComp.edges).toContain(secondEdge);
                 });
             });
-            describe('intergrateComponent(compArg)', function() {
+            describe('integrateComponent(compArg)', function() {
                 it('find an intersecting component and mergess it with compArg', function() {
                     myGraph.addComponent(testComp);
                     myGraph.addComponent(altComp);
-                    myGraph.intergrateComponent(altComp);
+                    myGraph.integrateComponent(altComp);
                     myGraph.bfs(v3);
                     expect(testComp.edges).toContain(secondEdge);
 
@@ -190,7 +190,7 @@ describe('Graph', function() {
             });
         });
         describe('dijkstra', function() {
-            it('finds the shortest path between two nodes', function() {
+            it('returns the shortest path[Map]`` from initNode to all nodes reachable from initNode', function() {
                 expect(myGraph.dijkstra(v1, v2) instanceof Map).toBeTrue();
             });
             describe('retun values', () => {
