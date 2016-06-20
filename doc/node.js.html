@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Classes</title>
+	<title>DocStrap Source: node.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -65,100 +65,56 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Classes</h1>
+		<h1 class="page-title">Source: node.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * represent a Node
+ * @exports Node
+ * @constructor
+ * @memberOf module:graphTheory
+ * @param {String} [label = 'default']  [label property]{@link module:graphTheory.Node#label}
+ * @param {Object} data the nodes data
+ */
+class Node {
+    constructor(label, data) {
+        /**
+         * the node identifier
+         * @type {String}
+         */
+        this.label = label;
+        /**
+         * the node data
+         * @type {Object}
+         */
+        this.data = data;
 
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
+    }
+    /**
+     * Checks for identity via label attribute
+     * @param  {Node}  newNode the node to be compared
+     * @return {Boolean}
+     */
+    isIdentical(newNode) {
+        return (this.label) ? this.label == newNode.label : false;
+    }
+}
 
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-graphTheory.Node.html">Node</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+module.exports = Node;
+/**
+ * [A Node]{@link module:graphTheory.Node}
+ * @typedef {module:graphTheory.Node} Node
+ */</pre>
+    </article>
 </section>
+
 
 
 
@@ -168,10 +124,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
