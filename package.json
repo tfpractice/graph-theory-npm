@@ -1,6 +1,6 @@
 {
     "name": "graph-theory-npm",
-    "version": "2.0.0-alpha",
+    "version": "2.1.0-alpha",
     "description": "Node.js module implementing basic graph theory algorithms",
     "main": "src/graphTheory.js",
     "scripts": {
