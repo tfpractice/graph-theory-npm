@@ -31,23 +31,9 @@
 		<ul class="nav navbar-nav">
 			
 			<li class="dropdown">
-				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.html">graphTheory</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.Edge.html">graphTheory.Edge</a></li><li><a href="module-graphTheory.Graph.html">graphTheory.Graph</a></li><li><a href="module-graphTheory.Vertex.html">graphTheory.Vertex</a></li>
-				</ul>
-			</li>
-			
-			<li class="dropdown">
-				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
-				<ul class="dropdown-menu ">
-					<li><a href="global.html">Global</a></li>
+					<li><a href="module-graphTheory.Edge.html">graphTheory.Edge</a></li>
 				</ul>
 			</li>
 			
@@ -83,10 +69,10 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-graphTheory.html">graphTheory</a>.</span>
-        
         Edge
         </h2>
+        
+            <div class="class-description">represents a connection between nodes</div>
         
     
 </header>
@@ -98,7 +84,109 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Edge"><span class="type-signature"></span>new Edge(sVertex, dVertex, w)</h4>
+    <h4 class="name" id="Edge"><span class="type-signature"></span>new Edge()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="edge.js.html">edge.js</a>,
+				 <a href="edge.js.html#sunlight-1-line-10">line 10</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id="containsNode"><span class="type-signature"></span>containsNode(nodeArg)</h4>
     
     
 </dt>
@@ -106,7 +194,7 @@
 
     
     <div class="description">
-        represents an Edge
+        Checks for presence fo a node in this edge
     </div>
     
 
@@ -141,13 +229,13 @@
 
         <tr>
             
-                <td class="name"><code>sVertex</code></td>
+                <td class="name"><code>nodeArg</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Vertex">Vertex</a></span>
+<span class="param-type">Node</span>
 
 
 
@@ -158,55 +246,7 @@
 
             
 
-            <td class="description last">source vertex</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dVertex</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Vertex">Vertex</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">destination vertex</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>w</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">weight</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -219,11 +259,113 @@
 <dl class="details">
     
 
-    <h5 class="subsection-title">Properties:</h5>
+	
 
-    <dl>
+	
 
-<table class="props table table-striped">
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="edge.js.html">edge.js</a>,
+				 <a href="edge.js.html#sunlight-1-line-41">line 41</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Node</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getNeighbor"><span class="type-signature"></span>getNeighbor(nodeArg)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        returns the neighboring node
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
     <thead>
     <tr>
         
@@ -245,13 +387,13 @@
 
         <tr>
             
-                <td class="name"><code>source</code></td>
+                <td class="name"><code>nodeArg</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Vertex">Vertex</a></span>
+<span class="param-type">Node</span>
 
 
 
@@ -262,167 +404,13 @@
 
             
 
-            <td class="description last">the source vertex</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>dest</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Vertex">Vertex</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the destination vertex</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>w</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the weight of the edge</td>
+            <td class="description last"></td>
         </tr>
 
     
     </tbody>
 </table>
-</dl>
 
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-14">line 14</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Members</h3>
-
-        <dl>
-            
-<hr>
-<dt class="name" id="dest">
-    <h4><span class="type-signature"></span>dest<span class="type-signature"> :<a href="global.html#Vertex">Vertex</a></span></h4>
-
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        the destination vertex
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type"><a href="global.html#Vertex">Vertex</a></span>
-
-
-
-            </li>
-        </ul>
     
 
     
@@ -460,8 +448,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-24">line 24</a>
+				<a href="edge.js.html">edge.js</a>,
+				 <a href="edge.js.html#sunlight-1-line-49">line 49</a>
 			</li>
 		</ul>
 	</dd>
@@ -474,6 +462,42 @@
 	
 </dl>
 
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the neighbor
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Node</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -481,110 +505,74 @@
         
             
 <hr>
-<dt class="name" id="source">
-    <h4><span class="type-signature"></span>source<span class="type-signature"> :<a href="global.html#Vertex">Vertex</a></span></h4>
-
+<dt>
+    <h4 class="name" id="isEquivalent"><span class="type-signature"></span>isEquivalent(edgeArg)</h4>
+    
     
 </dt>
 <dd>
+
     
     <div class="description">
-        the source vertex
+        checks the equivalence (by label)of this edge against another
     </div>
     
 
     
-        <h5>Type:</h5>
-        <ul>
-            <li>
-                
-<span class="param-type"><a href="global.html#Vertex">Vertex</a></span>
-
-
-
-            </li>
-        </ul>
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
 
     
 
     
-
     
+        <h5>Parameters:</h5>
+        
 
-    
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-19">line 19</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-</dd>
+        <th>Type</th>
 
         
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
             
-<hr>
-<dt class="name" id="weight">
-    <h4><span class="type-signature"></span>weight<span class="type-signature"> :Number</span></h4>
+                <td class="name"><code>edgeArg</code></td>
+            
 
-    
-</dt>
-<dd>
-    
-    <div class="description">
-        the weight of the edge
-    </div>
-    
-
-    
-        <h5>Type:</h5>
-        <ul>
-            <li>
+            <td class="type">
+            
                 
-<span class="param-type">Number</span>
+<span class="param-type">Edge</span>
 
 
 
-            </li>
-        </ul>
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">edge to be checked</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -622,8 +610,8 @@
 	<dd class="tag-source">
 		<ul class="dummy">
 			<li>
-				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-29">line 29</a>
+				<a href="edge.js.html">edge.js</a>,
+				 <a href="edge.js.html#sunlight-1-line-33">line 33</a>
 			</li>
 		</ul>
 	</dd>
@@ -636,13 +624,43 @@
 	
 </dl>
 
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
 
         </dl>
-    
-
     
 
     
@@ -694,7 +712,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Sun Jun 5th 2016
+		on Mon Jun 20th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
