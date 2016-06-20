@@ -51,3 +51,7 @@ class Edge {
     }
 }
 module.exports = Edge;
+/**
+ * [An Edge]{@link module:graphTheory.Edge}
+ * @typedef {module:graphTheory.Edge} Edge
+ */

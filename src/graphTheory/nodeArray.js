@@ -97,3 +97,7 @@ class NodeArray extends Array {
 }
 
 module.exports = NodeArray;
+/**
+ * [A NodeArray]{@link module:graphTheory.NodeArray}
+ * @typedef {module:graphTheory.NodeArray} NodeArray
+ */

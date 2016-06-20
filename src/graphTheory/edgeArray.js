@@ -110,3 +110,7 @@ class EdgeArray extends Array {
 
 }
 module.exports = EdgeArray;
+/**
+ * [An EdgeArray]{@link module:graphTheory.EdgeArray}
+ * @typedef {module:graphTheory.EdgeArray} EdgeArray
+ */
