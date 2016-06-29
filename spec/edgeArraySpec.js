@@ -143,13 +143,13 @@ fdescribe('EdgeArray', function() {
                 });
                 // 
             });
-            // describe('#splice', () => {
-            //     it('returns a new nodeArray', function() {
-            //         firstFour = myMutable.splice(0, 4);
-            //         //console.log(firstFour);
-            //         expect(firstFour instanceof EdgeArray).toBeTrue();
-            //     });
-            // });
+            describe('#splice', () => {
+                it('returns a new nodeArray', function() {
+                    firstFour = myMutable.splice(0, 4);
+                    // console.log(firstFour);
+                    expect(firstFour instanceof EdgeArray).toBeTrue();
+                });
+            });
             describe('#concat', () => {
                 it('returns a new nodeArray', function() {
                     firstFour = myMutable.splice(0, 4);
