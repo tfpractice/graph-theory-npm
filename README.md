@@ -84,17 +84,18 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 ### 2.2.0-alpha – 2016-29-16
 #### Added
 * NodeArray#filter, #slice, #splice, #concat coerce return type to NodeArray
-
+* Edge#hasSameName and #hasSameNodes
+* Edge#setLabel for more flexible subclassing
+* EdgeArray#filter returns subclass
 
 #### Changed
-* methods to use es6 syntax
+* Edge#isEquivalent now checks by nodeArray instead of label
+
 
 #### Deprecated
-* Graph.depthSearch
 
 #### Removed
-* Graph.depthSearch(),depthVisit(), and breadthSearch()
-* Vertex class
+
 
 
 ### 2.1.0-alpha – 2016-06-16
