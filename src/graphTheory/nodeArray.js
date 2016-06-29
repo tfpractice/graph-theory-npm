@@ -92,6 +92,39 @@ class NodeArray extends Array {
     unionize(altArray) {
         this.difference(altArray).forEach(dNode => this.push(dNode));
     }
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    filter(...args) {
+        return NodeArray.from(super.filter(...args));
+    }
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    slice(...args) {
+        return NodeArray.from(super.slice(...args));
+    }
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    concat(...args) {
+        return NodeArray.from(super.concat(...args));
+    }
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    splice(...args) {
+        return NodeArray.from(super.splice(...args));
+    }
+
 
 
 }

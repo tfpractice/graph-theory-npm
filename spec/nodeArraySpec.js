@@ -1,19 +1,20 @@
 describe('NodeArray', function() {
     var GR = require('../src/graphTheory');
     var Node = GR.Node;
+    var NodeArray = GR.NodeArray;
     var myNode, myArray, myAltArray, n1, n2, n3, n4;
     beforeEach(function() {
-        n1 = new GR.Node("n1");
-        n2 = new GR.Node("n2");
-        n3 = new GR.Node("n3");
-        n4 = new GR.Node("n4");
-        myNode = new GR.Node("NYC", {
+        n1 = new Node("n1", 0);
+        n2 = new Node("n2", 1);
+        n3 = new Node("n3", 2);
+        n4 = new Node("n4", 3);
+        myNode = new Node("NYC", {
             name: "NYC"
         });
-        myArray = new GR.NodeArray(myNode);
+        myArray = new NodeArray(myNode);
         myArray.push(n3);
         myArray.push(n4);
-        myAltArray = new GR.NodeArray(n1);
+        myAltArray = new NodeArray(n1);
         myAltArray.push(n2);
         myAltArray.push(n3);
     });
@@ -21,6 +22,58 @@ describe('NodeArray', function() {
         it('is a typeof Array', function() {
             expect(myArray instanceof Array).toBeTrue();
         });
+    });
+    fdescribe('return type @@species', () => {
+        var myMutable, myCoerced;
+        beforeEach(function() {
+            myMutable = new NodeArray();
+            for (let i = 0; i < 10; i++) {
+                let newNode = new Node(`n${i}`, i);
+                myMutable.push(newNode);
+            }
+            myCoerced = NodeArray.from(myMutable);
+        });
+        describe('#filter', () => {
+            it('returns a new nodeArray', function() {
+                fArr = myMutable.filter(n => ((n.data % 2) === 0));
+                console.log(fArr);
+                expect(fArr instanceof NodeArray).toBeTrue();
+            });
+
+        });
+        describe('#slice', () => {
+            it('returns a new nodeArray', function() {
+                firstFour = myMutable.slice(0, 4);
+                console.log(firstFour);
+                expect(firstFour instanceof NodeArray).toBeTrue();
+            });
+
+        });
+        describe('#splice', () => {
+            it('returns a new nodeArray', function() {
+                firstFour = myMutable.splice(0, 4);
+                console.log(firstFour);
+                expect(firstFour instanceof NodeArray).toBeTrue();
+            });
+
+        });
+        describe('#concat', () => {
+            it('returns a new nodeArray', function() {
+                firstFour = myMutable.splice(0, 4);
+                let newArr = myMutable.concat(firstFour);
+                console.log(newArr);
+                expect(firstFour instanceof NodeArray).toBeTrue();
+            });
+
+        });
+        // describe('#slice', () => {
+        // it('returns a new nodeArray', function() {
+        // firstFour = myMutable.slice(0, 4);
+        // console.log(firstFour);
+        // expect(firstFour instanceof NodeArray).toBeTrue();
+        // });
+
+        // });
     });
     describe('contains()', () => {
         it('checks if any of the elements are equivalent to that provided', function() {
