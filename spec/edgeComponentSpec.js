@@ -132,8 +132,8 @@ describe('EdgeComponent', function() {
     });
     describe('unionize', function() {
         it('combines the nodes of both arrays', function() {
-            myComponent.unionize(altComp);
             var edgeUnion = myComponent.union(altComp);
+            myComponent.unionize(altComp);
             expect(myComponent.edges).toEqual(edgeUnion);
         });
     });

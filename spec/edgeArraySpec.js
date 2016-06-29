@@ -104,7 +104,7 @@ describe('EdgeArray', function() {
                 expect(bArray.union(cArray)).toBeArray();
             });
         });
-        fdescribe('unionize', function() {
+        describe('unionize', function() {
             it('combines the nodes of both arrays', function() {
                 var edgeUnion = bArray.union(cArray);
                 bArray.unionize(cArray);
