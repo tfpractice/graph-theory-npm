@@ -121,7 +121,7 @@ describe('EdgeArray', function() {
             myMutable.push(e3);
             myMutable.push(e4);
         });
-        describe('#filter', () => {
+        fdescribe('#filter', () => {
             it('returns a new nodeArray', function() {
                 fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
                 console.log(fArr);
