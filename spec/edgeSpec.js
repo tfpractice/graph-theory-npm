@@ -41,6 +41,13 @@ describe('Edge', function() {
         });
 
     });
+    fdescribe('#hasSameNodes', () => {
+        it('checks if there are no distinct nodes between each edges NodeArray', function() {
+            let identical = new GR.Edge(la, nyc, 10);
+            expect(myEdge.hasSameNodes(identical)).toBeTrue();
+
+        });
+    });
     describe('containsNode', function() {
         it('retuns true if the specified node is in this edge', function() {
             expect(myEdge.containsNode(la)).toBeTrue();

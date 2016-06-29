@@ -33,6 +33,9 @@ class Edge {
     isEquivalent(edgeArg) {
         return (this.label) ? this.label === edgeArg.label : false;
     }
+    hasSameNodes(edgeArg) {
+        return this.nodes.hasDistinctNodes(edgeArg.nodes) === false;
+    }
     /**
      * Checks for presence fo a node in this edge
      * @param  {Node} nodeArg
