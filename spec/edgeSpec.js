@@ -35,9 +35,16 @@ describe('Edge', function() {
             });
         });
     });
-    describe('isEquivalent(edgeArg)', () => {
+    fdescribe('isEquivalent(edgeArg)', () => {
         it('returns true if the edgeArg shares a label with the edgeArg', function() {
             expect(myEdge.isEquivalent(altEdge)).toBeFalse();
+        });
+    });
+    fdescribe('#setLabel()', function() {
+        it('sets the label to a combination of the node labels', function() {
+            var myLabel = myEdge.nodes[0].label + '_' + myEdge.nodes[1].label;
+            // console.log(myLabel);
+            expect(myEdge.label).toEqual(myLabel);
         });
 
     });

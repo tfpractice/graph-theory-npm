@@ -120,7 +120,7 @@ describe('EdgeArray', function() {
             myMutable.push(e2);
             myMutable.push(e3);
             myMutable.push(e4);
-            console.log(myMutable);
+            // console.log(myMutable);
         });
         fdescribe('#filter', () => {
             it('returns a new nodeArray', function() {
