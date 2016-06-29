@@ -23,20 +23,19 @@ describe('NodeArray', function() {
             expect(myArray instanceof Array).toBeTrue();
         });
     });
-    fdescribe('return type @@species', () => {
-        var myMutable, myCoerced;
+    describe('return type @@species', () => {
+        var myMutable;
         beforeEach(function() {
             myMutable = new NodeArray();
             for (let i = 0; i < 10; i++) {
                 let newNode = new Node(`n${i}`, i);
                 myMutable.push(newNode);
             }
-            myCoerced = NodeArray.from(myMutable);
         });
         describe('#filter', () => {
             it('returns a new nodeArray', function() {
                 fArr = myMutable.filter(n => ((n.data % 2) === 0));
-                console.log(fArr);
+                //console.log(fArr);
                 expect(fArr instanceof NodeArray).toBeTrue();
             });
 
@@ -44,7 +43,7 @@ describe('NodeArray', function() {
         describe('#slice', () => {
             it('returns a new nodeArray', function() {
                 firstFour = myMutable.slice(0, 4);
-                console.log(firstFour);
+                //console.log(firstFour);
                 expect(firstFour instanceof NodeArray).toBeTrue();
             });
 
@@ -52,7 +51,7 @@ describe('NodeArray', function() {
         describe('#splice', () => {
             it('returns a new nodeArray', function() {
                 firstFour = myMutable.splice(0, 4);
-                console.log(firstFour);
+                //console.log(firstFour);
                 expect(firstFour instanceof NodeArray).toBeTrue();
             });
 
@@ -61,19 +60,12 @@ describe('NodeArray', function() {
             it('returns a new nodeArray', function() {
                 firstFour = myMutable.splice(0, 4);
                 let newArr = myMutable.concat(firstFour);
-                console.log(newArr);
-                expect(firstFour instanceof NodeArray).toBeTrue();
+                //console.log(newArr);
+                expect(newArr instanceof NodeArray).toBeTrue();
             });
 
         });
-        // describe('#slice', () => {
-        // it('returns a new nodeArray', function() {
-        // firstFour = myMutable.slice(0, 4);
-        // console.log(firstFour);
-        // expect(firstFour instanceof NodeArray).toBeTrue();
-        // });
 
-        // });
     });
     describe('contains()', () => {
         it('checks if any of the elements are equivalent to that provided', function() {
