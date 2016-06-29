@@ -130,7 +130,7 @@ describe('EdgeComponent', function() {
             expect(myComponent.union(altComp)).toBeArray();
         });
     });
-    fdescribe('unionize', function() {
+    describe('unionize', function() {
         it('combines the nodes of both arrays', function() {
             var edgeUnion = myComponent.union(altComp);
             console.log(edgeUnion);
