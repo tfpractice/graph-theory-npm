@@ -23,7 +23,7 @@ class Edge {
          * an identifier for the Edge
          * @type {String}
          */
-        this.label = `${n1.label}_${n2.label}`;
+        this.setLabel();
     }
     setLabel() {
         this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;

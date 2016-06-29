@@ -60,8 +60,8 @@ describe('EdgeArray', function() {
     describe('set methods', () => {
         var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, bArray, cArray;
         beforeEach(function() {
-            n10 = new GR.Node("00");
-            n11 = new GR.Node("01");
+            n00 = new GR.Node("00");
+            n01 = new GR.Node("01");
             n10 = new GR.Node("10");
             n11 = new GR.Node("11");
             n20 = new GR.Node("20");
@@ -85,6 +85,7 @@ describe('EdgeArray', function() {
         describe('intersects', function() {
             it('determines if two arrays share any edges', function() {
                 bArray.push(e3);
+
                 expect(bArray.intersects(cArray)).toBeTrue();
             });
         });
@@ -103,10 +104,12 @@ describe('EdgeArray', function() {
                 expect(bArray.union(cArray)).toBeArray();
             });
         });
-        describe('unionize', function() {
+        fdescribe('unionize', function() {
             it('combines the nodes of both arrays', function() {
-                bArray.unionize(cArray);
                 var edgeUnion = bArray.union(cArray);
+                bArray.unionize(cArray);
+                console.log(edgeUnion.length);
+                console.log(bArray.length);
                 expect(bArray).toEqual(edgeUnion);
             });
         });
@@ -122,7 +125,7 @@ describe('EdgeArray', function() {
             myMutable.push(e4);
             // console.log(myMutable);
         });
-        fdescribe('#filter', () => {
+        describe('#filter', () => {
             it('returns a new nodeArray', function() {
                 fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
                 // console.log(fArr);
@@ -130,7 +133,7 @@ describe('EdgeArray', function() {
             });
 
         });
-        // fdescribe('#slice', () => {
+        // describe('#slice', () => {
         // it('returns a new nodeArray', function() {
         // firstFour = myMutable.slice(0, 2);
         // console.log(firstFour);
