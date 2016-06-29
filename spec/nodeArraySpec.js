@@ -34,8 +34,8 @@ describe('NodeArray', function() {
         });
         describe('#filter', () => {
             it('returns a new nodeArray', function() {
-                fArr = myMutable.filter(n => ((n.data % 2) === 0));
-                //console.log(fArr);
+                fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
+                console.log(fArr);
                 expect(fArr instanceof NodeArray).toBeTrue();
             });
 

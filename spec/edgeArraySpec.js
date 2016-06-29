@@ -1,6 +1,7 @@
 describe('EdgeArray', function() {
     var GR = require('../src/graphTheory');
     var Edge = GR.Edge;
+    var EdgeArray = GR.EdgeArray;
     var myEdge, altEdge, la, nyc, dc, myArray;
     var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, bArray, cArray;
     beforeEach(function() {
@@ -8,9 +9,9 @@ describe('EdgeArray', function() {
         nyc = new GR.Node("NYC");
         dc = new GR.Node("DC");
 
-        myEdge = new GR.Edge(nyc, la, 10);
-        altEdge = new GR.Edge(nyc, dc, 10);
-        myArray = new GR.EdgeArray(myEdge);
+        myEdge = new Edge(nyc, la, 10);
+        altEdge = new Edge(nyc, dc, 10);
+        myArray = new EdgeArray(myEdge);
     });
     describe('init', function() {
         it('is a typeof Array', function() {
@@ -109,6 +110,51 @@ describe('EdgeArray', function() {
                 expect(bArray).toEqual(edgeUnion);
             });
         });
+    });
+    describe('return type @@species', () => {
+        var myMutable;
+        beforeEach(function() {
+            myMutable = new EdgeArray();
+            myMutable.push(myEdge);
+            myMutable.push(e1);
+            myMutable.push(e2);
+            myMutable.push(e3);
+            myMutable.push(e4);
+        });
+        fdescribe('#filter', () => {
+            it('returns a new nodeArray', function() {
+                fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
+                console.log(fArr);
+                expect(fArr instanceof EdgeArray).toBeTrue();
+            });
+
+        });
+        describe('#slice', () => {
+            it('returns a new nodeArray', function() {
+                firstFour = myMutable.slice(0, 4);
+                //console.log(firstFour);
+                expect(firstFour instanceof EdgeArray).toBeTrue();
+            });
+
+        });
+        describe('#splice', () => {
+            it('returns a new nodeArray', function() {
+                firstFour = myMutable.splice(0, 4);
+                //console.log(firstFour);
+                expect(firstFour instanceof EdgeArray).toBeTrue();
+            });
+
+        });
+        describe('#concat', () => {
+            it('returns a new nodeArray', function() {
+                firstFour = myMutable.splice(0, 4);
+                let newArr = myMutable.concat(firstFour);
+                //console.log(newArr);
+                expect(newArr instanceof EdgeArray).toBeTrue();
+            });
+
+        });
+
     });
 
 });

@@ -107,7 +107,38 @@ class EdgeArray extends Array {
     unionize(altArray) {
         this.difference(altArray).forEach(dEdge => this.push(dEdge));
     }
-
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    filter(...args) {
+        return EdgeArray.from(super.filter(...args));
+    }
+    /**
+     * forces return type to a EdgeArray
+     * @param  {...[type]} args the arguments
+     * @return {[EdgeArray]}
+     */
+    // slice(...args) {
+    // return EdgeArray.from(super.slice(...args));
+    // }
+    // /**
+    // * forces return type to a EdgeArray
+    // * @param  {...[type]} args the arguments
+    // * @return {[EdgeArray]}
+    // */
+    // concat(...args) {
+    // return EdgeArray.from(super.concat(...args));
+    // }
+    // /**
+    // * forces return type to a EdgeArray
+    // * @param  {...[type]} args the arguments
+    // * @return {[EdgeArray]}
+    // */
+    // splice(...args) {
+    // return EdgeArray.from(super.splice(...args));
+    // }
 }
 module.exports = EdgeArray;
 /**
