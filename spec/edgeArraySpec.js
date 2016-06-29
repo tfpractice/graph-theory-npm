@@ -120,40 +120,41 @@ describe('EdgeArray', function() {
             myMutable.push(e2);
             myMutable.push(e3);
             myMutable.push(e4);
+            console.log(myMutable);
         });
         fdescribe('#filter', () => {
             it('returns a new nodeArray', function() {
                 fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
-                console.log(fArr);
+                // console.log(fArr);
                 expect(fArr instanceof EdgeArray).toBeTrue();
             });
 
         });
-        describe('#slice', () => {
-            it('returns a new nodeArray', function() {
-                firstFour = myMutable.slice(0, 4);
-                //console.log(firstFour);
-                expect(firstFour instanceof EdgeArray).toBeTrue();
-            });
+        // fdescribe('#slice', () => {
+        // it('returns a new nodeArray', function() {
+        // firstFour = myMutable.slice(0, 2);
+        // console.log(firstFour);
+        // expect(firstFour instanceof EdgeArray).toBeTrue();
+        // });
+        // 
+        // });
+        // describe('#splice', () => {
+        //     it('returns a new nodeArray', function() {
+        //         firstFour = myMutable.splice(0, 4);
+        //         //console.log(firstFour);
+        //         expect(firstFour instanceof EdgeArray).toBeTrue();
+        //     });
 
-        });
-        describe('#splice', () => {
-            it('returns a new nodeArray', function() {
-                firstFour = myMutable.splice(0, 4);
-                //console.log(firstFour);
-                expect(firstFour instanceof EdgeArray).toBeTrue();
-            });
+        // });
+        // describe('#concat', () => {
+        //     it('returns a new nodeArray', function() {
+        //         firstFour = myMutable.splice(0, 4);
+        //         let newArr = myMutable.concat(firstFour);
+        //         //console.log(newArr);
+        //         expect(newArr instanceof EdgeArray).toBeTrue();
+        //     });
 
-        });
-        describe('#concat', () => {
-            it('returns a new nodeArray', function() {
-                firstFour = myMutable.splice(0, 4);
-                let newArr = myMutable.concat(firstFour);
-                //console.log(newArr);
-                expect(newArr instanceof EdgeArray).toBeTrue();
-            });
-
-        });
+        // });
 
     });
 
