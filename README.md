@@ -86,7 +86,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * NodeArray#filter, #slice, #splice, #concat coerce return type to NodeArray
 * Edge#hasSameName and #hasSameNodes
 * Edge#setLabel for more flexible subclassing
-* EdgeArray#filter, #slice returns subclass
+* EdgeArray#filter, #slice, #concat returns subclass
 
 #### Changed
 * Edge#isEquivalent now checks by nodeArray instead of label

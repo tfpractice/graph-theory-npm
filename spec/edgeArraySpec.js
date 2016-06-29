@@ -58,7 +58,7 @@ fdescribe('EdgeArray', function() {
         });
     });
     describe('set and species methods', () => {
-        var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, n30, n31, bArray, cArray;
+        // var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, n30, n31, bArray, cArray;
         beforeEach(function() {
             n00 = new GR.Node("00");
             n01 = new GR.Node("01");
@@ -150,14 +150,13 @@ fdescribe('EdgeArray', function() {
             //         expect(firstFour instanceof EdgeArray).toBeTrue();
             //     });
             // });
-            // describe('#concat', () => {
-            //     it('returns a new nodeArray', function() {
-            //         firstFour = myMutable.splice(0, 4);
-            //         let newArr = myMutable.concat(firstFour);
-            //         //console.log(newArr);
-            //         expect(newArr instanceof EdgeArray).toBeTrue();
-            //     });
-            // });
+            describe('#concat', () => {
+                it('returns a new nodeArray', function() {
+                    firstFour = myMutable.splice(0, 4);
+                    let newArr = myMutable.concat(firstFour);
+                    expect(newArr instanceof EdgeArray).toBeTrue();
+                });
+            });
         });
     });
 

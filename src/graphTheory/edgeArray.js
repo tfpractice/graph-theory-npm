@@ -123,14 +123,14 @@ class EdgeArray extends Array {
     slice(...args) {
         return EdgeArray.from(super.slice(...args));
     }
-    // /**
-    // * forces return type to a EdgeArray
-    // * @param  {...[type]} args the arguments
-    // * @return {[EdgeArray]}
-    // */
-    // concat(...args) {
-    // return EdgeArray.from(super.concat(...args));
-    // }
+    /**
+     * forces return type to a EdgeArray
+     * @param  {...[type]} args the arguments
+     * @return {[EdgeArray]}
+     */
+    concat(...args) {
+        return EdgeArray.from(super.concat(...args));
+    }
     // /**
     // * forces return type to a EdgeArray
     // * @param  {...[type]} args the arguments
