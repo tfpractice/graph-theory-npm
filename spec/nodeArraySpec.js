@@ -85,16 +85,16 @@ describe('NodeArray', function() {
     });
     describe('push(argNode) ', () => {
         describe('when argNode is an instanceof Node', () => {
-            it('calls super [Array.push] and returns new length', function() {
+            it('calls super [Array.push] and returns modified array', function() {
                 var currLength = myArray.length;
                 let newNode = new Node('newNode');
                 var newLength = currLength + 1;
-                expect(myArray.push(newNode)).toEqual(newLength);
+                expect(myArray.push(newNode)).toEqual(myArray);
             });
         });
         describe('when argNode is not an instanceof Node', () => {
-            it('returns false', function() {
-                expect(myArray.push(2)).toBeFalse();
+            it('returns the unmodified array', function() {
+                expect(myArray.push(2)).toBeArray();
             });
             it('does not increment length', function() {
                 var currLength = myArray.length;

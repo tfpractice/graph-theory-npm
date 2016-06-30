@@ -36,7 +36,6 @@ class EdgeArray extends Array {
         }
         return this;
 
-        // return (this.isEdge(argEdge) && !(this.contains(argEdge))) ? super.push(argEdge) : false;
     }
     /**
      * assembles each edges nodes into one large array

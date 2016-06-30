@@ -28,7 +28,10 @@ class NodeArray extends Array {
      * @return {Boolean}
      */
     push(argNode) {
-        return (this.isNode(argNode) && !(this.contains(argNode))) ? super.push(argNode) : false;
+        if ((this.isNode(argNode) && !(this.contains(argNode)))) {
+            super.push(argNode);
+        }
+        return this;
     }
     /**
      * returns an array shared nodes between two sets
