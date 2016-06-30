@@ -48,7 +48,12 @@ describe('EdgeArray', function() {
                 expect(myArray.length).toEqual(currLength);
             });
         });
-
+    });
+    describe('#removeEdge', () => {
+        it('removes and Edge from the array', function() {
+            myArray.removeEdge(myEdge);
+            expect(myArray.contains((myEdge))).toBeFalse();
+        });
     });
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {

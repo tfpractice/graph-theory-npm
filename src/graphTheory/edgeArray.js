@@ -131,6 +131,10 @@ class EdgeArray extends Array {
     edgeByNodes(n1, n2) {
         return this.find(e => (e.containsNode(n1) && e.containsNode(n2)));
     }
+    removeEdge(eArg) {
+        let ePos = this.findIndex(e => e.isEquivalent(eArg));
+        return (ePos > -1) ? this.splice(ePos, 1) : false;
+    }
 }
 module.exports = EdgeArray;
 /**
