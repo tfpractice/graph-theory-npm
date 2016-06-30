@@ -62,7 +62,7 @@ describe('EdgeArray', function() {
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
         });
     });
-    fdescribe('#getNeighbors(nde)', function() {
+    describe('#getNeighbors(nde)', function() {
         it('returns a NodeArray of neighboring nodes', function() {
             expect(myArray.getNeighbors(nyc)).toBeArray();
         });

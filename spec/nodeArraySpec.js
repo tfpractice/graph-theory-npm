@@ -135,5 +135,11 @@ describe('NodeArray', function() {
 
             expect(myArray).toEqual(nodeUnion);
         });
+        it('retuns the modified array', function() {
+            let uArr = myArray.unionize(myAltArray);
+            var nodeUnion = myArray.union(myAltArray);
+            expect(uArr).toBeArray();
+
+        });
     });
 });
