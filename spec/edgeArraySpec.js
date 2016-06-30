@@ -62,7 +62,7 @@ describe('EdgeArray', function() {
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
         });
     });
-    fdescribe('#getNeighbors(nde)', function() {
+    describe('#getNeighbors(nde)', function() {
         it('returns a NodeArray of neighboring nodes', function() {
             expect(myArray.getNeighbors(nyc)).toBeArray();
         });
@@ -134,6 +134,10 @@ describe('EdgeArray', function() {
                     // console.log(edgeUnion.length);
                     // console.log(bArray.length);
                     expect(bArray).toEqual(edgeUnion);
+                });
+                it('returns the modified array', function() {
+                    let uArr = bArray.unionize(cArray);
+                    expect(uArr).toBeArray();
                 });
             });
         });

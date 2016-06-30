@@ -79,6 +79,7 @@ class NodeArray extends Array {
      */
     unionize(altArray) {
         altArray.difference(this).forEach(dNode => this.push(dNode));
+        return this;
     }
     /**
      * forces return type to a NodeArray
