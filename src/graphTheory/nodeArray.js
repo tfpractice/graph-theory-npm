@@ -63,7 +63,11 @@ class NodeArray extends Array {
      * @return {Boolean}
      */
     hasDistinctNodes(altArray) {
-        return altArray.some(altNode => !this.contains(altNode));
+        return this.some(myNode => !altArray.contains(myNode));
+        // return altArray.some(altNode => !this.contains(altNode));
+    }
+    hasSameSize(altArray) {
+        return this.length === altArray.length;
     }
     /**
      * returns a combined array of nodes belonging to this and the alternate arrays

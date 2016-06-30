@@ -129,8 +129,13 @@ describe('NodeArray', function() {
         });
     });
     describe('hasDistinctNodes', function() {
-        it('determines if there are distinct nodes between arrays', function() {
+        it('determines if caller has nodes that argument does not', function() {
             expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
+        });
+    });
+    fdescribe('#hasSameSize', () => {
+        it('returns if the arrays share length', function() {
+            expect(myArray.hasSameSize(myAltArray)).toBeTrue();
         });
     });
     describe('union', function() {

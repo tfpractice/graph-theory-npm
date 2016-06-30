@@ -83,6 +83,9 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ### 2.2.0-alpha – 2016-29-16
 #### Added
+* Node#setlabel with random number
+* Node#isIdentical checks label
+* NodeArray#hasSameSize
 * NodeArray#filter, #slice, #splice, #concat coerce return type to NodeArray
 * NodeArray#removeNode, #copy
 * Edge#setLabel for more flexible subclassing
