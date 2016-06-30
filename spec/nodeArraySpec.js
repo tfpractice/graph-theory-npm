@@ -35,7 +35,7 @@ describe('NodeArray', function() {
         describe('#filter', () => {
             it('returns a new nodeArray', function() {
                 fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
-                console.log(fArr);
+                // console.log(fArr);
                 expect(fArr instanceof NodeArray).toBeTrue();
             });
 
@@ -108,7 +108,7 @@ describe('NodeArray', function() {
         });
     });
     describe('difference', function() {
-        it('returns an array of nodes not contained in the operating array', function() {
+        it('returns an array of nodes contained in the caller but not in the argument', function() {
             expect(myArray.difference(myAltArray)).toBeArray();
         });
     });

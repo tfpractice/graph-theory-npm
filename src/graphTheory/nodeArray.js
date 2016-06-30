@@ -52,18 +52,18 @@ class NodeArray extends Array {
      * @return {NodeArray} the unshared nodes
      */
     difference(altArray) {
-        let diffArray = new NodeArray();
+        // let diffArray = new NodeArray();
+        return this.filter(n => !altArray.contains(n));
+        // this.reduce((dArray, currNode) => {
+        // if (!altArray.contains(currNode)) dArray.push(currNode);
+        // return dArray;
+        // }, diffArray);
+        // altArray.reduce((dArray, altNode) => {
+        // if (!this.contains(altNode)) dArray.push(altNode);
+        // return dArray;
+        // }, diffArray);
 
-        this.reduce((dArray, currNode) => {
-            if (!altArray.contains(currNode)) dArray.push(currNode);
-            return dArray;
-        }, diffArray);
-        altArray.reduce((dArray, altNode) => {
-            if (!this.contains(altNode)) dArray.push(altNode);
-            return dArray;
-        }, diffArray);
-
-        return diffArray;
+        // return diffArray;
 
     }
     /**
@@ -90,7 +90,7 @@ class NodeArray extends Array {
      * @param  {NodeArray} altArray the array to check
      */
     unionize(altArray) {
-        this.difference(altArray).forEach(dNode => this.push(dNode));
+        altArray.difference(this).forEach(dNode => this.push(dNode));
     }
     /**
      * forces return type to a NodeArray
