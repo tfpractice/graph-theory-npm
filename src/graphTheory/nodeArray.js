@@ -12,7 +12,7 @@ class NodeArray extends Array {
      * @return {Boolean}
      */
     contains(argNode) {
-        return this.some(el => (el.isIdentical(argNode) === true));
+        return this.some(el => el.isIdentical(argNode));
     }
     /**
      * checks type of argument for Node status
@@ -73,7 +73,7 @@ class NodeArray extends Array {
         return this.every(myNode => altArray.contains(myNode));
     }
     isEquivalent(altArray) {
-        return this.hasSameSize(altArray) && this.isSubset(altArray);
+        return (this.hasSameSize(altArray) && this.isSubset(altArray));
     }
     /**
      * returns a combined array of nodes belonging to this and the alternate arrays

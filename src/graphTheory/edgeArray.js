@@ -15,7 +15,7 @@ class EdgeArray extends Array {
      * @return {Boolean}
      */
     contains(argEdge) {
-        return this.some(el => (el.isEquivalent(argEdge) === true));
+        return this.some(el => el.isEquivalent(argEdge));
     }
     /**
      * checks type of argument for Edge status
@@ -31,11 +31,10 @@ class EdgeArray extends Array {
      * @return {Boolean}
      */
     push(argEdge) {
-        if ((this.isEdge(argEdge) && !(this.contains(argEdge)))) {
+        if (this.isEdge(argEdge) && !this.contains(argEdge)) {
             super.push(argEdge);
         }
         return this;
-
     }
     /**
      * assembles each edges nodes into one large array

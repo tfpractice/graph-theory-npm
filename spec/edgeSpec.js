@@ -24,7 +24,7 @@ describe('Edge', function() {
                 dEdge = new GR.Edge();
             });
             it('initializes with anonymous nodes ', function() {
-                expect(dEdge.nodes[0].label).toBeGreaterThan(33);
+                expect(dEdge.nodes[0].label).toBeGreaterThan(32);
 
             });
             it('initializes with label "undefined_undefined" dest', function() {

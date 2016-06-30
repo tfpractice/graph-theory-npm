@@ -13,19 +13,18 @@ describe('Node', function() {
         it('initializes with a label', function() {
             expect(myNode.label).toEqual("NYC");
         });
-        it('defaults label to a random integer above 33', function() {
+        it('defaults label to a random integer above 32', function() {
             var newV = new GR.Node();
-            expect(newV.label).toBeGreaterThan(33);
+            expect(newV.label).toBeGreaterThan(32);
         });
         it('initialzies with a data object', function() {
             expect(myNode.data).toBeObject();
         });
     });
     describe('#setLabel', () => {
-        it('returns and sets label to a random integer above 33 ', function() {
+        it('returns and sets label to a random integer above 32 ', function() {
             let newNode = new GR.Node()
-            console.log(newNode.label);
-            expect(newNode.label).toBeGreaterThan(33);
+            expect(newNode.label).toBeGreaterThan(32);
         });
     });
 });

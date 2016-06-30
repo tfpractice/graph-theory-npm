@@ -51,7 +51,7 @@ class Edge {
      * @return {Boolean}
      */
     hasSameNodes(edgeArg) {
-        return this.nodes.isSubset(edgeArg.nodes) === true;
+        return this.nodes.isSubset(edgeArg.nodes);
     }
     /**
      * Checks for presence fo a node in this edge

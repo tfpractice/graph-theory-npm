@@ -31,7 +31,7 @@ describe('EdgeArray', function() {
         describe('when argEdge is an instanceof Edge', () => {
             it('calls super [Array.push] and returns modified array', function() {
                 var currLength = myArray.length;
-                let newEdge = new Edge('newEdge');
+                let newEdge = new Edge(dc, la);
                 var newLength = currLength + 1;
                 expect(myArray.push(newEdge)).toEqual(myArray);
             });
