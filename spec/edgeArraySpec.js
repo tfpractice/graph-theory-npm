@@ -67,7 +67,11 @@ describe('EdgeArray', function() {
             let nla = myArray.edgeByNodes(nyc, la);
             expect(nla).toBe(myEdge);
         });
-
+    });
+    describe('#edgesWithNode(node)', function() {
+        it('returns all edges containing the specified node', function() {
+            expect(myArray.edgesWithNode(nyc)).toContain(myEdge);
+        });
     });
     describe('set and species methods', () => {
         // var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, n30, n31, bArray, cArray;
