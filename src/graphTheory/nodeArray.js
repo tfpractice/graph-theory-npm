@@ -72,6 +72,9 @@ class NodeArray extends Array {
     isSubset(altArray) {
         return this.every(myNode => altArray.contains(myNode));
     }
+    isEquivalent(altArray) {
+        return this.hasSameSize(altArray) && this.isSubset(altArray);
+    }
     /**
      * returns a combined array of nodes belonging to this and the alternate arrays
      * @param  {NodeArray} altArray the array to combine

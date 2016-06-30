@@ -133,7 +133,14 @@ describe('NodeArray', function() {
             expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
         });
     });
-    fdescribe('#isSubset', () => {
+    fdescribe('#isEquivalent', function() {
+        it('returns true if arrays are of same size and are subsets of each other', function() {
+            let subArray = new NodeArray(myNode);
+            let subArray2 = new NodeArray(myNode);
+            expect(subArray2.isEquivalent(subArray)).toBeTrue();
+        });
+    });
+    describe('#isSubset', () => {
         it('returns true if every node in the callers is in the argument', function() {
             let subArray = new NodeArray(myNode);
             expect(subArray.isSubset(myArray)).toBeTrue();

@@ -86,6 +86,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * Node#setlabel with random number
 * Node#isIdentical checks label
 * NodeArray#hasSameSize
+* NodeArray#isEquivalent
 * NodeArray#filter, #slice, #splice, #concat coerce return type to NodeArray
 * NodeArray#removeNode, #copy
 * Edge#setLabel for more flexible subclassing
