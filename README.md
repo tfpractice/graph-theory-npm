@@ -92,6 +92,8 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * Edge#isEquivalent now checks by nodeArray instead of label
 * NodeArray#difference no longer returns symmetrical difference
 * NodeArray#unionize utilizes new difference
+* EdgeArray#difference no longer returns symmetrical difference
+* EdgeArray#unionize utilizes new difference
 
 
 #### Deprecated
