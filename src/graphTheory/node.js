@@ -13,11 +13,16 @@ class Node {
          * @type {String}
          */
         this.label = label;
+        this.setLabel();
         /**
          * the node data
          * @type {Object}
          */
         this.data = data;
+
+    }
+    setLabel() {
+        return this.label = this.label || (Math.floor(Math.random() * (33) + 33));
 
     }
     /**
@@ -26,7 +31,7 @@ class Node {
      * @return {Boolean}
      */
     isIdentical(newNode) {
-        return (this.label) ? this.label == newNode.label : false;
+        return this.label === newNode.label;
     }
 }
 
