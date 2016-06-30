@@ -100,6 +100,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * Edge#isEquivalent now checks by nodeArray instead of label
 * NodeArray#difference no longer returns symmetrical difference
 * NodeArray#unionize utilizes new difference
+* NodeArray#isSubSet
 * NodeArray#unionize returns modified nodeArray
 * NodeArray#push returns the array object
 * NodeArray#nodeComplement returns a nodearray without specified node
