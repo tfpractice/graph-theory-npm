@@ -11,12 +11,12 @@ var EdgeComponent = require('./edgeComponent');
  * @memberOf! module:graphTheory
  */
 class Graph {
-    constructor() {
+    constructor(nodes = new NodeArray()) {
         /**
          * the graph's nodes
          * @type {NodeArray}
          */
-        this.nodes = new NodeArray();
+        this.nodes = nodes;
         /**
          * the graph's edges
          * @type {EdgeArray}
