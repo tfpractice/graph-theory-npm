@@ -72,6 +72,12 @@ describe('NodeArray', function() {
             expect(myArray.contains(myNode)).toBeTrue();
         });
     });
+    describe('#removeNode(nArg)', () => {
+        it('removes a node from the array', function() {
+            myArray.removeNode(n3);
+            expect(myArray.contains(n3)).toBeFalse();
+        });
+    });
     describe('isNode(argNode', () => {
         it('returns true if argNode is an instanceof Node', function() {
             expect(myArray.isNode(myNode)).toBeTrue();

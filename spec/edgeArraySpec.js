@@ -57,7 +57,7 @@ describe('EdgeArray', function() {
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
         });
     });
-    fdescribe('#edgeByNodes(n1, n2)', () => {
+    describe('#edgeByNodes(n1, n2)', () => {
         it('retrieves an edge containing both nodes', function() {
             let nla = myArray.edgeByNodes(nyc, la);
             expect(nla).toBe(myEdge);

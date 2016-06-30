@@ -112,6 +112,10 @@ class NodeArray extends Array {
     splice(...args) {
         return NodeArray.from(super.splice(...args));
     }
+    removeNode(nArg) {
+        let nPos = this.indexOf(nArg);
+        return (nPos > -1) ? this.splice(nPos, 1) : false;
+    }
 
 
 
