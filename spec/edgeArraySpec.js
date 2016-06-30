@@ -1,4 +1,4 @@
-fdescribe('EdgeArray', function() {
+describe('EdgeArray', function() {
     var GR = require('../src/graphTheory');
     var Edge = GR.Edge;
     var EdgeArray = GR.EdgeArray;
@@ -92,7 +92,7 @@ fdescribe('EdgeArray', function() {
                 });
             });
             describe('difference', function() {
-                it('returns an array of nodes not contained in the operating array', function() {
+                it('returns an array of edges in the caller not contained in the argument', function() {
                     expect(bArray.difference(cArray)).toBeArray();
                 });
             });

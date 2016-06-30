@@ -67,18 +67,16 @@ class EdgeArray extends Array {
      * @return {EdgeArray} the unshared edges
      */
     difference(altArray) {
-        let diffArray = new EdgeArray();
-
-        this.reduce((dArray, currEdge) => {
-            if (!altArray.contains(currEdge)) dArray.push(currEdge);
-            return dArray;
-        }, diffArray);
-        altArray.reduce((dArray, altEdge) => {
-            if (!this.contains(altEdge)) dArray.push(altEdge);
-            return dArray;
-        }, diffArray);
-        return diffArray;
-
+        return this.filter(e => !altArray.contains(e));
+        // this.reduce((dArray, currEdge) => {
+        // if (!altArray.contains(currEdge)) dArray.push(currEdge);
+        // return dArray;
+        // }, diffArray);
+        // altArray.reduce((dArray, altEdge) => {
+        // if (!this.contains(altEdge)) dArray.push(altEdge);
+        // return dArray;
+        // }, diffArray);
+        // return diffArray;
     }
     /**
      * checks for presence of unshared edges between two sets
@@ -105,7 +103,7 @@ class EdgeArray extends Array {
      * @param  {EdgeArray} altArray the array to check
      */
     unionize(altArray) {
-        this.difference(altArray).forEach(dEdge => this.push(dEdge));
+        altArray.difference(this).forEach(dEdge => this.push(dEdge));
     }
     /**
      * forces return type to a NodeArray
