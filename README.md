@@ -90,7 +90,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * EdgeArray#edgeByNodes retrives an edge containing both nodes
 * EdgeArray#edgesWithNode retrives all edge containing a specific node
 * EdgeArray#removeEdge retrives an edge containing both nodes
-* Graph#clearEdges and #clearNodes
+* Graph#add, #contains, #remove, and #clear for both edges and nodes
 
 #### Changed
 * Edge#isEquivalent now checks by nodeArray instead of label

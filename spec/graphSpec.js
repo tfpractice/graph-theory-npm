@@ -1,41 +1,93 @@
 describe('Graph', function() {
     var GR = require('../src/graphTheory');
     var myGraph;
-    var bostonV;
+    var bostonV, tampaV;
     beforeEach(function() {
         myGraph = new GR.Graph();
         bostonV = new GR.Node("boston");
         tampaV = new GR.Node("tampa");
         myGraph.addNode(bostonV);
         myGraph.addNode(tampaV);
+
     });
-    describe('addNode', function() {
-        it('appends a vertex to the nodes array', function() {
-            var newNode = new GR.Node("anon");
-            myGraph.addNode(newNode);
-            expect(myGraph.nodes).toContain(newNode);
+    describe('delegated to subarray', () => {
+        let laV, nyV;
+        beforeEach(function() {
+            nyV = new GR.Node("ny");
+            laV = new GR.Node("la");
+            myGraph.addNode(nyV);
+            myGraph.addNode(laV);
+            myGraph.addEdge(nyV, laV);
+            myGraph.addEdge(nyV, tampaV);
+        });
+
+        describe('addNode', function() {
+            it('appends a vertex to the nodes array', function() {
+                var newNode = new GR.Node("anon");
+                myGraph.addNode(newNode);
+                expect(myGraph.nodes).toContain(newNode);
+            });
+        });
+        describe('containsNode()', () => {
+            it('checks if any of the elements are equivalent to that provided', function() {
+                expect(myGraph.containsNode(bostonV)).toBeTrue();
+            });
+        });
+        describe('#clearNodes', function() {
+            it('clears the nodes arrays', function() {
+                myGraph.clearNodes();
+                expect(myGraph.nodes).toBeEmptyArray();
+            });
+        });
+
+        describe('#removeNode(nArg)', () => {
+            it('removes all edges attached to specified node ', function() {
+                let ela = myGraph.getEdges(nyV);
+                myGraph.removeNode(laV);
+                expect(myGraph.getEdges(nyV).length).toEqual(ela.length - 1);
+            });
+            it('removes a node from the array', function() {
+                myGraph.removeNode(laV);
+                expect(myGraph.containsNode(laV)).toBeFalse();
+            });
+        });
+        describe('addEdge', function() {
+            it('appends a new edge to the edges array', function() {
+                var tempEdge = new GR.Edge(bostonV, tampaV, 10);
+                myGraph.addEdge(bostonV, tampaV, 10);
+                expect(myGraph.edges).toContain(tempEdge);
+            });
+        });
+        describe('#containsEdge(earg)', () => {
+            it('checks if an equivalent egde is present in the graph', function() {
+                var tempEdge = new GR.Edge(bostonV, tampaV, 10);
+                myGraph.addEdge(bostonV, tampaV, 10);
+                expect(myGraph.containsEdge(tempEdge)).toBeTrue();
+            });
+        });
+        describe('#removeEdge()', () => {
+            it('removes the edge from the edges array', function() {
+                var tempEdge = new GR.Edge(bostonV, tampaV, 10);
+                myGraph.addEdge(bostonV, tampaV, 10);
+                myGraph.removeEdge(tempEdge);
+                expect(myGraph.edges).not.toContain(tempEdge);
+
+
+            });
+        });
+        describe('#clearEdges', function() {
+            it('clears the edges arrays', function() {
+                myGraph.addEdge(bostonV, tampaV);
+                myGraph.clearEdges();
+                expect(myGraph.edges).toBeEmptyArray();
+            });
         });
     });
-    describe('addEdge', function() {
-        it('appends a new edge to the edges array', function() {
-            var tempEdge = new GR.Edge(bostonV, tampaV, 10);
-            myGraph.addEdge(bostonV, tampaV, 10);
-            expect(myGraph.edges).toContain(tempEdge);
-        });
-    });
-    describe('#clearNodes', function() {
-        it('clears the nodes arrays', function() {
-            myGraph.clearNodes();
-            expect(myGraph.nodes).toBeEmptyArray();
-        });
-    });
-    describe('#clearEdges', function() {
-        it('clears the edges arrays', function() {
-            myGraph.addEdge(bostonV, tampaV);
-            myGraph.clearEdges();
-            expect(myGraph.edges).toBeEmptyArray();
-        });
-    });
+
+
+
+
+
     describe('major functions', function() {
         var v1, v2, v3, v4, v5;
         beforeEach(function() {

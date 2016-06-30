@@ -35,11 +35,23 @@ class Graph {
     addNode(node) {
         this.nodes.push(node);
     }
+    containsNode(argNode) {
+        return this.nodes.contains(argNode);
+    }
+    removeNode(nodeArg) {
+        this.getEdges(nodeArg).forEach(e => this.removeEdge(e));
+        this.nodes.removeNode(nodeArg);
+    }
+
     clearNodes() {
         this.nodes.clear();
     }
-    clearEdges() {
-        this.edges.clear();
+    /**
+     * @param  {Node} nodeArg source node
+     * @return {Edge[]} the edges connected to source
+     */
+    getEdges(nodeArg) {
+        return this.edges.filter(tempEdge => tempEdge.containsNode(nodeArg) === true);
     }
     /**
      * creates a new edge given two nodes
@@ -51,12 +63,15 @@ class Graph {
         var tempEdge = new Edge(sNode, dNode, weight);
         this.edges.push(tempEdge);
     }
-    /**
-     * @param  {Node} nodeArg source node
-     * @return {Edge[]} the edges connected to source
-     */
-    getEdges(nodeArg) {
-        return this.edges.filter(tempEdge => tempEdge.containsNode(nodeArg) === true);
+    containsEdge(argEdge) {
+        return this.edges.contains(argEdge);
+    }
+
+    removeEdge(argEdge) {
+        this.edges.removeEdge(argEdge);
+    }
+    clearEdges() {
+        this.edges.clear();
     }
     /**
      *
