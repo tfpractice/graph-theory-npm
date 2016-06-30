@@ -101,6 +101,7 @@ class EdgeArray extends Array {
      */
     unionize(altArray) {
         altArray.difference(this).forEach(dEdge => this.push(dEdge));
+        return this;
     }
     /**
      * forces return type to a NodeArray

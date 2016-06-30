@@ -135,6 +135,10 @@ describe('EdgeArray', function() {
                     // console.log(bArray.length);
                     expect(bArray).toEqual(edgeUnion);
                 });
+                it('returns the modified array', function() {
+                    let uArr = bArray.unionize(cArray);
+                    expect(uArr).toBeArray();
+                });
             });
         });
         describe('return type @@species', () => {
