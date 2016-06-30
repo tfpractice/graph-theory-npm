@@ -58,6 +58,11 @@ describe('EdgeArray', function() {
             expect(myArray.clear()).toBeEmptyArray();
         });
     });
+    describe('#copy', () => {
+        it('returns a slices of the array from start to end', function() {
+            expect(myArray.copy()).toEqual(myArray);
+        });
+    });
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
@@ -80,6 +85,7 @@ describe('EdgeArray', function() {
             expect(myArray.edgesWithNode(nyc)).toContain(myEdge);
         });
     });
+
     describe('set and species methods', () => {
         beforeEach(function() {
             n00 = new GR.Node("00");
@@ -150,7 +156,7 @@ describe('EdgeArray', function() {
                 myMutable.push(e4);
             });
             describe('#filter', () => {
-                it('returns a new nodeArray', function() {
+                it('returns a new EdgeArray', function() {
                     fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
                     expect(fArr instanceof EdgeArray).toBeTrue();
                 });
@@ -172,6 +178,14 @@ describe('EdgeArray', function() {
                     firstFour = myMutable.splice(0, 4);
                     let newArr = myMutable.concat(firstFour);
                     expect(newArr instanceof EdgeArray).toBeTrue();
+                });
+            });
+            describe('#edgesByArray', () => {
+                it('returns all edges which contain each of the nodes in the array', function() {
+                    myMutable.push(e0);
+                    let myNarr = GR.NodeArray.of(n01, n21);
+                    let mySubSet = myMutable.edgesByArray(myNarr);
+                    expect(mySubSet.length).toEqual(3);
                 });
             });
         });

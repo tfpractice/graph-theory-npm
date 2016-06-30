@@ -83,6 +83,11 @@ describe('NodeArray', function() {
             expect(myArray.clear()).toBeEmptyArray();
         });
     });
+    describe('#copy', () => {
+        it('returns a slices of the array from start to end', function() {
+            expect(myArray.copy()).toEqual(myArray);
+        });
+    });
     describe('isNode(argNode', () => {
         it('returns true if argNode is an instanceof Node', function() {
             expect(myArray.isNode(myNode)).toBeTrue();

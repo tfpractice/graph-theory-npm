@@ -84,12 +84,13 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 ### 2.2.0-alpha – 2016-29-16
 #### Added
 * NodeArray#filter, #slice, #splice, #concat coerce return type to NodeArray
-* NodeArray#removeNode
+* NodeArray#removeNode, #copy
 * Edge#setLabel for more flexible subclassing
 * EdgeArray#filter, #slice, #splice, and #concat return subclass
 * EdgeArray#edgeByNodes retrives an edge containing both nodes
+* EdgeArray#edgeByArray retrives all edges containing the specified nodes
 * EdgeArray#edgesWithNode retrives all edge containing a specific node
-* EdgeArray#removeEdge retrives an edge containing both nodes
+* EdgeArray#removeEdge, #copy
 * Graph#add, #contains, #remove, and #clear for both edges and nodes
 
 #### Changed

@@ -128,6 +128,9 @@ class NodeArray extends Array {
         this.splice(0);
         return this;
     }
+    copy() {
+        return this.slice(0);
+    }
 
 }
 
