@@ -8,7 +8,6 @@ describe('EdgeArray', function() {
         la = new GR.Node("LA");
         nyc = new GR.Node("NYC");
         dc = new GR.Node("DC");
-
         myEdge = new Edge(nyc, la, 10);
         altEdge = new Edge(nyc, dc, 10);
         myArray = new EdgeArray(myEdge);
@@ -17,7 +16,6 @@ describe('EdgeArray', function() {
         it('is a typeof Array', function() {
             expect(myArray instanceof Array).toBeTrue();
         });
-
     });
     describe('contains()', () => {
         it('checks if any of the elements are equivalent to that provided', function() {
@@ -57,14 +55,13 @@ describe('EdgeArray', function() {
     });
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
-            // console.log(myArray.getNodes());
-            // console.log(myArray);
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
         });
     });
     describe('#getNeighbors(nde)', function() {
         it('returns a NodeArray of neighboring nodes', function() {
-            expect(myArray.getNeighbors(nyc)).toBeArray();
+            myArray.push(altEdge);
+            expect(myArray.getNeighbors(nyc)).toContain(dc);
         });
     });
     describe('#edgeByNodes(n1, n2)', () => {
@@ -79,7 +76,6 @@ describe('EdgeArray', function() {
         });
     });
     describe('set and species methods', () => {
-        // var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, n30, n31, bArray, cArray;
         beforeEach(function() {
             n00 = new GR.Node("00");
             n01 = new GR.Node("01");
@@ -98,7 +94,6 @@ describe('EdgeArray', function() {
             bArray.push(e1);
             cArray = new GR.EdgeArray(e2);
             cArray.push(e3);
-
         });
         describe('set methods', function() {
             describe('intersection(altArray)', function() {
@@ -131,8 +126,6 @@ describe('EdgeArray', function() {
                 it('combines the nodes of both arrays', function() {
                     var edgeUnion = bArray.union(cArray);
                     bArray.unionize(cArray);
-                    // console.log(edgeUnion.length);
-                    // console.log(bArray.length);
                     expect(bArray).toEqual(edgeUnion);
                 });
                 it('returns the modified array', function() {
@@ -150,28 +143,22 @@ describe('EdgeArray', function() {
                 myMutable.push(e2);
                 myMutable.push(e3);
                 myMutable.push(e4);
-                // console.log(myMutable);
             });
             describe('#filter', () => {
                 it('returns a new nodeArray', function() {
                     fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
-                    // console.log(fArr);
                     expect(fArr instanceof EdgeArray).toBeTrue();
                 });
             });
             describe('#slice', () => {
                 it('returns a new nodeArray', function() {
                     firstFour = myMutable.slice(0, 3);
-                    // console.log(myMutable.length);
-                    // console.log(firstFour);
                     expect(firstFour instanceof EdgeArray).toBeTrue();
                 });
-                // 
             });
             describe('#splice', () => {
                 it('returns a new nodeArray', function() {
                     firstFour = myMutable.splice(0, 4);
-                    // console.log(firstFour);
                     expect(firstFour instanceof EdgeArray).toBeTrue();
                 });
             });
@@ -184,5 +171,4 @@ describe('EdgeArray', function() {
             });
         });
     });
-
 });
