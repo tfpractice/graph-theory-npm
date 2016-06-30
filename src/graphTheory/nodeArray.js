@@ -52,19 +52,7 @@ class NodeArray extends Array {
      * @return {NodeArray} the unshared nodes
      */
     difference(altArray) {
-        // let diffArray = new NodeArray();
         return this.filter(n => !altArray.contains(n));
-        // this.reduce((dArray, currNode) => {
-        // if (!altArray.contains(currNode)) dArray.push(currNode);
-        // return dArray;
-        // }, diffArray);
-        // altArray.reduce((dArray, altNode) => {
-        // if (!this.contains(altNode)) dArray.push(altNode);
-        // return dArray;
-        // }, diffArray);
-
-        // return diffArray;
-
     }
     /**
      * checks for presence of unshared nodes between two sets

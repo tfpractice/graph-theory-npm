@@ -87,6 +87,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * Edge#hasSameName and #hasSameNodes
 * Edge#setLabel for more flexible subclassing
 * EdgeArray#filter, #slice, #splice, and #concat return subclass
+* EdgeArray#edgeByNodes retrives an edge containing both nodes
 
 #### Changed
 * Edge#isEquivalent now checks by nodeArray instead of label

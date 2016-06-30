@@ -57,6 +57,13 @@ describe('EdgeArray', function() {
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
         });
     });
+    fdescribe('#edgeByNodes(n1, n2)', () => {
+        it('retrieves an edge containing both nodes', function() {
+            let nla = myArray.edgeByNodes(nyc, la);
+            expect(nla).toBe(myEdge);
+        });
+
+    });
     describe('set and species methods', () => {
         // var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, n30, n31, bArray, cArray;
         beforeEach(function() {

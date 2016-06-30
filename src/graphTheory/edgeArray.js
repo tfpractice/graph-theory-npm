@@ -68,15 +68,6 @@ class EdgeArray extends Array {
      */
     difference(altArray) {
         return this.filter(e => !altArray.contains(e));
-        // this.reduce((dArray, currEdge) => {
-        // if (!altArray.contains(currEdge)) dArray.push(currEdge);
-        // return dArray;
-        // }, diffArray);
-        // altArray.reduce((dArray, altEdge) => {
-        // if (!this.contains(altEdge)) dArray.push(altEdge);
-        // return dArray;
-        // }, diffArray);
-        // return diffArray;
     }
     /**
      * checks for presence of unshared edges between two sets
@@ -136,6 +127,9 @@ class EdgeArray extends Array {
      */
     splice(...args) {
         return EdgeArray.from(super.splice(...args));
+    }
+    edgeByNodes(n1, n2) {
+        return this.find(e => (e.containsNode(n1) && e.containsNode(n2)));
     }
 }
 module.exports = EdgeArray;
