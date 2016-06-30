@@ -31,16 +31,16 @@ describe('EdgeArray', function() {
     });
     describe('push(argEdge) ', () => {
         describe('when argEdge is an instanceof Edge', () => {
-            it('calls super [Array.push] and returns new length', function() {
+            it('calls super [Array.push] and returns modified array', function() {
                 var currLength = myArray.length;
                 let newEdge = new Edge('newEdge');
                 var newLength = currLength + 1;
-                expect(myArray.push(newEdge)).toEqual(newLength);
+                expect(myArray.push(newEdge)).toEqual(myArray);
             });
         });
         describe('when argEdge is not an instanceof Edge', () => {
-            it('returns false', function() {
-                expect(myArray.push(2)).toBeFalse();
+            it('returns the unmodified array', function() {
+                expect(myArray.push(2)).toBeArray();
             });
             it('does not increment length', function() {
                 var currLength = myArray.length;
