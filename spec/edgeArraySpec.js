@@ -128,6 +128,24 @@ describe('EdgeArray', function() {
                     expect(bArray.hasDistinctEdges(cArray)).toBeTrue();
                 });
             });
+            describe('#isEquivalent', function() {
+                it('returns true if arrays are of same size and are subsets of each other', function() {
+                    let subArray = new EdgeArray(e0);
+                    let subArray2 = new EdgeArray(e0);
+                    expect(subArray2.isEquivalent(subArray)).toBeTrue();
+                });
+            });
+            describe('#isSubset', () => {
+                it('returns true if every node in the callers is in the argument', function() {
+                    let subArray = new EdgeArray(e1);
+                    expect(subArray.isSubset(bArray)).toBeTrue();
+                });
+            });
+            describe('#hasSameSize', () => {
+                it('returns if the arrays share length', function() {
+                    expect(bArray.hasSameSize(cArray)).toBeTrue();
+                });
+            });
             describe('union', function() {
                 it('returns an array of all nodes between two array', function() {
                     expect(bArray.union(cArray)).toBeArray();

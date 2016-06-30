@@ -133,7 +133,7 @@ describe('NodeArray', function() {
             expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
         });
     });
-    fdescribe('#isEquivalent', function() {
+    describe('#isEquivalent', function() {
         it('returns true if arrays are of same size and are subsets of each other', function() {
             let subArray = new NodeArray(myNode);
             let subArray2 = new NodeArray(myNode);

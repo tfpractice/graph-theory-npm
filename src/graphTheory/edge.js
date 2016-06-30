@@ -36,6 +36,7 @@ class Edge {
     isEquivalent(edgeArg) {
         return this.hasSameNodes(edgeArg);
     }
+
     /**
      * checks the equivalence (by label)of this edge against another
      * @param  {Edge}  edgeArg edge to be checked
@@ -50,7 +51,7 @@ class Edge {
      * @return {Boolean}
      */
     hasSameNodes(edgeArg) {
-        return this.nodes.hasDistinctNodes(edgeArg.nodes) === false;
+        return this.nodes.isSubset(edgeArg.nodes) === true;
     }
     /**
      * Checks for presence fo a node in this edge

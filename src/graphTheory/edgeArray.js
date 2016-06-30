@@ -82,7 +82,16 @@ class EdgeArray extends Array {
      * @return {Boolean}
      */
     hasDistinctEdges(altArray) {
-        return altArray.some(altEdge => !this.contains(altEdge));
+        return this.some(myEdge => !altArray.contains(myEdge));
+    }
+    hasSameSize(altArray) {
+        return this.length === altArray.length;
+    }
+    isSubset(altArray) {
+        return this.every(myEdge => altArray.contains(myEdge));
+    }
+    isEquivalent(altArray) {
+        return this.hasSameSize(altArray) && this.isSubset(altArray);
     }
     /**
      * returns a combined array of edges belonging to this and the alternate arrays
