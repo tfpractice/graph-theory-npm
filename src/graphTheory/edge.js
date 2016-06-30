@@ -68,6 +68,9 @@ class Edge {
     getNeighbor(nodeArg) {
         return this.nodes.find(currNode => currNode != nodeArg);
     }
+    excludeNode(nodeArg) {
+        return this.nodes.nodeComplement(nodeArg);
+    }
 }
 module.exports = Edge;
 /**

@@ -44,10 +44,7 @@ class EdgeArray extends Array {
         }, new NodeArray());
     }
     getNeighbors(nodeArg) {
-        return this.edgesWithNode(nodeArg).reduce((nArray, e) => {
-            nArray.push(e.getNeighbor(nodeArg));
-            return nArray;
-        }, new NodeArray());
+        return this.edgesWithNode(nodeArg).reduce((nArray, e) => nArray.unionize(e.excludeNode(nodeArg)), new NodeArray());
     }
     /**
      * returns an array shared edges between two sets

@@ -142,4 +142,9 @@ describe('NodeArray', function() {
 
         });
     });
+    describe('nodeComplement()', () => {
+        it('returns an array of all nodes excluding the argument', function() {
+            expect(myArray.nodeComplement(myNode)).toBeArray();
+        });
+    });
 });

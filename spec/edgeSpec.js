@@ -60,6 +60,11 @@ describe('Edge', function() {
             expect(myEdge.containsNode(la)).toBeTrue();
         });
     });
+    describe('excludeNode(node)', () => {
+        it('returns an array of nodes excluding that specified', function() {
+            expect(myEdge.excludeNode(nyc)).toBeArray();
+        });
+    });
     describe('getNeighbor', function() {
         it('returns the edges alternate endpoint ', function() {
             expect(myEdge.getNeighbor(la)).toEqual(nyc);

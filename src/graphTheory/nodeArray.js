@@ -118,7 +118,9 @@ class NodeArray extends Array {
         return (nPos > -1) ? this.splice(nPos, 1) : false;
     }
 
-
+    nodeComplement(nArg) {
+        return this.filter(n => n.isIdentical(nArg));
+    }
 
 }
 
