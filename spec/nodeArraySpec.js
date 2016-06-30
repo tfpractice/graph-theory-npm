@@ -78,6 +78,11 @@ describe('NodeArray', function() {
             expect(myArray.contains(n3)).toBeFalse();
         });
     });
+    describe('#clear', function() {
+        it('empties and returns the array ', function() {
+            expect(myArray.clear()).toBeEmptyArray();
+        });
+    });
     describe('isNode(argNode', () => {
         it('returns true if argNode is an instanceof Node', function() {
             expect(myArray.isNode(myNode)).toBeTrue();

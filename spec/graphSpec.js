@@ -23,6 +23,19 @@ describe('Graph', function() {
             expect(myGraph.edges).toContain(tempEdge);
         });
     });
+    describe('#clearNodes', function() {
+        it('clears the nodes arrays', function() {
+            myGraph.clearNodes();
+            expect(myGraph.nodes).toBeEmptyArray();
+        });
+    });
+    describe('#clearEdges', function() {
+        it('clears the edges arrays', function() {
+            myGraph.addEdge(bostonV, tampaV);
+            myGraph.clearEdges();
+            expect(myGraph.edges).toBeEmptyArray();
+        });
+    });
     describe('major functions', function() {
         var v1, v2, v3, v4, v5;
         beforeEach(function() {

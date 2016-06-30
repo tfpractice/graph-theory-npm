@@ -35,6 +35,12 @@ class Graph {
     addNode(node) {
         this.nodes.push(node);
     }
+    clearNodes() {
+        this.nodes.clear();
+    }
+    clearEdges() {
+        this.edges.clear();
+    }
     /**
      * creates a new edge given two nodes
      * @param {Node} sNode source node

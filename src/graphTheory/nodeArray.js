@@ -124,6 +124,10 @@ class NodeArray extends Array {
     nodeComplement(nArg) {
         return this.filter(n => n.isIdentical(nArg));
     }
+    clear() {
+        this.splice(0);
+        return this;
+    }
 
 }
 

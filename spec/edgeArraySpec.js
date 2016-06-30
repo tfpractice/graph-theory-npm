@@ -53,6 +53,11 @@ describe('EdgeArray', function() {
             expect(myArray.contains((myEdge))).toBeFalse();
         });
     });
+    describe('#clear', function() {
+        it('empties and returns the array ', function() {
+            expect(myArray.clear()).toBeEmptyArray();
+        });
+    });
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();

@@ -146,6 +146,10 @@ class EdgeArray extends Array {
         let ePos = this.findIndex(e => e.isEquivalent(eArg));
         return (ePos > -1) ? this.splice(ePos, 1) : false;
     }
+    clear() {
+        this.splice(0);
+        return this;
+    }
 }
 module.exports = EdgeArray;
 /**
