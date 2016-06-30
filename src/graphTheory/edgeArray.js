@@ -150,6 +150,9 @@ class EdgeArray extends Array {
         this.splice(0);
         return this;
     }
+    copy() {
+        return this.slice(0);
+    }
 }
 module.exports = EdgeArray;
 /**

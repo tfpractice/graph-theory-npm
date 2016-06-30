@@ -58,6 +58,11 @@ describe('EdgeArray', function() {
             expect(myArray.clear()).toBeEmptyArray();
         });
     });
+    describe('#copy', () => {
+        it('returns a slices of the array from start to end', function() {
+            expect(myArray.copy()).toEqual(myArray);
+        });
+    });
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
