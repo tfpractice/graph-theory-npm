@@ -118,7 +118,7 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        fdescribe('conncted components', function() {
+        describe('conncted components', function() {
             // let c0, c1,c2;
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
@@ -142,18 +142,15 @@ describe('Graph', function() {
                     expect(myGraph.components).not.toContain(nabes1);
                 });
             });
-            // describe('hasIntersectingComponent(compArg)', () => {
-            // it('returns a boolena regarding any connecting components already present', function() {
-            // myGraph.addComponent(altComp);
-            // expect(myGraph.hasIntersectingComponent(altComp)).toBeTrue();
-            // });
-            // });
+            describe('hasIntersectingComponent(compArg)', () => {
+                it('returns a boolena regarding any connecting components already present', function() {
+                    myGraph.addComponent(nabes1);
+                    expect(myGraph.hasIntersectingComponent(nabes2)).toBeTrue();
+                });
+            });
             describe('findIntersectingComponent(compArg)', function() {
                 it('returns the component intersecting with the specified compArg', function() {
                     myGraph.addComponent(nabes1);
-                    console.log(nabes1);
-                    console.log(nabes2);
-                    // myGraph.addComponent(altComp);
                     expect(myGraph.findIntersectingComponent(nabes2)).toEqual(nabes1);
                 });
             });
