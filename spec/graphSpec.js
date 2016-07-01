@@ -118,7 +118,7 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        describe('conncted components', function() {
+        fdescribe('conncted components', function() {
             // let c0, c1,c2;
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
@@ -130,10 +130,20 @@ describe('Graph', function() {
                 nabes7 = myGraph.getNeighbors(v7);
             });
             describe('#addComponent', () => {
-                it('pushes a NodeArray to the components array', function() {
-                    myGraph.addComponent(nabes1);
-                    expect(myGraph.components).toContain(nabes1);
+                describe('when there is no intersecting component', () => {
+                    it('pushes a NodeArray to the components array', function() {
+                        myGraph.addComponent(nabes1);
+                        expect(myGraph.components).toContain(nabes1);
+                    });
                 });
+                describe('when there is an intersecting component', () => {
+                    it('integrates the component with the intersecting component', function() {
+                        myGraph.addComponent(nabes1);
+                        myGraph.addComponent(nabes2);
+                        expect(myGraph.components.length).toEqual(1);
+                    });
+                });
+
             });
             describe('#removeComponent', () => {
                 it('splices a NodeArray from the components array', function() {
@@ -169,15 +179,23 @@ describe('Graph', function() {
                     expect(myGraph.mergeComponents(nabes1, nabes2)).toBe(nabes1);
                 });
             });
-            // describe('integrateComponent(compArg)', function() {
-            // it('find an intersecting component and mergess it with compArg', function() {
-            // myGraph.addComponent(testComp);
-            // myGraph.addComponent(altComp);
-            // myGraph.integrateComponent(altComp);
-            // myGraph.bfs(v3);
-            // expect(testComp.edges).toContain(e1);
-            // });
-            // });
+            describe('integrateComponent(compArg)', function() {
+                describe('when there is no intersecting component', () => {
+                    it('doesnt change the components array', function() {
+                        myGraph.addComponent(nabes1);
+                        myGraph.integrateComponent(nabes6);
+                        expect(myGraph.components.length).toEqual(1);
+                    });
+                });
+                describe('when there is an intersecting component', () => {
+                    it('find an intersecting component and merges it with compArg', function() {
+                        myGraph.addComponent(nabes1);
+                        myGraph.integrateComponent(nabes2);
+                        expect(myGraph.components.length).toEqual(1);
+                    });
+                });
+
+            });
         });
 
         describe('hasPath', function() {

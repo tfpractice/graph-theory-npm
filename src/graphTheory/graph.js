@@ -150,7 +150,9 @@ class Graph {
      * @param  {Component} newComp
      */
     mergeComponents(origComp, newComp) {
-        return origComp.unionize(newComp);
+        let ucomp = origComp.unionize(newComp);
+        this.removeComponent(newComp);
+        return ucomp;
     }
     /**
      * integrates a component into any of the graphs intersectung components
@@ -158,7 +160,7 @@ class Graph {
      */
     integrateComponent(compArg) {
         let oComp = this.findIntersectingComponent(compArg);
-        this.mergeComponents(oComp, compArg);
+        if (oComp) this.mergeComponents(oComp, compArg);
     }
     /**
      * checks if any current components share nodes with the argument
