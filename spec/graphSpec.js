@@ -118,7 +118,7 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        fdescribe('connected components', function() {
+        describe('connected components', function() {
             // let c0, c1,c2;
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
