@@ -93,7 +93,7 @@ describe('Graph', function() {
         });
     });
     describe('major functions', function() {
-        let myGraph, myNodes, v1, v2, v3, v4, v5;
+        let myGraph, myNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5;
         beforeEach(function() {
             v1 = new GR.Node("v1");
             v2 = new GR.Node("v2");
@@ -112,6 +112,10 @@ describe('Graph', function() {
             myGraph.addEdge(v5, v1, 10);
             myGraph.addEdge(v6, v1, 10);
             myGraph.addEdge(v7, v8, 10);
+            n0 = myGraph.nodes[0];
+            nabe0 = myGraph.getNeighbors(n0)[0];
+            e0 = myGraph.edges[0];
+            e1 = myGraph.edges[1];
         });
         describe('conncted components', function() {});
 
@@ -122,17 +126,13 @@ describe('Graph', function() {
             });
         });
         describe('traversals', () => {
-            let testNode, testNabe, testEdge, testComp;
+            let testComp, altComp;
             beforeEach(function() {
-                testNode = myGraph.nodes[0];
-                testNabe = myGraph.getNeighbors(testNode)[0];
-                testEdge = myGraph.edges[0];
-                secondEdge = myGraph.edges[1];
                 testComp = new GR.EdgeComponent();
                 altComp = new GR.EdgeComponent()
-                testComp.addEdge(testEdge);
-                altComp.addEdge(testEdge);
-                altComp.addEdge(secondEdge);
+                testComp.addEdge(e0);
+                altComp.addEdge(e0);
+                altComp.addEdge(e1);
                 myGraph.addEdge(v2, v3, 4);
                 myGraph.addEdge(v2, v4, 6);
                 myGraph.addEdge(v2, v5, 8);
@@ -183,7 +183,7 @@ describe('Graph', function() {
             });
             describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
                 it('returns all edges not yet included in the given component', function() {
-                    expect(myGraph.getUnvisitedEdges(testNode, testComp)).toBeArray();
+                    expect(myGraph.getUnvisitedEdges(n0, testComp)).toBeArray();
                 });
             });
             describe('visitComponent(nodeArg, compArg)', () => {
@@ -209,7 +209,7 @@ describe('Graph', function() {
             describe('mergeComponents)origComp, newComp)', function() {
                 it('unionizes the two components', function() {
                     myGraph.mergeComponents(testComp, altComp);
-                    expect(testComp.edges).toContain(secondEdge);
+                    expect(testComp.edges).toContain(e1);
                 });
             });
             describe('integrateComponent(compArg)', function() {
@@ -218,7 +218,7 @@ describe('Graph', function() {
                     myGraph.addComponent(altComp);
                     myGraph.integrateComponent(altComp);
                     myGraph.bfs(v3);
-                    expect(testComp.edges).toContain(secondEdge);
+                    expect(testComp.edges).toContain(e1);
                 });
             });
             describe('bfs(initNode)', () => {
