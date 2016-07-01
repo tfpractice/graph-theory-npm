@@ -39,7 +39,7 @@ class Graph {
         return this.nodes.contains(argNode);
     }
     removeNode(nodeArg) {
-        this.getEdges(nodeArg).forEach(e => this.removeEdge(e));
+        this.edgesWithNode(nodeArg).forEach(e => this.removeEdge(e));
         this.nodes.removeNode(nodeArg);
     }
 
@@ -50,8 +50,9 @@ class Graph {
      * @param  {Node} nodeArg source node
      * @return {Edge[]} the edges connected to source
      */
-    getEdges(nodeArg) {
-        return this.edges.filter(tempEdge => tempEdge.containsNode(nodeArg) === true);
+    edgesWithNode(nodeArg) {
+        return this.edges.edgesWithNode(nodeArg);
+        // return this.edges.filter(tempEdge => tempEdge.containsNode(nodeArg) === true);
     }
     /**
      * creates a new edge given two nodes
@@ -81,6 +82,9 @@ class Graph {
     getNeighbors(nodeArg) {
         return this.edges.getNeighbors(nodeArg);
     }
+    pathNodes(pathArg) {
+        return NodeArray.from([...pathArg.keys()]);
+    }
     /**
      * adds all unvisited nodes in the path to the specified component
      * adds each node connected to an edge to a (depth) path
@@ -89,6 +93,7 @@ class Graph {
      */
     visitComponent(pathArg, compArg) {
         let nodeArg = [...pathArg.keys()].pop();
+        // let nextEdges = this.
         let nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
         if (nextEdges.length === 0) {
             return pathArg;
@@ -97,7 +102,8 @@ class Graph {
             let predCount = pathArg.get(nodeArg).edgeCount;
             nextEdges.forEach(currEdge => {
                 let nabe = currEdge.getNeighbor(nodeArg);
-                compArg.addEdge(currEdge);
+                // compArg.addEdge(currEdge);
+                compArg.push(nabe);
                 pathArg.set(nabe, {
                     pred: nodeArg,
                     edgeCount: predCount + 1,
@@ -113,7 +119,8 @@ class Graph {
      * @return {Component} a key-value store of nodes and edge distances
      */
     depthTraverse(initNode) {
-        let currComponent = new EdgeComponent();
+        // let currComponent = new EdgeComponent();
+        let currComponent = NodeArray.of(initNode);
         let path = new Map();
         path.set(initNode, {
             pred: null,
@@ -177,8 +184,8 @@ class Graph {
      */
     getUnvisitedEdges(nodeArg, compArg) {
         let unArr = this.getUnvisitedNeighbors(nodeArg, compArg);
-        return this.getEdges(nodeArg).edgesByArray(unArr);
-        // return this.getEdges(nodeArg).filter(currEdge => {
+        return this.edgesWithNode(nodeArg).edgesByArray(unArr);
+        // return this.edgesWithNode(nodeArg).filter(currEdge => {
         // var nNode = currEdge.getNeighbor(nodeArg)
         // return !compArg.containsNode(nNode);
         // });
@@ -261,7 +268,7 @@ class Graph {
         });
         while (inspectionQueue.length > 0) {
             var currN = inspectionQueue.shift();
-            var currEdges = this.getEdges(currN);
+            var currEdges = this.edgesWithNode(currN);
 
             currEdges.forEach((tempEdge) => {
                 let nNode = tempEdge.getNeighbor(currN);

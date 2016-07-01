@@ -38,9 +38,9 @@ describe('Graph', function() {
             });
             describe('#removeNode(nArg)', () => {
                 it('removes all edges attached to specified node ', function() {
-                    let ela = myGraph.getEdges(nyV);
+                    let ela = myGraph.edgesWithNode(nyV);
                     myGraph.removeNode(laV);
-                    expect(myGraph.getEdges(nyV).length).toEqual(ela.length - 1);
+                    expect(myGraph.edgesWithNode(nyV).length).toEqual(ela.length - 1);
                 });
                 it('removes a node from the array', function() {
                     myGraph.removeNode(laV);
@@ -79,10 +79,10 @@ describe('Graph', function() {
                     expect(myGraph.edges).toBeEmptyArray();
                 });
             });
-            describe('getEdges ', function() {
+            describe('edgesWithNode ', function() {
                 it('returns all edges with a particular source Node ', function() {
                     let nytam = new GR.Edge(nyV, tampaV);
-                    expect(myGraph.getEdges(nyV)).toContain(nytam);
+                    expect(myGraph.edgesWithNode(nyV)).toContain(nytam);
                 });
             });
             describe('getNeighbors', function() {
@@ -244,9 +244,9 @@ describe('Graph', function() {
                 });
             });
             describe('depthTraverse(initNode)', () => {
-                it('returns a path[Map] containing all nodes reachable via initNode', function() {
-                    myGraph.depthTraverse(v2);
-                    expect(myGraph.depthTraverse(v2) instanceof Map).toBeTruthy();
+                fit('returns a path[Map] containing all nodes reachable via initNode', function() {
+                    let tVal = myGraph.depthTraverse(v2);
+                    expect(tVal instanceof Map).toBeTruthy();
                 });
                 describe('retun values', () => {
                     let dfsKeys;
@@ -270,6 +270,13 @@ describe('Graph', function() {
                     myGraph.depthTraverse(v2);
                     expect(myGraph.components.length).toEqual(1);
                 });
+                fdescribe('#pathNodes(path)', function() {
+                    it('returns the path keys as a node array', function() {
+                        let path = myGraph.depthTraverse(v2);
+                        let pkey = myGraph.pathNodes(path);
+                        expect(pkey instanceof GR.NodeArray).toBeTrue();
+                    });
+                });
             });
             // describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
             //     it('returns all edges not yet included in the given component', function() {
@@ -280,6 +287,8 @@ describe('Graph', function() {
                 it('returns a component containing all nodes reachable from init', function() {
                     let dPath = myGraph.depthTraverse(v2);
                     let dComp = myGraph.components[0];
+                    let visitVal = myGraph.visitComponent(dPath, dComp);
+                    // console.log(visitVal);
                     expect(myGraph.visitComponent(dPath, dComp) instanceof Map).toBeTrue();
                 });
             });
