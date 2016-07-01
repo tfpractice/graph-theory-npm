@@ -42,7 +42,6 @@ class Graph {
         this.edgesWithNode(nodeArg).forEach(e => this.removeEdge(e));
         this.nodes.removeNode(nodeArg);
     }
-
     clearNodes() {
         this.nodes.clear();
     }
@@ -67,7 +66,6 @@ class Graph {
     containsEdge(argEdge) {
         return this.edges.contains(argEdge);
     }
-
     removeEdge(argEdge) {
         this.edges.removeEdge(argEdge);
     }
@@ -197,15 +195,12 @@ class Graph {
     getUnvisitedNeighbors(nodeArg, compArg) {
         // return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
         return this.getNeighbors(nodeArg).difference(compArg);
-
     }
-
     /**
      * breadth first search, recursively adds all immediate neighbors, to a component of nodes reachabe by a initial node
      * @param  {Node} initNode inital node
      * @return {Map} a key-value store of nodes and edge distances
      */
-
     bfs(initNode) {
         // var bNodes = new EdgeComponent();
         var bPath = new Map();
@@ -214,38 +209,29 @@ class Graph {
             pathWeight: 0,
             edgeCount: 0
         });
+        let bNodes = this.pathNodes(bPath);
         var level = 1;
         var bQueue = new NodeArray();
         bQueue.push(initNode);
-        if (bQueue.length > 0) {
-            console.log(level);
-            let bNodes = this.pathNodes(bPath);
-
+        while (bQueue.length > 0) {
             var frontier = new NodeArray();
             var currN = bQueue.shift();
             var currEdges = this.getUnvisitedEdges(currN, bNodes);
             var currNeighbors = this.getUnvisitedNeighbors(currN, bNodes);
-            console.log(currNeighbors);
             let predWeight = bPath.get(currN).pathWeight;
             let predCount = bPath.get(currN).edgeCount;
             currEdges.forEach((nEdge) => {
                 let nNode = nEdge.getNeighbor(currN);
-                console.log(nNode.label);
                 bPath.set(nNode, {
                     pred: currN,
                     edgeCount: level,
                     pathWeight: predWeight + nEdge.weight
                 });
-                // bNodes.addEdge(nEdge);
-
-                // console.log(currN.label);
+                bNodes = this.pathNodes(bPath);
                 frontier.push(nNode);
-                console.log(level, frontier.length);
-
             });
             ++level;
-            bQueue = frontier;
-
+            bQueue.unionize(frontier);
         }
         let bComp = this.pathNodes(bPath);
         // console.log(bPath);
@@ -280,7 +266,6 @@ class Graph {
         while (inspectionQueue.length > 0) {
             var currN = inspectionQueue.shift();
             var currEdges = this.edgesWithNode(currN);
-
             currEdges.forEach((tempEdge) => {
                 let nNode = tempEdge.getNeighbor(currN);
                 var rNodeEntry = reachables.get(nNode);
@@ -316,18 +301,15 @@ class Graph {
             let currEntry = dijkMap.get(currN);
             let predN = currEntry.pred;
             let path = new Map();
-
             while (currN != initNode) {
                 path.set(currN, currEntry);
                 currN = predN;
                 currEntry = dijkMap.get(currN);
                 predN = currEntry.pred;
             }
-
             return path;
         }
     }
-
 };
 module.exports = Graph;
 /**

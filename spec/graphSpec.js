@@ -232,6 +232,10 @@ describe('Graph', function() {
                 myGraph.addEdge(v2, v4, 6);
                 myGraph.addEdge(v2, v5, 8);
                 myGraph.addEdge(v2, v1, 10)
+                // myGraph.addEdge(v6, v9, 10);
+                // myGraph.addEdge(v5, v10, 10);
+                // myGraph.addEdge(v5, v11, 10);
+                // myGraph.addEdge(v11, v12, 10);
             });
             // describe('addComponent(compArg)', () => {
             // describe('when component is unique/has no intersecting components', () => {
@@ -248,7 +252,7 @@ describe('Graph', function() {
             // });
             // });
             // });
-            fdescribe('depthFirstSearch(initNode)', () => {
+            describe('depthFirstSearch(initNode)', () => {
                 it('returns a path[Map] containing all nodes reachable via initNode', function() {
                     let tVal = myGraph.depthFirstSearch(v2);
                     expect(tVal instanceof Map).toBeTruthy();
@@ -329,8 +333,9 @@ describe('Graph', function() {
             // expect(testComp.edges).toContain(e1);
             // });
             // });
-            fdescribe('bfs(initNode)', () => {
-                fit('returns a path[Map] of nodes reachable in BreadthFirstSearch', function() {
+            describe('bfs(initNode)', () => {
+                it('returns a path[Map] of nodes reachable in BreadthFirstSearch', function() {
+                    // console.log(myGraph.getNeighbors(v5));
                     expect(myGraph.bfs(v1) instanceof Map).toBeTrue();
                 });
                 describe('retun values', () => {
