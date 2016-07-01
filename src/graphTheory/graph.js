@@ -150,7 +150,7 @@ class Graph {
      * @param  {Component} newComp
      */
     mergeComponents(origComp, newComp) {
-        origComp.unionize(newComp);
+        return origComp.unionize(newComp);
     }
     /**
      * integrates a component into any of the graphs intersectung components

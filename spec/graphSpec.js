@@ -154,12 +154,21 @@ describe('Graph', function() {
                     expect(myGraph.findIntersectingComponent(nabes2)).toEqual(nabes1);
                 });
             });
-            // describe('mergeComponents)origComp, newComp)', function() {
-            // it('unionizes the two components', function() {
-            // myGraph.mergeComponents(testComp, altComp);
-            // expect(testComp.edges).toContain(e1);
-            // });
-            // });
+            describe('mergeComponents)origComp, newComp)', function() {
+                beforeEach(function() {
+                    myGraph.addComponent(nabes1);
+                    myGraph.mergeComponents(nabes1, nabes2);
+                });
+                it('unionizes the two components ', function() {
+                    expect(nabes2.isSubset(nabes1)).toBeTrue();
+                });
+                it('removes the newComp arg', function() {
+                    expect(myGraph.components).not.toContain(nabes2);
+                });
+                it('returns the augmented component', function() {
+                    expect(myGraph.mergeComponents(nabes1, nabes2)).toBe(nabes1);
+                });
+            });
             // describe('integrateComponent(compArg)', function() {
             // it('find an intersecting component and mergess it with compArg', function() {
             // myGraph.addComponent(testComp);
