@@ -141,7 +141,7 @@ class Graph {
      * @return {Component} the first intersecting component
      */
     findIntersectingComponent(compArg) {
-        return this.components.find(currComp => currComp.intersects(compArg) === true);
+        return this.components.find(currComp => currComp.intersects(compArg));
     }
 
     /**
