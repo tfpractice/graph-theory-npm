@@ -194,8 +194,18 @@ describe('Graph', function() {
                         expect(myGraph.components.length).toEqual(1);
                     });
                 });
-
             });
+            describe('getUnvisitedNeighbors(nodeArg,compArg)', function() {
+                it('returns all neighbors not yet included in the given component', function() {
+                    myGraph.addComponent(nabes1);
+                    expect(myGraph.getUnvisitedNeighbors(v3, nabes1)).toContain(v4);
+                });
+            });
+            // describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+            // it('returns all edges not yet included in the given component', function() {
+            // expect(myGraph.getUnvisitedEdges(n0, testComp)).toBeArray();
+            // });
+            // });
         });
 
         describe('hasPath', function() {
@@ -260,11 +270,11 @@ describe('Graph', function() {
                     expect(myGraph.components.length).toEqual(1);
                 });
             });
-            describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
-                it('returns all edges not yet included in the given component', function() {
-                    expect(myGraph.getUnvisitedEdges(n0, testComp)).toBeArray();
-                });
-            });
+            // describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+            //     it('returns all edges not yet included in the given component', function() {
+            //         expect(myGraph.getUnvisitedEdges(n0, testComp)).toBeArray();
+            //     });
+            // });
             describe('visitComponent(nodeArg, compArg)', () => {
                 it('returns a component containing all nodes reachable from init', function() {
                     let dPath = myGraph.depthTraverse(v2);

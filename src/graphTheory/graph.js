@@ -143,7 +143,6 @@ class Graph {
     findIntersectingComponent(compArg) {
         return this.components.find(currComp => currComp.intersects(compArg));
     }
-
     /**
      * combines the nodes of two intersecting components
      * @param  {Component} origComp
@@ -189,7 +188,9 @@ class Graph {
      * @return {NodeArray}         [description]
      */
     getUnvisitedNeighbors(nodeArg, compArg) {
-        return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
+        // return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
+        return this.getNeighbors(nodeArg).difference(compArg);
+
     }
 
     /**
