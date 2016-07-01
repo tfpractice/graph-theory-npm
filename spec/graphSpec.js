@@ -118,7 +118,7 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        fdescribe('conncted components', function() {
+        fdescribe('connected components', function() {
             // let c0, c1,c2;
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
@@ -198,14 +198,15 @@ describe('Graph', function() {
             describe('getUnvisitedNeighbors(nodeArg,compArg)', function() {
                 it('returns all neighbors not yet included in the given component', function() {
                     myGraph.addComponent(nabes1);
+                    let unarr = myGraph.getUnvisitedNeighbors(v3, nabes1);
                     expect(myGraph.getUnvisitedNeighbors(v3, nabes1)).toContain(v4);
                 });
             });
-            // describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
-            // it('returns all edges not yet included in the given component', function() {
-            // expect(myGraph.getUnvisitedEdges(n0, testComp)).toBeArray();
-            // });
-            // });
+            describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+                it('returns all edges not yet included in the given component', function() {
+                    expect(myGraph.getUnvisitedEdges(v3, nabes1)).toBeArray();
+                });
+            });
         });
 
         describe('hasPath', function() {

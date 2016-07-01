@@ -99,6 +99,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 #### Changed
 * Graph class delegates many methods to Arrayv subclasses
+* Graph#getUnvisitedNeighbors refactored to use NodeArray#difference
 * Edge#isEquivalent now checks by nodeArray instead of label
 * NodeArray#difference no longer returns symmetrical difference
 * NodeArray#unionize utilizes new difference

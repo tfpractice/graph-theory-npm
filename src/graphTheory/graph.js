@@ -176,10 +176,12 @@ class Graph {
      * @return {EdgeArray}         [description]
      */
     getUnvisitedEdges(nodeArg, compArg) {
-        return this.getEdges(nodeArg).filter(currEdge => {
-            var nNode = currEdge.getNeighbor(nodeArg)
-            return !compArg.containsNode(nNode);
-        });
+        let unArr = this.getUnvisitedNeighbors(nodeArg, compArg);
+        return this.getEdges(nodeArg).edgesByArray(unArr);
+        // return this.getEdges(nodeArg).filter(currEdge => {
+        // var nNode = currEdge.getNeighbor(nodeArg)
+        // return !compArg.containsNode(nNode);
+        // });
     }
     /**
      * returns all of the nodes neighbors not yet part od the component
