@@ -38,9 +38,9 @@ describe('Graph', function() {
             });
             describe('#removeNode(nArg)', () => {
                 it('removes all edges attached to specified node ', function() {
-                    let ela = myGraph.getEdges(nyV);
+                    let ela = myGraph.edgesWithNode(nyV);
                     myGraph.removeNode(laV);
-                    expect(myGraph.getEdges(nyV).length).toEqual(ela.length - 1);
+                    expect(myGraph.edgesWithNode(nyV).length).toEqual(ela.length - 1);
                 });
                 it('removes a node from the array', function() {
                     myGraph.removeNode(laV);
@@ -79,10 +79,10 @@ describe('Graph', function() {
                     expect(myGraph.edges).toBeEmptyArray();
                 });
             });
-            describe('getEdges ', function() {
+            describe('edgesWithNode ', function() {
                 it('returns all edges with a particular source Node ', function() {
                     let nytam = new GR.Edge(nyV, tampaV);
-                    expect(myGraph.getEdges(nyV)).toContain(nytam);
+                    expect(myGraph.edgesWithNode(nyV)).toContain(nytam);
                 });
             });
             describe('getNeighbors', function() {
@@ -93,7 +93,7 @@ describe('Graph', function() {
         });
     });
     describe('major functions', function() {
-        let myGraph, gNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5, v6, v7, v8, v95;
+        let myGraph, gNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12;
         beforeEach(function() {
             v1 = new GR.Node("v1");
             v2 = new GR.Node("v2");
@@ -104,7 +104,10 @@ describe('Graph', function() {
             v7 = new GR.Node("v7");
             v8 = new GR.Node("v8");
             v9 = new GR.Node("v9");
-            gNodes = GR.NodeArray.of(v1, v2, v3, v4, v5, v6, v7, v8, v9);
+            v10 = new GR.Node("v10");
+            v11 = new GR.Node("v11");
+            v12 = new GR.Node("v12");
+            gNodes = GR.NodeArray.of(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12);
             myGraph = new Graph(gNodes);
             myGraph.addEdge(v1, v2, 2);
             myGraph.addEdge(v2, v3, 4);
@@ -112,13 +115,15 @@ describe('Graph', function() {
             myGraph.addEdge(v4, v5, 8);
             myGraph.addEdge(v5, v1, 10);
             myGraph.addEdge(v6, v9, 10);
-            myGraph.addEdge(v7, v8, 10);
+            myGraph.addEdge(v5, v10, 10);
+            myGraph.addEdge(v10, v11, 10);
+            myGraph.addEdge(v11, v12, 10);
             n0 = myGraph.nodes[0];
             nabe0 = myGraph.getNeighbors(n0)[0];
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        fdescribe('conncted components', function() {
+        describe('connected components', function() {
             // let c0, c1,c2;
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
@@ -194,7 +199,18 @@ describe('Graph', function() {
                         expect(myGraph.components.length).toEqual(1);
                     });
                 });
-
+            });
+            describe('getUnvisitedNeighbors(nodeArg,compArg)', function() {
+                it('returns all neighbors not yet included in the given component', function() {
+                    myGraph.addComponent(nabes1);
+                    let unarr = myGraph.getUnvisitedNeighbors(v3, nabes1);
+                    expect(myGraph.getUnvisitedNeighbors(v3, nabes1)).toContain(v4);
+                });
+            });
+            describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+                it('returns all edges not yet included in the given component', function() {
+                    expect(myGraph.getUnvisitedEdges(v3, nabes1)).toBeArray();
+                });
             });
         });
 
@@ -216,31 +232,35 @@ describe('Graph', function() {
                 myGraph.addEdge(v2, v4, 6);
                 myGraph.addEdge(v2, v5, 8);
                 myGraph.addEdge(v2, v1, 10)
+                // myGraph.addEdge(v6, v9, 10);
+                // myGraph.addEdge(v5, v10, 10);
+                // myGraph.addEdge(v5, v11, 10);
+                // myGraph.addEdge(v11, v12, 10);
             });
-            describe('addComponent(compArg)', () => {
-                describe('when component is unique/has no intersecting components', () => {
-                    it('adds a component to the components array', function() {
-                        myGraph.addComponent(testComp);
-                        expect(myGraph.components.length).toEqual(1);
-                    });
-                });
-                describe('when an intersecting component is present', () => {
-                    it('integrates the new component with the current', function() {
-                        myGraph.addComponent(testComp);
-                        myGraph.addComponent(altComp);
-                        expect(myGraph.components.length).toEqual(1);
-                    });
-                });
-            });
-            describe('depthTraverse(initNode)', () => {
+            // describe('addComponent(compArg)', () => {
+            // describe('when component is unique/has no intersecting components', () => {
+            // it('adds a component to the components array', function() {
+            // myGraph.addComponent(testComp);
+            // expect(myGraph.components.length).toEqual(1);
+            // });
+            // });
+            // describe('when an intersecting component is present', () => {
+            // it('integrates the new component with the current', function() {
+            // myGraph.addComponent(testComp);
+            // myGraph.addComponent(altComp);
+            // expect(myGraph.components.length).toEqual(1);
+            // });
+            // });
+            // });
+            describe('depthFirstSearch(initNode)', () => {
                 it('returns a path[Map] containing all nodes reachable via initNode', function() {
-                    myGraph.depthTraverse(v2);
-                    expect(myGraph.depthTraverse(v2) instanceof Map).toBeTruthy();
+                    let tVal = myGraph.depthFirstSearch(v2);
+                    expect(tVal instanceof Map).toBeTruthy();
                 });
                 describe('retun values', () => {
                     let dfsKeys;
                     beforeEach(function() {
-                        dfsKeys = myGraph.depthTraverse(v2).get(v1);
+                        dfsKeys = myGraph.depthFirstSearch(v2).get(v1);
                     });
                     it('maps the values to an object with keys for predecessor(pred), edgeCount, and pathWeight', function() {
                         expect(dfsKeys).toBeObject();
@@ -256,22 +276,35 @@ describe('Graph', function() {
                     });
                 });
                 it('augments or adds a component to the array', function() {
-                    myGraph.depthTraverse(v2);
+                    myGraph.depthFirstSearch(v2);
                     expect(myGraph.components.length).toEqual(1);
                 });
-            });
-            describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
-                it('returns all edges not yet included in the given component', function() {
-                    expect(myGraph.getUnvisitedEdges(n0, testComp)).toBeArray();
+                describe('#pathNodes(path)', function() {
+                    it('returns the path keys as a node array', function() {
+                        let path = myGraph.depthFirstSearch(v2);
+                        let pkey = myGraph.pathNodes(path);
+                        expect(pkey instanceof GR.NodeArray).toBeTrue();
+                    });
                 });
             });
-            describe('visitComponent(nodeArg, compArg)', () => {
-                it('returns a component containing all nodes reachable from init', function() {
-                    let dPath = myGraph.depthTraverse(v2);
-                    let dComp = myGraph.components[0];
-                    expect(myGraph.visitComponent(dPath, dComp) instanceof Map).toBeTrue();
+            // describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+            //     it('returns all edges not yet included in the given component', function() {
+            //         expect(myGraph.getUnvisitedEdges(n0, testComp)).toBeArray();
+            //     });
+            // });
+            describe('visitPath(pathArg)', () => {
+                it('returns a path[Map] containing all nodes reachable from the last appended node', function() {
+                    let p3 = new Map();
+                    p3.set(v3, {
+                        pred: null,
+                        edgeCount: 0,
+                        pathWeight: 0
+                    });
+                    let visitVal = myGraph.visitPath(p3);
+                    expect(visitVal instanceof Map).toBeTrue();
                 });
             });
+
             // describe('hasIntersectingComponent(compArg)', () => {
             // it('returns a boolena regarding any connecting components already present', function() {
             // myGraph.addComponent(altComp);
@@ -302,12 +335,13 @@ describe('Graph', function() {
             // });
             describe('bfs(initNode)', () => {
                 it('returns a path[Map] of nodes reachable in BreadthFirstSearch', function() {
-                    expect(myGraph.bfs(v2) instanceof Map).toBeTrue();
+                    // console.log(myGraph.getNeighbors(v5));
+                    expect(myGraph.bfs(v1) instanceof Map).toBeTrue();
                 });
                 describe('retun values', () => {
                     let bfsKeys;
                     beforeEach(function() {
-                        bfsKeys = myGraph.bfs(v2).get(v1);
+                        bfsKeys = myGraph.bfs(v1).get(v2);
                     });
                     it('maps the values to an object with keys for predecessor(pred), edgeCount, and pathWeight', function() {
                         expect(bfsKeys).toBeObject();

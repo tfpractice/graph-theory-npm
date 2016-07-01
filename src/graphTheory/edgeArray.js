@@ -151,7 +151,7 @@ class EdgeArray extends Array {
         return this.filter(e => e.containsNode(nodeArg));
     }
     edgesByArray(nArr) {
-        return nArr.reduce((pNode, nNode) => this.edgesWithNode(pNode).unionize(this.edgesWithNode(nNode)));
+        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new EdgeArray());
     }
     removeEdge(eArg) {
         let ePos = this.findIndex(e => e.isEquivalent(eArg));
