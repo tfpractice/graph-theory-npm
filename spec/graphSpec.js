@@ -117,7 +117,7 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        describe('conncted components', function() {
+        fdescribe('conncted components', function() {
             // let c0, c1,c2;
             let nabes1
             beforeEach(function() {
@@ -127,6 +127,14 @@ describe('Graph', function() {
                 it('pushes a NodeArray to the components array', function() {
                     myGraph.addComponent(nabes1);
                     expect(myGraph.components).toContain(nabes1);
+                });
+            });
+            describe('#removeComponent', () => {
+                it('splices a NodeArray from the components array', function() {
+                    myGraph.addComponent(nabes1);
+                    console.log(myGraph.components);
+                    myGraph.removeComponent(nabes1);
+                    expect(myGraph.components).not.toContain(nabes1);
                 });
             });
         });

@@ -79,7 +79,7 @@ class Graph {
      * @return {Node[]} the neighboring nodes
      */
     getNeighbors(nodeArg) {
-        return this.getEdges(nodeArg).map(tempEdge => tempEdge.getNeighbor(nodeArg));
+        return this.edges.getNeighbors(nodeArg);
     }
     /**
      * adds all unvisited nodes in the path to the specified component
@@ -130,6 +130,10 @@ class Graph {
      */
     addComponent(compArg) {
         this.hasIntersectingComponent(compArg) ? this.integrateComponent(compArg) : this.components.push(compArg);
+    }
+    removeComponent(compArg) {
+        let cPos = this.components.findIndex(currComp => currComp.isEquivalent(compArg));
+        return cPos > -1 ? this.components.splice(cPos, 1) : compArg;
     }
     /**
      * returns any current components which intersect with the specified component

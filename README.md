@@ -98,6 +98,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * Graph#add, #contains, #remove, and #clear for both edges and nodes
 
 #### Changed
+* Graph class delegates many methods to Arrayv subclasses
 * Edge#isEquivalent now checks by nodeArray instead of label
 * NodeArray#difference no longer returns symmetrical difference
 * NodeArray#unionize utilizes new difference
