@@ -91,44 +91,42 @@ class Graph {
      * @param  {Map} pathArg  the path to be explored
      * @param  {Component} compArg a key value store of node's and distances
      */
-    visitComponent(pathArg, compArg) {
-        let nodeArg = [...pathArg.keys()].pop();
-        // let nextEdges = this.
-        let nextEdges = this.getUnvisitedEdges(nodeArg, compArg);
+    visitPath(pathArg) {
+        let pNodes = this.pathNodes(pathArg);
+        let lastNode = pNodes.pop();
+        let nextEdges = this.getUnvisitedEdges(lastNode, pNodes);
         if (nextEdges.length === 0) {
             return pathArg;
         } else {
-            let predWeight = pathArg.get(nodeArg).pathWeight;
-            let predCount = pathArg.get(nodeArg).edgeCount;
+            let predWeight = pathArg.get(lastNode).pathWeight;
+            let predCount = pathArg.get(lastNode).edgeCount;
             nextEdges.forEach(currEdge => {
-                let nabe = currEdge.getNeighbor(nodeArg);
-                // compArg.addEdge(currEdge);
-                compArg.push(nabe);
+                let nabe = currEdge.getNeighbor(lastNode);
                 pathArg.set(nabe, {
-                    pred: nodeArg,
+                    pred: lastNode,
                     edgeCount: predCount + 1,
                     pathWeight: predWeight + currEdge.weight
                 });
-                this.visitComponent(pathArg, compArg);
+                this.visitPath(pathArg);
             });
         }
+        return pathArg;
     }
     /**
      * depth first search, initializes a new component of reachable nodes, and constructs a path to each of those node from the source
      * @param  {Node} initNode inital node
      * @return {Component} a key-value store of nodes and edge distances
      */
-    depthTraverse(initNode) {
-        // let currComponent = new EdgeComponent();
-        let currComponent = NodeArray.of(initNode);
+    depthFirstSearch(initNode) {
         let path = new Map();
         path.set(initNode, {
             pred: null,
             edgeCount: 0,
             pathWeight: 0
         });
-        this.visitComponent(path, currComponent);
-        this.addComponent(currComponent);
+        this.visitPath(path);
+        let pComp = this.pathNodes(path);
+        this.addComponent(pComp);
         return path;
     }
     /**
@@ -209,7 +207,7 @@ class Graph {
      */
 
     bfs(initNode) {
-        var bComp = new EdgeComponent();
+        // var bNodes = new EdgeComponent();
         var bPath = new Map();
         bPath.set(initNode, {
             pred: null,
@@ -219,25 +217,38 @@ class Graph {
         var level = 1;
         var bQueue = new NodeArray();
         bQueue.push(initNode);
-        while (bQueue.length > 0) {
-            var currN = bQueue.shift();
-            var currEdges = this.getUnvisitedEdges(currN, bComp);
+        if (bQueue.length > 0) {
+            console.log(level);
+            let bNodes = this.pathNodes(bPath);
+
             var frontier = new NodeArray();
+            var currN = bQueue.shift();
+            var currEdges = this.getUnvisitedEdges(currN, bNodes);
+            var currNeighbors = this.getUnvisitedNeighbors(currN, bNodes);
+            console.log(currNeighbors);
             let predWeight = bPath.get(currN).pathWeight;
             let predCount = bPath.get(currN).edgeCount;
             currEdges.forEach((nEdge) => {
                 let nNode = nEdge.getNeighbor(currN);
+                console.log(nNode.label);
                 bPath.set(nNode, {
                     pred: currN,
                     edgeCount: level,
                     pathWeight: predWeight + nEdge.weight
                 });
-                bComp.addEdge(nEdge);
+                // bNodes.addEdge(nEdge);
+
+                // console.log(currN.label);
                 frontier.push(nNode);
+                console.log(level, frontier.length);
+
             });
+            ++level;
             bQueue = frontier;
-            level++;
+
         }
+        let bComp = this.pathNodes(bPath);
+        // console.log(bPath);
         this.addComponent(bComp);
         return bPath;
     }

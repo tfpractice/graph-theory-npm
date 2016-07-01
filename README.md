@@ -96,6 +96,9 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * EdgeArray#edgesWithNode retrives all edge containing a specific node
 * EdgeArray#removeEdge, #copy
 * Graph#add, #contains, #remove, and #clear for both edges and nodes
+* Graph#pathNodes to retrieve NodeArray from path keys
+* Graph#depthFirstSearch
+* Graph#visitPath
 
 #### Changed
 * Graph class delegates many methods to Arrayv subclasses
@@ -117,7 +120,8 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 #### Deprecated
 
 #### Removed
-
+* Graph#visitComponent
+* Graph#depthTraverse
 
 
 ### 2.1.0-alpha – 2016-06-16
