@@ -1,29 +1,24 @@
 describe('Graph', function() {
-    var GR = require('../src/graphTheory');
-    var myGraph;
-    var bostonV, tampaV;
-    beforeEach(function() {
-        myGraph = new GR.Graph();
-        bostonV = new GR.Node("boston");
-        tampaV = new GR.Node("tampa");
-        myGraph.addNode(bostonV);
-        myGraph.addNode(tampaV);
-
-    });
+    const GR = require('../src/graphTheory');
+    const Graph = GR.Graph;
     describe('delegated to subarray', () => {
-        let laV, nyV;
+        let laV, nyV, bostonV, tampaV, myGraph;
         beforeEach(function() {
+            myGraph = new Graph();
+            bostonV = new GR.Node("boston");
             nyV = new GR.Node("ny");
             laV = new GR.Node("la");
+            tampaV = new GR.Node("tampa");
+            myGraph.addNode(bostonV);
+            myGraph.addNode(tampaV);
             myGraph.addNode(nyV);
             myGraph.addNode(laV);
             myGraph.addEdge(nyV, laV);
             myGraph.addEdge(nyV, tampaV);
         });
-
         describe('addNode', function() {
             it('appends a vertex to the nodes array', function() {
-                var newNode = new GR.Node("anon");
+                let newNode = new GR.Node("anon");
                 myGraph.addNode(newNode);
                 expect(myGraph.nodes).toContain(newNode);
             });
@@ -39,7 +34,6 @@ describe('Graph', function() {
                 expect(myGraph.nodes).toBeEmptyArray();
             });
         });
-
         describe('#removeNode(nArg)', () => {
             it('removes all edges attached to specified node ', function() {
                 let ela = myGraph.getEdges(nyV);
@@ -51,47 +45,49 @@ describe('Graph', function() {
                 expect(myGraph.containsNode(laV)).toBeFalse();
             });
         });
-        describe('addEdge', function() {
-            it('appends a new edge to the edges array', function() {
-                var tempEdge = new GR.Edge(bostonV, tampaV, 10);
-                myGraph.addEdge(bostonV, tampaV, 10);
-                expect(myGraph.edges).toContain(tempEdge);
+        describe('edge mutations', () => {
+            let tempEdge;
+            beforeEach(function() {
+                tempEdge = new GR.Edge(bostonV, tampaV, 10);
             });
-        });
-        describe('#containsEdge(earg)', () => {
-            it('checks if an equivalent egde is present in the graph', function() {
-                var tempEdge = new GR.Edge(bostonV, tampaV, 10);
-                myGraph.addEdge(bostonV, tampaV, 10);
-                expect(myGraph.containsEdge(tempEdge)).toBeTrue();
+            describe('addEdge', function() {
+                it('appends a new edge to the edges array', function() {
+                    myGraph.addEdge(bostonV, tampaV, 10);
+                    expect(myGraph.edges).toContain(tempEdge);
+                });
             });
-        });
-        describe('#removeEdge()', () => {
-            it('removes the edge from the edges array', function() {
-                var tempEdge = new GR.Edge(bostonV, tampaV, 10);
-                myGraph.addEdge(bostonV, tampaV, 10);
-                myGraph.removeEdge(tempEdge);
-                expect(myGraph.edges).not.toContain(tempEdge);
-
-
+            describe('#containsEdge(earg)', () => {
+                it('checks if an equivalent egde is present in the graph', function() {
+                    myGraph.addEdge(bostonV, tampaV, 10);
+                    expect(myGraph.containsEdge(tempEdge)).toBeTrue();
+                });
             });
-        });
-        describe('#clearEdges', function() {
-            it('clears the edges arrays', function() {
-                myGraph.addEdge(bostonV, tampaV);
-                myGraph.clearEdges();
-                expect(myGraph.edges).toBeEmptyArray();
+            describe('#removeEdge()', () => {
+                it('removes the edge from the edges array', function() {
+                    myGraph.addEdge(bostonV, tampaV, 10);
+                    myGraph.removeEdge(tempEdge);
+                    expect(myGraph.edges).not.toContain(tempEdge);
+                });
+            });
+            describe('#clearEdges', function() {
+                it('clears the edges arrays', function() {
+                    myGraph.addEdge(bostonV, tampaV);
+                    myGraph.clearEdges();
+                    expect(myGraph.edges).toBeEmptyArray();
+                });
             });
         });
     });
-
     describe('major functions', function() {
-        var v1, v2, v3, v4, v5;
+        let myGraph, myNodes, v1, v2, v3, v4, v5;
         beforeEach(function() {
             v1 = new GR.Node("v1");
             v2 = new GR.Node("v2");
             v3 = new GR.Node("v3");
             v4 = new GR.Node("v4");
             v5 = new GR.Node("v5");
+            myNodes = GR.NodeArray.of(v1, v2, v3, v4, v5);
+            myGraph = new Graph(myNodes);
             myGraph.addEdge(v1, v2, 2);
             myGraph.addEdge(v2, v3, 4);
             myGraph.addEdge(v3, v4, 6);
@@ -100,7 +96,7 @@ describe('Graph', function() {
         });
         describe('getEdges ', function() {
             it('returns all edges with a particular source Node ', function() {
-                var e12 = myGraph.edges[0];
+                let e12 = myGraph.edges[0];
                 expect(myGraph.getEdges(v1)).toContain(e12);
             });
         });
@@ -109,16 +105,14 @@ describe('Graph', function() {
                 expect(myGraph.getNeighbors(v1)).toContain(v2);
             });
         });
-
-
         describe('hasPath', function() {
             it('determines if a path exists between to nodes in a graph', function() {
-                var result = myGraph.hasPath(v1, v3);
+                let result = myGraph.hasPath(v1, v3);
                 expect(myGraph.hasPath(v1, v3)).toBeTrue();
             });
         });
-        describe('travesals', () => {
-            var testNode, testNabe, testEdge, testComp;
+        describe('traversals', () => {
+            let testNode, testNabe, testEdge, testComp;
             beforeEach(function() {
                 testNode = myGraph.nodes[0];
                 testNabe = myGraph.getNeighbors(testNode)[0];
@@ -146,20 +140,16 @@ describe('Graph', function() {
                         myGraph.addComponent(testComp);
                         myGraph.addComponent(altComp);
                         expect(myGraph.components.length).toEqual(1);
-
-
                     });
                 });
-
             });
             describe('depthTraverse(initNode)', () => {
                 it('returns a path[Map] containing all nodes reachable via initNode', function() {
                     myGraph.depthTraverse(v2);
                     expect(myGraph.depthTraverse(v2) instanceof Map).toBeTruthy();
-
                 });
                 describe('retun values', () => {
-                    var dfsKeys;
+                    let dfsKeys;
                     beforeEach(function() {
                         dfsKeys = myGraph.depthTraverse(v2).get(v1);
                     });
@@ -176,12 +166,10 @@ describe('Graph', function() {
                         expect(dfsKeys.pathWeight).toBeNumber();
                     });
                 });
-
                 it('augments or adds a component to the array', function() {
                     myGraph.depthTraverse(v2);
                     expect(myGraph.components.length).toEqual(1);
                 });
-
             });
             describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
                 it('returns all edges not yet included in the given component', function() {
@@ -190,10 +178,9 @@ describe('Graph', function() {
             });
             describe('visitComponent(nodeArg, compArg)', () => {
                 it('returns a component containing all nodes reachable from init', function() {
-                    var dPath = myGraph.depthTraverse(v2);
-                    var dComp = myGraph.components[0];
+                    let dPath = myGraph.depthTraverse(v2);
+                    let dComp = myGraph.components[0];
                     expect(myGraph.visitComponent(dPath, dComp) instanceof Map).toBeTrue();
-
                 });
             });
             describe('hasIntersectingComponent(compArg)', () => {
@@ -222,7 +209,6 @@ describe('Graph', function() {
                     myGraph.integrateComponent(altComp);
                     myGraph.bfs(v3);
                     expect(testComp.edges).toContain(secondEdge);
-
                 });
             });
             describe('bfs(initNode)', () => {
@@ -230,7 +216,7 @@ describe('Graph', function() {
                     expect(myGraph.bfs(v2) instanceof Map).toBeTrue();
                 });
                 describe('retun values', () => {
-                    var bfsKeys;
+                    let bfsKeys;
                     beforeEach(function() {
                         bfsKeys = myGraph.bfs(v2).get(v1);
                     });
@@ -247,7 +233,6 @@ describe('Graph', function() {
                         expect(bfsKeys.pathWeight).toBeNumber();
                     });
                 });
-
             });
         });
         describe('dijkstra', function() {
@@ -255,7 +240,7 @@ describe('Graph', function() {
                 expect(myGraph.dijkstra(v1, v2) instanceof Map).toBeTrue();
             });
             describe('retun values', () => {
-                var dijkKeys;
+                let dijkKeys;
                 beforeEach(function() {
                     dijkKeys = myGraph.dijkstra(v1, v2).get(v5);
                 });
@@ -279,4 +264,5 @@ describe('Graph', function() {
             });
         });
     });
+    describe('conncted components', function() {});
 });
