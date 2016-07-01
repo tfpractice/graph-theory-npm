@@ -16,33 +16,36 @@ describe('Graph', function() {
             myGraph.addEdge(nyV, laV);
             myGraph.addEdge(nyV, tampaV);
         });
-        describe('addNode', function() {
-            it('appends a vertex to the nodes array', function() {
-                let newNode = new GR.Node("anon");
-                myGraph.addNode(newNode);
-                expect(myGraph.nodes).toContain(newNode);
+
+        describe('NodeArray', function() {
+            describe('addNode', function() {
+                it('appends a vertex to the nodes array', function() {
+                    let newNode = new GR.Node("anon");
+                    myGraph.addNode(newNode);
+                    expect(myGraph.nodes).toContain(newNode);
+                });
             });
-        });
-        describe('containsNode()', () => {
-            it('checks if any of the elements are equivalent to that provided', function() {
-                expect(myGraph.containsNode(bostonV)).toBeTrue();
+            describe('containsNode()', () => {
+                it('checks if any of the elements are equivalent to that provided', function() {
+                    expect(myGraph.containsNode(bostonV)).toBeTrue();
+                });
             });
-        });
-        describe('#clearNodes', function() {
-            it('clears the nodes arrays', function() {
-                myGraph.clearNodes();
-                expect(myGraph.nodes).toBeEmptyArray();
+            describe('#clearNodes', function() {
+                it('clears the nodes arrays', function() {
+                    myGraph.clearNodes();
+                    expect(myGraph.nodes).toBeEmptyArray();
+                });
             });
-        });
-        describe('#removeNode(nArg)', () => {
-            it('removes all edges attached to specified node ', function() {
-                let ela = myGraph.getEdges(nyV);
-                myGraph.removeNode(laV);
-                expect(myGraph.getEdges(nyV).length).toEqual(ela.length - 1);
-            });
-            it('removes a node from the array', function() {
-                myGraph.removeNode(laV);
-                expect(myGraph.containsNode(laV)).toBeFalse();
+            describe('#removeNode(nArg)', () => {
+                it('removes all edges attached to specified node ', function() {
+                    let ela = myGraph.getEdges(nyV);
+                    myGraph.removeNode(laV);
+                    expect(myGraph.getEdges(nyV).length).toEqual(ela.length - 1);
+                });
+                it('removes a node from the array', function() {
+                    myGraph.removeNode(laV);
+                    expect(myGraph.containsNode(laV)).toBeFalse();
+                });
             });
         });
         describe('edge mutations', () => {
@@ -76,6 +79,17 @@ describe('Graph', function() {
                     expect(myGraph.edges).toBeEmptyArray();
                 });
             });
+            describe('getEdges ', function() {
+                it('returns all edges with a particular source Node ', function() {
+                    let nytam = new GR.Edge(nyV, tampaV);
+                    expect(myGraph.getEdges(nyV)).toContain(nytam);
+                });
+            });
+            describe('getNeighbors', function() {
+                it('returns all nodes adjacent to a given vertex', function() {
+                    expect(myGraph.getNeighbors(nyV)).toContain(tampaV);
+                });
+            });
         });
     });
     describe('major functions', function() {
@@ -99,17 +113,8 @@ describe('Graph', function() {
             myGraph.addEdge(v6, v1, 10);
             myGraph.addEdge(v7, v8, 10);
         });
-        describe('getEdges ', function() {
-            it('returns all edges with a particular source Node ', function() {
-                let e12 = myGraph.edges[0];
-                expect(myGraph.getEdges(v1)).toContain(e12);
-            });
-        });
-        describe('getNeighbors', function() {
-            it('returns all nodes adjacent to a given vertex', function() {
-                expect(myGraph.getNeighbors(v1)).toContain(v2);
-            });
-        });
+        describe('conncted components', function() {});
+
         describe('hasPath', function() {
             it('determines if a path exists between to nodes in a graph', function() {
                 let result = myGraph.hasPath(v1, v3);
@@ -269,5 +274,4 @@ describe('Graph', function() {
             });
         });
     });
-    describe('conncted components', function() {});
 });
