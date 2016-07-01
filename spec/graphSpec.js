@@ -93,7 +93,7 @@ describe('Graph', function() {
         });
     });
     describe('major functions', function() {
-        let myGraph, myNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5;
+        let myGraph, gNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5;
         beforeEach(function() {
             v1 = new GR.Node("v1");
             v2 = new GR.Node("v2");
@@ -103,8 +103,8 @@ describe('Graph', function() {
             v6 = new GR.Node("v6");
             v7 = new GR.Node("v7");
             v8 = new GR.Node("v8");
-            myNodes = GR.NodeArray.of(v1, v2, v3, v4, v5, v6, v7, v8);
-            myGraph = new Graph(myNodes);
+            gNodes = GR.NodeArray.of(v1, v2, v3, v4, v5, v6, v7, v8);
+            myGraph = new Graph(gNodes);
             myGraph.addEdge(v1, v2, 2);
             myGraph.addEdge(v2, v3, 4);
             myGraph.addEdge(v3, v4, 6);
@@ -117,7 +117,19 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        describe('conncted components', function() {});
+        describe('conncted components', function() {
+            // let c0, c1,c2;
+            let nabes1
+            beforeEach(function() {
+                nabes1 = myGraph.getNeighbors(v1);
+            });
+            describe('#addComponent', () => {
+                it('pushes a NodeArray to the components array', function() {
+                    myGraph.addComponent(nabes1);
+                    expect(myGraph.components).toContain(nabes1);
+                });
+            });
+        });
 
         describe('hasPath', function() {
             it('determines if a path exists between to nodes in a graph', function() {
