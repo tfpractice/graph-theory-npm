@@ -86,13 +86,18 @@ describe('Graph', function() {
             v3 = new GR.Node("v3");
             v4 = new GR.Node("v4");
             v5 = new GR.Node("v5");
-            myNodes = GR.NodeArray.of(v1, v2, v3, v4, v5);
+            v6 = new GR.Node("v6");
+            v7 = new GR.Node("v7");
+            v8 = new GR.Node("v8");
+            myNodes = GR.NodeArray.of(v1, v2, v3, v4, v5, v6, v7, v8);
             myGraph = new Graph(myNodes);
             myGraph.addEdge(v1, v2, 2);
             myGraph.addEdge(v2, v3, 4);
             myGraph.addEdge(v3, v4, 6);
             myGraph.addEdge(v4, v5, 8);
             myGraph.addEdge(v5, v1, 10);
+            myGraph.addEdge(v6, v1, 10);
+            myGraph.addEdge(v7, v8, 10);
         });
         describe('getEdges ', function() {
             it('returns all edges with a particular source Node ', function() {
