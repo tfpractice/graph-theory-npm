@@ -79,7 +79,7 @@ class Graph {
      * @return {Node[]} the neighboring nodes
      */
     getNeighbors(nodeArg) {
-        return this.getEdges(nodeArg).map(tempEdge => tempEdge.getNeighbor(nodeArg));
+        return this.edges.getNeighbors(nodeArg);
     }
     /**
      * adds all unvisited nodes in the path to the specified component
@@ -131,13 +131,17 @@ class Graph {
     addComponent(compArg) {
         this.hasIntersectingComponent(compArg) ? this.integrateComponent(compArg) : this.components.push(compArg);
     }
+    removeComponent(compArg) {
+        let cPos = this.components.findIndex(currComp => currComp.isEquivalent(compArg));
+        return cPos > -1 ? this.components.splice(cPos, 1) : compArg;
+    }
     /**
      * returns any current components which intersect with the specified component
      * @param  {Component} compArg the component to be checked
      * @return {Component} the first intersecting component
      */
     findIntersectingComponent(compArg) {
-        return this.components.find(currComp => currComp.intersects(compArg) === true);
+        return this.components.find(currComp => currComp.intersects(compArg));
     }
 
     /**
@@ -146,7 +150,9 @@ class Graph {
      * @param  {Component} newComp
      */
     mergeComponents(origComp, newComp) {
-        origComp.unionize(newComp);
+        let ucomp = origComp.unionize(newComp);
+        this.removeComponent(newComp);
+        return ucomp;
     }
     /**
      * integrates a component into any of the graphs intersectung components
@@ -154,7 +160,7 @@ class Graph {
      */
     integrateComponent(compArg) {
         let oComp = this.findIntersectingComponent(compArg);
-        this.mergeComponents(oComp, compArg);
+        if (oComp) this.mergeComponents(oComp, compArg);
     }
     /**
      * checks if any current components share nodes with the argument
