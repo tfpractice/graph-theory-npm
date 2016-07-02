@@ -128,7 +128,6 @@ describe('Graph', function() {
                 let newGraph = new Graph();
                 newGraph.setEdges(firstFour);
                 expect(newGraph.edges).toEqual(firstFour);
-                // console.log(firstFour);
             });
         });
         describe('copyEdges()', () => {
@@ -159,15 +158,25 @@ describe('Graph', function() {
                 expect(newGraph.nodes).toContain(...lastTwo);
             });
         });
-        fdescribe('subGraphByEdges(eArr)', () => {
+        describe('subGraphByEdges(eArr)', () => {
             it('returns a graph of all the nodes connected by a set of Edges', function() {
                 let oddEdges = myGraph.edges.filter(function(el, id) {
                     return id % 2 === 1;
                 });
-                console.log(oddEdges);
                 let newGraph = myGraph.subGraphByEdges(oddEdges);
                 expect(newGraph instanceof Graph).toBeTrue();
                 expect(newGraph.edges).toEqual(oddEdges);
+            });
+
+        });
+        describe('subGraphByNodes(eArr)', () => {
+            it('returns an graph of the selected nodes[no edges]', function() {
+                let oddNodes = myGraph.nodes.filter(function(el, id) {
+                    return id % 2 === 1;
+                });
+                let newGraph = myGraph.subGraphByNodes(oddNodes);
+                expect(newGraph instanceof Graph).toBeTrue();
+                expect(newGraph.nodes).toEqual(oddNodes);
             });
 
         });
@@ -321,7 +330,6 @@ describe('Graph', function() {
             });
             describe('bfs(initNode)', () => {
                 it('returns a path[Map] of nodes reachable in BreadthFirstSearch', function() {
-                    console.log(myGraph.bfs(v1).size);
                     expect(myGraph.bfs(v1) instanceof Map).toBeTrue();
                 });
                 describe('retun values', () => {

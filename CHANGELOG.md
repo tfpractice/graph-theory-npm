@@ -18,6 +18,8 @@
 * Graph#pathNodes to retrieve NodeArray from path keys
 * Graph#depthFirstSearch -> #dfs
 * Graph#visitPath
+* Graph#subGraphByEdges for multiple explorations of a set of node connections
+* Graph#subGraphByNodes for connectionless explorations of a set of nodes
 
 ### Changed
 * Graph class delegates many methods to Arrayv subclasses

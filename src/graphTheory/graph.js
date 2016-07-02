@@ -91,6 +91,10 @@ class Graph {
         newGraph.copyEdges(eArr);
         return newGraph;
     }
+    subGraphByNodes(nArr) {
+        return new Graph(nArr);
+
+    }
     /**
      *
      * @param  {Node} nodeArg the source node
