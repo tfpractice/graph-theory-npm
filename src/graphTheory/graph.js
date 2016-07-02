@@ -44,6 +44,12 @@ class Graph {
     clearNodes() {
         this.nodes.clear();
     }
+    setNodes(nArr) {
+        this.nodes = nArr;
+    }
+    copyNodes(nArr) {
+        this.nodes.unionize(nArr);
+    }
     /**
      * @param  {Node} nodeArg source node
      * @return {Edge[]} the edges connected to source

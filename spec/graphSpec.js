@@ -141,6 +141,25 @@ describe('Graph', function() {
                 expect(newGraph.edges).toContain(...lastTwo);
             });
         });
+        fdescribe('setNodes()', () => {
+            it('sets the nodes array', function() {
+                let firstFour = myGraph.nodes.slice(0, 3);
+                let newGraph = new Graph();
+                newGraph.setNodes(firstFour);
+                expect(newGraph.nodes).toEqual(firstFour);
+                // console.log(firstFour);
+            });
+        });
+        fdescribe('copyNodes()', () => {
+            it('adds each edge to the edges array', function() {
+                let firstEdge = myGraph.nodes.slice(0, 1);
+                let lastTwo = myGraph.nodes.slice(-2);
+                let newGraph = new Graph();
+                newGraph.setNodes(firstEdge);
+                newGraph.copyNodes(lastTwo);
+                expect(newGraph.nodes).toContain(...lastTwo);
+            });
+        });
         describe('subGraphFromEdges(eArr)', () => {
 
         });
