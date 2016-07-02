@@ -16,7 +16,6 @@ describe('Graph', function() {
             myGraph.addEdge(nyV, laV);
             myGraph.addEdge(nyV, tampaV);
         });
-
         describe('NodeArray', function() {
             describe('addNode', function() {
                 it('appends a vertex to the nodes array', function() {
@@ -124,7 +123,6 @@ describe('Graph', function() {
             e1 = myGraph.edges[1];
         });
         describe('connected components', function() {
-            // let c0, c1,c2;
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
                 nabes1 = myGraph.getNeighbors(v1);
@@ -148,7 +146,6 @@ describe('Graph', function() {
                         expect(myGraph.components.length).toEqual(1);
                     });
                 });
-
             });
             describe('#removeComponent', () => {
                 it('splices a NodeArray from the components array', function() {
@@ -213,7 +210,6 @@ describe('Graph', function() {
                 });
             });
         });
-
         describe('hasPath', function() {
             it('determines if a path exists between to nodes in a graph', function() {
                 let result = myGraph.hasPath(v1, v3);
@@ -221,37 +217,12 @@ describe('Graph', function() {
             });
         });
         describe('traversals', () => {
-            // let testComp, altComp;
             beforeEach(function() {
-                // testComp = new GR.EdgeComponent();
-                //  // altComp = new GR.EdgeComponent()
-                //  testComp.addEdge(e0);
-                //  altComp.addEdge(e0);
-                //  altComp.addEdge(e1);
                 myGraph.addEdge(v2, v3, 4);
                 myGraph.addEdge(v2, v4, 6);
                 myGraph.addEdge(v2, v5, 8);
                 myGraph.addEdge(v2, v1, 10)
-                // myGraph.addEdge(v6, v9, 10);
-                // myGraph.addEdge(v5, v10, 10);
-                // myGraph.addEdge(v5, v11, 10);
-                // myGraph.addEdge(v11, v12, 10);
             });
-            // describe('addComponent(compArg)', () => {
-            // describe('when component is unique/has no intersecting components', () => {
-            // it('adds a component to the components array', function() {
-            // myGraph.addComponent(testComp);
-            // expect(myGraph.components.length).toEqual(1);
-            // });
-            // });
-            // describe('when an intersecting component is present', () => {
-            // it('integrates the new component with the current', function() {
-            // myGraph.addComponent(testComp);
-            // myGraph.addComponent(altComp);
-            // expect(myGraph.components.length).toEqual(1);
-            // });
-            // });
-            // });
             describe('depthFirstSearch(initNode)', () => {
                 it('returns a path[Map] containing all nodes reachable via initNode', function() {
                     let tVal = myGraph.depthFirstSearch(v2);
@@ -287,11 +258,6 @@ describe('Graph', function() {
                     });
                 });
             });
-            // describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
-            //     it('returns all edges not yet included in the given component', function() {
-            //         expect(myGraph.getUnvisitedEdges(n0, testComp)).toBeArray();
-            //     });
-            // });
             describe('visitPath(pathArg)', () => {
                 it('returns a path[Map] containing all nodes reachable from the last appended node', function() {
                     let p3 = new Map();
@@ -304,38 +270,8 @@ describe('Graph', function() {
                     expect(visitVal instanceof Map).toBeTrue();
                 });
             });
-
-            // describe('hasIntersectingComponent(compArg)', () => {
-            // it('returns a boolena regarding any connecting components already present', function() {
-            // myGraph.addComponent(altComp);
-            // expect(myGraph.hasIntersectingComponent(altComp)).toBeTrue();
-            // });
-            // });
-            // describe('findIntersectingComponent(compArg)', function() {
-            // it('returns the component intersecting with the specified compArg', function() {
-            // myGraph.addComponent(testComp);
-            // myGraph.addComponent(altComp);
-            // expect(myGraph.findIntersectingComponent(altComp)).toEqual(testComp);
-            // });
-            // });
-            // describe('mergeComponents)origComp, newComp)', function() {
-            // it('unionizes the two components', function() {
-            // myGraph.mergeComponents(testComp, altComp);
-            // expect(testComp.edges).toContain(e1);
-            // });
-            // });
-            // describe('integrateComponent(compArg)', function() {
-            // it('find an intersecting component and mergess it with compArg', function() {
-            // myGraph.addComponent(testComp);
-            // myGraph.addComponent(altComp);
-            // myGraph.integrateComponent(altComp);
-            // myGraph.bfs(v3);
-            // expect(testComp.edges).toContain(e1);
-            // });
-            // });
             describe('bfs(initNode)', () => {
                 it('returns a path[Map] of nodes reachable in BreadthFirstSearch', function() {
-                    // console.log(myGraph.getNeighbors(v5));
                     console.log(myGraph.bfs(v1).size);
                     expect(myGraph.bfs(v1) instanceof Map).toBeTrue();
                 });
