@@ -86,6 +86,11 @@ class Graph {
         this.copyNodes(eNodes);
         this.edges.unionize(eArr);
     }
+    subGraphByEdges(eArr) {
+        let newGraph = new Graph();
+        newGraph.copyEdges(eArr);
+        return newGraph;
+    }
     /**
      *
      * @param  {Node} nodeArg the source node

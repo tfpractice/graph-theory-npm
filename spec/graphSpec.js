@@ -147,7 +147,6 @@ describe('Graph', function() {
                 let newGraph = new Graph();
                 newGraph.setNodes(firstFour);
                 expect(newGraph.nodes).toEqual(firstFour);
-                // console.log(firstFour);
             });
         });
         describe('copyNodes()', () => {
@@ -160,7 +159,16 @@ describe('Graph', function() {
                 expect(newGraph.nodes).toContain(...lastTwo);
             });
         });
-        describe('subGraphFromEdges(eArr)', () => {
+        fdescribe('subGraphByEdges(eArr)', () => {
+            it('returns a graph of all the nodes connected by a set of Edges', function() {
+                let oddEdges = myGraph.edges.filter(function(el, id) {
+                    return id % 2 === 1;
+                });
+                console.log(oddEdges);
+                let newGraph = myGraph.subGraphByEdges(oddEdges);
+                expect(newGraph instanceof Graph).toBeTrue();
+                expect(newGraph.edges).toEqual(oddEdges);
+            });
 
         });
         describe('connected components', function() {
