@@ -122,6 +122,15 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
+        fdescribe('setEdges()', () => {
+            it('sets the edges array', function() {
+                let firstFour = myGraph.edges.slice(0, 3);
+                console.log(firstFour);
+            });
+        });
+        describe('subGraphFromEdges(eArr)', () => {
+
+        });
         describe('connected components', function() {
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
