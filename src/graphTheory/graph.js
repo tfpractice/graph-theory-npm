@@ -2,8 +2,7 @@ var Node = require('./node');
 var NodeArray = require('./nodeArray');
 var Edge = require('./edge');
 var EdgeArray = require('./edgeArray');
-var Component = require('./component');
-var EdgeComponent = require('./edgeComponent');
+
 /**
  * represents a Graph
  * @exports Graph
@@ -51,7 +50,6 @@ class Graph {
      */
     edgesWithNode(nodeArg) {
         return this.edges.edgesWithNode(nodeArg);
-        // return this.edges.filter(tempEdge => tempEdge.containsNode(nodeArg) === true);
     }
     /**
      * creates a new edge given two nodes
@@ -181,10 +179,6 @@ class Graph {
     getUnvisitedEdges(nodeArg, compArg) {
         let unArr = this.getUnvisitedNeighbors(nodeArg, compArg);
         return this.edgesWithNode(nodeArg).edgesByArray(unArr);
-        // return this.edgesWithNode(nodeArg).filter(currEdge => {
-        // var nNode = currEdge.getNeighbor(nodeArg)
-        // return !compArg.containsNode(nNode);
-        // });
     }
     /**
      * returns all of the nodes neighbors not yet part od the component
@@ -193,7 +187,6 @@ class Graph {
      * @return {NodeArray}         [description]
      */
     getUnvisitedNeighbors(nodeArg, compArg) {
-        // return this.getNeighbors(nodeArg).filter(currNodeEntry => !(compArg.containsNode(currNodeEntry)));
         return this.getNeighbors(nodeArg).difference(compArg);
     }
     /**

@@ -221,13 +221,13 @@ describe('Graph', function() {
             });
         });
         describe('traversals', () => {
-            let testComp, altComp;
+            // let testComp, altComp;
             beforeEach(function() {
-                testComp = new GR.EdgeComponent();
-                altComp = new GR.EdgeComponent()
-                testComp.addEdge(e0);
-                altComp.addEdge(e0);
-                altComp.addEdge(e1);
+                // testComp = new GR.EdgeComponent();
+                //  // altComp = new GR.EdgeComponent()
+                //  testComp.addEdge(e0);
+                //  altComp.addEdge(e0);
+                //  altComp.addEdge(e1);
                 myGraph.addEdge(v2, v3, 4);
                 myGraph.addEdge(v2, v4, 6);
                 myGraph.addEdge(v2, v5, 8);
