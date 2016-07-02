@@ -240,8 +240,7 @@ class Graph {
     dijkstra(initNode) {
         var reachables = this.bfs(initNode);
         var inspectionQueue = new NodeArray(initNode);
-        var solutionSet = new Map();
-        solutionSet.set(initNode, {
+        var solutionSet = new Map().set(initNode, {
             pred: null,
             edgeCount: 0,
             pathWeight: 0
@@ -255,12 +254,12 @@ class Graph {
                 var currWeight = rNodeEntry.pathWeight;
                 var sPred = solutionSet.get(currN);
                 var dijkstraWeight = sPred.pathWeight + tempEdge.weight;
-                var dMap = {
+                let dMap = {
                     pred: currN,
                     edgeCount: sPred.edgeCount + 1,
                     pathWeight: dijkstraWeight
                 };
-                var sMap = (dijkstraWeight < currWeight) ? dMap : rNodeEntry;
+                let sMap = (dijkstraWeight < currWeight) ? dMap : rNodeEntry;
                 if (!solutionSet.has(nNode)) {
                     inspectionQueue.push(nNode);
                     solutionSet.set(nNode, sMap);

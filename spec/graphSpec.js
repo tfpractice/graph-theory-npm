@@ -295,7 +295,7 @@ describe('Graph', function() {
                 });
             });
         });
-        describe('dijkstra', function() {
+        fdescribe('dijkstra', function() {
             it('returns the shortest path[Map]`` from initNode to all nodes reachable from initNode', function() {
                 expect(myGraph.dijkstra(v1, v2) instanceof Map).toBeTrue();
             });
