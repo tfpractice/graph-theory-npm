@@ -122,7 +122,7 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        fdescribe('setEdges()', () => {
+        describe('setEdges()', () => {
             it('sets the edges array', function() {
                 let firstFour = myGraph.edges.slice(0, 3);
                 let newGraph = new Graph();
@@ -131,7 +131,7 @@ describe('Graph', function() {
                 // console.log(firstFour);
             });
         });
-        fdescribe('copyEdges()', () => {
+        describe('copyEdges()', () => {
             it('adds each edge to the edges array', function() {
                 let firstEdge = myGraph.edges.slice(0, 1);
                 let lastTwo = myGraph.edges.slice(-2);
@@ -141,7 +141,7 @@ describe('Graph', function() {
                 expect(newGraph.edges).toContain(...lastTwo);
             });
         });
-        fdescribe('setNodes()', () => {
+        describe('setNodes()', () => {
             it('sets the nodes array', function() {
                 let firstFour = myGraph.nodes.slice(0, 3);
                 let newGraph = new Graph();
@@ -150,7 +150,7 @@ describe('Graph', function() {
                 // console.log(firstFour);
             });
         });
-        fdescribe('copyNodes()', () => {
+        describe('copyNodes()', () => {
             it('adds each edge to the edges array', function() {
                 let firstEdge = myGraph.nodes.slice(0, 1);
                 let lastTwo = myGraph.nodes.slice(-2);

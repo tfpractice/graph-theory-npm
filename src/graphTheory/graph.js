@@ -77,9 +77,13 @@ class Graph {
         this.edges.clear();
     }
     setEdges(eArr) {
+        let eNodes = eArr.getNodes();
+        this.setNodes(eNodes);
         this.edges = eArr;
     }
     copyEdges(eArr) {
+        let eNodes = eArr.getNodes();
+        this.copyNodes(eNodes);
         this.edges.unionize(eArr);
     }
     /**
