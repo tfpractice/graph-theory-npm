@@ -223,15 +223,15 @@ describe('Graph', function() {
                 myGraph.addEdge(v2, v5, 8);
                 myGraph.addEdge(v2, v1, 10)
             });
-            describe('depthFirstSearch(initNode)', () => {
+            describe('dfs(initNode)', () => {
                 it('returns a path[Map] containing all nodes reachable via initNode', function() {
-                    let tVal = myGraph.depthFirstSearch(v2);
+                    let tVal = myGraph.dfs(v2);
                     expect(tVal instanceof Map).toBeTruthy();
                 });
                 describe('retun values', () => {
                     let dfsKeys;
                     beforeEach(function() {
-                        dfsKeys = myGraph.depthFirstSearch(v2).get(v1);
+                        dfsKeys = myGraph.dfs(v2).get(v1);
                     });
                     it('maps the values to an object with keys for predecessor(pred), edgeCount, and pathWeight', function() {
                         expect(dfsKeys).toBeObject();
@@ -247,12 +247,12 @@ describe('Graph', function() {
                     });
                 });
                 it('augments or adds a component to the array', function() {
-                    myGraph.depthFirstSearch(v2);
+                    myGraph.dfs(v2);
                     expect(myGraph.components.length).toEqual(1);
                 });
                 describe('#pathNodes(path)', function() {
                     it('returns the path keys as a node array', function() {
-                        let path = myGraph.depthFirstSearch(v2);
+                        let path = myGraph.dfs(v2);
                         let pkey = myGraph.pathNodes(path);
                         expect(pkey instanceof GR.NodeArray).toBeTrue();
                     });

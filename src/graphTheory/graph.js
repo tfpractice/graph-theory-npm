@@ -113,7 +113,7 @@ class Graph {
      * @param  {Node} initNode inital node
      * @return {Component} a key-value store of nodes and edge distances
      */
-    depthFirstSearch(initNode) {
+    dfs(initNode) {
         let path = new Map();
         path.set(initNode, {
             pred: null,
@@ -228,7 +228,7 @@ class Graph {
      * @return {Boolean} a path exists between the two nodes
      */
     hasPath(initNode, termNode) {
-        return this.bfs(initNode).bPath.has(termNode);
+        return this.bfs(initNode).has(termNode);
     }
     /**
      * performs dijkstras algorithm for shortest paths to all nodes reachabe from initNode
