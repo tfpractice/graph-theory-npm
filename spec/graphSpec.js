@@ -336,6 +336,7 @@ describe('Graph', function() {
             describe('bfs(initNode)', () => {
                 it('returns a path[Map] of nodes reachable in BreadthFirstSearch', function() {
                     // console.log(myGraph.getNeighbors(v5));
+                    console.log(myGraph.bfs(v1).size);
                     expect(myGraph.bfs(v1) instanceof Map).toBeTrue();
                 });
                 describe('retun values', () => {

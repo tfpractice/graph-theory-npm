@@ -202,40 +202,30 @@ class Graph {
      * @return {Map} a key-value store of nodes and edge distances
      */
     bfs(initNode) {
-        // var bNodes = new EdgeComponent();
-        var bPath = new Map();
-        bPath.set(initNode, {
+        var bPath = new Map().set(initNode, {
             pred: null,
             pathWeight: 0,
             edgeCount: 0
         });
-        let bNodes = this.pathNodes(bPath);
-        var level = 1;
         var bQueue = new NodeArray();
         bQueue.push(initNode);
         while (bQueue.length > 0) {
-            var frontier = new NodeArray();
-            var currN = bQueue.shift();
-            var currEdges = this.getUnvisitedEdges(currN, bNodes);
-            var currNeighbors = this.getUnvisitedNeighbors(currN, bNodes);
-            let predWeight = bPath.get(currN).pathWeight;
-            let predCount = bPath.get(currN).edgeCount;
+            let currN = bQueue.shift();
+            var bNodes = this.pathNodes(bPath);
+            let currEdges = this.getUnvisitedEdges(currN, bNodes);
+            let prNode = bPath.get(currN);
             currEdges.forEach((nEdge) => {
                 let nNode = nEdge.getNeighbor(currN);
                 bPath.set(nNode, {
                     pred: currN,
-                    edgeCount: level,
-                    pathWeight: predWeight + nEdge.weight
+                    edgeCount: prNode.edgeCount + 1,
+                    pathWeight: prNode.pathWeight + nEdge.weight
                 });
-                bNodes = this.pathNodes(bPath);
-                frontier.push(nNode);
+                bQueue.push(nNode);
             });
-            ++level;
-            bQueue.unionize(frontier);
+
         }
-        let bComp = this.pathNodes(bPath);
-        // console.log(bPath);
-        this.addComponent(bComp);
+        this.addComponent(bNodes);
         return bPath;
     }
     /**
