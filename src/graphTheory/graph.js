@@ -82,6 +82,25 @@ class Graph {
         return NodeArray.from([...pathArg.keys()]);
     }
     /**
+     * returns all of the nodes Edges which contain nodes not yet in the specified component
+     * @param  {Node} nodeArg [description]
+     * @param  {Component} compArg [description]
+     * @return {EdgeArray}         [description]
+     */
+    getUnvisitedEdges(nodeArg, compArg) {
+        let unArr = this.getUnvisitedNeighbors(nodeArg, compArg);
+        return this.edgesWithNode(nodeArg).edgesByArray(unArr);
+    }
+    /**
+     * returns all of the nodes neighbors not yet part od the component
+     * @param  {Node} nodeArg [description]
+     * @param  {Component} compArg [description]
+     * @return {NodeArray}         [description]
+     */
+    getUnvisitedNeighbors(nodeArg, compArg) {
+        return this.getNeighbors(nodeArg).difference(compArg);
+    }
+    /**
      * adds all unvisited nodes in the path to the specified component
      * adds each node connected to an edge to a (depth) path
      * @param  {Map} pathArg  the path to be explored
@@ -170,25 +189,7 @@ class Graph {
     hasIntersectingComponent(compArg) {
         return this.components.some(currComp => currComp.intersects(compArg));
     }
-    /**
-     * returns all of the nodes Edges which contain nodes not yet in the specified component
-     * @param  {Node} nodeArg [description]
-     * @param  {Component} compArg [description]
-     * @return {EdgeArray}         [description]
-     */
-    getUnvisitedEdges(nodeArg, compArg) {
-        let unArr = this.getUnvisitedNeighbors(nodeArg, compArg);
-        return this.edgesWithNode(nodeArg).edgesByArray(unArr);
-    }
-    /**
-     * returns all of the nodes neighbors not yet part od the component
-     * @param  {Node} nodeArg [description]
-     * @param  {Component} compArg [description]
-     * @return {NodeArray}         [description]
-     */
-    getUnvisitedNeighbors(nodeArg, compArg) {
-        return this.getNeighbors(nodeArg).difference(compArg);
-    }
+
     /**
      * breadth first search, recursively adds all immediate neighbors, to a component of nodes reachabe by a initial node
      * @param  {Node} initNode inital node
