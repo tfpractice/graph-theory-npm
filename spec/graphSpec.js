@@ -125,7 +125,20 @@ describe('Graph', function() {
         fdescribe('setEdges()', () => {
             it('sets the edges array', function() {
                 let firstFour = myGraph.edges.slice(0, 3);
-                console.log(firstFour);
+                let newGraph = new Graph();
+                newGraph.setEdges(firstFour);
+                expect(newGraph.edges).toEqual(firstFour);
+                // console.log(firstFour);
+            });
+        });
+        fdescribe('copyEdges()', () => {
+            it('adds each edge to the edges array', function() {
+                let firstEdge = myGraph.edges.slice(0, 1);
+                let lastTwo = myGraph.edges.slice(-2);
+                let newGraph = new Graph();
+                newGraph.setEdges(firstEdge);
+                newGraph.copyEdges(lastTwo);
+                expect(newGraph.edges).toContain(...lastTwo);
             });
         });
         describe('subGraphFromEdges(eArr)', () => {

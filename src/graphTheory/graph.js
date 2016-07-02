@@ -70,6 +70,12 @@ class Graph {
     clearEdges() {
         this.edges.clear();
     }
+    setEdges(eArr) {
+        this.edges = eArr;
+    }
+    copyEdges(eArr) {
+        this.edges.unionize(eArr);
+    }
     /**
      *
      * @param  {Node} nodeArg the source node
