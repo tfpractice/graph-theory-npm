@@ -1,4 +1,4 @@
-# graph-theory-npm (v2.1.0-alpha)
+# graph-theory-npm (v3.0.0-alpha)
 =========
 This Node.js library provides a number of classes that facilitate exploring your data as a graph.
 
@@ -68,6 +68,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Release History
 
+* 3.0.0-alpha 2016-07-02
 * 2.1.0-alpha 2016-06-16
 ** arrow functions
 ** tba
@@ -78,23 +79,6 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 * 1.0.0 Initial release
 
 
-## Changelog 
-### 2.1.0-alpha – 2016-06-16
-#### Added
-* Graph.dijkstra() now assembles shortest path to all nodes
-* Graph.shortestPath() via 
-* Graph.bfs & depthTraverse methods
-* Component classes to check dynamic connectivity.
-
-#### Changed
-* methods to use es6 syntax
-
-#### Deprecated
-* Graph.depthSearch
-
-#### Removed
-* Graph.depthSearch(),depthVisit(), and breadthSearch()
-* Vertex class
 
 
 

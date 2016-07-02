@@ -12,7 +12,7 @@ class NodeArray extends Array {
      * @return {Boolean}
      */
     contains(argNode) {
-        return this.some(el => (el.isIdentical(argNode) === true));
+        return this.some(el => el.isEquivalent(argNode));
     }
     /**
      * checks type of argument for Node status
@@ -28,7 +28,10 @@ class NodeArray extends Array {
      * @return {Boolean}
      */
     push(argNode) {
-        return (this.isNode(argNode) && !(this.contains(argNode))) ? super.push(argNode) : false;
+        if ((this.isNode(argNode) && !(this.contains(argNode)))) {
+            super.push(argNode);
+        }
+        return this;
     }
     /**
      * returns an array shared nodes between two sets
@@ -52,19 +55,7 @@ class NodeArray extends Array {
      * @return {NodeArray} the unshared nodes
      */
     difference(altArray) {
-        let diffArray = new NodeArray();
-
-        this.reduce((dArray, currNode) => {
-            if (!altArray.contains(currNode)) dArray.push(currNode);
-            return dArray;
-        }, diffArray);
-        altArray.reduce((dArray, altNode) => {
-            if (!this.contains(altNode)) dArray.push(altNode);
-            return dArray;
-        }, diffArray);
-
-        return diffArray;
-
+        return this.filter(n => !altArray.contains(n));
     }
     /**
      * checks for presence of unshared nodes between two sets
@@ -72,7 +63,17 @@ class NodeArray extends Array {
      * @return {Boolean}
      */
     hasDistinctNodes(altArray) {
-        return altArray.some(altNode => !this.contains(altNode));
+        return this.some(myNode => !altArray.contains(myNode));
+        // return altArray.some(altNode => !this.contains(altNode));
+    }
+    hasSameSize(altArray) {
+        return this.length === altArray.length;
+    }
+    isSubset(altArray) {
+        return this.every(myNode => altArray.contains(myNode));
+    }
+    isEquivalent(altArray) {
+        return (this.hasSameSize(altArray) && this.isSubset(altArray));
     }
     /**
      * returns a combined array of nodes belonging to this and the alternate arrays
@@ -90,9 +91,56 @@ class NodeArray extends Array {
      * @param  {NodeArray} altArray the array to check
      */
     unionize(altArray) {
-        this.difference(altArray).forEach(dNode => this.push(dNode));
+        altArray.difference(this).forEach(dNode => this.push(dNode));
+        return this;
+    }
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    filter(...args) {
+        return NodeArray.from(super.filter(...args));
+    }
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    slice(...args) {
+        return NodeArray.from(super.slice(...args));
+    }
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    concat(...args) {
+        return NodeArray.from(super.concat(...args));
+    }
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    splice(...args) {
+        return NodeArray.from(super.splice(...args));
+    }
+    removeNode(nArg) {
+        let nPos = this.indexOf(nArg);
+        return (nPos > -1) ? this.splice(nPos, 1) : false;
     }
 
+    nodeComplement(nArg) {
+        return this.filter(n => n.isEquivalent(nArg));
+    }
+    clear() {
+        this.splice(0);
+        return this;
+    }
+    copy() {
+        return this.slice(0);
+    }
 
 }
 

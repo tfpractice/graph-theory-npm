@@ -1,22 +1,21 @@
 describe('EdgeArray', function() {
     var GR = require('../src/graphTheory');
     var Edge = GR.Edge;
+    var EdgeArray = GR.EdgeArray;
     var myEdge, altEdge, la, nyc, dc, myArray;
-    var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, bArray, cArray;
+    var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, n30, n31, bArray, cArray;
     beforeEach(function() {
         la = new GR.Node("LA");
         nyc = new GR.Node("NYC");
         dc = new GR.Node("DC");
-
-        myEdge = new GR.Edge(nyc, la, 10);
-        altEdge = new GR.Edge(nyc, dc, 10);
-        myArray = new GR.EdgeArray(myEdge);
+        myEdge = new Edge(nyc, la, 10);
+        altEdge = new Edge(nyc, dc, 10);
+        myArray = new EdgeArray(myEdge);
     });
     describe('init', function() {
         it('is a typeof Array', function() {
             expect(myArray instanceof Array).toBeTrue();
         });
-
     });
     describe('contains()', () => {
         it('checks if any of the elements are equivalent to that provided', function() {
@@ -30,16 +29,16 @@ describe('EdgeArray', function() {
     });
     describe('push(argEdge) ', () => {
         describe('when argEdge is an instanceof Edge', () => {
-            it('calls super [Array.push] and returns new length', function() {
+            it('calls super [Array.push] and returns modified array', function() {
                 var currLength = myArray.length;
-                let newEdge = new Edge('newEdge');
+                let newEdge = new Edge(dc, la);
                 var newLength = currLength + 1;
-                expect(myArray.push(newEdge)).toEqual(newLength);
+                expect(myArray.push(newEdge)).toEqual(myArray);
             });
         });
         describe('when argEdge is not an instanceof Edge', () => {
-            it('returns false', function() {
-                expect(myArray.push(2)).toBeFalse();
+            it('returns the unmodified array', function() {
+                expect(myArray.push(2)).toBeArray();
             });
             it('does not increment length', function() {
                 var currLength = myArray.length;
@@ -47,68 +46,166 @@ describe('EdgeArray', function() {
                 expect(myArray.length).toEqual(currLength);
             });
         });
-
+    });
+    describe('#removeEdge', () => {
+        it('removes and Edge from the array', function() {
+            myArray.removeEdge(myEdge);
+            expect(myArray.contains((myEdge))).toBeFalse();
+        });
+    });
+    describe('#clear', function() {
+        it('empties and returns the array ', function() {
+            expect(myArray.clear()).toBeEmptyArray();
+        });
+    });
+    describe('#copy', () => {
+        it('returns a slices of the array from start to end', function() {
+            expect(myArray.copy()).toEqual(myArray);
+        });
     });
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
-            // console.log(myArray.getNodes());
-            // console.log(myArray);
             expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
         });
     });
-    describe('set methods', () => {
-        var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, bArray, cArray;
+    describe('#getNeighbors(nde)', function() {
+        it('returns a NodeArray of neighboring nodes', function() {
+            myArray.push(altEdge);
+            expect(myArray.getNeighbors(nyc)).toContain(dc);
+        });
+    });
+    describe('#edgeByNodes(n1, n2)', () => {
+        it('retrieves an edge containing both nodes', function() {
+            let nla = myArray.edgeByNodes(nyc, la);
+            expect(nla).toBe(myEdge);
+        });
+    });
+    describe('#edgesWithNode(node)', function() {
+        it('returns all edges containing the specified node', function() {
+            expect(myArray.edgesWithNode(nyc)).toContain(myEdge);
+        });
+    });
+
+    describe('set and species methods', () => {
         beforeEach(function() {
-            n10 = new GR.Node("00");
-            n11 = new GR.Node("01");
+            n00 = new GR.Node("00");
+            n01 = new GR.Node("01");
             n10 = new GR.Node("10");
             n11 = new GR.Node("11");
             n20 = new GR.Node("20");
             n21 = new GR.Node("21");
+            n30 = new GR.Node("30");
+            n31 = new GR.Node("31");
             e0 = new GR.Edge(n00, n01);
             e1 = new GR.Edge(n10, n11);
             e2 = new GR.Edge(n20, n21);
-            e3 = new GR.Edge(n00, n11);
+            e3 = new GR.Edge(n30, n31);
             e4 = new GR.Edge(n20, n01);
             bArray = new GR.EdgeArray(e0);
             bArray.push(e1);
             cArray = new GR.EdgeArray(e2);
             cArray.push(e3);
-
         });
-        describe('intersection(altArray)', function() {
-            it('retuns an array of edges shared by two nodeArrays', function() {
-                expect(bArray.intersection(cArray)).toBeArray();
+        describe('set methods', function() {
+            describe('intersection(altArray)', function() {
+                it('retuns an array of edges shared by two nodeArrays', function() {
+                    expect(bArray.intersection(cArray)).toBeArray();
+                });
+            });
+            describe('intersects', function() {
+                it('determines if two arrays share any edges', function() {
+                    bArray.push(e3);
+                    expect(bArray.intersects(cArray)).toBeTrue();
+                });
+            });
+            describe('difference', function() {
+                it('returns an array of edges in the caller not contained in the argument', function() {
+                    expect(bArray.difference(cArray)).toBeArray();
+                });
+            });
+            describe('hasDistinctEdges', function() {
+                it('determines if there are distinct nodes between arrays', function() {
+                    expect(bArray.hasDistinctEdges(cArray)).toBeTrue();
+                });
+            });
+            describe('#isEquivalent', function() {
+                it('returns true if arrays are of same size and are subsets of each other', function() {
+                    let subArray = new EdgeArray(e0);
+                    let subArray2 = new EdgeArray(e0);
+                    expect(subArray2.isEquivalent(subArray)).toBeTrue();
+                });
+            });
+            describe('#isSubset', () => {
+                it('returns true if every node in the callers is in the argument', function() {
+                    let subArray = new EdgeArray(e1);
+                    expect(subArray.isSubset(bArray)).toBeTrue();
+                });
+            });
+            describe('#hasSameSize', () => {
+                it('returns if the arrays share length', function() {
+                    expect(bArray.hasSameSize(cArray)).toBeTrue();
+                });
+            });
+            describe('union', function() {
+                it('returns an array of all nodes between two array', function() {
+                    expect(bArray.union(cArray)).toBeArray();
+                });
+            });
+            describe('unionize', function() {
+                it('combines the nodes of both arrays', function() {
+                    var edgeUnion = bArray.union(cArray);
+                    bArray.unionize(cArray);
+                    expect(bArray).toEqual(edgeUnion);
+                });
+                it('returns the modified array', function() {
+                    let uArr = bArray.unionize(cArray);
+                    expect(uArr).toBeArray();
+                });
             });
         });
-        describe('intersects', function() {
-            it('determines if two arrays share any edges', function() {
-                bArray.push(e3);
-                expect(bArray.intersects(cArray)).toBeTrue();
+        describe('return type @@species', () => {
+            var myMutable;
+            beforeEach(function() {
+                myMutable = new EdgeArray();
+                myMutable.push(myEdge);
+                myMutable.push(e1);
+                myMutable.push(e2);
+                myMutable.push(e3);
+                myMutable.push(e4);
             });
-        });
-        describe('difference', function() {
-            it('returns an array of nodes not contained in the operating array', function() {
-                expect(bArray.difference(cArray)).toBeArray();
+            describe('#filter', () => {
+                it('returns a new EdgeArray', function() {
+                    fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
+                    expect(fArr instanceof EdgeArray).toBeTrue();
+                });
             });
-        });
-        describe('hasDistinctEdges', function() {
-            it('determines if there are distinct nodes between arrays', function() {
-                expect(bArray.hasDistinctEdges(cArray)).toBeTrue();
+            describe('#slice', () => {
+                it('returns a new nodeArray', function() {
+                    firstFour = myMutable.slice(0, 3);
+                    expect(firstFour instanceof EdgeArray).toBeTrue();
+                });
             });
-        });
-        describe('union', function() {
-            it('returns an array of all nodes between two array', function() {
-                expect(bArray.union(cArray)).toBeArray();
+            describe('#splice', () => {
+                it('returns a new nodeArray', function() {
+                    firstFour = myMutable.splice(0, 4);
+                    expect(firstFour instanceof EdgeArray).toBeTrue();
+                });
             });
-        });
-        describe('unionize', function() {
-            it('combines the nodes of both arrays', function() {
-                bArray.unionize(cArray);
-                var edgeUnion = bArray.union(cArray);
-                expect(bArray).toEqual(edgeUnion);
+            describe('#concat', () => {
+                it('returns a new nodeArray', function() {
+                    firstFour = myMutable.splice(0, 4);
+                    let newArr = myMutable.concat(firstFour);
+                    expect(newArr instanceof EdgeArray).toBeTrue();
+                });
+            });
+            describe('#edgesByArray', () => {
+                it('returns all edges which contain each of the nodes in the array', function() {
+                    myMutable.push(e0);
+                    let myNarr = GR.NodeArray.of(n01, n21);
+                    let mySubSet = myMutable.edgesByArray(myNarr);
+                    expect(mySubSet.length).toEqual(3);
+                });
             });
         });
     });
-
 });

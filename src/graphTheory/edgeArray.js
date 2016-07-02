@@ -15,7 +15,7 @@ class EdgeArray extends Array {
      * @return {Boolean}
      */
     contains(argEdge) {
-        return this.some(el => (el.isEquivalent(argEdge) === true));
+        return this.some(el => el.isEquivalent(argEdge));
     }
     /**
      * checks type of argument for Edge status
@@ -31,7 +31,10 @@ class EdgeArray extends Array {
      * @return {Boolean}
      */
     push(argEdge) {
-        return (this.isEdge(argEdge) && !(this.contains(argEdge))) ? super.push(argEdge) : false;
+        if (this.isEdge(argEdge) && !this.contains(argEdge)) {
+            super.push(argEdge);
+        }
+        return this;
     }
     /**
      * assembles each edges nodes into one large array
@@ -42,6 +45,9 @@ class EdgeArray extends Array {
             nArray.unionize(e.nodes);
             return nArray;
         }, new NodeArray());
+    }
+    getNeighbors(nodeArg) {
+        return this.edgesWithNode(nodeArg).reduce((nArray, e) => nArray.push(e.getNeighbor(nodeArg)), new NodeArray());
     }
     /**
      * returns an array shared edges between two sets
@@ -67,18 +73,7 @@ class EdgeArray extends Array {
      * @return {EdgeArray} the unshared edges
      */
     difference(altArray) {
-        let diffArray = new EdgeArray();
-
-        this.reduce((dArray, currEdge) => {
-            if (!altArray.contains(currEdge)) dArray.push(currEdge);
-            return dArray;
-        }, diffArray);
-        altArray.reduce((dArray, altEdge) => {
-            if (!this.contains(altEdge)) dArray.push(altEdge);
-            return dArray;
-        }, diffArray);
-        return diffArray;
-
+        return this.filter(e => !altArray.contains(e));
     }
     /**
      * checks for presence of unshared edges between two sets
@@ -86,7 +81,16 @@ class EdgeArray extends Array {
      * @return {Boolean}
      */
     hasDistinctEdges(altArray) {
-        return altArray.some(altEdge => !this.contains(altEdge));
+        return this.some(myEdge => !altArray.contains(myEdge));
+    }
+    hasSameSize(altArray) {
+        return this.length === altArray.length;
+    }
+    isSubset(altArray) {
+        return this.every(myEdge => altArray.contains(myEdge));
+    }
+    isEquivalent(altArray) {
+        return this.hasSameSize(altArray) && this.isSubset(altArray);
     }
     /**
      * returns a combined array of edges belonging to this and the alternate arrays
@@ -105,9 +109,61 @@ class EdgeArray extends Array {
      * @param  {EdgeArray} altArray the array to check
      */
     unionize(altArray) {
-        this.difference(altArray).forEach(dEdge => this.push(dEdge));
+        altArray.difference(this).forEach(dEdge => this.push(dEdge));
+        return this;
     }
-
+    /**
+     * forces return type to a NodeArray
+     * @param  {...[type]} args the arguments
+     * @return {[NodeArray]}
+     */
+    filter(...args) {
+        return EdgeArray.from(super.filter(...args));
+    }
+    /**
+     * forces return type to a EdgeArray
+     * @param  {...[type]} args the arguments
+     * @return {[EdgeArray]}
+     */
+    slice(...args) {
+        return EdgeArray.from(super.slice(...args));
+    }
+    /**
+     * forces return type to a EdgeArray
+     * @param  {...[type]} args the arguments
+     * @return {[EdgeArray]}
+     */
+    concat(...args) {
+        return EdgeArray.from(super.concat(...args));
+    }
+    /**
+     * forces return type to a EdgeArray
+     * @param  {...[type]} args the arguments
+     * @return {[EdgeArray]}
+     */
+    splice(...args) {
+        return EdgeArray.from(super.splice(...args));
+    }
+    edgeByNodes(n1, n2) {
+        return this.find(e => (e.containsNode(n1) && e.containsNode(n2)));
+    }
+    edgesWithNode(nodeArg) {
+        return this.filter(e => e.containsNode(nodeArg));
+    }
+    edgesByArray(nArr) {
+        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new EdgeArray());
+    }
+    removeEdge(eArg) {
+        let ePos = this.findIndex(e => e.isEquivalent(eArg));
+        return (ePos > -1) ? this.splice(ePos, 1) : false;
+    }
+    clear() {
+        this.splice(0);
+        return this;
+    }
+    copy() {
+        return this.slice(0);
+    }
 }
 module.exports = EdgeArray;
 /**

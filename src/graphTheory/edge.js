@@ -23,7 +23,10 @@ class Edge {
          * an identifier for the Edge
          * @type {String}
          */
-        this.label = `${n1.label}_${n2.label}`;
+        this.setLabel();
+    }
+    setLabel() {
+        this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;
     }
     /**
      * checks the equivalence (by label)of this edge against another
@@ -31,7 +34,24 @@ class Edge {
      * @return {Boolean}
      */
     isEquivalent(edgeArg) {
+        return this.hasSameNodes(edgeArg);
+    }
+
+    /**
+     * checks the equivalence (by label)of this edge against another
+     * @param  {Edge}  edgeArg edge to be checked
+     * @return {Boolean}
+     */
+    hasSameName(edgeArg) {
         return (this.label) ? this.label === edgeArg.label : false;
+    }
+    /**
+     * checks the equivalence of this edges nodes against another
+     * @param  {Edge}  edgeArg edge to be checked
+     * @return {Boolean}
+     */
+    hasSameNodes(edgeArg) {
+        return this.nodes.isSubset(edgeArg.nodes);
     }
     /**
      * Checks for presence fo a node in this edge
@@ -48,6 +68,9 @@ class Edge {
      */
     getNeighbor(nodeArg) {
         return this.nodes.find(currNode => currNode != nodeArg);
+    }
+    excludeNode(nodeArg) {
+        return this.nodes.nodeComplement(nodeArg);
     }
 }
 module.exports = Edge;
