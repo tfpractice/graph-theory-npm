@@ -30,7 +30,7 @@ class Node {
      * @param  {Node}  newNode the node to be compared
      * @return {Boolean}
      */
-    isIdentical(newNode) {
+    isEquivalent(newNode) {
         return this.label === newNode.label;
     }
 }

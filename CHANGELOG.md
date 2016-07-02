@@ -3,7 +3,7 @@
 ## 3.0.0-alpha – 2016-07-02
 ### Added
 * Node#setlabel with random number
-* Node#isIdentical checks label
+* Node#isEquivalent checks label
 * NodeArray#hasSameSize
 * NodeArray#isEquivalent
 * NodeArray#filter, #slice, #splice, #concat coerce return type to NodeArray
@@ -25,6 +25,7 @@
 * Graph class delegates many methods to Arrayv subclasses
 * Graph#getUnvisitedNeighbors refactored to use NodeArray#difference
 * Edge#isEquivalent now checks by nodeArray instead of label
+* Node#isIdentical -> isEquivalent
 * NodeArray#difference no longer returns symmetrical difference
 * NodeArray#unionize utilizes new difference
 * NodeArray#isSubSet, #hasSameSize, #isEquivalent

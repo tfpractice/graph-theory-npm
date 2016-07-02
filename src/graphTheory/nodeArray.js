@@ -12,7 +12,7 @@ class NodeArray extends Array {
      * @return {Boolean}
      */
     contains(argNode) {
-        return this.some(el => el.isIdentical(argNode));
+        return this.some(el => el.isEquivalent(argNode));
     }
     /**
      * checks type of argument for Node status
@@ -132,7 +132,7 @@ class NodeArray extends Array {
     }
 
     nodeComplement(nArg) {
-        return this.filter(n => n.isIdentical(nArg));
+        return this.filter(n => n.isEquivalent(nArg));
     }
     clear() {
         this.splice(0);
