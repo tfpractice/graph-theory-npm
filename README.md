@@ -1,4 +1,4 @@
-# graph-theory-npm (v2.2.0-alpha)
+# graph-theory-npm (v3.0.0-alpha)
 =========
 This Node.js library provides a number of classes that facilitate exploring your data as a graph.
 
@@ -68,7 +68,7 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Release History
 
-* 2.2.0-alpha 2016-29-16
+* 3.0.0-alpha 2016-07-02
 * 2.1.0-alpha 2016-06-16
 ** arrow functions
 ** tba

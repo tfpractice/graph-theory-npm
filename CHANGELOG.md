@@ -1,6 +1,6 @@
 ## Changelog 
 
-## 2.2.0-alpha – 2016-29-16
+## 3.0.0-alpha – 2016-07-02
 ### Added
 * Node#setlabel with random number
 * Node#isIdentical checks label
@@ -43,7 +43,7 @@
 ### Removed
 * Graph#visitComponent
 * Graph#depthTraverse
-* Component and EdgeComponent completely replaced by NodeArray
+* Component and EdgeComponent classes completely replaced by NodeArray
 
 
 ## 2.1.0-alpha – 2016-06-16
