@@ -1,7 +1,7 @@
 /**
  * @module graphTheory
  */
-exports.Vertex = require('./graphTheory/vertex');
+// exports.Vertex = require('./graphTheory/vertex');
 exports.Node = require('./graphTheory/node');
 exports.NodeArray = require('./graphTheory/nodeArray');
 exports.DirectedEdge = require('./graphTheory/directedEdge');
