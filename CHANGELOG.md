@@ -16,7 +16,7 @@
 * EdgeArray#removeEdge, #copy
 * Graph#add, #contains, #remove, and #clear for both edges and nodes
 * Graph#pathNodes to retrieve NodeArray from path keys
-* Graph#depthFirstSearch
+* Graph#depthFirstSearch -> #dfs
 * Graph#visitPath
 
 ### Changed
