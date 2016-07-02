@@ -8,5 +8,5 @@ exports.DirectedEdge = require('./graphTheory/directedEdge');
 exports.Edge = require('./graphTheory/edge');
 exports.EdgeArray = require('./graphTheory/edgeArray');
 exports.Graph = require('./graphTheory/graph');
-exports.Component = require('./graphTheory/component');
-exports.EdgeComponent = require('./graphTheory/edgeComponent');
+// exports.Component = require('./graphTheory/component');
+// exports.EdgeComponent = require('./graphTheory/edgeComponent');

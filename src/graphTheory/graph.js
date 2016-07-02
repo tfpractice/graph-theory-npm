@@ -2,8 +2,8 @@ var Node = require('./node');
 var NodeArray = require('./nodeArray');
 var Edge = require('./edge');
 var EdgeArray = require('./edgeArray');
-var Component = require('./component');
-var EdgeComponent = require('./edgeComponent');
+// var Component = require('./component');
+// var EdgeComponent = require('./edgeComponent');
 /**
  * represents a Graph
  * @exports Graph
