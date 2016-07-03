@@ -205,6 +205,13 @@ fdescribe('Graph', function() {
                     });
                 });
             });
+            describe('#containsComponent()', function() {
+                it('returns a boolean checking for presence of equivalent component', function() {
+                    myGraph.addComponent(nabes1);
+                    expect(myGraph.containsComponent(nabes1)).toBeTrue();
+
+                });
+            });
             describe('#removeComponent', () => {
                 it('splices a NodeArray from the components array', function() {
                     myGraph.addComponent(nabes1);
@@ -243,9 +250,7 @@ fdescribe('Graph', function() {
                 describe('when there is no intersecting component', () => {
                     it('doesnt change the components array', function() {
                         myGraph.addComponent(nabes1);
-                        console.log(myGraph.components);
                         myGraph.integrateComponent(nabes6);
-                        console.log(myGraph.compon);
                         expect(myGraph.components.length).toEqual(1);
                     });
                 });

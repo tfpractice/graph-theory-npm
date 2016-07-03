@@ -169,12 +169,15 @@ class Graph {
         this.addComponent(pComp);
         return path;
     }
+    containsComponent(compArg) {
+        return this.components.some(currComp => currComp.isEquivalent(compArg))
+    }
     /**
      * adds a component to the graph if not present
      * @param {Component} compArg [description]
      */
     addComponent(compArg) {
-        this.hasIntersectingComponent(compArg) ? this.integrateComponent(compArg) : this.components.push(compArg);
+        (!this.containsComponent(compArg) && this.hasIntersectingComponent(compArg)) ? this.integrateComponent(compArg) : this.components.push(compArg);
     }
     removeComponent(compArg) {
         let cPos = this.components.findIndex(currComp => currComp.isEquivalent(compArg));
@@ -212,7 +215,7 @@ class Graph {
      * @return {Boolean}         [description]
      */
     hasIntersectingComponent(compArg) {
-        return this.components.filter(currComp => !currComp.isEquivalent(compArg)).some(currComp => currComp.intersects(compArg));
+        return this.components.some(currComp => currComp.intersects(compArg));
     }
 
     /**

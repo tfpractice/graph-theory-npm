@@ -2,7 +2,8 @@
 
 ## 3.0.1-alpha – 2016-07-02 
 ###Changed
-Graph#hasIntersectingComponents checks for components are not equivalent
+* Graph#addComponent checks for components are not equivalent
+* Graph#containsComponent checks for equivalent components
 
 ## 3.0.0-alpha – 2016-07-02
 ### Added
