@@ -1,6 +1,6 @@
 ## Changelog
 
-## 3.0.1-alpha – 2016-07-02 
+## 3.0.1-alpha – 2016-07-03 
 ### Added
 * Graph#containsComponent checks for equivalent components
 * Graph#createEdge creates a new Edge between nodes
