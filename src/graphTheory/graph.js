@@ -63,9 +63,14 @@ class Graph {
      * @param {Node} dNode destination node
      * @param {Number} weight weight of new edge
      */
-    addEdge(sNode, dNode, weight) {
-        var tempEdge = new Edge(sNode, dNode, weight);
-        this.edges.push(tempEdge);
+    createEdge(sNode, dNode, weight) {
+        let tempEdge = new Edge(sNode, dNode, weight);
+        this.addEdge(tempEdge);
+        return tempEdge;
+    }
+    addEdge(edgeArg) {
+        this.copyNodes(edgeArg.nodes);
+        this.edges.push(edgeArg);
     }
     containsEdge(argEdge) {
         return this.edges.contains(argEdge);

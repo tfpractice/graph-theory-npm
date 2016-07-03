@@ -1,4 +1,4 @@
-fdescribe('Graph', function() {
+describe('Graph', function() {
     const GR = require('../src/graphTheory');
     const Graph = GR.Graph;
     describe('delegated to subarray', () => {
@@ -13,8 +13,8 @@ fdescribe('Graph', function() {
             myGraph.addNode(tampaV);
             myGraph.addNode(nyV);
             myGraph.addNode(laV);
-            myGraph.addEdge(nyV, laV);
-            myGraph.addEdge(nyV, tampaV);
+            myGraph.createEdge(nyV, laV);
+            myGraph.createEdge(nyV, tampaV);
         });
         describe('NodeArray', function() {
             describe('addNode', function() {
@@ -52,28 +52,45 @@ fdescribe('Graph', function() {
             beforeEach(function() {
                 tempEdge = new GR.Edge(bostonV, tampaV, 10);
             });
-            describe('addEdge', function() {
+            describe('createEdge', function() {
                 it('appends a new edge to the edges array', function() {
-                    myGraph.addEdge(bostonV, tampaV, 10);
+                    myGraph.createEdge(bostonV, tampaV, 10);
                     expect(myGraph.edges).toContain(tempEdge);
+                });
+            });
+            describe('#addEdge', function() {
+                let xn0, xn1;
+                beforeEach(function() {
+                    xn0 = new GR.Node('xn0');
+                    xn1 = new GR.Node('xn1');
+                });
+                it('imports the edges nodes', function() {
+                    myGraph.createEdge(xn0, xn1);
+                    expect(myGraph.nodes).toContain(xn0);
+
+                });
+                it('and adds the new edge ', function() {
+                    let xEdge = myGraph.createEdge(xn0, xn1);
+                    expect(myGraph.edges).toContain(xEdge);
+
                 });
             });
             describe('#containsEdge(earg)', () => {
                 it('checks if an equivalent egde is present in the graph', function() {
-                    myGraph.addEdge(bostonV, tampaV, 10);
+                    myGraph.createEdge(bostonV, tampaV, 10);
                     expect(myGraph.containsEdge(tempEdge)).toBeTrue();
                 });
             });
             describe('#removeEdge()', () => {
                 it('removes the edge from the edges array', function() {
-                    myGraph.addEdge(bostonV, tampaV, 10);
+                    myGraph.createEdge(bostonV, tampaV, 10);
                     myGraph.removeEdge(tempEdge);
                     expect(myGraph.edges).not.toContain(tempEdge);
                 });
             });
             describe('#clearEdges', function() {
                 it('clears the edges arrays', function() {
-                    myGraph.addEdge(bostonV, tampaV);
+                    myGraph.createEdge(bostonV, tampaV);
                     myGraph.clearEdges();
                     expect(myGraph.edges).toBeEmptyArray();
                 });
@@ -108,15 +125,15 @@ fdescribe('Graph', function() {
             v12 = new GR.Node("v12");
             gNodes = GR.NodeArray.of(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12);
             myGraph = new Graph(gNodes);
-            myGraph.addEdge(v1, v2, 2);
-            myGraph.addEdge(v2, v3, 4);
-            myGraph.addEdge(v3, v4, 6);
-            myGraph.addEdge(v4, v5, 8);
-            myGraph.addEdge(v5, v1, 10);
-            myGraph.addEdge(v6, v9, 10);
-            myGraph.addEdge(v5, v10, 10);
-            myGraph.addEdge(v10, v11, 10);
-            myGraph.addEdge(v11, v12, 10);
+            myGraph.createEdge(v1, v2, 2);
+            myGraph.createEdge(v2, v3, 4);
+            myGraph.createEdge(v3, v4, 6);
+            myGraph.createEdge(v4, v5, 8);
+            myGraph.createEdge(v5, v1, 10);
+            myGraph.createEdge(v6, v9, 10);
+            myGraph.createEdge(v5, v10, 10);
+            myGraph.createEdge(v10, v11, 10);
+            myGraph.createEdge(v11, v12, 10);
             n0 = myGraph.nodes[0];
             nabe0 = myGraph.getNeighbors(n0)[0];
             e0 = myGraph.edges[0];
@@ -283,10 +300,10 @@ fdescribe('Graph', function() {
         });
         describe('traversals', () => {
             beforeEach(function() {
-                myGraph.addEdge(v2, v3, 4);
-                myGraph.addEdge(v2, v4, 6);
-                myGraph.addEdge(v2, v5, 8);
-                myGraph.addEdge(v2, v1, 10)
+                myGraph.createEdge(v2, v3, 4);
+                myGraph.createEdge(v2, v4, 6);
+                myGraph.createEdge(v2, v5, 8);
+                myGraph.createEdge(v2, v1, 10)
             });
             describe('dfs(initNode)', () => {
                 it('returns a path[Map] containing all nodes reachable via initNode', function() {
