@@ -8,6 +8,7 @@
 ###Changed
 * Graph#addComponent checks for components are not equivalent
 * Graph#addEdge imports nodes and then pushes the edge
+* Graph#clearNodes removes all edges first then clears node array
 
 
 ## 3.0.0-alpha – 2016-07-02

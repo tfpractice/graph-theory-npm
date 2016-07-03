@@ -42,9 +42,12 @@ class Graph {
         this.nodes.removeNode(nodeArg);
     }
     clearNodes() {
+        this.nodes.forEach(n => this.removeNode(n));
         this.nodes.clear();
+
     }
     setNodes(nArr) {
+        this.clearNodes();
         this.nodes = nArr;
     }
     copyNodes(nArr) {
