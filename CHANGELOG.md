@@ -1,4 +1,8 @@
-## Changelog 
+## Changelog
+
+## 3.0.1-alpha – 2016-07-02 
+###Changed
+Graph#hasIntersectingComponents checks for components are not equivalent
 
 ## 3.0.0-alpha – 2016-07-02
 ### Added
