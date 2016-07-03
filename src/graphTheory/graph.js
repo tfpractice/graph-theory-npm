@@ -212,7 +212,7 @@ class Graph {
      * @return {Boolean}         [description]
      */
     hasIntersectingComponent(compArg) {
-        return this.components.some(currComp => currComp.intersects(compArg));
+        return this.components.filter(currComp => !currComp.isEquivalent(compArg)).some(currComp => currComp.intersects(compArg));
     }
 
     /**

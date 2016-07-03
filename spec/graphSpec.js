@@ -1,4 +1,4 @@
-describe('Graph', function() {
+fdescribe('Graph', function() {
     const GR = require('../src/graphTheory');
     const Graph = GR.Graph;
     describe('delegated to subarray', () => {
@@ -213,7 +213,7 @@ describe('Graph', function() {
                 });
             });
             describe('hasIntersectingComponent(compArg)', () => {
-                it('returns a boolena regarding any connecting components already present', function() {
+                it('returns a boolean regarding any DISTINCT connecting components already present', function() {
                     myGraph.addComponent(nabes1);
                     expect(myGraph.hasIntersectingComponent(nabes2)).toBeTrue();
                 });
@@ -243,7 +243,9 @@ describe('Graph', function() {
                 describe('when there is no intersecting component', () => {
                     it('doesnt change the components array', function() {
                         myGraph.addComponent(nabes1);
+                        console.log(myGraph.components);
                         myGraph.integrateComponent(nabes6);
+                        console.log(myGraph.compon);
                         expect(myGraph.components.length).toEqual(1);
                     });
                 });
