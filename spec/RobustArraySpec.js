@@ -56,6 +56,11 @@ describe('RobustArray', () => {
             });
         });
     });
+    fdescribe('#hasSameSize', () => {
+        it('returns if the arrays share length', function() {
+            expect(myArray.hasSameSize(myAltArray)).toBeTrue();
+        });
+    });
     describe('intersection(altArray)', function() {
         it('retuns an array of nodes shared by two nodeArrays', function() {
             expect(myArray.intersection(myAltArray)).toBeArray();
@@ -89,11 +94,7 @@ describe('RobustArray', () => {
             expect(subArray.isSubset(myArray)).toBeTrue();
         });
     });
-    describe('#hasSameSize', () => {
-        it('returns if the arrays share length', function() {
-            expect(myArray.hasSameSize(myAltArray)).toBeTrue();
-        });
-    });
+
     describe('union', function() {
         it('returns an array of all nodes between two array', function() {
             expect(myArray.union(myAltArray)).toBeArray();

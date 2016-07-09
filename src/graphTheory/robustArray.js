@@ -22,6 +22,9 @@ var RobustArray = BaseType => class extends Array {
         }
         return this;
     }
+    hasSameSize(altArray) {
+        return this.length === altArray.length;
+    }
     /**
      * returns an array shared nodes between two sets
      * @param  {NodeArray} altArray the array to check
@@ -55,9 +58,7 @@ var RobustArray = BaseType => class extends Array {
     //     return this.some(myNode => !altArray.contains(myNode));
     //     // return altArray.some(altNode => !this.contains(altNode));
     // }
-    // hasSameSize(altArray) {
-    //     return this.length === altArray.length;
-    // }
+
     // isSubset(altArray) {
     //     return this.every(myNode => altArray.contains(myNode));
     // }
