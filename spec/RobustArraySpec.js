@@ -113,11 +113,22 @@ fdescribe('RobustArray', () => {
 
             });
         });
-
+    });
+    describe('#removeElement', function() {
+        it('removes an element from the array', function() {
+            myArray.removeElement(n3);
+            expect(myArray).not.toContain(n3);
+        });
     });
     describe('#hasSameSize', () => {
         it('returns if the arrays share length', function() {
             expect(myArray.hasSameSize(myAltArray)).toBeTrue();
+        });
+    });
+    describe('#isSubset', () => {
+        it('returns true if every node in the callers is in the argument', function() {
+            let subArray = new NodeArray(myNode);
+            expect(subArray.isSubset(myArray)).toBeTrue();
         });
     });
     describe('#isEquivalent', function() {
@@ -127,12 +138,7 @@ fdescribe('RobustArray', () => {
             expect(subArray2.isEquivalent(subArray)).toBeTrue();
         });
     });
-    describe('#isSubset', () => {
-        it('returns true if every node in the callers is in the argument', function() {
-            let subArray = new NodeArray(myNode);
-            expect(subArray.isSubset(myArray)).toBeTrue();
-        });
-    });
+
     // describe('intersection(altArray)', function() {
     //     it('retuns an array of nodes shared by two nodeArrays', function() {
     //         expect(myArray.intersection(myAltArray)).toBeArray();
