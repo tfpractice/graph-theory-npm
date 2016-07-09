@@ -127,6 +127,12 @@ fdescribe('RobustArray', () => {
         });
 
     });
+    describe('#copy', () => {
+        it('returns a copy of the array', function() {
+            let cpr = myArray.copy();
+            expect(cpr).toEqual(myArray);
+        });
+    });
     describe('#hasSameSize', () => {
         it('returns if the arrays share length', function() {
             expect(myArray.hasSameSize(myAltArray)).toBeTrue();
