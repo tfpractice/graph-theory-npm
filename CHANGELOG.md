@@ -1,4 +1,12 @@
 ## Changelog
+## 4.0.0-alpha – 2016-07-09 
+### Added
+* RobustArray module acts as a mixin for set theory methods
+* RobustArray#SetifyType(BaseType) creates a set of out a base type of elements
+
+
+###Changed
+
 
 ## 3.0.1-alpha – 2016-07-03 
 ### Added
