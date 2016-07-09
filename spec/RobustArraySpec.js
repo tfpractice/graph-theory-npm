@@ -72,6 +72,48 @@ fdescribe('RobustArray', () => {
             });
 
         });
+        describe('slice', () => {
+            let slr;
+            beforeEach(function() {
+                slr = myArray.slice(0);
+            });
+
+            it('returns a copy of the elements', function() {
+                expect(slr).toContain(n3);
+            });
+            it('returns a NodeArray', function() {
+                expect(slr instanceof NodeArray).toBeTrue();
+
+            });
+
+        });
+        describe('splice', () => {
+            let splr;
+            beforeEach(function() {
+                splr = myArray.splice(0);
+            });
+            it('removes all of the elements', function() {
+                expect(myArray).toBeEmptyArray();
+            });
+            it('returns a NodeArray', function() {
+                expect(splr instanceof NodeArray).toBeTrue();
+
+            });
+        });
+        describe('concat', () => {
+            let concr;
+            beforeEach(function() {
+                concr = myArray.concat(myAltArray);
+            });
+            it('adds all of the elements of one array to the caller', function() {
+                expect(concr).toContain(n2);
+            });
+            it('returns a NodeArray', function() {
+                expect(concr instanceof NodeArray).toBeTrue();
+
+            });
+        });
+
     });
     describe('#hasSameSize', () => {
         it('returns if the arrays share length', function() {
