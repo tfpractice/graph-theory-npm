@@ -1,4 +1,4 @@
-describe('RobustArray', () => {
+fdescribe('RobustArray', () => {
     var GR = require('../src/graphTheory');
     let RobustArray = GR.RobustArray;
     var Node = GR.Node;
@@ -20,7 +20,7 @@ describe('RobustArray', () => {
         myAltArray.push(n2);
         myAltArray.push(n3);
     });
-    fdescribe('#SetifyType(BaseType)', function() {
+    describe('#SetifyType(BaseType)', function() {
         it('is a typeof Array', function() {
             expect(myArray instanceof Array).toBeTrue();
         });
@@ -36,7 +36,7 @@ describe('RobustArray', () => {
         });
     });
 
-    fdescribe('push(argObj) ', () => {
+    describe('push(argObj) ', () => {
         describe('when argObj is an instanceof Node', () => {
             it('calls super [Array.push] and returns modified array', function() {
                 var currLength = myArray.length;
@@ -56,29 +56,9 @@ describe('RobustArray', () => {
             });
         });
     });
-    fdescribe('#hasSameSize', () => {
+    describe('#hasSameSize', () => {
         it('returns if the arrays share length', function() {
             expect(myArray.hasSameSize(myAltArray)).toBeTrue();
-        });
-    });
-    describe('intersection(altArray)', function() {
-        it('retuns an array of nodes shared by two nodeArrays', function() {
-            expect(myArray.intersection(myAltArray)).toBeArray();
-        });
-    });
-    describe('intersects', function() {
-        it('determines if two arrays share any nodes', function() {
-            expect(myArray.intersects(myAltArray)).toBeTrue();
-        });
-    });
-    describe('difference', function() {
-        it('returns an array of nodes contained in the caller but not in the argument', function() {
-            expect(myArray.difference(myAltArray)).toBeArray();
-        });
-    });
-    describe('hasDistinctNodes', function() {
-        it('determines if caller has nodes that argument does not', function() {
-            expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
         });
     });
     describe('#isEquivalent', function() {
@@ -94,31 +74,52 @@ describe('RobustArray', () => {
             expect(subArray.isSubset(myArray)).toBeTrue();
         });
     });
+    // describe('intersection(altArray)', function() {
+    //     it('retuns an array of nodes shared by two nodeArrays', function() {
+    //         expect(myArray.intersection(myAltArray)).toBeArray();
+    //     });
+    // });
+    // describe('intersects', function() {
+    //     it('determines if two arrays share any nodes', function() {
+    //         expect(myArray.intersects(myAltArray)).toBeTrue();
+    //     });
+    // });
+    // describe('difference', function() {
+    //     it('returns an array of nodes contained in the caller but not in the argument', function() {
+    //         expect(myArray.difference(myAltArray)).toBeArray();
+    //     });
+    // });
+    // describe('hasDistinctNodes', function() {
+    //     it('determines if caller has nodes that argument does not', function() {
+    //         expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
+    //     });
+    // });
 
-    describe('union', function() {
-        it('returns an array of all nodes between two array', function() {
-            expect(myArray.union(myAltArray)).toBeArray();
-        });
-    });
-    describe('unionize', function() {
-        it('combines the nodes of both arrays', function() {
-            myArray.unionize(myAltArray);
-            var nodeUnion = myArray.union(myAltArray);
 
-            expect(myArray).toEqual(nodeUnion);
-        });
-        it('retuns the modified array', function() {
-            let uArr = myArray.unionize(myAltArray);
-            var nodeUnion = myArray.union(myAltArray);
-            expect(uArr).toBeArray();
+    // describe('union', function() {
+    //     it('returns an array of all nodes between two array', function() {
+    //         expect(myArray.union(myAltArray)).toBeArray();
+    //     });
+    // });
+    // describe('unionize', function() {
+    //     it('combines the nodes of both arrays', function() {
+    //         myArray.unionize(myAltArray);
+    //         var nodeUnion = myArray.union(myAltArray);
 
-        });
-    });
-    describe('nodeComplement()', () => {
-        it('returns an array of all nodes excluding the argument', function() {
-            expect(myArray.nodeComplement(myNode)).toBeArray();
-        });
-    });
+    //         expect(myArray).toEqual(nodeUnion);
+    //     });
+    //     it('retuns the modified array', function() {
+    //         let uArr = myArray.unionize(myAltArray);
+    //         var nodeUnion = myArray.union(myAltArray);
+    //         expect(uArr).toBeArray();
+
+    //     });
+    // });
+    // describe('nodeComplement()', () => {
+    //     it('returns an array of all nodes excluding the argument', function() {
+    //         expect(myArray.nodeComplement(myNode)).toBeArray();
+    //     });
+    // });
 
 
 
