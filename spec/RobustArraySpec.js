@@ -2,7 +2,8 @@ fdescribe('RobustArray', () => {
     var GR = require('../src/graphTheory');
     let RobustArray = GR.RobustArray;
     var Node = GR.Node;
-    let NodeArray = RobustArray.SetifyType(Node);
+    // let NodeArray = RobustArray.SetifyType(Node);
+    class NodeArray extends RobustArray.SetifyType(Node) {};
     var myNode, myArray, myAltArray, n1, n2, n3, n4;
 
     beforeEach(function() {
@@ -35,25 +36,41 @@ fdescribe('RobustArray', () => {
             });
         });
     });
+    describe('Array methods', function() {
 
-    describe('push(argObj) ', () => {
-        describe('when argObj is an instanceof Node', () => {
-            it('calls super [Array.push] and returns modified array', function() {
-                var currLength = myArray.length;
-                let newNode = new Node('newNode');
-                var newLength = currLength + 1;
-                expect(myArray.push(newNode)).toEqual(myArray);
+        describe('push(argObj) ', () => {
+            describe('when argObj is an instanceof Node', () => {
+                it('calls super [Array.push] and returns modified array', function() {
+                    var currLength = myArray.length;
+                    let newNode = new Node('newNode');
+                    var newLength = currLength + 1;
+                    expect(myArray.push(newNode)).toEqual(myArray);
+                });
+            });
+            describe('when argObj is not an instanceof Node', () => {
+                it('returns the unmodified array', function() {
+                    expect(myArray.push(2)).toBeArray();
+                });
+                it('does not increment length', function() {
+                    var currLength = myArray.length;
+                    myArray.push(2);
+                    expect(myArray.length).toEqual(currLength);
+                });
             });
         });
-        describe('when argObj is not an instanceof Node', () => {
-            it('returns the unmodified array', function() {
-                expect(myArray.push(2)).toBeArray();
+
+
+        describe('#filter', () => {
+            it('returns all elements meeting callback criteria', function() {
+                let fArray = myArray.filter(el => el.data % 2 === 0);
+                expect(fArray).toContain(n3);
             });
-            it('does not increment length', function() {
-                var currLength = myArray.length;
-                myArray.push(2);
-                expect(myArray.length).toEqual(currLength);
+            it('returns a NodeArray', function() {
+                let fArray = myArray.filter(el => el.data % 2 === 0);
+                console.log(fArray.constructor.name);
+                expect(fArray instanceof NodeArray).toBeTrue();
             });
+
         });
     });
     describe('#hasSameSize', () => {
