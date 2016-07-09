@@ -5,7 +5,6 @@ fdescribe('RobustArray', () => {
     // let NodeArray = RobustArray.SetifyType(Node);
     class NodeArray extends RobustArray.SetifyType(Node) {};
     var myNode, myArray, myAltArray, n1, n2, n3, n4;
-
     beforeEach(function() {
         n1 = new Node("n1", 0);
         n2 = new Node("n2", 1);
@@ -37,7 +36,6 @@ fdescribe('RobustArray', () => {
         });
     });
     describe('Array methods', function() {
-
         describe('push(argObj) ', () => {
             describe('when argObj is an instanceof Node', () => {
                 it('calls super [Array.push] and returns modified array', function() {
@@ -58,8 +56,6 @@ fdescribe('RobustArray', () => {
                 });
             });
         });
-
-
         describe('#filter', () => {
             it('returns all elements meeting callback criteria', function() {
                 let fArray = myArray.filter(el => el.data % 2 === 0);
@@ -67,25 +63,20 @@ fdescribe('RobustArray', () => {
             });
             it('returns a NodeArray', function() {
                 let fArray = myArray.filter(el => el.data % 2 === 0);
-                console.log(fArray.constructor.name);
                 expect(fArray instanceof NodeArray).toBeTrue();
             });
-
         });
         describe('slice', () => {
             let slr;
             beforeEach(function() {
                 slr = myArray.slice(0);
             });
-
             it('returns a copy of the elements', function() {
                 expect(slr).toContain(n3);
             });
             it('returns a NodeArray', function() {
                 expect(slr instanceof NodeArray).toBeTrue();
-
             });
-
         });
         describe('splice', () => {
             let splr;
@@ -97,7 +88,6 @@ fdescribe('RobustArray', () => {
             });
             it('returns a NodeArray', function() {
                 expect(splr instanceof NodeArray).toBeTrue();
-
             });
         });
         describe('concat', () => {
@@ -110,7 +100,6 @@ fdescribe('RobustArray', () => {
             });
             it('returns a NodeArray', function() {
                 expect(concr instanceof NodeArray).toBeTrue();
-
             });
         });
     });
@@ -125,7 +114,6 @@ fdescribe('RobustArray', () => {
             myArray.clear();
             expect(myArray).toBeEmptyArray();
         });
-
     });
     describe('#copy', () => {
         it('returns a copy of the array', function() {
@@ -171,9 +159,6 @@ fdescribe('RobustArray', () => {
             expect(myArray.difference(myAltArray)).toBeArray();
         });
     });
-
-
-
     describe('union', function() {
         it('returns an array of all nodes between two array', function() {
             expect(myArray.union(myAltArray)).toBeArray();
@@ -183,14 +168,12 @@ fdescribe('RobustArray', () => {
         it('combines the nodes of both arrays', function() {
             myArray.unionize(myAltArray);
             var nodeUnion = myArray.union(myAltArray);
-
             expect(myArray).toEqual(nodeUnion);
         });
         it('retuns the modified array', function() {
             let uArr = myArray.unionize(myAltArray);
             var nodeUnion = myArray.union(myAltArray);
             expect(uArr).toBeArray();
-
         });
     });
     // describe('nodeComplement()', () => {
@@ -198,10 +181,4 @@ fdescribe('RobustArray', () => {
     //         expect(myArray.nodeComplement(myNode)).toBeArray();
     //     });
     // });
-
-
-
-
-
-
 });
