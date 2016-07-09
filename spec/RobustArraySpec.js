@@ -161,17 +161,17 @@ fdescribe('RobustArray', () => {
             expect(myArray.intersection(myAltArray)).toBeArray();
         });
     });
+    describe('hasDistinctNodes', function() {
+        it('determines if caller has nodes that argument does not', function() {
+            expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
+        });
+    });
+    describe('difference', function() {
+        it('returns an array of nodes contained in the caller but not in the argument', function() {
+            expect(myArray.difference(myAltArray)).toBeArray();
+        });
+    });
 
-    // describe('difference', function() {
-    //     it('returns an array of nodes contained in the caller but not in the argument', function() {
-    //         expect(myArray.difference(myAltArray)).toBeArray();
-    //     });
-    // });
-    // describe('hasDistinctNodes', function() {
-    //     it('determines if caller has nodes that argument does not', function() {
-    //         expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
-    //     });
-    // });
 
 
     // describe('union', function() {

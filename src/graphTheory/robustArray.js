@@ -82,7 +82,7 @@ var RobustArray = BaseType => class extends Array {
     intersects(altArray) {
         return this.some(currEl => altArray.contains(currEl) === true);
     }
-    /**
+
     /**
      * returns an array shared nodes between two sets
      * @param  {RobustArray} altArray the array to check
@@ -91,23 +91,23 @@ var RobustArray = BaseType => class extends Array {
     intersection(altArray) {
         return this.filter(currEl => altArray.contains(currEl) === true);
     }
+    /**
+     * checks for presence of unshared nodes between two sets
+     * @param  {RobustArray} altArray the array to check
+     * @return {Boolean}
+     */
+    hasDistinctNodes(altArray) {
+        return this.some(myObj => !altArray.contains(myObj));
+    }
+    /**
+     * returns an array nodes in this array not included in the alternate array
+     * @param  {RobustArray} altArray the array to check
+     * @return {RobustArray} the unshared nodes
+     */
+    difference(altArray) {
+        return this.filter(n => !altArray.contains(n));
+    }
 
-    //  * returns an array nodes in this array not included in the alternate array
-    //  * @param  {RobustArray} altArray the array to check
-    //  * @return {RobustArray} the unshared nodes
-    //  */
-    // difference(altArray) {
-    //     return this.filter(n => !altArray.contains(n));
-    // }
-    // /**
-    //  * checks for presence of unshared nodes between two sets
-    //  * @param  {RobustArray} altArray the array to check
-    //  * @return {Boolean}
-    //  */
-    // hasDistinctNodes(altArray) {
-    //     return this.some(myObj => !altArray.contains(myObj));
-    //     // return altArray.some(altNode => !this.contains(altNode));
-    // }
 
 
     // /**
