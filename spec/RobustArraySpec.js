@@ -161,9 +161,9 @@ fdescribe('RobustArray', () => {
             expect(myArray.intersection(myAltArray)).toBeArray();
         });
     });
-    describe('hasDistinctNodes', function() {
+    describe('hasDistinctElements', function() {
         it('determines if caller has nodes that argument does not', function() {
-            expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
+            expect(myArray.hasDistinctElements(myAltArray)).toBeTrue();
         });
     });
     describe('difference', function() {

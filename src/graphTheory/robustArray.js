@@ -96,7 +96,7 @@ var RobustArray = BaseType => class extends Array {
      * @param  {RobustArray} altArray the array to check
      * @return {Boolean}
      */
-    hasDistinctNodes(altArray) {
+    hasDistinctElements(altArray) {
         return this.some(myObj => !altArray.contains(myObj));
     }
     /**
