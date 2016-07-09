@@ -120,6 +120,13 @@ fdescribe('RobustArray', () => {
             expect(myArray).not.toContain(n3);
         });
     });
+    describe('clear', () => {
+        it('removes all elements from the array', function() {
+            myArray.clear();
+            expect(myArray).toBeEmptyArray();
+        });
+
+    });
     describe('#hasSameSize', () => {
         it('returns if the arrays share length', function() {
             expect(myArray.hasSameSize(myAltArray)).toBeTrue();

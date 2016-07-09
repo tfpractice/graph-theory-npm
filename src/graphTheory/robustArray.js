@@ -67,16 +67,13 @@ var RobustArray = BaseType => class extends Array {
         let nPos = this.indexOf(argObj);
         return (nPos > -1) ? this.splice(nPos, 1) : false;
     }
-
-
-
-    // clear() {
-    // this.splice(0);
-    // return this;
-    // }
-    // copy() {
-    // return this.slice(0);
-    // }
+    clear() {
+        this.splice(0);
+        return this;
+    }
+    copy() {
+        return this.slice(0);
+    }
     /**
      * returns an array shared nodes between two sets
      * @param  {RobustArray} altArray the array to check
