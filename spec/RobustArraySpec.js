@@ -151,17 +151,17 @@ fdescribe('RobustArray', () => {
             expect(subArray2.isEquivalent(subArray)).toBeTrue();
         });
     });
+    describe('intersects', function() {
+        it('determines if two arrays share any nodes', function() {
+            expect(myArray.intersects(myAltArray)).toBeTrue();
+        });
+    });
+    describe('intersection(altArray)', function() {
+        it('retuns an array of nodes shared by two nodeArrays', function() {
+            expect(myArray.intersection(myAltArray)).toBeArray();
+        });
+    });
 
-    // describe('intersection(altArray)', function() {
-    //     it('retuns an array of nodes shared by two nodeArrays', function() {
-    //         expect(myArray.intersection(myAltArray)).toBeArray();
-    //     });
-    // });
-    // describe('intersects', function() {
-    //     it('determines if two arrays share any nodes', function() {
-    //         expect(myArray.intersects(myAltArray)).toBeTrue();
-    //     });
-    // });
     // describe('difference', function() {
     //     it('returns an array of nodes contained in the caller but not in the argument', function() {
     //         expect(myArray.difference(myAltArray)).toBeArray();

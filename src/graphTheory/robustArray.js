@@ -75,22 +75,23 @@ var RobustArray = BaseType => class extends Array {
         return this.slice(0);
     }
     /**
+     * checks for presence of shared nodes between two sets
+     * @param  {RobustArray} altArray the array to check
+     * @return {Boolean}
+     */
+    intersects(altArray) {
+        return this.some(currEl => altArray.contains(currEl) === true);
+    }
+    /**
+    /**
      * returns an array shared nodes between two sets
      * @param  {RobustArray} altArray the array to check
      * @return {RobustArray} the shared nodes
      */
-    // intersection(altArray) {
-    //     return this.filter(currNode => altArray.contains(currNode) === true);
-    // }
-    // /**
-    //  * checks for presence of shared nodes between two sets
-    //  * @param  {RobustArray} altArray the array to check
-    //  * @return {Boolean}
-    //  */
-    // intersects(altArray) {
-    //     return this.some(currNode => altArray.contains(currNode) === true);
-    // }
-    // /**
+    intersection(altArray) {
+        return this.filter(currEl => altArray.contains(currEl) === true);
+    }
+
     //  * returns an array nodes in this array not included in the alternate array
     //  * @param  {RobustArray} altArray the array to check
     //  * @return {RobustArray} the unshared nodes
@@ -116,7 +117,7 @@ var RobustArray = BaseType => class extends Array {
     //  */
     // union(altArray) {
     //     let uArray = new this.constructor();
-    //     this.forEach(currNode => uArray.push(currNode));
+    //     this.forEach(currEl => uArray.push(currEl));
     //     altArray.forEach(altNode => uArray.push(altNode));
     //     return uArray;
     // }
