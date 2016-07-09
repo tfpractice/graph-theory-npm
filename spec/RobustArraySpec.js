@@ -174,25 +174,25 @@ fdescribe('RobustArray', () => {
 
 
 
-    // describe('union', function() {
-    //     it('returns an array of all nodes between two array', function() {
-    //         expect(myArray.union(myAltArray)).toBeArray();
-    //     });
-    // });
-    // describe('unionize', function() {
-    //     it('combines the nodes of both arrays', function() {
-    //         myArray.unionize(myAltArray);
-    //         var nodeUnion = myArray.union(myAltArray);
+    describe('union', function() {
+        it('returns an array of all nodes between two array', function() {
+            expect(myArray.union(myAltArray)).toBeArray();
+        });
+    });
+    describe('unionize', function() {
+        it('combines the nodes of both arrays', function() {
+            myArray.unionize(myAltArray);
+            var nodeUnion = myArray.union(myAltArray);
 
-    //         expect(myArray).toEqual(nodeUnion);
-    //     });
-    //     it('retuns the modified array', function() {
-    //         let uArr = myArray.unionize(myAltArray);
-    //         var nodeUnion = myArray.union(myAltArray);
-    //         expect(uArr).toBeArray();
+            expect(myArray).toEqual(nodeUnion);
+        });
+        it('retuns the modified array', function() {
+            let uArr = myArray.unionize(myAltArray);
+            var nodeUnion = myArray.union(myAltArray);
+            expect(uArr).toBeArray();
 
-    //     });
-    // });
+        });
+    });
     // describe('nodeComplement()', () => {
     //     it('returns an array of all nodes excluding the argument', function() {
     //         expect(myArray.nodeComplement(myNode)).toBeArray();

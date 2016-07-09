@@ -110,30 +110,29 @@ var RobustArray = BaseType => class extends Array {
 
 
 
-    // /**
-    //  * returns a combined array of nodes belonging to this and the alternate arrays
-    //  * @param  {RobustArray} altArray the array to combine
-    //  * @return {RobustArray} the nodes
-    //  */
-    // union(altArray) {
-    //     let uArray = new this.constructor();
-    //     this.forEach(currEl => uArray.push(currEl));
-    //     altArray.forEach(altNode => uArray.push(altNode));
-    //     return uArray;
-    // }
-    // /**
-    //  * combines all the nodes into this nodeArray
-    //  * @param  {RobustArray} altArray the array to check
-    //  */
-    // unionize(altArray) {
-    //     altArray.difference(this).forEach(dNode => this.push(dNode));
-    //     return this;
-    // }
+    /**
+     * returns a combined array of nodes belonging to this and the alternate arrays
+     * @param  {RobustArray} altArray the array to combine
+     * @return {RobustArray} the nodes
+     */
+    union(altArray) {
+        let uArray = new this.constructor();
+        this.forEach(currEl => uArray.push(currEl));
+        altArray.forEach(altNode => uArray.push(altNode));
+        return uArray;
+    }
+    /**
+     * combines all the nodes into this nodeArray
+     * @param  {RobustArray} altArray the array to check
+     */
+    unionize(altArray) {
+        altArray.difference(this).forEach(dNode => this.push(dNode));
+        return this;
+    }
 
-    //     // nodeComplement(argObj) {
+        // nodeComplement(argObj) {
     // return this.filter(n => n.isEquivalent(argObj));
     // }
-
 };
 
 module.exports.SetifyType = RobustArray;
