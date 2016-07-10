@@ -1,13 +1,18 @@
-describe('EdgeArray', function() {
+fdescribe('EdgeArray', function() {
     var GR = require('../src/graphTheory');
+    var Node = GR.Node;
     var Edge = GR.Edge;
+    var NodeArray = GR.NodeArray;
     var EdgeArray = GR.EdgeArray;
     var myEdge, altEdge, la, nyc, dc, myArray;
     var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, n30, n31, bArray, cArray;
+    beforeAll(function() {
+        console.log('\n.........EdgeArray Spec.........\n')
+    });
     beforeEach(function() {
-        la = new GR.Node("LA");
-        nyc = new GR.Node("NYC");
-        dc = new GR.Node("DC");
+        la = new Node("LA");
+        nyc = new Node("NYC");
+        dc = new Node("DC");
         myEdge = new Edge(nyc, la, 10);
         altEdge = new Edge(nyc, dc, 10);
         myArray = new EdgeArray(myEdge);
@@ -22,9 +27,9 @@ describe('EdgeArray', function() {
             expect(myArray.contains(myEdge)).toBeTrue();
         });
     });
-    describe('isEdge(argEdge', () => {
+    describe('isValid(argEdge', () => {
         it('returns true if argEdge is an instanceof Edge', function() {
-            expect(myArray.isEdge(myEdge)).toBeTrue();
+            expect(myArray.isValid(myEdge)).toBeTrue();
         });
     });
     describe('push(argEdge) ', () => {
@@ -47,9 +52,9 @@ describe('EdgeArray', function() {
             });
         });
     });
-    describe('#removeEdge', () => {
+    describe('#removeElement', () => {
         it('removes and Edge from the array', function() {
-            myArray.removeEdge(myEdge);
+            myArray.removeElement(myEdge);
             expect(myArray.contains((myEdge))).toBeFalse();
         });
     });
@@ -65,7 +70,8 @@ describe('EdgeArray', function() {
     });
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
-            expect(myArray.getNodes() instanceof GR.NodeArray).toBeTrue();
+            let theNodes = myArray.getNodes();
+            expect(myArray.getNodes() instanceof NodeArray).toBeTrue();
         });
     });
     describe('#getNeighbors(nde)', function() {
@@ -88,14 +94,14 @@ describe('EdgeArray', function() {
 
     describe('set and species methods', () => {
         beforeEach(function() {
-            n00 = new GR.Node("00");
-            n01 = new GR.Node("01");
-            n10 = new GR.Node("10");
-            n11 = new GR.Node("11");
-            n20 = new GR.Node("20");
-            n21 = new GR.Node("21");
-            n30 = new GR.Node("30");
-            n31 = new GR.Node("31");
+            n00 = new Node("00");
+            n01 = new Node("01");
+            n10 = new Node("10");
+            n11 = new Node("11");
+            n20 = new Node("20");
+            n21 = new Node("21");
+            n30 = new Node("30");
+            n31 = new Node("31");
             e0 = new GR.Edge(n00, n01);
             e1 = new GR.Edge(n10, n11);
             e2 = new GR.Edge(n20, n21);
@@ -123,9 +129,9 @@ describe('EdgeArray', function() {
                     expect(bArray.difference(cArray)).toBeArray();
                 });
             });
-            describe('hasDistinctEdges', function() {
+            describe('hasDistinctElements', function() {
                 it('determines if there are distinct nodes between arrays', function() {
-                    expect(bArray.hasDistinctEdges(cArray)).toBeTrue();
+                    expect(bArray.hasDistinctElements(cArray)).toBeTrue();
                 });
             });
             describe('#isEquivalent', function() {
@@ -201,7 +207,7 @@ describe('EdgeArray', function() {
             describe('#edgesByArray', () => {
                 it('returns all edges which contain each of the nodes in the array', function() {
                     myMutable.push(e0);
-                    let myNarr = GR.NodeArray.of(n01, n21);
+                    let myNarr = NodeArray.of(n01, n21);
                     let mySubSet = myMutable.edgesByArray(myNarr);
                     expect(mySubSet.length).toEqual(3);
                 });
