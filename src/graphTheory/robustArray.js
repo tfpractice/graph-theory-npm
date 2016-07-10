@@ -1,5 +1,4 @@
 var RobustArray = BaseType => class extends Array {
-
     /**
      * checks type of argument for Node status
      * @param  {Node} argObj
@@ -130,7 +129,7 @@ var RobustArray = BaseType => class extends Array {
         return this;
     }
 
-        // nodeComplement(argObj) {
+    // nodeComplement(argObj) {
     // return this.filter(n => n.isEquivalent(argObj));
     // }
 };

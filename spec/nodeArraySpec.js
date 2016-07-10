@@ -3,6 +3,9 @@ describe('NodeArray', function() {
     var Node = GR.Node;
     var NodeArray = GR.NodeArray;
     var myNode, myArray, myAltArray, n1, n2, n3, n4;
+    beforeAll(function() {
+        console.log('\n.........NodeArray Spec.........\n')
+    });
     beforeEach(function() {
         n1 = new Node("n1", 0);
         n2 = new Node("n2", 1);

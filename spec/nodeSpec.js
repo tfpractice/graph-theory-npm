@@ -2,6 +2,9 @@ describe('Node', function() {
     var GR = require('../src/graphTheory');
     var myNode;
 
+    beforeAll(function() {
+        console.log('\.........Node Spec.........\n')
+    });
     beforeEach(function() {
         myNode = new GR.Node("NYC", {
             name: "NYC"

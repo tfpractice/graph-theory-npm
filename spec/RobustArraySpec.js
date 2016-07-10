@@ -5,6 +5,9 @@ fdescribe('RobustArray', () => {
     // let NodeArray = RobustArray.SetifyType(Node);
     class NodeArray extends RobustArray.SetifyType(Node) {};
     var myNode, myArray, myAltArray, n1, n2, n3, n4;
+    beforeAll(function() {
+        console.log('\n.........RobustArray Spec.........\n')
+    });
     beforeEach(function() {
         n1 = new Node("n1", 0);
         n2 = new Node("n2", 1);

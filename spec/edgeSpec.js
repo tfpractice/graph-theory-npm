@@ -1,16 +1,23 @@
-describe('Edge', function() {
+fdescribe('Edge', function() {
     var GR = require('../src/graphTheory');
+    var Node = GR.Node;
+    var NodeArray = GR.NodeArray;
     var myEdge, altEdge, la, nyc, dc;
+    beforeAll(function() {
+        console.log('\n.........Edge Spec.........\n')
+    });
     beforeEach(function() {
-        la = new GR.Node("LA");
-        nyc = new GR.Node("NYC");
-        dc = new GR.Node("DC");
+        la = new Node("LA");
+        nyc = new Node("NYC");
+        dc = new Node("DC");
         myEdge = new GR.Edge(nyc, la, 10);
         altEdge = new GR.Edge(nyc, dc, 10);
     });
     describe('init', function() {
         it('initializes with a nodes array[NodeArray]', function() {
-            expect(myEdge.nodes instanceof GR.NodeArray).toBeTrue();
+            console.log(myEdge.nodes.constructor);
+            console.log(NodeArray);
+            expect(myEdge.nodes instanceof NodeArray).toBeTrue();
         });
         it('initializes with a label[String]', function() {
             expect(myEdge.label).toBeString();
@@ -60,11 +67,11 @@ describe('Edge', function() {
             expect(myEdge.containsNode(la)).toBeTrue();
         });
     });
-    describe('excludeNode(node)', () => {
-        it('returns an array of nodes excluding that specified', function() {
-            expect(myEdge.excludeNode(nyc)).toBeArray();
-        });
-    });
+    // describe('excludeNode(node)', () => {
+    // it('returns an array of nodes excluding that specified', function() {
+    // expect(myEdge.excludeNode(nyc)).toBeArray();
+    // });
+    // });
     describe('getNeighbor', function() {
         it('returns the edges alternate endpoint ', function() {
             expect(myEdge.getNeighbor(la)).toEqual(nyc);

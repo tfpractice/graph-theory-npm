@@ -1,6 +1,6 @@
 var Node = require('./node');
 var NodeArray = require('./nodeArray');
-
+// var NodeArray = require('./robustArray').SetifyType(Node);
 /**
  * represents a connection between nodes
  * @exports Edge
@@ -27,6 +27,9 @@ class Edge {
     }
     setLabel() {
         this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;
+    }
+    createNodes() {
+        this.nodes = NodeArray.of(n1, n2);
     }
     /**
      * checks the equivalence (by label)of this edge against another
@@ -69,10 +72,11 @@ class Edge {
     getNeighbor(nodeArg) {
         return this.nodes.find(currNode => currNode != nodeArg);
     }
-    excludeNode(nodeArg) {
-        return this.nodes.nodeComplement(nodeArg);
-    }
+    // excludeNode(nodeArg) {
+    // return this.nodes.nodeComplement(nodeArg);
+    // }
 }
+// Edge.NodeArray = require('./robustArray').SetifyType(Node);;
 module.exports = Edge;
 /**
  * [An Edge]{@link module:graphTheory.Edge}
