@@ -13,7 +13,8 @@ class Edge {
          * an array of nodes
          * @type {NodeArray}
          */
-        this.nodes = NodeArray.of(n1, n2);
+        this.constructNodes(n1, n2);
+        // this.nodes = NodeArray.of(n1, n2);
         /**
          * the weight of the edge
          * @type {Number}
@@ -28,7 +29,7 @@ class Edge {
     setLabel() {
         this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;
     }
-    createNodes() {
+    constructNodes(n1, n2) {
         this.nodes = NodeArray.of(n1, n2);
     }
     /**

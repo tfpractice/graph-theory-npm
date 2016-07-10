@@ -13,6 +13,13 @@ fdescribe('Edge', function() {
         myEdge = new GR.Edge(nyc, la, 10);
         altEdge = new GR.Edge(nyc, dc, 10);
     });
+    fdescribe('#constructNodes', function() {
+        it('sets the NodeArray based on the proper class', function() {
+            myEdge.constructNodes(nyc, la);
+            expect(myEdge.nodes instanceof NodeArray).toBeTrue();
+
+        });
+    });
     describe('init', function() {
         it('initializes with a nodes array[NodeArray]', function() {
             console.log(myEdge.nodes.constructor);
