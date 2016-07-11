@@ -8,6 +8,11 @@ var NodeArray = require('./nodeArray');
  * @memberOf! module:graphTheory
  */
 class Edge {
+    static injectDependency(NAClass = Node) {
+        this.prototype.constructNodes = function(n1, n2) {
+            this.nodes = NAClass.of(n1, n2);
+        }
+    }
     constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
         /**
          * an array of nodes

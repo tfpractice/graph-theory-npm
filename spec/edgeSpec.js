@@ -1,6 +1,7 @@
 fdescribe('Edge', function() {
     var GR = require('../src/graphTheory');
     var Node = GR.Node;
+    var Edge = GR.Edge;
     var NodeArray = GR.NodeArray;
     var myEdge, altEdge, la, nyc, dc;
     beforeAll(function() {
@@ -10,14 +11,26 @@ fdescribe('Edge', function() {
         la = new Node("LA");
         nyc = new Node("NYC");
         dc = new Node("DC");
-        myEdge = new GR.Edge(nyc, la, 10);
-        altEdge = new GR.Edge(nyc, dc, 10);
+        myEdge = new Edge(nyc, la, 10);
+        altEdge = new Edge(nyc, dc, 10);
     });
-    fdescribe('#constructNodes', function() {
-        it('sets the NodeArray based on the proper class', function() {
-            myEdge.constructNodes(nyc, la);
-            expect(myEdge.nodes instanceof NodeArray).toBeTrue();
+    fdescribe('#injectDependency(NAClass)', function() {
+        describe('when given a new class dependency ', () => {
+            class tempNodeArray extends NodeArray {
 
+            }
+            class SubEdge extends Edge {
+
+            }
+            SubEdge.injectDependency(tempNodeArray);
+
+            it('modifies all dependent methods to use the proper NodeArray class', function() {
+                myEdge.constructNodes(nyc, la);
+                expect(myEdge.nodes instanceof NodeArray).toBeTrue();
+                let mySubEdge = new SubEdge(nyc, la);
+                let sNodes = mySubEdge.nodes;
+                expect(sNodes instanceof tempNodeArray).toBeTrue();
+            });
         });
     });
     describe('init', function() {
@@ -35,7 +48,7 @@ fdescribe('Edge', function() {
         describe('when initialized without params', () => {
             var dEdge;
             beforeEach(function() {
-                dEdge = new GR.Edge();
+                dEdge = new Edge();
             });
             it('initializes with anonymous nodes ', function() {
                 expect(dEdge.nodes[0].label).toBeGreaterThan(32);
@@ -64,7 +77,7 @@ fdescribe('Edge', function() {
     });
     describe('#hasSameNodes', () => {
         it('checks if there are no distinct nodes between each edges NodeArray', function() {
-            let identical = new GR.Edge(la, nyc, 10);
+            let identical = new Edge(la, nyc, 10);
             expect(myEdge.hasSameNodes(identical)).toBeTrue();
 
         });
