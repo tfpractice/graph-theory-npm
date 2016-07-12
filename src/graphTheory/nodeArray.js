@@ -1,6 +1,10 @@
 var Node = require('./node');
 var RobustArray = require('./robustArray');
-module.exports = class NodeArray extends RobustArray.SetifyType(Node) {};
+module.exports = function(NodeClass) {
+    let Node = NodeClass;
+    class NodeArray extends RobustArray.SetifyType(Node) {};
+    return NodeArray;
+}
 
 /**
  * represents a set of Nodes
@@ -144,8 +148,6 @@ class OLDNodeArray extends Array {
     copy() {
         return this.slice(0);
     }
-
-
 }
 
 // module.exports = NodeArray;

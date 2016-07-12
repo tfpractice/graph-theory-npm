@@ -4,33 +4,38 @@ var Edge = require('./edge');
 // var DirectedEdge = require('./directedEdge');
 var RobustArray = require('./robustArray');
 
+module.exports = function(Edge, NodeArray, NodeClass) {
+    // let Edge = Edge;
+    // let NodeArray = NodeArray;
+    let Node = NodeClass;
 
-module.exports = class EdgeArray extends RobustArray.SetifyType(Edge) {
-    getNodes() {
-        return this.reduce((prev, next) => prev.union(next.nodes), this[0].nodes);
-        //     return this.reduce((nArray, e) => {
-        //         nArray.unionize(e.nodes);
-        //         return nArray;
-        //     }, new NodeArray());`
+    class EdgeArray extends RobustArray.SetifyType(Edge) {
+        getNodes() {
+            return this.reduce((prev, next) => prev.union(next.nodes), this[0].nodes);
+            //     return this.reduce((nArray, e) => {
+            //         nArray.unionize(e.nodes);
+            //         return nArray;
+            //     }, new NodeArray());`
+        }
+        getNeighbors(nodeArg) {
+            return this.edgesWithNode(nodeArg).reduce((nArray, e) => nArray.push(e.getNeighbor(nodeArg)), new this[0].nodes.constructor());
+        }
+        edgesWithNode(nodeArg) {
+            return this.filter(e => e.containsNode(nodeArg));
+        }
+        edgeByNodes(n1, n2) {
+            return this.find(e => (e.containsNode(n1) && e.containsNode(n2)));
+        }
+        edgesByArray(nArr) {
+            return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
+        }
+        inferNodeArray(nodes = this[0].nodes) {
+            return new nodes.constructor();
+        }
+        // static injectDependency(NAClass = )
     }
-    getNeighbors(nodeArg) {
-        return this.edgesWithNode(nodeArg).reduce((nArray, e) => nArray.push(e.getNeighbor(nodeArg)), new this[0].nodes.constructor());
-    }
-    edgesWithNode(nodeArg) {
-        return this.filter(e => e.containsNode(nodeArg));
-    }
-    edgeByNodes(n1, n2) {
-        return this.find(e => (e.containsNode(n1) && e.containsNode(n2)));
-    }
-    edgesByArray(nArr) {
-        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
-    }
-    inferNodeArray(nodes = this[0].nodes) {
-        return new nodes.constructor();
-    }
-    // static injectDependency(NAClass = )
-};
-
+    return EdgeArray;
+}
 /**
  * represents a set of Edges
  * @exports EdgeArray
