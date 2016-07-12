@@ -128,7 +128,9 @@ var RobustArray = BaseType => class extends Array {
         altArray.difference(this).forEach(dNode => this.push(dNode));
         return this;
     }
-
+    excludeElement(exEl) {
+        return this.filter(el => el != exEl);
+    }
     // nodeComplement(argObj) {
     // return this.filter(n => n.isEquivalent(argObj));
     // }

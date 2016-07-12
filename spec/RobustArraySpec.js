@@ -1,4 +1,4 @@
-fdescribe('RobustArray', () => {
+describe('RobustArray', () => {
     var GR = require('../src/graphTheory');
     let RobustArray = GR.RobustArray;
     var Node = GR.Node;
@@ -177,6 +177,12 @@ fdescribe('RobustArray', () => {
             let uArr = myArray.unionize(myAltArray);
             var nodeUnion = myArray.union(myAltArray);
             expect(uArr).toBeArray();
+        });
+    });
+    describe('#excludeElement', function() {
+        it('returns an array of all nodes excluding the argument', function() {
+            // expect(myArray.excludeNode(myNode)).toBeArray();
+            expect(myArray.excludeElement(n3)).not.toContain(n3);
         });
     });
     // describe('nodeComplement()', () => {

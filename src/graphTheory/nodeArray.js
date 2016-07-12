@@ -145,6 +145,7 @@ class OLDNodeArray extends Array {
         return this.slice(0);
     }
 
+
 }
 
 // module.exports = NodeArray;

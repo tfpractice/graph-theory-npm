@@ -2,8 +2,9 @@ var Node = require('./node');
 // var NodeArray = require('./nodeArray');
 var Edge = require('./edge');
 // var DirectedEdge = require('./directedEdge');
-
 var RobustArray = require('./robustArray');
+
+
 module.exports = class EdgeArray extends RobustArray.SetifyType(Edge) {
     getNodes() {
         return this.reduce((prev, next) => prev.union(next.nodes), this[0].nodes);
@@ -22,8 +23,12 @@ module.exports = class EdgeArray extends RobustArray.SetifyType(Edge) {
         return this.find(e => (e.containsNode(n1) && e.containsNode(n2)));
     }
     edgesByArray(nArr) {
-        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new EdgeArray());
+        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
     }
+    inferNodeArray(nodes = this[0].nodes) {
+        return new nodes.constructor();
+    }
+    // static injectDependency(NAClass = )
 };
 
 /**
