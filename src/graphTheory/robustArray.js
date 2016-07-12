@@ -62,9 +62,22 @@ var RobustArray = BaseType => class extends Array {
     isEquivalent(altArray) {
         return (this.hasSameSize(altArray) && this.isSubset(altArray));
     }
+    findEquivalentElement(argObj) {
+        return this.find(el => el.isEquivalent(argObj));
+    }
     removeElement(argObj) {
-        let nPos = this.indexOf(argObj);
-        return (nPos > -1) ? this.splice(nPos, 1) : false;
+        // let eqEls = this.findEquivalentElements(argObj);
+        let eqIdx = this.findIndex(el => el.isEquivalent(argObj));
+        return eqIdx > -1 && this.splice(eqIdx, 1);
+        // for (let i = eqEls.length - 1; i >= 0; i--) {
+        //     let ePos = this.indexOf(eqEls[i]);
+        //     return ePos > -1 && this.splice(ePos, 1);
+        // }
+        // eqEls.forEach(el => this.indexOf(el) > -1 && this.splice(this.indexOf(el), 1));
+        // let nPos = this.indexOf(argObj);
+        // console.log('the argObj', argObj);
+        // console.log('the poisiton', nPos);
+        // return (nPos > -1) ? this.splice(nPos, 1) : false;
     }
     clear() {
         this.splice(0);

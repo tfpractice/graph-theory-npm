@@ -85,6 +85,7 @@ describe('Graph', function() {
                 it('removes the edge from the edges array', function() {
                     myGraph.createEdge(bostonV, tampaV, 10);
                     myGraph.removeEdge(tempEdge);
+                    console.log(myGraph.containsEdge(tempEdge));
                     expect(myGraph.edges).not.toContain(tempEdge);
                 });
             });

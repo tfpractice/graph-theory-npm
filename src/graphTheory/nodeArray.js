@@ -133,14 +133,14 @@ class OLDNodeArray extends Array {
     splice(...args) {
         return NodeArray.from(super.splice(...args));
     }
-    removeNode(nArg) {
-        let nPos = this.indexOf(nArg);
-        return (nPos > -1) ? this.splice(nPos, 1) : false;
-    }
+    // removeNode(nArg) {
+    //     let nPos = this.indexOf(nArg);
+    //     return (nPos > -1) ? this.splice(nPos, 1) : false;
+    // }
 
-    nodeComplement(nArg) {
-        return this.filter(n => n.isEquivalent(nArg));
-    }
+    // nodeComplement(nArg) {
+    //     return this.filter(n => n.isEquivalent(nArg));
+    // }
     clear() {
         this.splice(0);
         return this;

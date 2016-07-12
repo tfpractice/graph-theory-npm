@@ -106,6 +106,16 @@ describe('RobustArray', () => {
             });
         });
     });
+    describe('contains()', () => {
+        it('checks if any of the elements are equivalent to that provided', function() {
+            expect(myArray.contains(myNode)).toBeTrue();
+        });
+    });
+    describe('findEquivalentElemenst()', function() {
+        it('retrieves an equivalent element in the object', function() {
+            expect(myArray.findEquivalentElement(myNode)).toBe(myNode);
+        });
+    });
     describe('#removeElement', function() {
         it('removes an element from the array', function() {
             myArray.removeElement(n3);

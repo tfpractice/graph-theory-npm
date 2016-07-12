@@ -1,4 +1,4 @@
-fdescribe('NodeArray', function() {
+describe('NodeArray', function() {
     var GR = require('../src/graphTheory');
     var Node = GR.Node;
     var NodeArray = GR.NodeArray;

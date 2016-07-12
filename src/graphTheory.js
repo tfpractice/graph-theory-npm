@@ -20,6 +20,7 @@ injector.factory('EdgeArray', EdgeArray);
 injector.factory('Graph', Graph);
 
 injector.retrieve('EdgeArray');
+exports.Graph = injector.retrieve('Graph');
 exports.EdgeArray = injector.retrieve("EdgeArray");
 exports.Edge = injector.retrieve("Edge");
 exports.NodeArray = injector.retrieve("NodeArray");
@@ -27,4 +28,3 @@ exports.Node = injector.retrieve("NodeClass");
 exports.RobustArray = RobustArray;
 
 exports.DirectedEdge = DirectedEdge;
-// exports.Graph = injector.retrieve('Graph');

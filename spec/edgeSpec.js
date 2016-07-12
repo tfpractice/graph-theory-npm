@@ -1,4 +1,4 @@
-fdescribe('Edge', function() {
+describe('Edge', function() {
     var GR = require('../src/graphTheory');
     var Node = GR.Node;
     var Edge = GR.Edge;
@@ -35,8 +35,8 @@ fdescribe('Edge', function() {
     });
     describe('init', function() {
         it('initializes with a nodes array[NodeArray]', function() {
-            console.log(myEdge.nodes.constructor);
-            console.log(NodeArray);
+            // console.log(myEdge.nodes.constructor);
+            // console.log(NodeArray);
             expect(myEdge.nodes instanceof NodeArray).toBeTrue();
         });
         it('initializes with a label[String]', function() {
