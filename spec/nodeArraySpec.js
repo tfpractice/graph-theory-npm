@@ -75,9 +75,9 @@ fdescribe('NodeArray', function() {
             expect(myArray.contains(myNode)).toBeTrue();
         });
     });
-    describe('#removeNode(nArg)', () => {
+    describe('#removeElement(nArg)', () => {
         it('removes a node from the array', function() {
-            myArray.removeNode(n3);
+            myArray.removeElement(n3);
             expect(myArray.contains(n3)).toBeFalse();
         });
     });
@@ -91,9 +91,9 @@ fdescribe('NodeArray', function() {
             expect(myArray.copy()).toEqual(myArray);
         });
     });
-    describe('isNode(argNode', () => {
+    describe('isValid(argNode', () => {
         it('returns true if argNode is an instanceof Node', function() {
-            expect(myArray.isNode(myNode)).toBeTrue();
+            expect(myArray.isValid(myNode)).toBeTrue();
         });
     });
     describe('push(argNode) ', () => {
@@ -131,9 +131,9 @@ fdescribe('NodeArray', function() {
             expect(myArray.difference(myAltArray)).toBeArray();
         });
     });
-    describe('hasDistinctNodes', function() {
+    describe('hasDistinctElements', function() {
         it('determines if caller has nodes that argument does not', function() {
-            expect(myArray.hasDistinctNodes(myAltArray)).toBeTrue();
+            expect(myArray.hasDistinctElements(myAltArray)).toBeTrue();
         });
     });
     describe('#isEquivalent', function() {
