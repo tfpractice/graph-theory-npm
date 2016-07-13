@@ -4,6 +4,7 @@
 * RobustArray module acts as a mixin for set theory methods
 * RobustArray#SetifyType(BaseType) creates a set of out a base type of elements
 * NodeArray extends RobustArray with Node
+* Node constructor now calls #setData and #setLabel with args
 
 ###Changed
 

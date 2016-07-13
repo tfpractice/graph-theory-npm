@@ -12,18 +12,24 @@ class Node {
          * the node identifier
          * @type {String}
          */
-        this.label = label;
-        this.setLabel();
+        this.setLabel(label);
+        this.setData(data);
+
+        // this.label = label;
+
         /**
          * the node data
          * @type {Object}
          */
-        this.data = data;
+
+        // this.data = data;
 
     }
-    setLabel() {
-        return this.label = this.label || (Math.floor(Math.random() * (33) + 33));
-
+    setLabel(lbl) {
+        return this.label = lbl;
+    }
+    setData(d) {
+        return this.data = d || {};
     }
     /**
      * Checks for identity via label attribute
