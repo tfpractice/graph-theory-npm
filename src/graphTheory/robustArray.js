@@ -67,7 +67,7 @@ var RobustArray = BaseType => class extends Array {
     }
     removeElement(argObj) {
         let eqIdx = this.findIndex(el => el.isEquivalent(argObj));
-        return this.splice(eqIdx, 1);
+        return eqIdx > -1 && this.splice(eqIdx, 1);
     }
     clear() {
         this.splice(0);

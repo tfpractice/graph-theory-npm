@@ -1,14 +1,21 @@
-describe('Graph', function() {
-    const GR = require('../src/graphTheory');
+fdescribe('Graph', function() {
+    var GR = require('../src/graphTheory');
+    var Node = GR.Node;
+    var Edge = GR.Edge;
+    var NodeArray = GR.NodeArray;
+    var EdgeArray = GR.EdgeArray;
     const Graph = GR.Graph;
+    beforeAll(function() {
+        console.log('\n.........Graph Spec.........');
+    });
     describe('delegated to subarray', () => {
         let laV, nyV, bostonV, tampaV, myGraph;
         beforeEach(function() {
             myGraph = new Graph();
-            bostonV = new GR.Node("boston");
-            nyV = new GR.Node("ny");
-            laV = new GR.Node("la");
-            tampaV = new GR.Node("tampa");
+            bostonV = new Node("boston");
+            nyV = new Node("ny");
+            laV = new Node("la");
+            tampaV = new Node("tampa");
             myGraph.addNode(bostonV);
             myGraph.addNode(tampaV);
             myGraph.addNode(nyV);
@@ -19,7 +26,7 @@ describe('Graph', function() {
         describe('NodeArray', function() {
             describe('addNode', function() {
                 it('appends a vertex to the nodes array', function() {
-                    let newNode = new GR.Node("anon");
+                    let newNode = new Node("anon");
                     myGraph.addNode(newNode);
                     expect(myGraph.nodes).toContain(newNode);
                 });
@@ -50,7 +57,7 @@ describe('Graph', function() {
         describe('edge mutations', () => {
             let tempEdge;
             beforeEach(function() {
-                tempEdge = new GR.Edge(bostonV, tampaV, 10);
+                tempEdge = new Edge(bostonV, tampaV, 10);
             });
             describe('createEdge', function() {
                 it('appends a new edge to the edges array', function() {
@@ -61,18 +68,16 @@ describe('Graph', function() {
             describe('#addEdge', function() {
                 let xn0, xn1;
                 beforeEach(function() {
-                    xn0 = new GR.Node('xn0');
-                    xn1 = new GR.Node('xn1');
+                    xn0 = new Node('xn0');
+                    xn1 = new Node('xn1');
                 });
                 it('imports the edges nodes', function() {
                     myGraph.createEdge(xn0, xn1);
                     expect(myGraph.nodes).toContain(xn0);
-
                 });
                 it('and adds the new edge ', function() {
                     let xEdge = myGraph.createEdge(xn0, xn1);
                     expect(myGraph.edges).toContain(xEdge);
-
                 });
             });
             describe('#containsEdge(earg)', () => {
@@ -85,7 +90,6 @@ describe('Graph', function() {
                 it('removes the edge from the edges array', function() {
                     myGraph.createEdge(bostonV, tampaV, 10);
                     myGraph.removeEdge(tempEdge);
-                    console.log(myGraph.containsEdge(tempEdge));
                     expect(myGraph.edges).not.toContain(tempEdge);
                 });
             });
@@ -98,7 +102,7 @@ describe('Graph', function() {
             });
             describe('edgesWithNode ', function() {
                 it('returns all edges with a particular source Node ', function() {
-                    let nytam = new GR.Edge(nyV, tampaV);
+                    let nytam = new Edge(nyV, tampaV);
                     expect(myGraph.edgesWithNode(nyV)).toContain(nytam);
                 });
             });
@@ -112,19 +116,19 @@ describe('Graph', function() {
     describe('major functions', function() {
         let myGraph, gNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12;
         beforeEach(function() {
-            v1 = new GR.Node("v1");
-            v2 = new GR.Node("v2");
-            v3 = new GR.Node("v3");
-            v4 = new GR.Node("v4");
-            v5 = new GR.Node("v5");
-            v6 = new GR.Node("v6");
-            v7 = new GR.Node("v7");
-            v8 = new GR.Node("v8");
-            v9 = new GR.Node("v9");
-            v10 = new GR.Node("v10");
-            v11 = new GR.Node("v11");
-            v12 = new GR.Node("v12");
-            gNodes = GR.NodeArray.of(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12);
+            v1 = new Node("v1");
+            v2 = new Node("v2");
+            v3 = new Node("v3");
+            v4 = new Node("v4");
+            v5 = new Node("v5");
+            v6 = new Node("v6");
+            v7 = new Node("v7");
+            v8 = new Node("v8");
+            v9 = new Node("v9");
+            v10 = new Node("v10");
+            v11 = new Node("v11");
+            v12 = new Node("v12");
+            gNodes = NodeArray.of(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12);
             myGraph = new Graph(gNodes);
             myGraph.createEdge(v1, v2, 2);
             myGraph.createEdge(v2, v3, 4);
@@ -140,10 +144,25 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
+        describe('constructEdges()', () => {
+            it('sets the #edges attribute to a new EdgeArray', function() {
+                myGraph.constructEdges();
+                expect(myGraph.edges).toBeEmptyArray();
+                expect(myGraph.edges instanceof EdgeArray).toBeTrue();
+            });
+        });
+        describe('constructNodes()', () => {
+            it('sets the #edges attribute to a new EdgeArray', function() {
+                let oldNodes = myGraph.nodes;
+                myGraph.constructNodes(oldNodes);
+                expect(myGraph.nodes instanceof NodeArray).toBeTrue();
+            });
+
+        });
         describe('setEdges()', () => {
             it('sets the edges array', function() {
                 let firstFour = myGraph.edges.slice(0, 3);
-                let newGraph = new Graph();
+                let newGraph = new Graph([1, 2, 3]);
                 newGraph.setEdges(firstFour);
                 expect(newGraph.edges).toEqual(firstFour);
             });
@@ -185,7 +204,6 @@ describe('Graph', function() {
                 expect(newGraph instanceof Graph).toBeTrue();
                 expect(newGraph.edges).toEqual(oddEdges);
             });
-
         });
         describe('subGraphByNodes(eArr)', () => {
             it('returns an graph of the selected nodes[no edges]', function() {
@@ -196,7 +214,6 @@ describe('Graph', function() {
                 expect(newGraph instanceof Graph).toBeTrue();
                 expect(newGraph.nodes).toEqual(oddNodes);
             });
-
         });
         describe('connected components', function() {
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
@@ -227,7 +244,6 @@ describe('Graph', function() {
                 it('returns a boolean checking for presence of equivalent component', function() {
                     myGraph.addComponent(nabes1);
                     expect(myGraph.containsComponent(nabes1)).toBeTrue();
-
                 });
             });
             describe('#removeComponent', () => {
@@ -320,7 +336,7 @@ describe('Graph', function() {
                         expect(dfsKeys).toBeObject();
                     });
                     it('has a pred[Node/null] value', function() {
-                        expect(dfsKeys.pred instanceof GR.Node).toBeTrue();
+                        expect(dfsKeys.pred instanceof Node).toBeTrue();
                     });
                     it('has a edgeCount[Number] value', function() {
                         expect(dfsKeys.edgeCount).toBeNumber();
@@ -337,7 +353,7 @@ describe('Graph', function() {
                     it('returns the path keys as a node array', function() {
                         let path = myGraph.dfs(v2);
                         let pkey = myGraph.pathNodes(path);
-                        expect(pkey instanceof GR.NodeArray).toBeTrue();
+                        expect(pkey instanceof NodeArray).toBeTrue();
                     });
                 });
             });
@@ -366,7 +382,7 @@ describe('Graph', function() {
                         expect(bfsKeys).toBeObject();
                     });
                     it('has a pred[Node/null] value', function() {
-                        expect(bfsKeys.pred instanceof GR.Node).toBeTrue();
+                        expect(bfsKeys.pred instanceof Node).toBeTrue();
                     });
                     it('has a edgeCount[Number] value', function() {
                         expect(bfsKeys.edgeCount).toBeNumber();
@@ -390,7 +406,7 @@ describe('Graph', function() {
                     expect(dijkKeys).toBeObject();
                 });
                 it('has a pred[Node/null] value', function() {
-                    expect(dijkKeys.pred instanceof GR.Node).toBeTrue();
+                    expect(dijkKeys.pred instanceof Node).toBeTrue();
                 });
                 it('has a edgeCount[Number] value', function() {
                     expect(dijkKeys.edgeCount).toBeNumber();
