@@ -70,10 +70,12 @@ class Graph {
      * @param {Node} dNode destination node
      * @param {Number} weight weight of new edge
      */
+    instantiateEdge(sNode, dNode, weight) {
+        return new Edge(sNode, dNode, weight);
+    }
+
     createEdge(sNode, dNode, weight) {
-        let tempEdge = new Edge(sNode, dNode, weight);
-        this.addEdge(tempEdge);
-        return tempEdge;
+        this.addEdge(this.instantiateEdge(sNode, dNode, weight));
     }
     addEdge(edgeArg) {
         this.copyNodes(edgeArg.nodes);

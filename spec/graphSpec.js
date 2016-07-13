@@ -55,29 +55,36 @@ fdescribe('Graph', function() {
             });
         });
         describe('edge mutations', () => {
-            let tempEdge;
+            let tempEdge, xn0, xn1, xEdge;
+            beforeEach(function() {
+                xn0 = new Node('xn0');
+                xn1 = new Node('xn1');
+            });
             beforeEach(function() {
                 tempEdge = new Edge(bostonV, tampaV, 10);
+                xEdge = myGraph.instantiateEdge(xn0, xn1);
+
             });
-            describe('createEdge', function() {
-                it('appends a new edge to the edges array', function() {
-                    myGraph.createEdge(bostonV, tampaV, 10);
-                    expect(myGraph.edges).toContain(tempEdge);
+            describe('instantiateEdge(n1, n2, w)', () => {
+                it('returns a new Edge made of the args', function() {
+                    let xEdge = myGraph.instantiateEdge(xn0, xn1);
+                    expect(xEdge instanceof Edge).toBeTrue();
                 });
             });
             describe('#addEdge', function() {
-                let xn0, xn1;
-                beforeEach(function() {
-                    xn0 = new Node('xn0');
-                    xn1 = new Node('xn1');
-                });
                 it('imports the edges nodes', function() {
-                    myGraph.createEdge(xn0, xn1);
+                    myGraph.addEdge(xEdge);
                     expect(myGraph.nodes).toContain(xn0);
                 });
                 it('and adds the new edge ', function() {
-                    let xEdge = myGraph.createEdge(xn0, xn1);
+                    myGraph.addEdge(xEdge);
                     expect(myGraph.edges).toContain(xEdge);
+                });
+            });
+            describe('createEdge', function() {
+                it('creates and appends a new edge to the edges array', function() {
+                    myGraph.createEdge(bostonV, tampaV, 10);
+                    expect(myGraph.edges).toContain(tempEdge);
                 });
             });
             describe('#containsEdge(earg)', () => {

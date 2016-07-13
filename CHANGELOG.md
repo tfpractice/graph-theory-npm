@@ -17,6 +17,7 @@
 * Graph#constructNodes to establish #nodes as NodeArray
 * Graph#constructEdges to establish #edges as EdgeArray
 * Graph#removeNode/removeEdge call #removeElement
+* Graph#instantiateEdge abstracts (Edge)dependency creation, returning a new Edge
 
 ###Changed
 
