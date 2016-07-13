@@ -18,9 +18,11 @@
 * Graph#constructEdges to establish #edges as EdgeArray
 * Graph#removeNode/removeEdge call #removeElement
 * Graph#instantiateEdge abstracts (Edge)dependency creation, returning a new Edge
+* Graph#subGraph returns a new instance with an optional set of nodes
+* * Graph#subGraphByEdges returns a new instance with an optional set of edges
 
 ###Changed
-
+* Graph#subGraphByNodes -> #SubGraph
 
 ## 3.0.1-alpha – 2016-07-03 
 ### Added

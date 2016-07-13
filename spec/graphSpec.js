@@ -202,24 +202,32 @@ fdescribe('Graph', function() {
                 expect(newGraph.nodes).toContain(...lastTwo);
             });
         });
-        describe('subGraphByEdges(eArr)', () => {
+        describe('subGraph', () => {
+            it('returns an instance of the current graph class', function() {
+                let cGraph = myGraph.subGraph();
+                expect(cGraph instanceof Graph).toBeTrue();
+            });
+            describe('when passed an array of nodes', () => {
+                it('returns an graph of the selected nodes[no edges]', function() {
+                    let oddNodes = myGraph.nodes.filter(function(el, id) {
+                        return id % 2 === 1;
+                    });
+                    let newGraph = myGraph.SubGraph(oddNodes);
+                    expect(newGraph instanceof Graph).toBeTrue();
+                    expect(newGraph.nodes).toEqual(oddNodes);
+                });
+            });
+        });
+        fdescribe('subGraphByEdges(eArr)', () => {
             it('returns a graph of all the nodes connected by a set of Edges', function() {
                 let oddEdges = myGraph.edges.filter(function(el, id) {
                     return id % 2 === 1;
                 });
                 let newGraph = myGraph.subGraphByEdges(oddEdges);
+                let xGraph = myGraph.subGraphByEdges();
+                console.log(xGraph);
                 expect(newGraph instanceof Graph).toBeTrue();
                 expect(newGraph.edges).toEqual(oddEdges);
-            });
-        });
-        describe('subGraphByNodes(eArr)', () => {
-            it('returns an graph of the selected nodes[no edges]', function() {
-                let oddNodes = myGraph.nodes.filter(function(el, id) {
-                    return id % 2 === 1;
-                });
-                let newGraph = myGraph.subGraphByNodes(oddNodes);
-                expect(newGraph instanceof Graph).toBeTrue();
-                expect(newGraph.nodes).toEqual(oddNodes);
             });
         });
         describe('connected components', function() {

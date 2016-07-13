@@ -49,13 +49,16 @@ class Graph {
     clearNodes() {
         this.nodes.forEach(n => this.removeNode(n));
         this.nodes.clear();
+        return this;
     }
     setNodes(nArr) {
         this.clearNodes();
         this.nodes = nArr;
+        return this;
     }
     copyNodes(nArr) {
         this.nodes.unionize(nArr);
+        return this;
     }
     /**
      * @param  {Node} nodeArg source node
@@ -89,24 +92,25 @@ class Graph {
     }
     clearEdges() {
         this.edges.clear();
+        return this;
     }
     setEdges(eArr) {
         let eNodes = eArr.getNodes();
         this.setNodes(eNodes);
         this.edges = eArr;
+        return this;
     }
     copyEdges(eArr) {
         let eNodes = eArr.getNodes();
         this.copyNodes(eNodes);
         this.edges.unionize(eArr);
+        return this;
     }
-    subGraphByEdges(eArr) {
-        let newGraph = new Graph();
-        newGraph.copyEdges(eArr);
-        return newGraph;
+    subGraph(nArr) {
+        return new this.constructor();
     }
-    subGraphByNodes(nArr) {
-        return new Graph(nArr);
+    subGraphByEdges(eArr = this.edges) {
+        return this.subGraph().copyEdges(eArr);
     }
     /**
      *
