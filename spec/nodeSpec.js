@@ -4,7 +4,7 @@ fdescribe('Node', function() {
     var myNode;
 
     beforeAll(function() {
-        console.log('\n.........Node Spec.........\n')
+        console.log('\n.........Node Spec.........');
     });
     beforeEach(function() {
         myNode = new Node("NYC", {

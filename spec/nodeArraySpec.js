@@ -4,7 +4,7 @@ fdescribe('NodeArray', function() {
     var NodeArray = GR.NodeArray;
     var myNode, myArray, myAltArray, n1, n2, n3, n4;
     beforeAll(function() {
-        console.log('\n.........NodeArray Spec.........\n')
+        console.log('\n.........NodeArray Spec.........');
     });
     beforeEach(function() {
         n1 = new Node("n1", 0);
@@ -38,37 +38,28 @@ fdescribe('NodeArray', function() {
         describe('#filter', () => {
             it('returns a new nodeArray', function() {
                 fArr = myMutable.filter(currEdge => myArray.contains(currEdge) === true);
-                // console.log(fArr);
                 expect(fArr instanceof NodeArray).toBeTrue();
             });
-
         });
         describe('#slice', () => {
             it('returns a new nodeArray', function() {
                 firstFour = myMutable.slice(0, 4);
-                //console.log(firstFour);
                 expect(firstFour instanceof NodeArray).toBeTrue();
             });
-
         });
         describe('#splice', () => {
             it('returns a new nodeArray', function() {
                 firstFour = myMutable.splice(0, 4);
-                //console.log(firstFour);
                 expect(firstFour instanceof NodeArray).toBeTrue();
             });
-
         });
         describe('#concat', () => {
             it('returns a new nodeArray', function() {
                 firstFour = myMutable.splice(0, 4);
                 let newArr = myMutable.concat(firstFour);
-                //console.log(newArr);
                 expect(newArr instanceof NodeArray).toBeTrue();
             });
-
         });
-
     });
     describe('contains()', () => {
         it('checks if any of the elements are equivalent to that provided', function() {
@@ -163,16 +154,12 @@ fdescribe('NodeArray', function() {
         it('combines the nodes of both arrays', function() {
             myArray.unionize(myAltArray);
             var nodeUnion = myArray.union(myAltArray);
-
             expect(myArray).toEqual(nodeUnion);
         });
         it('retuns the modified array', function() {
             let uArr = myArray.unionize(myAltArray);
             var nodeUnion = myArray.union(myAltArray);
             expect(uArr).toBeArray();
-
         });
     });
-
-
 });

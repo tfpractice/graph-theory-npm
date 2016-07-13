@@ -5,7 +5,7 @@ fdescribe('Edge', function() {
     var NodeArray = GR.NodeArray;
     var myEdge, altEdge, la, nyc, dc;
     beforeAll(function() {
-        console.log('\n.........Edge Spec.........\n')
+        console.log('\n.........Edge Spec.........');
     });
     beforeEach(function() {
         la = new Node("LA");
@@ -16,14 +16,9 @@ fdescribe('Edge', function() {
     });
     describe('#injectDependency(NAClass)', function() {
         describe('when given a new class dependency ', () => {
-            class tempNodeArray extends NodeArray {
-
-            }
-            class SubEdge extends Edge {
-
-            }
+            class tempNodeArray extends NodeArray {}
+            class SubEdge extends Edge {}
             SubEdge.injectDependency(tempNodeArray);
-
             it('modifies all dependent methods to use the proper NodeArray class', function() {
                 myEdge.constructNodes(nyc, la);
                 expect(myEdge.nodes instanceof NodeArray).toBeTrue();
@@ -35,7 +30,6 @@ fdescribe('Edge', function() {
     });
     describe('init', function() {
         it('initializes with a nodes array[NodeArray]', function() {
-
             expect(myEdge.nodes instanceof NodeArray).toBeTrue();
         });
         it('initializes with a label[String]', function() {
@@ -51,7 +45,6 @@ fdescribe('Edge', function() {
             });
             it('initializes with anonymous nodes ', function() {
                 expect(dEdge.nodes[0].label).toBeUndefined();
-
             });
             it('initializes with label "undefined_undefined" dest', function() {
                 expect(dEdge.label).toBeString();
@@ -78,13 +71,11 @@ fdescribe('Edge', function() {
             // console.log(myLabel);
             expect(myEdge.label).toEqual(myLabel);
         });
-
     });
     describe('#hasSameNodes', () => {
         it('checks if there are no distinct nodes between each edges NodeArray', function() {
             let identical = new Edge(la, nyc, 10);
             expect(myEdge.hasSameNodes(identical)).toBeTrue();
-
         });
     });
     describe('containsNode', function() {
@@ -92,17 +83,15 @@ fdescribe('Edge', function() {
             expect(myEdge.containsNode(la)).toBeTrue();
         });
     });
-
     describe('getNeighbor', function() {
         it('returns the edges alternate endpoint ', function() {
             expect(myEdge.getNeighbor(la)).toEqual(nyc);
         });
     });
-    fdescribe('#nabeArray', function() {
+    describe('#nabeArray', function() {
         it('returns the neighboring node as a NodeArray ', function() {
             expect(myEdge.nabeArray(nyc)).toBeArray();
             expect(myEdge.nabeArray(nyc)).toContain(la);
         });
-
     });
 });
