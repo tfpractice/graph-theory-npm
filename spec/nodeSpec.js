@@ -21,7 +21,7 @@ fdescribe('Node', function() {
     });
     describe('#setLabel', () => {
         it('returns and sets label  ', function() {
-            let newNode = new Node()
+            let newNode = new Node();
             expect(newNode.label).toBeUndefined();
         });
     });
