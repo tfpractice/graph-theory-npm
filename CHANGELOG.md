@@ -8,6 +8,7 @@
 * Edge#constructNodes sets the #nodes attribute to NodeArray
 * Edge#constructor delegates to #constructNodes
 * Edge#nabeArray returns the neighboring node as a NodeArray with single element
+* Edge.injectDependency(redefines #constructNodes to return specified nodearray type)
 
 ###Changed
 

@@ -35,8 +35,7 @@ fdescribe('Edge', function() {
     });
     describe('init', function() {
         it('initializes with a nodes array[NodeArray]', function() {
-            // console.log(myEdge.nodes.constructor);
-            // console.log(NodeArray);
+
             expect(myEdge.nodes instanceof NodeArray).toBeTrue();
         });
         it('initializes with a label[String]', function() {
@@ -93,11 +92,7 @@ fdescribe('Edge', function() {
             expect(myEdge.containsNode(la)).toBeTrue();
         });
     });
-    // describe('excludeNode(node)', () => {
-    // it('returns an array of nodes excluding that specified', function() {
-    // expect(myEdge.excludeNode(nyc)).toBeArray();
-    // });
-    // });
+
     describe('getNeighbor', function() {
         it('returns the edges alternate endpoint ', function() {
             expect(myEdge.getNeighbor(la)).toEqual(nyc);
