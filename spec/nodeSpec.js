@@ -1,12 +1,13 @@
 fdescribe('Node', function() {
     var GR = require('../src/graphTheory');
+    var Node = GR.Node;
     var myNode;
 
     beforeAll(function() {
         console.log('\n.........Node Spec.........\n')
     });
     beforeEach(function() {
-        myNode = new GR.Node("NYC", {
+        myNode = new Node("NYC", {
             name: "NYC"
         });
     });
@@ -20,7 +21,7 @@ fdescribe('Node', function() {
     });
     describe('#setLabel', () => {
         it('returns and sets label  ', function() {
-            let newNode = new GR.Node()
+            let newNode = new Node()
             expect(newNode.label).toBeUndefined();
         });
     });
