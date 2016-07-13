@@ -1,4 +1,4 @@
-describe('Edge', function() {
+fdescribe('Edge', function() {
     var GR = require('../src/graphTheory');
     var Node = GR.Node;
     var Edge = GR.Edge;
@@ -51,7 +51,7 @@ describe('Edge', function() {
                 dEdge = new Edge();
             });
             it('initializes with anonymous nodes ', function() {
-                expect(dEdge.nodes[0].label).toBeGreaterThan(32);
+                expect(dEdge.nodes[0].label).toBeUndefined();
 
             });
             it('initializes with label "undefined_undefined" dest', function() {
@@ -60,6 +60,12 @@ describe('Edge', function() {
             it('initializes with default weight 0', function() {
                 expect(dEdge.weight).toBe(0);
             });
+        });
+    });
+    describe('#constructNodes(n1,n2)', function() {
+        it('sets the nodes attribute to a NodeArray of the arguments', function() {
+            myEdge.constructNodes(nyc, la);
+            expect(myEdge.nodes).toContain(nyc, la);
         });
     });
     describe('isEquivalent(edgeArg)', () => {
@@ -96,5 +102,12 @@ describe('Edge', function() {
         it('returns the edges alternate endpoint ', function() {
             expect(myEdge.getNeighbor(la)).toEqual(nyc);
         });
+    });
+    fdescribe('#nabeArray', function() {
+        it('returns the neighboring node as a NodeArray ', function() {
+            expect(myEdge.nabeArray(nyc)).toBeArray();
+            expect(myEdge.nabeArray(nyc)).toContain(la);
+        });
+
     });
 });

@@ -5,6 +5,9 @@
 * RobustArray#SetifyType(BaseType) creates a set of out a base type of elements
 * NodeArray extends RobustArray with Node
 * Node constructor now calls #setData and #setLabel with args
+* Edge#constructNodes sets the #nodes attribute to NodeArray
+* Edge#constructor delegates to #constructNodes
+* Edge#nabeArray returns the neighboring node as a NodeArray with single element
 
 ###Changed
 
