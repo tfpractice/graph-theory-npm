@@ -1,6 +1,5 @@
 var Node = require('./node');
 var NodeArray = require('./nodeArray');
-// var NodeArray = require('./robustArray').SetifyType(Node);
 /**
  * represents a connection between nodes
  * @exports Edge
@@ -81,13 +80,10 @@ class Edge {
     nabeArray(nodeArg) {
         return this.nodes.excludeElement(nodeArg);
     }
-    // excludeNode(nodeArg) {
-    // return this.nodes.nodeComplement(nodeArg);
-    // }
+
 }
 /**
  * [An Edge]{@link module:graphTheory.Edge}
  * @typedef {module:graphTheory.Edge} Edge
  */
-// }
 module.exports = Edge;
