@@ -162,7 +162,7 @@ fdescribe('Graph', function() {
         describe('setEdges()', () => {
             it('sets the edges array', function() {
                 let firstFour = myGraph.edges.slice(0, 3);
-                let newGraph = new Graph([1, 2, 3]);
+                let newGraph = new Graph([new Node(), new Node(), new Node()]);
                 newGraph.setEdges(firstFour);
                 expect(newGraph.edges).toEqual(firstFour);
             });
