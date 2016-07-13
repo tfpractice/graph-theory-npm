@@ -1,7 +1,7 @@
 var RobustArray = BaseType => class extends Array {
     /**
      * checks type of argument for Node status
-     * @param  {Node} argObj
+     * @param  {Object | BaseType} argObj
      * @return {Boolean}
      */
     isValid(argObj) {
@@ -9,7 +9,7 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * checks for presence of node in this set
-     * @param  {Node} argObj [description]
+     * @param  {Object | BaseType} argObj [description]
      * @return {Boolean}
      */
     contains(argObj) {
@@ -67,6 +67,7 @@ var RobustArray = BaseType => class extends Array {
     }
     removeElement(argObj) {
         let eqIdx = this.findIndex(el => el.isEquivalent(argObj));
+        return this.splice(eqIdx, 1);
     }
     clear() {
         this.splice(0);
@@ -133,9 +134,7 @@ var RobustArray = BaseType => class extends Array {
     excludeElement(exEl) {
         return this.filter(el => el != exEl);
     }
-    // nodeComplement(argObj) {
-    // return this.filter(n => n.isEquivalent(argObj));
-    // }
+
 };
 
 module.exports.SetifyType = RobustArray;
