@@ -224,8 +224,6 @@ fdescribe('Graph', function() {
                     return id % 2 === 1;
                 });
                 let newGraph = myGraph.subGraphByEdges(oddEdges);
-                let xGraph = myGraph.subGraphByEdges();
-                console.log(xGraph);
                 expect(newGraph instanceof Graph).toBeTrue();
                 expect(newGraph.edges).toEqual(oddEdges);
             });
