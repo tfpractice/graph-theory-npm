@@ -3,12 +3,17 @@
 ### Added
 * RobustArray module acts as a mixin for set theory methods
 * RobustArray#SetifyType(BaseType) creates a set of out a base type of elements
-* NodeArray extends RobustArray with Node
+* RobustArray#filter, #splice, #slice, #concat and #union leverage this.constructor to return an instance of the proper subclass.
+* NodeArray extends RobustArray with Node class
 * Node constructor now calls #setData and #setLabel with args
 * Edge#constructNodes sets the #nodes attribute to NodeArray
 * Edge#constructor delegates to #constructNodes
 * Edge#nabeArray returns the neighboring node as a NodeArray with single element
 * Edge.injectDependency(redefines #constructNodes to return specified nodearray type)
+* EdgeArray extends RobustArray with Edge class
+* EdgeArray#getNeighbors leverages Edge#nabeArray to return proper NodeArray
+* EdgeArray#getNodes uses initial edge#nodes to infer proper NodeArray
+* EdgeArray#edgesByArray uses this.constructor to infer proper EdgeArray
 
 ###Changed
 
