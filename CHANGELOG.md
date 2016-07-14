@@ -14,6 +14,8 @@
 * EdgeArray#getNeighbors leverages Edge#nabeArray to return proper NodeArray
 * EdgeArray#getNodes uses initial edge#nodes to infer proper NodeArray
 * EdgeArray#edgesByArray uses this.constructor to infer proper EdgeArray
+* ComponentArray implements RobustArray with NodeArray to group separate sets of nodes
+* ComponentArray#hasIntersectingComponent, #findIntersectingComponent, #mergeComponents, #integrateComponent
 * Graph#constructNodes to establish #nodes as NodeArray
 * Graph#constructEdges to establish #edges as EdgeArray
 * Graph#removeNode/removeEdge call #removeElement
