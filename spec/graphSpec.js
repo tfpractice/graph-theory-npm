@@ -1,9 +1,10 @@
-describe('Graph', function() {
+fdescribe('Graph', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
     var Edge = GR.Edge;
     var NodeArray = GR.NodeArray;
     var EdgeArray = GR.EdgeArray;
+    var ComponentArray = GR.ComponentArray;
     const Graph = GR.Graph;
     beforeAll(function() {
         console.log('\n.........Graph Spec.........');
@@ -151,13 +152,6 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        describe('constructEdges()', () => {
-            it('sets the #edges attribute to a new EdgeArray', function() {
-                myGraph.constructEdges();
-                expect(myGraph.edges).toBeEmptyArray();
-                expect(myGraph.edges instanceof EdgeArray).toBeTrue();
-            });
-        });
         describe('constructNodes()', () => {
             it('sets the #edges attribute to a new EdgeArray', function() {
                 let oldNodes = myGraph.nodes;
@@ -166,6 +160,21 @@ describe('Graph', function() {
             });
 
         });
+        describe('constructEdges()', () => {
+            it('sets the #edges attribute to a new EdgeArray', function() {
+                myGraph.constructEdges();
+                expect(myGraph.edges).toBeEmptyArray();
+                expect(myGraph.edges instanceof EdgeArray).toBeTrue();
+            });
+        });
+        fdescribe('#constructComponents()', function() {
+            it('sets the components attribute to a  new ComponentArray', function() {
+                myGraph.constructComponents();
+                expect(myGraph.components instanceof ComponentArray).toBeTrue();
+
+            });
+        });
+
         describe('setEdges()', () => {
             it('sets the edges array', function() {
                 let firstFour = myGraph.edges.slice(0, 3);

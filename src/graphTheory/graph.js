@@ -81,7 +81,6 @@ class Graph {
     instantiateEdge(sNode, dNode, weight) {
         return new Edge(sNode, dNode, weight);
     }
-
     createEdge(sNode, dNode, weight) {
         this.addEdge(this.instantiateEdge(sNode, dNode, weight));
     }
@@ -192,7 +191,8 @@ class Graph {
         return path;
     }
     containsComponent(compArg) {
-        return this.components.some(currComp => currComp.isEquivalent(compArg))
+        // return this.components.some(currComp => currComp.isEquivalent(compArg))
+        return this.components.contains(compArg);
     }
     /**
      * adds a component to the graph if not present
