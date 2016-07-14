@@ -3,7 +3,6 @@ var NodeArray = require('./node_array');
 var Edge = require('./edge');
 // var DirectedEdge = require('./directedEdge');
 var RobustArray = require('./robust_array');
-
 /**
  * represents a set of Edges
  * @exports EdgeArray
@@ -26,13 +25,8 @@ class EdgeArray extends RobustArray.SetifyType(Edge) {
     getNeighbors(nArg) {
         let sharedEdges = this.edgesWithNode(nArg);
         return (!sharedEdges.isEmpty()) && sharedEdges.map(e => e.nabeArray(nArg)).reduce((pred, succ) => pred.unionize(succ));
-
-
     }
-
 }
-
-
 module.exports = EdgeArray;
 /**
  * [An EdgeArray]{@link module:graphTheory.EdgeArray}
