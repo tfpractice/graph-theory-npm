@@ -35,7 +35,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
      */
     mergeComponents(origComp, newComp) {
         let ucomp = origComp.unionize(newComp);
-        this.removeComponent(newComp);
+        this.removeElement(newComp);
         return ucomp;
     }
     /**
@@ -45,6 +45,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
     integrateComponent(compArg) {
         let oComp = this.findIntersectingComponent(compArg);
         if (oComp) this.mergeComponents(oComp, compArg);
+        // return oComp && this.mergeComponents(oComp, compArg);
     }
     /**
      * checks if any current components share nodes with the argument
