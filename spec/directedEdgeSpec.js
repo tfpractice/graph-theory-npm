@@ -1,5 +1,5 @@
 describe('DirectedEdge', function() {
-    var GR = require('../src/graphTheory');
+    var GR = require('../src/graph_theory');
     var myEdge;
     var la = new GR.Node("LA");
     var nyc = new GR.Node("NYC");

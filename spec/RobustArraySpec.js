@@ -1,5 +1,5 @@
 describe('RobustArray', () => {
-    var GR = require('../src/graphTheory');
+    var GR = require('../src/graph_theory');
     let RobustArray = GR.RobustArray;
     var Node = GR.Node;
     // let NodeArray = RobustArray.SetifyType(Node);

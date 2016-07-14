@@ -2,7 +2,7 @@
     "name": "graph-theory-npm",
     "version": "3.0.1-alpha",
     "description": "Node.js module implementing basic graph theory algorithms",
-    "main": "src/graphTheory.js",
+    "main": "src/graph_theory.js",
     "scripts": {
         "test": "jasmine"
     },
