@@ -2,6 +2,7 @@ var Node = require('./node');
 var NodeArray = require('./node_array');
 var Edge = require('./edge');
 var EdgeArray = require('./edge_array');
+var ComponentArray = require('./component_array');
 /**
  * represents a Graph
  * @exports Graph
@@ -12,6 +13,7 @@ class Graph {
     constructor(nodes) {
         this.constructNodes(nodes);
         this.constructEdges();
+        this.constructComponents();
         /**
          * the graph's components
          * @type {Component[]}
@@ -31,6 +33,9 @@ class Graph {
          * @type {EdgeArray}
          */
         this.edges = new EdgeArray();
+    }
+    constructComponents() {
+        this.components = new ComponentArray();
     }
     /**
      * adds a node to the nodes array, if not already contained
@@ -107,7 +112,7 @@ class Graph {
         return this;
     }
     subGraph(nArr) {
-        return new this.constructor();
+        return new this.constructor(nArr);
     }
     subGraphByEdges(eArr = this.edges) {
         return this.subGraph().copyEdges(eArr);

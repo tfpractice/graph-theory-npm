@@ -212,13 +212,13 @@ fdescribe('Graph', function() {
                     let oddNodes = myGraph.nodes.filter(function(el, id) {
                         return id % 2 === 1;
                     });
-                    let newGraph = myGraph.SubGraph(oddNodes);
+                    let newGraph = myGraph.subGraph(oddNodes);
                     expect(newGraph instanceof Graph).toBeTrue();
                     expect(newGraph.nodes).toEqual(oddNodes);
                 });
             });
         });
-        fdescribe('subGraphByEdges(eArr)', () => {
+        describe('subGraphByEdges(eArr)', () => {
             it('returns a graph of all the nodes connected by a set of Edges', function() {
                 let oddEdges = myGraph.edges.filter(function(el, id) {
                     return id % 2 === 1;
