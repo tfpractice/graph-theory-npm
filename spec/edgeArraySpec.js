@@ -74,10 +74,11 @@ describe('EdgeArray', function() {
             expect(myArray.getNodes() instanceof NodeArray).toBeTrue();
         });
     });
-    describe('#getNeighbors(nde)', function() {
+    fdescribe('#getNeighbors(nde)', function() {
         it('returns a NodeArray of neighboring nodes', function() {
             myArray.push(altEdge);
             expect(myArray.getNeighbors(nyc)).toContain(dc);
+            expect(myArray.getNeighbors(nyc) instanceof NodeArray).toBeTrue();
         });
     });
     describe('#edgeByNodes(n1, n2)', () => {

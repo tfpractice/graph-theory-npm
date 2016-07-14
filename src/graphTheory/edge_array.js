@@ -18,13 +18,16 @@ class EdgeArray extends RobustArray.SetifyType(Edge) {
         return this.find(e => (e.containsNode(n1) && e.containsNode(n2)));
     }
     edgesByArray(nArr) {
-        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
+        return (!nArr.isEmpty()) && nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
     }
     getNodes() {
-        return this.reduce((nArr, e) => nArr.union(e.nodes), this[0].nodes);
+        return (!this.isEmpty()) && this.reduce((nArr, e) => nArr.union(e.nodes), this[0].nodes);
     }
     getNeighbors(nArg) {
-        return this.edgesWithNode(nArg).reduce((nArray, e) => nArray.unionize(e.nabeArray(nArg)), this[0].nabeArray(nArg));
+        let sharedEdges = this.edgesWithNode(nArg);
+        return (!sharedEdges.isEmpty()) && sharedEdges.map(e => e.nabeArray(nArg)).reduce((pred, succ) => pred.unionize(succ));
+
+
     }
 
 }
