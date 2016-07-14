@@ -237,7 +237,7 @@ fdescribe('Graph', function() {
                 expect(newGraph.edges).toEqual(oddEdges);
             });
         });
-        describe('connected components', function() {
+        fdescribe('connected components', function() {
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
                 nabes1 = myGraph.getNeighbors(v1);
@@ -262,7 +262,7 @@ fdescribe('Graph', function() {
                     });
                 });
             });
-            describe('#containsComponent()', function() {
+            fdescribe('#containsComponent()', function() {
                 it('returns a boolean checking for presence of equivalent component', function() {
                     myGraph.addComponent(nabes1);
                     expect(myGraph.containsComponent(nabes1)).toBeTrue();

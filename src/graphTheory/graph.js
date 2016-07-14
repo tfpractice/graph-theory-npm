@@ -191,7 +191,6 @@ class Graph {
         return path;
     }
     containsComponent(compArg) {
-        // return this.components.some(currComp => currComp.isEquivalent(compArg))
         return this.components.contains(compArg);
     }
     /**
