@@ -10,7 +10,8 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
      * @param {Component} compArg [description]
      */
     push(compArg) {
-        this.hasIntersectingComponent(compArg) ? this.integrateComponent(compArg) : super.push(compArg);
+        // this.hasIntersectingComponent(compArg) ? this.integrateComponent(compArg) : super.push(compArg);
+        return this.integrateComponent(compArg) || super.push(compArg);
     }
     /**
      * checks if any current components share nodes with the argument
@@ -36,7 +37,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
     mergeComponents(origComp, newComp) {
         let ucomp = origComp.unionize(newComp);
         this.removeElement(newComp);
-        return ucomp;
+        return this;
     }
     /**
      * integrates a component into any of the graphs intersectung components

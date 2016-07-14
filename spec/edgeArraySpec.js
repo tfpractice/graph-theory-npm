@@ -74,7 +74,7 @@ describe('EdgeArray', function() {
             expect(myArray.getNodes() instanceof NodeArray).toBeTrue();
         });
     });
-    fdescribe('#getNeighbors(nde)', function() {
+    describe('#getNeighbors(node)', function() {
         it('returns a NodeArray of neighboring nodes', function() {
             myArray.push(altEdge);
             expect(myArray.getNeighbors(nyc)).toContain(dc);

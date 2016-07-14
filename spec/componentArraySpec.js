@@ -4,7 +4,6 @@ fdescribe('ComponentArray', function() {
     var NodeArray = GR.NodeArray;
     var ComponentArray = GR.ComponentArray;
     var Graph = GR.Graph;
-    // var myNode, myArray, myAltArray, n1, n2, n3, n4;
     let myGraph, gNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12;
     let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
     let myComponents;
@@ -45,14 +44,18 @@ fdescribe('ComponentArray', function() {
             nabes2 = myGraph.getNeighbors(v2);
             nabes3 = myGraph.getNeighbors(v3);
             nabes6 = myGraph.getNeighbors(v6);
-            nabes7 = myGraph.getNeighbors(v7);
+            // nabes7 = myGraph.getNeighbors(v7);
             myComponents = new ComponentArray();
         });
         describe('#push', () => {
             describe('when there is no intersecting component', () => {
                 it('pushes a NodeArray to the components array', function() {
                     myComponents.push(nabes1);
-                    expect(myComponents).toContain(nabes1);
+                    myComponents.push(nabes6);
+                    expect(myComponents.length).toEqual(2);
+                });
+                it('returns the ComponentArray', function() {
+                    expect(myComponents.push(nabes1)).toBe(myComponents);
                 });
             });
             describe('when there is an intersecting component', () => {
@@ -60,6 +63,9 @@ fdescribe('ComponentArray', function() {
                     myComponents.push(nabes1);
                     myComponents.push(nabes2);
                     expect(myComponents.length).toEqual(1);
+                });
+                it('returns the ComponentArray', function() {
+                    expect(myComponents.push(nabes1)).toBe(myComponents);
                 });
             });
         });
@@ -94,10 +100,6 @@ fdescribe('ComponentArray', function() {
                     expect(myComponents.findIntersectingComponent(nabes2)).toBeUndefined();
                 });
             });
-
-
-
-
         });
         describe('mergeComponents)origComp, newComp)', function() {
             beforeEach(function() {
@@ -110,20 +112,15 @@ fdescribe('ComponentArray', function() {
             it('removes the newComp arg', function() {
                 expect(myComponents).not.toContain(nabes2);
             });
-            it('returns the augmented component', function() {
-                expect(myComponents.mergeComponents(nabes1, nabes2)).toBe(nabes1);
+            it('returns the augmented ComponentArray', function() {
+                expect(myComponents.mergeComponents(nabes1, nabes2)).toBe(myComponents);
             });
         });
-        describe('integrateComponent(compArg)', function() {
+        describe('#integrateComponent(compArg)', function() {
             describe('when there is no intersecting component', () => {
                 it('returns false', function() {
-                    // myComponents.push(nabes1);
-                    // console.log(myComponents.length);
                     myComponents.integrateComponent(nabes6);
-                    console.log(myComponents.integrateComponent(nabes6));
-                    expect(myComponents.integrateComponent(nabes6)).not.toBeFalsy();
-
-                    // expect(myComponents.length).toEqual(1);
+                    expect(myComponents.integrateComponent(nabes6)).toBeFalse();
                 });
             });
             describe('when there is an intersecting component', () => {
@@ -134,17 +131,5 @@ fdescribe('ComponentArray', function() {
                 });
             });
         });
-        // describe('getUnvisitedNeighbors(nodeArg,compArg)', function() {
-        // it('returns all neighbors not yet included in the given component', function() {
-        // myComponents.push(nabes1);
-        // let unarr = myComponents.getUnvisitedNeighbors(v3, nabes1);
-        // expect(myComponents.getUnvisitedNeighbors(v3, nabes1)).toContain(v4);
-        // });
-        // });
-        // describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
-        // it('returns all edges not yet included in the given component', function() {
-        // expect(myComponents.getUnvisitedEdges(v3, nabes1)).toBeArray();
-        // });
-        // });
     });
 });
