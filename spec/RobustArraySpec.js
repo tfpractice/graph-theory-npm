@@ -60,7 +60,7 @@ describe('RobustArray', () => {
                 });
             });
         });
-        fdescribe('#isEmpty', function() {
+        describe('#isEmpty', function() {
             it('returns a boolean describing the length of the array', function() {
                 let xArray = new NodeArray();
                 expect(xArray.isEmpty()).toBeTrue();
