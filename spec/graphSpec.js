@@ -121,7 +121,7 @@ fdescribe('Graph', function() {
             });
         });
     });
-    describe('major functions', function() {
+    fdescribe('major functions', function() {
         let myGraph, gNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12;
         beforeEach(function() {
             v1 = new Node("v1");
@@ -167,7 +167,7 @@ fdescribe('Graph', function() {
                 expect(myGraph.edges instanceof EdgeArray).toBeTrue();
             });
         });
-        fdescribe('#constructComponents()', function() {
+        describe('#constructComponents()', function() {
             it('sets the components attribute to a  new ComponentArray', function() {
                 myGraph.constructComponents();
                 expect(myGraph.components instanceof ComponentArray).toBeTrue();
@@ -247,13 +247,13 @@ fdescribe('Graph', function() {
                 nabes6 = myGraph.getNeighbors(v6);
                 nabes7 = myGraph.getNeighbors(v7);
             });
-            fdescribe('#containsComponent()', function() {
+            describe('#containsComponent()', function() {
                 it('returns a boolean checking for presence of equivalent component', function() {
                     myGraph.addComponent(nabes1);
                     expect(myGraph.containsComponent(nabes1)).toBeTrue();
                 });
             });
-            fdescribe('#addComponent', () => {
+            describe('#addComponent', () => {
                 describe('when there is no intersecting component', () => {
                     it('pushes a NodeArray to the components array', function() {
                         myGraph.addComponent(nabes1);
@@ -268,7 +268,7 @@ fdescribe('Graph', function() {
                     });
                 });
             });
-            fdescribe('#removeComponent', () => {
+            describe('#removeComponent', () => {
                 it('splices a NodeArray from the components array', function() {
                     myGraph.addComponent(nabes1);
                     myGraph.removeComponent(nabes1);
@@ -325,7 +325,7 @@ fdescribe('Graph', function() {
                     expect(myGraph.getUnvisitedNeighbors(v3, nabes1)).toContain(v4);
                 });
             });
-            describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+            fdescribe('getUnvisitedEgdes(nodeArg,compArg)', function() {
                 it('returns all edges not yet included in the given component', function() {
                     expect(myGraph.getUnvisitedEdges(v3, nabes1)).toBeArray();
                 });
@@ -345,7 +345,7 @@ fdescribe('Graph', function() {
                 myGraph.createEdge(v2, v1, 10)
             });
             describe('dfs(initNode)', () => {
-                it('returns a path[Map] containing all nodes reachable via initNode', function() {
+                fit('returns a path[Map] containing all nodes reachable via initNode', function() {
                     let tVal = myGraph.dfs(v2);
                     expect(tVal instanceof Map).toBeTruthy();
                 });

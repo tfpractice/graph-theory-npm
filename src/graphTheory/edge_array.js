@@ -17,7 +17,7 @@ class EdgeArray extends RobustArray.SetifyType(Edge) {
         return this.find(e => (e.containsNode(n1) && e.containsNode(n2)));
     }
     edgesByArray(nArr) {
-        return (!nArr.isEmpty()) && nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
+        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
     }
     getNodes() {
         return (!this.isEmpty()) && this.reduce((nArr, e) => nArr.union(e.nodes), this[0].nodes);
