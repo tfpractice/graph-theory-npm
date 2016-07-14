@@ -7,6 +7,9 @@ var RobustArray = BaseType => class extends Array {
     isValid(argObj) {
         return argObj instanceof BaseType;
     }
+    isEmpty() {
+        return this.length === 0;
+    }
     /**
      * checks for presence of node in this set
      * @param  {Object | BaseType} argObj [description]

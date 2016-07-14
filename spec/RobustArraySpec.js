@@ -37,6 +37,7 @@ describe('RobustArray', () => {
                 });
             });
         });
+
     });
     describe('Array methods', function() {
         describe('push(argObj) ', () => {
@@ -57,6 +58,12 @@ describe('RobustArray', () => {
                     myArray.push(2);
                     expect(myArray.length).toEqual(currLength);
                 });
+            });
+        });
+        fdescribe('#isEmpty', function() {
+            it('returns a boolean describing the length of the array', function() {
+                let xArray = new NodeArray();
+                expect(xArray.isEmpty()).toBeTrue();
             });
         });
         describe('#filter', () => {
