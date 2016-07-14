@@ -18,7 +18,7 @@ class Graph {
          * the graph's components
          * @type {Component[]}
          */
-        this.components = [];
+        // this.components = [];
     }
     constructNodes(nArr) {
         /**
