@@ -1,1 +1,0 @@
-componentSpec.js

@@ -1,8 +1,8 @@
 var Node = require('./node');
-var NodeArray = require('./nodeArray');
+var NodeArray = require('./node_array');
 var Edge = require('./edge');
 // var DirectedEdge = require('./directedEdge');
-var RobustArray = require('./robustArray');
+var RobustArray = require('./robust_array');
 
 /**
  * represents a set of Edges

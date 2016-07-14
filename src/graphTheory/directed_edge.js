@@ -1,5 +1,5 @@
 var Node = require('./node');
-var NodeArray = require('./nodeArray');
+var NodeArray = require('./node_array');
 var Edge = require('./edge');
 
 

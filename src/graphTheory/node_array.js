@@ -1,5 +1,5 @@
 var Node = require('./node');
-var RobustArray = require('./robustArray');
+var RobustArray = require('./robust_array');
 /**
  * represents a set of Nodes
  * @exports NodeArray

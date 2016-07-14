@@ -1,7 +1,7 @@
 var Node = require('./node');
-var NodeArray = require('./nodeArray');
+var NodeArray = require('./node_array');
 var Edge = require('./edge');
-var EdgeArray = require('./edgeArray');
+var EdgeArray = require('./edge_array');
 /**
  * represents a Graph
  * @exports Graph

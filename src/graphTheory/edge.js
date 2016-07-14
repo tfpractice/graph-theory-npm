@@ -1,5 +1,5 @@
 var Node = require('./node');
-var NodeArray = require('./nodeArray');
+var NodeArray = require('./node_array');
 /**
  * represents a connection between nodes
  * @exports Edge
