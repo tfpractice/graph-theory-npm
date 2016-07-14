@@ -201,8 +201,7 @@ class Graph {
         this.components.push(compArg);
     }
     removeComponent(compArg) {
-        let cPos = this.components.findIndex(currComp => currComp.isEquivalent(compArg));
-        return cPos > -1 ? this.components.splice(cPos, 1) : compArg;
+        this.components.removeElement(compArg);
     }
     /**
      * returns any current components which intersect with the specified component

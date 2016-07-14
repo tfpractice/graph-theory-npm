@@ -268,8 +268,7 @@ fdescribe('Graph', function() {
                     });
                 });
             });
-
-            describe('#removeComponent', () => {
+            fdescribe('#removeComponent', () => {
                 it('splices a NodeArray from the components array', function() {
                     myGraph.addComponent(nabes1);
                     myGraph.removeComponent(nabes1);
