@@ -13,6 +13,7 @@
 * EdgeArray extends RobustArray with Edge class
 * EdgeArray#getNeighbors leverages Edge#nabeArray to return proper NodeArray
 * EdgeArray#getNodes uses initial edge#nodes to infer proper NodeArray
+* EdgeArray#xNodes returns an empty NodeArray
 * EdgeArray#edgesByArray uses this.constructor to infer proper EdgeArray
 * ComponentArray implements RobustArray with NodeArray to group separate sets of nodes
 * ComponentArray#hasIntersectingComponent, #findIntersectingComponent, #mergeComponents, #integrateComponent

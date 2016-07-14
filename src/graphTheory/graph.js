@@ -18,7 +18,6 @@ class Graph {
          * the graph's components
          * @type {Component[]}
          */
-        // this.components = [];
     }
     constructNodes(nArr) {
         /**
@@ -154,18 +153,14 @@ class Graph {
      */
     visitPath(pathArg) {
         let pNodes = this.pathNodes(pathArg);
-        // console.log(pNodes);
         let lastNode = pNodes.pop();
         let nextEdges = this.getUnvisitedEdges(lastNode, pNodes);
 
         if (nextEdges.length === 0) {
             return pathArg;
         } else {
-            console.log(nextEdges instanceof Array);
-
             let predWeight = pathArg.get(lastNode).pathWeight;
             let predCount = pathArg.get(lastNode).edgeCount;
-            // nextEdges.forEach(e=> console.log(e));
             nextEdges.forEach(currEdge => {
                 let nabe = currEdge.getNeighbor(lastNode);
                 pathArg.set(nabe, {

@@ -1,4 +1,4 @@
-fdescribe('Graph', function() {
+describe('Graph', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
     var Edge = GR.Edge;
@@ -121,7 +121,7 @@ fdescribe('Graph', function() {
             });
         });
     });
-    fdescribe('major functions', function() {
+    describe('major functions', function() {
         let myGraph, gNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12;
         beforeEach(function() {
             v1 = new Node("v1");
@@ -237,7 +237,7 @@ fdescribe('Graph', function() {
                 expect(newGraph.edges).toEqual(oddEdges);
             });
         });
-        fdescribe('connected components', function() {
+        describe('connected components', function() {
             let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
             beforeEach(function() {
                 nabes1 = myGraph.getNeighbors(v1);
@@ -325,7 +325,7 @@ fdescribe('Graph', function() {
                     expect(myGraph.getUnvisitedNeighbors(v3, nabes1)).toContain(v4);
                 });
             });
-            fdescribe('getUnvisitedEgdes(nodeArg,compArg)', function() {
+            describe('getUnvisitedEgdes(nodeArg,compArg)', function() {
                 it('returns all edges not yet included in the given component', function() {
                     expect(myGraph.getUnvisitedEdges(v3, nabes1)).toBeArray();
                 });
@@ -345,7 +345,7 @@ fdescribe('Graph', function() {
                 myGraph.createEdge(v2, v1, 10)
             });
             describe('dfs(initNode)', () => {
-                fit('returns a path[Map] containing all nodes reachable via initNode', function() {
+                it('returns a path[Map] containing all nodes reachable via initNode', function() {
                     let tVal = myGraph.dfs(v2);
                     expect(tVal instanceof Map).toBeTruthy();
                 });

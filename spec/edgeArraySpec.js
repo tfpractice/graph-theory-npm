@@ -71,14 +71,47 @@ describe('EdgeArray', function() {
     describe('getNodes', () => {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
             let theNodes = myArray.getNodes();
+            let xEdges = new EdgeArray();
+            // console.log(xEdges.getNodes());
             expect(myArray.getNodes() instanceof NodeArray).toBeTrue();
         });
     });
+    describe('#xNodes()', function() {
+        it('returns an new NodeArray of all the edges nodes', function() {
+            expect(myArray.xNodes() instanceof NodeArray).toBeTrue();
+        });
+    });
+    describe('#nodeMap', function() {
+        describe('when the array is empty', () => {
+            it('returns am empty NodeArray', function() {
+                let xEdges = new EdgeArray();
+                expect(xEdges.nodeMap() instanceof NodeArray).toBeTrue();
+
+            });
+        });
+        describe('when array is not empty', () => {
+            it('returns a native Array of each edges nodes', function() {
+                expect(myArray.nodeMap() instanceof Array).toBeTrue();
+
+            });
+        });
+
+    });
     describe('#getNeighbors(node)', function() {
-        it('returns a NodeArray of neighboring nodes', function() {
-            myArray.push(altEdge);
-            expect(myArray.getNeighbors(nyc)).toContain(dc);
-            expect(myArray.getNeighbors(nyc) instanceof NodeArray).toBeTrue();
+        describe('when there are edges that contain the argument', () => {
+            it('returns a NodeArray of neighboring nodes', function() {
+                myArray.push(altEdge);
+                expect(myArray.getNeighbors(nyc)).toContain(dc);
+                expect(myArray.getNeighbors(nyc) instanceof NodeArray).toBeTrue();
+            });
+        });
+        describe('when there are No edges that contain the argument', () => {
+            it('returns an empty NodeArray', function() {
+                let xArray = new EdgeArray();
+                // myArray.push(altEdge);
+                // expect(xArray.getNeighbors(nyc)).toContain(dc);
+                expect(xArray.getNeighbors(nyc) instanceof NodeArray).toBeTrue();
+            });
         });
     });
     describe('#edgeByNodes(n1, n2)', () => {
