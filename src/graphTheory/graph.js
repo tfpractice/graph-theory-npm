@@ -198,7 +198,7 @@ class Graph {
      * @param {Component} compArg [description]
      */
     addComponent(compArg) {
-        (!this.containsComponent(compArg) && this.hasIntersectingComponent(compArg)) ? this.integrateComponent(compArg) : this.components.push(compArg);
+        this.components.push(compArg);
     }
     removeComponent(compArg) {
         let cPos = this.components.findIndex(currComp => currComp.isEquivalent(compArg));

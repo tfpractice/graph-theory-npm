@@ -247,7 +247,13 @@ fdescribe('Graph', function() {
                 nabes6 = myGraph.getNeighbors(v6);
                 nabes7 = myGraph.getNeighbors(v7);
             });
-            describe('#addComponent', () => {
+            fdescribe('#containsComponent()', function() {
+                it('returns a boolean checking for presence of equivalent component', function() {
+                    myGraph.addComponent(nabes1);
+                    expect(myGraph.containsComponent(nabes1)).toBeTrue();
+                });
+            });
+            fdescribe('#addComponent', () => {
                 describe('when there is no intersecting component', () => {
                     it('pushes a NodeArray to the components array', function() {
                         myGraph.addComponent(nabes1);
@@ -262,12 +268,7 @@ fdescribe('Graph', function() {
                     });
                 });
             });
-            fdescribe('#containsComponent()', function() {
-                it('returns a boolean checking for presence of equivalent component', function() {
-                    myGraph.addComponent(nabes1);
-                    expect(myGraph.containsComponent(nabes1)).toBeTrue();
-                });
-            });
+
             describe('#removeComponent', () => {
                 it('splices a NodeArray from the components array', function() {
                     myGraph.addComponent(nabes1);
