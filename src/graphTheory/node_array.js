@@ -11,7 +11,7 @@ class NodeArray extends RobustArray.SetifyType(Node) {
         this.prototype.Node = nClass;
     }
 };
-NodeArray.assignNode(Node);
+NodeArray.assignNode();
 module.exports = NodeArray
 /**
  * [A NodeArray]{@link module:graphTheory.NodeArray}

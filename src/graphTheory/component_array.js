@@ -53,5 +53,5 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
     }
 
 };
-
+ComponentArray.assignNodeArray();
 module.exports = ComponentArray;

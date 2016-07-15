@@ -38,6 +38,7 @@ class EdgeArray extends RobustArray.SetifyType(Edge) {
         return new NodeArray;
     }
 }
+EdgeArray.assignEdge();
 module.exports = EdgeArray;
 /**
  * [An EdgeArray]{@link module:graphTheory.EdgeArray}

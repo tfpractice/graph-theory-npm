@@ -10,6 +10,14 @@ var ComponentArray = require('./component_array');
  * @memberOf! module:graphTheory
  */
 class Graph {
+    static assignEdgeArray(EAClass = EdgeArray) {
+        this.prototype.EdgeArray = EAClass;
+        this.prototype.Edge = EAClass.prototype.Edge;
+        this.prototype.NodeArray = EAClass.prototype.NodeArray;
+        this.prototype.ComponentArray = ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
+
+        this.prototype.Node = EAClass.prototype.Node;
+    }
     constructor(nodes) {
         this.constructNodes(nodes);
         this.constructEdges();
@@ -339,6 +347,7 @@ class Graph {
         }
     }
 };
+Graph.assignEdgeArray();
 module.exports = Graph;
 /**
  * [A Graph]{@link module:graphTheory.Graph}
