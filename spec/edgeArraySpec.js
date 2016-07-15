@@ -91,13 +91,7 @@ describe('EdgeArray', function() {
         it('maps each of the edges nodes to a new nodeArray  ', function() {
             let theNodes = myArray.getNodes();
             let xEdges = new EdgeArray();
-            // console.log(xEdges.getNodes());
             expect(myArray.getNodes() instanceof NodeArray).toBeTrue();
-        });
-    });
-    describe('#xNodes()', function() {
-        it('returns an new NodeArray of all the edges nodes', function() {
-            expect(myArray.xNodes() instanceof NodeArray).toBeTrue();
         });
     });
     describe('#nodeMap', function() {
