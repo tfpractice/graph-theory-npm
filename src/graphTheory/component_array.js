@@ -35,7 +35,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
      * @param  {Component} newComp
      */
     mergeComponents(origComp, newComp) {
-        let ucomp = origComp.unionize(newComp);
+        origComp.unionize(newComp);
         this.removeElement(newComp);
         return this;
     }
