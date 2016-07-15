@@ -10,6 +10,11 @@ var RobustArray = require('./robust_array');
  * @memberOf! module:graphTheory
  */
 class EdgeArray extends RobustArray.SetifyType(Edge) {
+    static assignEdge(EClass = Edge) {
+        this.prototype.Edge = EClass;
+        this.prototype.NodeArray = EClass.prototype.NodeArray;
+        this.prototype.Node = EClass.prototype.Node;
+    }
     edgesWithNode(nArg) {
         return this.filter(e => e.containsNode(nArg));
     }

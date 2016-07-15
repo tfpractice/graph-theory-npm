@@ -1,6 +1,7 @@
 ## Changelog
 ## 4.0.0-alpha – 2016-07-09 
 ### Added
+* Prototypal dependency assignment via static .assign[ClassName] methods
 * RobustArray module acts as a mixin for set theory methods
 * RobustArray#SetifyType(BaseType) creates a set of out a base type of elements
 * RobustArray#filter, #splice, #slice, #concat and #union leverage this.constructor to return an instance of the proper subclass.

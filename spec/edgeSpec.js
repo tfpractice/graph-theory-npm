@@ -14,11 +14,18 @@ describe('Edge', function() {
         myEdge = new Edge(nyc, la, 10);
         altEdge = new Edge(nyc, dc, 10);
     });
-    describe('#injectDependency(NAClass)', function() {
+    fdescribe('#assignNodeArray(NAClass)', function() {
         describe('when given a new class dependency ', () => {
             class tempNodeArray extends NodeArray {}
+            tempNodeArray.assignNode();
             class SubEdge extends Edge {}
-            SubEdge.injectDependency(tempNodeArray);
+            SubEdge.assignNodeArray(tempNodeArray);
+            it('sets NodeArray onto protoype', function() {
+                expect(SubEdge.prototype.NodeArray).toBe(tempNodeArray);
+            });
+            it('sets Node property onto protoype', function() {
+                expect(SubEdge.prototype.Node).toBe(tempNodeArray.prototype.Node);
+            });
             it('modifies all dependent methods to use the proper NodeArray class', function() {
                 myEdge.constructNodes(nyc, la);
                 expect(myEdge.nodes instanceof NodeArray).toBeTrue();

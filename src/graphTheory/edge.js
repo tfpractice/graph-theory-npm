@@ -7,11 +7,16 @@ var NodeArray = require('./node_array');
  * @memberOf! module:graphTheory
  */
 class Edge {
-    static injectDependency(NAClass = NodeArray) {
+    static assignNodeArray(NAClass = NodeArray) {
+        this.prototype.NodeArray = NAClass;
+        this.prototype.Node = NAClass.prototype.Node;
         this.prototype.constructNodes = function(n1, n2) {
             this.nodes = NAClass.of(n1, n2);
         }
     }
+    // static assignNode(NClass) {
+    // this.prototype.Node = NClass;
+    // }
     constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
         this.constructNodes(n1, n2);
         /**
@@ -82,6 +87,7 @@ class Edge {
     }
 
 }
+Edge.assignNodeArray();
 /**
  * [An Edge]{@link module:graphTheory.Edge}
  * @typedef {module:graphTheory.Edge} Edge
