@@ -10,23 +10,33 @@ var ComponentArray = require('./component_array');
  * @memberOf! module:graphTheory
  */
 class Graph {
+    /**
+     * defines EdgeArrayClass (and associated dependencies) on the Prototype chain for runtime extension
+     * @param  {Function} EAClass the EdgeArray function this class depends upon
+     * @return {Function}  the updated Graph class
+     */
     static assignEdgeArray(EAClass = EdgeArray) {
         this.prototype.EdgeArray = EAClass;
         this.prototype.Edge = EAClass.prototype.Edge;
         this.prototype.NodeArray = EAClass.prototype.NodeArray;
         this.prototype.Node = EAClass.prototype.Node;
         this.prototype.ComponentArray = ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
-        // this.prototype.ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
+        return this;
     }
+    /**
+     * creates a Graph object
+     * @param  {NodeArray} nodes the graph's nodes
+     * @return {Graph}
+     */
     constructor(nodes) {
         this.establishNodes(nodes);
         this.establishEdges();
         this.establishComponents();
-        /**
-         * the graph's components
-         * @type {Component[]}
-         */
     }
+    /**
+     * assigns/typecasts the nodes attibute
+     * @param  {?NodeArray} nArr [description]
+     */
     establishNodes(nArr) {
         /**
          * the graph's nodes
@@ -34,6 +44,9 @@ class Graph {
          */
         this.nodes = nArr ? this.NodeArray.from(nArr) : new this.NodeArray;
     }
+    /**
+     * assigns/typecasts the edges attibute
+     */
     establishEdges() {
         /**
          * the graph's edges
@@ -41,40 +54,72 @@ class Graph {
          */
         this.edges = new this.EdgeArray;
     }
+    /**
+     * assigns/typecasts the components attibute
+     */
     establishComponents() {
+        /**
+         * the graph's components
+         * @type {Component[]}
+         */
         this.components = new this.ComponentArray();
     }
     /**
-     * adds a node to the nodes array, if not already contained
-     * @param {Node} node the new node
+     * @see [delegated to NodeArray#push] {@link module:graphTheory.NodeArray#push}
      */
     addNode(node) {
         this.nodes.push(node);
+        return this;
     }
+    /**
+     * @see [delegated NodeArray#contains] {@link module:graphTheory.NodeArray#contains}
+     */
     containsNode(argNode) {
         return this.nodes.contains(argNode);
     }
+    /**
+     * removes all edges associated with the argument, then calls removes the node
+     * @see [delegated NodeArray#push] {@link module:graphTheory.NodeArray#removeElement}
+     * @see [remove edge] {@link module:graphTheory.Graph#removeEdge}
+     */
     removeNode(nodeArg) {
         this.edgesWithNode(nodeArg).forEach(e => this.removeEdge(e));
         this.nodes.removeElement(nodeArg);
+        return this;
     }
+    /**
+     * removes all edges associated with the argument, then removes all nodes the node
+     * @see [delegated NodeArray#push] {@link module:graphTheory.NodeArray#clear}
+     * @see [remove edge] {@link module:graphTheory.Graph#removeEdge}
+     * @return {Graph} the current graph
+     */
     clearNodes() {
         this.nodes.forEach(n => this.removeNode(n));
         this.nodes.clear();
         return this;
     }
+    /**
+     * clears the nodes and reassigns them to narr
+     * @param {NodeArray} nArr
+     * @return {Graph} the current graph
+     */
     setNodes(nArr) {
         this.clearNodes();
         this.nodes = nArr;
         return this;
     }
+    /**
+     * merges the nodes from the argument into the current graphs nodes
+     * @param  {NodeArray} nArr nodes to merge
+     * @return {Graph}      the current graph
+     */
     copyNodes(nArr) {
         this.nodes.unionize(nArr);
         return this;
     }
     /**
      * @param  {Node} nodeArg source node
-     * @return {Edge[]} the edges connected to source
+     * @return {EdgeArray} the edges connected to source
      */
     edgesWithNode(nodeArg) {
         return this.edges.edgesWithNode(nodeArg);
@@ -84,78 +129,122 @@ class Graph {
      * @param {Node} sNode source node
      * @param {Node} dNode destination node
      * @param {Number} weight weight of new edge
+     * @return {Edge} the newly added edge
      */
     createEdge(sNode, dNode, weight) {
         this.addEdge(new this.Edge(sNode, dNode, weight));
         return this.edges.edgeByNodes(sNode, dNode);
     }
+    /**
+     * copies the nodes from the edge, then adds it to the edges array
+     * @param {[type]} edgeArg [description]
+     * @see [delegated NodeArray#push] {@link module:graphTheory.NodeArray#removeElement}
+     * @return {Graph} the current graph
+     */
     addEdge(edgeArg) {
         this.copyNodes(edgeArg.nodes);
         this.edges.push(edgeArg);
+        return this;
     }
+    /**      
+     *  @see [delegated to EdgeArray#push] {@link module:graphTheory.EdgeArray#push}
+     */
     containsEdge(argEdge) {
         return this.edges.contains(argEdge);
     }
+    /**      
+     *  @see [delegated to EdgeArray#removeElement] {@link module:graphTheory.EdgeArray#removeElement}
+     */
     removeEdge(argEdge) {
         this.edges.removeElement(argEdge);
     }
+    /**      
+     *  @see [delegated to EdgeArray#clear] {@link module:graphTheory.EdgeArray#clear}
+     * @return {Graph} the current graph
+     */
     clearEdges() {
         this.edges.clear();
         return this;
     }
+    /**
+     * clears and reassigns nodes to those of the edge array, and sets the edges
+     * functions basically as a graph reset, an easy way to explore a graph from different angles
+     * @see [calls EdgeArray#getNodes] {@link module:graphTheory.EdgeArray#getNodes}
+     * @param {EdgeArray} eArr
+     * @return {Graph} the modified graph
+     */
     setEdges(eArr) {
         let eNodes = eArr.getNodes();
         this.setNodes(eNodes);
         this.edges = eArr;
         return this;
     }
+    /**
+     * copies and merges the nodes from the edgeArray, then merges the edges into the current graph
+     * @param  {EdgeArray} eArr
+     * @return {Graph}  the modified graph
+     */
     copyEdges(eArr) {
         let eNodes = eArr.getNodes();
         this.copyNodes(eNodes);
         this.edges.unionize(eArr);
         return this;
     }
+    /**
+     * creates a new graph
+     * @param  {?NodeArray} nArr a potential inital set of Nodes
+     * @return {Graph}      a new Graph instance
+     */
     subGraph(nArr) {
         return new this.constructor(nArr);
     }
+    /**
+     * creates a new graph, and sets its edges,
+     * useful for exploring a graph based on different connections
+     * @param  {EdgeArray} [eArr = this.edges] a potential inital set of Edges
+     * @return {Graph}      a new Graph instance
+     */
     subGraphByEdges(eArr = this.edges) {
         return this.subGraph().copyEdges(eArr);
     }
     /**
      *
      * @param  {Node} nodeArg the source node
-     * @return {Node[]} the neighboring nodes
+     * @return {NodeArray} the neighboring nodes
      */
     getNeighbors(nodeArg) {
         return this.edges.getNeighbors(nodeArg);
     }
+    /**
+     * typecasts a path to a NodeArray
+     * @param  {Map} pathArg an ordered sequence of nodes with predecessors and path weights
+     * @return {NodeArray} An array of the nodes
+     */
     pathNodes(pathArg) {
         return this.NodeArray.from([...pathArg.keys()]);
     }
     /**
-     * returns all of the nodes Edges which contain nodes not yet in the specified component
-     * @param  {Node} nodeArg [description]
-     * @param  {Component} compArg [description]
-     * @return {EdgeArray}         [description]
+     * returns all of the Edges connected to a node whose neighbors have yet to be visited
+     * @param  {Node} nodeArg the node
+     * @param  {Component} compArg the component being explored
+     * @return {EdgeArray}         the edges with unexplored nodes
      */
     getUnvisitedEdges(nodeArg, compArg) {
         let unArr = this.getUnvisitedNeighbors(nodeArg, compArg);
         return this.edgesWithNode(nodeArg).edgesByArray(unArr);
     }
     /**
-     * returns all of the nodes neighbors not yet part od the component
+     * returns all of the nodes neighbors not yet part explored in the component
      * @param  {Node} nodeArg [description]
-     * @param  {Component} compArg [description]
-     * @return {NodeArray}         [description]
+     * @param  {Component} compArg the explored component
+     * @return {NodeArray}     unexplored nodes
      */
     getUnvisitedNeighbors(nodeArg, compArg) {
         return this.getNeighbors(nodeArg).difference(compArg);
     }
     /**
      * adds all unvisited nodes in the path to the specified component
-     * adds each node connected to an edge to a (depth) path
      * @param  {Map} pathArg  the path to be explored
-     * @param  {Component} compArg a key value store of node's and distances
      */
     visitPath(pathArg) {
         let pNodes = this.pathNodes(pathArg);
@@ -180,9 +269,10 @@ class Graph {
         return pathArg;
     }
     /**
-     * depth first search, initializes a new component of reachable nodes, and constructs a path to each of those node from the source
-     * @param  {Node} initNode inital node
-     * @return {Component} a key-value store of nodes and edge distances
+     * depth first search, initializes a new component of reachable nodes,
+     * and constructs a path to each of those node from the initNode
+     * @param  {Node} initNode the source node
+     * @return {Map} a key-value store of nodes and edge distances
      */
     dfs(initNode) {
         let path = new Map();
@@ -196,6 +286,7 @@ class Graph {
         this.addComponent(pComp);
         return path;
     }
+
     containsComponent(compArg) {
         return this.components.contains(compArg);
     }
@@ -274,16 +365,15 @@ class Graph {
      * check if a path exists between two nodes
      * @param  {Node}  initNode the initial node
      * @param  {Node}  termNode the terminal node
-     * @return {Boolean} a path exists between the two nodes
+     * @return {Boolean} does a path exist between the two nodes
      */
     hasPath(initNode, termNode) {
         return this.bfs(initNode).has(termNode);
     }
     /**
-     * performs dijkstras algorithm for shortest paths to all nodes reachabe from initNode
+     * performs dijkstras algorithm for shortest paths to all nodes reachable from initNode
      * @param  {Node}  initNode the initial node
-     * @param  {Node}  termNode the terminal node
-     * @return {Object} a shortest path between nodes
+     * @return {Map} a sequence of nodes and their distances
      */
     dijkstra(initNode = this.nodes[0]) {
         var reachables = this.bfs(initNode);
@@ -317,10 +407,10 @@ class Graph {
         return solutionSet;
     }
     /**
-     * composes the shortest path between two nodes by backtracing dijkstra's pred attirbute
-     * @param  {Node} initNode [description]
-     * @param  {Node} termNode [description]
-     * @return {Map}  path of nodes
+     * composes the shortest path between two nodes by backtracing from dijkstra
+     * @param  {Node} initNode
+     * @param  {Node} termNode
+     * @return {?Map}  path of nodes
      */
     shortestPath(initNode, termNode) {
         if (!this.hasPath(initNode, termNode)) {

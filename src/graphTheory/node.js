@@ -3,32 +3,34 @@
  * @exports Node
  * @constructor
  * @memberOf module:graphTheory
- * @param {String} [label = 'default']  [label property]{@link module:graphTheory.Node#label}
+ * @param {String} label  [label property]{@link module:graphTheory.Node#label}
  * @param {Object} data the nodes data
  */
 class Node {
     constructor(label, data) {
+        this.setLabel(label);
+        this.setData(data);
+    }
+    /**
+     * sets the node's label attribute
+     * @param {String} lbl
+     */
+    setLabel(lbl) {
         /**
          * the node identifier
          * @type {String}
          */
-        this.setLabel(label);
-        this.setData(data);
-
-        // this.label = label;
-
+        return this.label = lbl;
+    }
+    /**
+     * sets the node's data attribute
+     * @param {Object} d
+     */
+    setData(d) {
         /**
          * the node data
          * @type {Object}
          */
-
-        // this.data = data;
-
-    }
-    setLabel(lbl) {
-        return this.label = lbl;
-    }
-    setData(d) {
         return this.data = d || {};
     }
     /**
@@ -41,8 +43,8 @@ class Node {
     }
 }
 
-module.exports = Node;
 /**
  * [A Node]{@link module:graphTheory.Node}
  * @typedef {module:graphTheory.Node} Node
  */
+module.exports = Node;

@@ -1,5 +1,5 @@
 /**
- * @module graphTheory
+ * @module GraphTheory
  */
 
 
