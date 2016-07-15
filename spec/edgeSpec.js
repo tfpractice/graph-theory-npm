@@ -27,7 +27,7 @@ describe('Edge', function() {
                 expect(SubEdge.prototype.Node).toBe(tempNodeArray.prototype.Node);
             });
             it('modifies all dependent methods to use the proper NodeArray class', function() {
-                myEdge.constructNodes(nyc, la);
+                myEdge.establishNodes(nyc, la);
                 expect(myEdge.nodes instanceof NodeArray).toBeTrue();
                 let mySubEdge = new SubEdge(nyc, la);
                 let sNodes = mySubEdge.nodes;
@@ -61,9 +61,9 @@ describe('Edge', function() {
             });
         });
     });
-    describe('#constructNodes(n1,n2)', function() {
+    describe('#establishNodes(n1,n2)', function() {
         it('sets the nodes attribute to a NodeArray of the arguments', function() {
-            myEdge.constructNodes(nyc, la);
+            myEdge.establishNodes(nyc, la);
             expect(myEdge.nodes).toContain(nyc, la);
         });
     });

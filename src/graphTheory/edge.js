@@ -10,7 +10,7 @@ class Edge {
     static assignNodeArray(NAClass = NodeArray) {
         this.prototype.NodeArray = NAClass;
         this.prototype.Node = NAClass.prototype.Node;
-        this.prototype.constructNodes = function(n1, n2) {
+        this.prototype.establishNodes = function(n1, n2) {
             this.nodes = NAClass.of(n1, n2);
         }
     }
@@ -18,7 +18,7 @@ class Edge {
     // this.prototype.Node = NClass;
     // }
     constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
-        this.constructNodes(n1, n2);
+        this.establishNodes(n1, n2);
         /**
          * the weight of the edge
          * @type {Number}
@@ -31,12 +31,12 @@ class Edge {
         this.setLabel();
     }
 
-    constructNodes(n1, n2) {
+    establishNodes(n1, n2) {
         /**
          * an array of nodes
          * @type {NodeArray}
          */
-        this.nodes = NodeArray.of(n1, n2);
+        this.nodes = this.NodeArray.of(n1, n2);
     }
     setLabel() {
         this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;
