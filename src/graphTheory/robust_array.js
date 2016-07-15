@@ -97,7 +97,7 @@ var RobustArray = BaseType => class extends Array {
     /**
      * returns the first element which is equivalent to the argument
      * @param  {Object}  altArray
-     * @return {Object | undefined}
+     * @return {?Object}
      */
     findEquivalentElement(argObj) {
         return this.find(el => el.isEquivalent(argObj));
@@ -105,7 +105,7 @@ var RobustArray = BaseType => class extends Array {
     /**
      * removes the argument from the array
      * @param  {Object}  argObj
-     * @return {Object | False}
+     * @return {(Object|Boolean)}
      */
     removeElement(argObj) {
         let eqIdx = this.findIndex(el => el.isEquivalent(argObj));
@@ -172,13 +172,13 @@ var RobustArray = BaseType => class extends Array {
     /**
      * combines all the elements from altArray into the receiver
      * @param  {RobustArray} altArray
+     * @return {RobustArray} the receiver
      */
     unionize(altArray) {
         altArray.difference(this).forEach(dNode => this.push(dNode));
         return this;
     }
     /**
-     *
      * @param  {Object} exElem the element to exclude
      * @return {RobustArray} all of the elements in this object excluding exElem
      */
