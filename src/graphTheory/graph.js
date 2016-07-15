@@ -130,7 +130,7 @@ class Graph {
         return this.edges.getNeighbors(nodeArg);
     }
     pathNodes(pathArg) {
-        return NodeArray.from([...pathArg.keys()]);
+        return this.NodeArray.from([...pathArg.keys()]);
     }
     /**
      * returns all of the nodes Edges which contain nodes not yet in the specified component
@@ -248,14 +248,13 @@ class Graph {
      * @param  {Node} initNode inital node
      * @return {Map} a key-value store of nodes and edge distances
      */
-    bfs(initNode) {
+    bfs(initNode = this.nodes[0]) {
         var bPath = new Map().set(initNode, {
             pred: null,
             pathWeight: 0,
             edgeCount: 0
         });
-        var bQueue = new NodeArray();
-        bQueue.push(initNode);
+        var bQueue = this.NodeArray.of(initNode);
         while (bQueue.length > 0) {
             let currN = bQueue.shift();
             var bNodes = this.pathNodes(bPath);
@@ -289,9 +288,9 @@ class Graph {
      * @param  {Node}  termNode the terminal node
      * @return {Object} a shortest path between nodes
      */
-    dijkstra(initNode) {
+    dijkstra(initNode = this.nodes[0]) {
         var reachables = this.bfs(initNode);
-        var inspectionQueue = new NodeArray(initNode);
+        var inspectionQueue = this.NodeArray.of(initNode);
         var solutionSet = new Map().set(initNode, {
             pred: null,
             edgeCount: 0,
