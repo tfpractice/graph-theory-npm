@@ -92,15 +92,10 @@ describe('Graph', function() {
             });
             beforeEach(function() {
                 tempEdge = new Edge(bostonV, tampaV, 10);
-                xEdge = myGraph.instantiateEdge(xn0, xn1);
+                xEdge = myGraph.createEdge(xn0, xn1);
 
             });
-            describe('instantiateEdge(n1, n2, w)', () => {
-                it('returns a new Edge made of the args', function() {
-                    let xEdge = myGraph.instantiateEdge(xn0, xn1);
-                    expect(xEdge instanceof Edge).toBeTrue();
-                });
-            });
+
             describe('#addEdge', function() {
                 it('imports the edges nodes', function() {
                     myGraph.addEdge(xEdge);
