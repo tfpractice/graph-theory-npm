@@ -21,7 +21,7 @@ describe('NodeArray', function() {
         myAltArray.push(n2);
         myAltArray.push(n3);
     });
-    fdescribe('.assignNode(nClass)', function() {
+    describe('.assignNode(nClass)', function() {
         let SubClass, BaseClass, mySArray, sn1, sn2, sn3;
         class SubNode extends Node {
             showSelf() {

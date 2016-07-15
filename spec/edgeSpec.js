@@ -14,7 +14,7 @@ describe('Edge', function() {
         myEdge = new Edge(nyc, la, 10);
         altEdge = new Edge(nyc, dc, 10);
     });
-    fdescribe('#assignNodeArray(NAClass)', function() {
+    describe('#assignNodeArray(NAClass)', function() {
         describe('when given a new class dependency ', () => {
             class tempNodeArray extends NodeArray {}
             tempNodeArray.assignNode();

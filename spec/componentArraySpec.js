@@ -47,7 +47,7 @@ describe('ComponentArray', function() {
             // nabes7 = myGraph.getNeighbors(v7);
             myComponents = new ComponentArray();
         });
-        fdescribe('#assignNodeArray(NAClass)', function() {
+        describe('#assignNodeArray(NAClass)', function() {
             describe('when given a new class dependency ', () => {
                 class tempNodeArray extends NodeArray {}
                 tempNodeArray.assignNode();

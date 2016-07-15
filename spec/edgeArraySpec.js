@@ -17,7 +17,7 @@ describe('EdgeArray', function() {
         altEdge = new Edge(nyc, dc, 10);
         myArray = new EdgeArray(myEdge);
     });
-    fdescribe('#assignEdge', function() {
+    describe('#assignEdge', function() {
         describe('when given a new class dependency ', () => {
             class tempNodeArray extends NodeArray {}
             tempNodeArray.assignNode();

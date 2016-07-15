@@ -1,4 +1,4 @@
-fdescribe('Graph', function() {
+describe('Graph', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
     var Edge = GR.Edge;
@@ -6,7 +6,7 @@ fdescribe('Graph', function() {
     var EdgeArray = GR.EdgeArray;
     var ComponentArray = GR.ComponentArray;
     var Graph = GR.Graph;
-    var SubNode, SubEdge, SubNodeArray, SubEdgeArray, SubComponentArray, SubGraph
+    var SubNode, SubEdge, SubNodeArray, SubEdgeArray, SubComponentArray, SubGraph;
     beforeAll(function() {
         console.log('\n.........Extensions Spec.........');
         SubNode = class SubNode extends Node {}
@@ -16,7 +16,7 @@ fdescribe('Graph', function() {
         SubEdgeArray = class SubEdgeArray extends EdgeArray {}
         SubGraph = class SubGraph extends Graph {}
     });
-    fdescribe('#assign[dependency]', function() {
+    describe('#assign[dependency]', function() {
         beforeAll(function() {
             SubNodeArray.assignNode(SubNode);
             SubComponentArray.assignNodeArray(SubNodeArray);
