@@ -12,7 +12,7 @@ var RobustArray = require('./robust_array');
  */
 class EdgeArray extends RobustArray.SetifyType(Edge) {
     /**
-     * Defines EdgeClass (and associated dependencies) on the Prototype chain for runtime extension
+     * defines EdgeClass (and associated dependencies) on the Prototype chain for runtime extension
      * @param  {Function} EClass the Edge function this class depends upon
      * @return {Function} EdgeArray the updated EdgeArray class
      */
@@ -65,8 +65,8 @@ class EdgeArray extends RobustArray.SetifyType(Edge) {
 
 }
 EdgeArray.assignEdge();
-module.exports = EdgeArray;
 /**
  * [An EdgeArray]{@link module:graphTheory.EdgeArray}
  * @typedef {module:graphTheory.EdgeArray} EdgeArray
  */
+module.exports = EdgeArray;

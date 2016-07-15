@@ -57,4 +57,8 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
 };
 
 ComponentArray.assignNodeArray();
+/**
+ * [An Array of NodeArrays]{@link module:graphTheory.ComponentArray}
+ * @typedef {module:graphTheory.ComponentArray} ComponentArray
+ */
 module.exports = ComponentArray;
