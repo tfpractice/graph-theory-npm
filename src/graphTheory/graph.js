@@ -14,35 +14,35 @@ class Graph {
         this.prototype.EdgeArray = EAClass;
         this.prototype.Edge = EAClass.prototype.Edge;
         this.prototype.NodeArray = EAClass.prototype.NodeArray;
-        this.prototype.ComponentArray = ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
-
         this.prototype.Node = EAClass.prototype.Node;
+        this.prototype.ComponentArray = ComponentArray;
+        this.prototype.ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
     }
     constructor(nodes) {
-        this.constructNodes(nodes);
-        this.constructEdges();
-        this.constructComponents();
+        this.establishNodes(nodes);
+        this.establishEdges();
+        this.establishComponents();
         /**
          * the graph's components
          * @type {Component[]}
          */
     }
-    constructNodes(nArr) {
+    establishNodes(nArr) {
         /**
          * the graph's nodes
          * @type {NodeArray}
          */
-        this.nodes = nArr ? NodeArray.from(nArr) : new NodeArray();
+        this.nodes = nArr ? this.NodeArray.from(nArr) : new this.NodeArray;
     }
-    constructEdges() {
+    establishEdges() {
         /**
          * the graph's edges
          * @type {EdgeArray}
          */
-        this.edges = new EdgeArray();
+        this.edges = new this.EdgeArray;
     }
-    constructComponents() {
-        this.components = new ComponentArray();
+    establishComponents() {
+        this.components = new this.ComponentArray();
     }
     /**
      * adds a node to the nodes array, if not already contained

@@ -1,42 +1,42 @@
 describe('Graph', function() {
-        var GR = require('../src/graph_theory');
-        var Node = GR.Node;
-        var Edge = GR.Edge;
-        var NodeArray = GR.NodeArray;
-        var EdgeArray = GR.EdgeArray;
-        var ComponentArray = GR.ComponentArray;
-        const Graph = GR.Graph;
-        beforeAll(function() {
-            console.log('\n.........Graph Spec.........');
+    var GR = require('../src/graph_theory');
+    var Node = GR.Node;
+    var Edge = GR.Edge;
+    var NodeArray = GR.NodeArray;
+    var EdgeArray = GR.EdgeArray;
+    var ComponentArray = GR.ComponentArray;
+    const Graph = GR.Graph;
+    beforeAll(function() {
+        console.log('\n.........Graph Spec.........');
+    });
+    describe('#assignEdgeArray', function() {
+        describe('when given a new class dependency ', () => {
+            class SubNode extends Node {}
+            class tempNodeArray extends NodeArray {}
+            tempNodeArray.assignNode(SubNode);
+            class SubEdge extends Edge {}
+            SubEdge.assignNodeArray(tempNodeArray);
+            class SEA extends EdgeArray {}
+            SEA.assignEdge(SubEdge);
+            class ChildGraph extends Graph {}
+            ChildGraph.assignEdgeArray(SEA);
+            it('sets EdgeArray onto protoype', function() {
+                expect(ChildGraph.prototype.EdgeArray).toBe(SEA);
+                expect(ChildGraph.prototype.EdgeArray).not.toBe(EdgeArray);
+            });
+            it('sets Edge onto protoype', function() {
+                expect(ChildGraph.prototype.Edge).toBe(SubEdge);
+                expect(ChildGraph.prototype.Edge).not.toBe(Edge);
+            });
+            it('sets NodeArray onto protoype', function() {
+                expect(ChildGraph.prototype.NodeArray).toBe(tempNodeArray);
+                expect(ChildGraph.prototype.NodeArray).not.toBe(NodeArray);
+            });
+            it('sets Node property onto protoype', function() {
+                expect(ChildGraph.prototype.Node).toBe(tempNodeArray.prototype.Node);
+                expect(ChildGraph.prototype.Node).not.toBe(Node);
+            });
         });
-        describe('#assignEdgeArray', function() {
-                describe('when given a new class dependency ', () => {
-                    class SubNode extends Node {}
-                    class tempNodeArray extends NodeArray {}
-                    tempNodeArray.assignNode(SubNode);
-                    class SubEdge extends Edge {}
-                    SubEdge.assignNodeArray(tempNodeArray);
-                    class SEA extends EdgeArray {}
-                    SEA.assignEdge(SubEdge);
-                    class ChildGraph extends Graph {}
-                    ChildGraph.assignEdgeArray(SEA);
-                    it('sets EdgeArray onto protoype', function() {
-                        expect(ChildGraph.prototype.EdgeArray).toBe(SEA);
-                        expect(ChildGraph.prototype.EdgeArray).not.toBe(EdgeArray);
-                    });
-                    it('sets Edge onto protoype', function() {
-                        expect(ChildGraph.prototype.Edge).toBe(SubEdge);
-                        expect(ChildGraph.prototype.Edge).not.toBe(Edge);
-                    });
-                    it('sets NodeArray onto protoype', function() {
-                        expect(ChildGraph.prototype.NodeArray).toBe(tempNodeArray);
-                        expect(ChildGraph.prototype.NodeArray).not.toBe(NodeArray);
-                    });
-                    it('sets Node property onto protoype', function() {
-                        expect(ChildGraph.prototype.Node).toBe(tempNodeArray.prototype.Node);
-                        expect(ChildGraph.prototype.Node).not.toBe(Node);
-                    });
-                });
     });
     describe('delegated to subarray', () => {
         let laV, nyV, bostonV, tampaV, myGraph;
@@ -181,24 +181,24 @@ describe('Graph', function() {
             e0 = myGraph.edges[0];
             e1 = myGraph.edges[1];
         });
-        describe('constructNodes()', () => {
+        describe('establishNodes()', () => {
             it('sets the #edges attribute to a new EdgeArray', function() {
                 let oldNodes = myGraph.nodes;
-                myGraph.constructNodes(oldNodes);
+                myGraph.establishNodes(oldNodes);
                 expect(myGraph.nodes instanceof NodeArray).toBeTrue();
             });
 
         });
-        describe('constructEdges()', () => {
+        describe('establishEdges()', () => {
             it('sets the #edges attribute to a new EdgeArray', function() {
-                myGraph.constructEdges();
+                myGraph.establishEdges();
                 expect(myGraph.edges).toBeEmptyArray();
                 expect(myGraph.edges instanceof EdgeArray).toBeTrue();
             });
         });
-        describe('#constructComponents()', function() {
+        describe('#establishComponents()', function() {
             it('sets the components attribute to a  new ComponentArray', function() {
-                myGraph.constructComponents();
+                myGraph.establishComponents();
                 expect(myGraph.components instanceof ComponentArray).toBeTrue();
 
             });
