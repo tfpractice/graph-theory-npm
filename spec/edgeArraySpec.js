@@ -17,23 +17,16 @@ describe('EdgeArray', function() {
         altEdge = new Edge(nyc, dc, 10);
         myArray = new EdgeArray(myEdge);
     });
-    fdescribe('#assignEdge(EClass)', function() {
-        describe('when given a new class dependency ', () => {
-            class tempNodeArray extends NodeArray {}
-            tempNodeArray.assignNode();
-            class SubEdge extends Edge {}
-            SubEdge.assignNodeArray(tempNodeArray);
-            class SEA extends EdgeArray {}
-            SEA.assignEdge(SubEdge);
-            it('sets Edge onto protoype', function() {
-                expect(SEA.prototype.Edge).toBe(SubEdge);
-            });
-            it('sets NodeArray onto protoype', function() {
-                expect(SEA.prototype.NodeArray).toBe(tempNodeArray);
-            });
-            it('sets Node property onto protoype', function() {
-                expect(SEA.prototype.Node).toBe(tempNodeArray.prototype.Node);
-            });
+    describe('when given a new class dependency ', () => {
+        class tempNodeArray extends NodeArray {}
+        tempNodeArray.assignNode();
+        class SubEdge extends Edge {}
+        SubEdge.assignNodeArray(tempNodeArray);
+        it('sets NodeArray onto protoype', function() {
+            expect(SubEdge.prototype.NodeArray).toBe(tempNodeArray);
+        });
+        it('sets Node property onto protoype', function() {
+            expect(SubEdge.prototype.Node).toBe(tempNodeArray.prototype.Node);
         });
     });
     describe('init', function() {

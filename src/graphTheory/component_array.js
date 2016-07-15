@@ -2,6 +2,10 @@ var NodeArray = require('./node_array');
 var RobustArray = require('./robust_array');
 
 class ComponentArray extends RobustArray.SetifyType(NodeArray) {
+    static assignNodeArray(NAClass = NodeArray) {
+        this.prototype.NodeArray = NAClass;
+        this.prototype.Node = NAClass.prototype.Node;
+    }
     // contains(compArg) {
     // return this.components.some(currComp => currComp.isEquivalent(compArg))
     // }

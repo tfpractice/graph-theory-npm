@@ -47,6 +47,20 @@ describe('ComponentArray', function() {
             // nabes7 = myGraph.getNeighbors(v7);
             myComponents = new ComponentArray();
         });
+        fdescribe('#assignNodeArray(NAClass)', function() {
+            describe('when given a new class dependency ', () => {
+                class tempNodeArray extends NodeArray {}
+                tempNodeArray.assignNode();
+                class SubCompArray extends ComponentArray {}
+                SubCompArray.assignNodeArray(tempNodeArray);
+                it('sets NodeArray onto protoype', function() {
+                    expect(SubCompArray.prototype.NodeArray).toBe(tempNodeArray);
+                });
+                it('sets Node property onto protoype', function() {
+                    expect(SubCompArray.prototype.Node).toBe(tempNodeArray.prototype.Node);
+                });
+            });
+        });
         describe('#push', () => {
             describe('when there is no intersecting component', () => {
                 it('pushes a NodeArray to the components array', function() {
