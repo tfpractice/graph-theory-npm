@@ -6,15 +6,11 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
         this.prototype.NodeArray = NAClass;
         this.prototype.Node = NAClass.prototype.Node;
     }
-    // contains(compArg) {
-    // return this.components.some(currComp => currComp.isEquivalent(compArg))
-    // }
     /**
      * adds a component to the graph if not present
      * @param {Component} compArg [description]
      */
     push(compArg) {
-        // this.hasIntersectingComponent(compArg) ? this.integrateComponent(compArg) : super.push(compArg);
         return this.integrateComponent(compArg) || super.push(compArg);
     }
     /**
