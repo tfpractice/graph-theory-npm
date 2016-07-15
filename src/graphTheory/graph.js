@@ -230,7 +230,7 @@ class Graph {
      * @param  {Component} compArg [description]
      */
     integrateComponent(compArg) {
-        this.components.integrateComponent(compArg);
+        return this.components.integrateComponent(compArg);
     }
     /**
      * checks if any current components share nodes with the argument
