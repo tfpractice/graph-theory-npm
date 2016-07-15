@@ -35,9 +35,8 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
      * @param  {Component} newComp
      */
     mergeComponents(origComp, newComp) {
-        origComp.unionize(newComp);
         this.removeElement(newComp);
-        return this;
+        return origComp.unionize(newComp);;
     }
     /**
      * integrates a component into any of the graphs intersectung components

@@ -126,8 +126,8 @@ describe('ComponentArray', function() {
             it('removes the newComp arg', function() {
                 expect(myComponents).not.toContain(nabes2);
             });
-            it('returns the augmented ComponentArray', function() {
-                expect(myComponents.mergeComponents(nabes1, nabes2)).toBe(myComponents);
+            it('returns the augmented component', function() {
+                expect(myComponents.mergeComponents(nabes1, nabes2)).toBe(nabes1);
             });
         });
         describe('#integrateComponent(compArg)', function() {

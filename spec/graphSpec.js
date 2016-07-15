@@ -323,7 +323,7 @@ describe('Graph', function() {
                     expect(myGraph.components).not.toContain(nabes2);
                 });
                 it('returns the augmented component', function() {
-                    expect(myGraph.mergeComponents(nabes1, nabes2)).toBe(nabes1);
+                    expect(myGraph.mergeComponents(nabes1, nabes2)).toEqual(nabes1);
                 });
             });
             describe('integrateComponent(compArg)', function() {

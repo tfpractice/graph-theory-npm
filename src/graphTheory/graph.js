@@ -215,7 +215,7 @@ class Graph {
      * @return {Component} the first intersecting component
      */
     findIntersectingComponent(compArg) {
-        return this.components.find(currComp => currComp.intersects(compArg));
+        return this.components.findIntersectingComponent(compArg);
     }
     /**
      * combines the nodes of two intersecting components
@@ -223,17 +223,14 @@ class Graph {
      * @param  {Component} newComp
      */
     mergeComponents(origComp, newComp) {
-        let ucomp = origComp.unionize(newComp);
-        this.removeComponent(newComp);
-        return ucomp;
+        return this.components.mergeComponents(origComp, newComp);
     }
     /**
      * integrates a component into any of the graphs intersectung components
      * @param  {Component} compArg [description]
      */
     integrateComponent(compArg) {
-        let oComp = this.findIntersectingComponent(compArg);
-        if (oComp) this.mergeComponents(oComp, compArg);
+        this.components.integrateComponent(compArg);
     }
     /**
      * checks if any current components share nodes with the argument
