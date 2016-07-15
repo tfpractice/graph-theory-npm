@@ -7,7 +7,7 @@ var ComponentArray = require('./component_array');
  * represents a Graph
  * @exports Graph
  * @constructor
- * @memberOf! module:graphTheory
+ * @memberOf! module:GraphTheory
  */
 class Graph {
     /**
@@ -35,7 +35,7 @@ class Graph {
     }
     /**
      * assigns/typecasts the nodes attibute
-     * @param  {?NodeArray} nArr [description]
+     * @param  {?NodeArray} nArr
      */
     establishNodes(nArr) {
         /**
@@ -65,22 +65,22 @@ class Graph {
         this.components = new this.ComponentArray();
     }
     /**
-     * @see [delegated to NodeArray#push] {@link module:graphTheory.NodeArray#push}
+     * @see [delegated to NodeArray#push] {@link module:GraphTheory.NodeArray#push}
      */
     addNode(node) {
         this.nodes.push(node);
         return this;
     }
     /**
-     * @see [delegated NodeArray#contains] {@link module:graphTheory.NodeArray#contains}
+     * @see [delegated NodeArray#contains] {@link module:GraphTheory.NodeArray#contains}
      */
     containsNode(argNode) {
         return this.nodes.contains(argNode);
     }
     /**
      * removes all edges associated with the argument, then calls removes the node
-     * @see [delegated NodeArray#push] {@link module:graphTheory.NodeArray#removeElement}
-     * @see [remove edge] {@link module:graphTheory.Graph#removeEdge}
+     * @see [delegated NodeArray#push] {@link module:GraphTheory.NodeArray#removeElement}
+     * @see [remove edge] {@link module:GraphTheory.Graph#removeEdge}
      */
     removeNode(nodeArg) {
         this.edgesWithNode(nodeArg).forEach(e => this.removeEdge(e));
@@ -89,8 +89,8 @@ class Graph {
     }
     /**
      * removes all edges associated with the argument, then removes all nodes the node
-     * @see [delegated NodeArray#push] {@link module:graphTheory.NodeArray#clear}
-     * @see [remove edge] {@link module:graphTheory.Graph#removeEdge}
+     * @see [delegated NodeArray#push] {@link module:GraphTheory.NodeArray#clear}
+     * @see [remove edge] {@link module:GraphTheory.Graph#removeEdge}
      * @return {Graph} the current graph
      */
     clearNodes() {
@@ -137,8 +137,8 @@ class Graph {
     }
     /**
      * copies the nodes from the edge, then adds it to the edges array
-     * @param {[type]} edgeArg [description]
-     * @see [delegated NodeArray#push] {@link module:graphTheory.NodeArray#removeElement}
+     * @param {[type]} edgeArg
+     * @see [delegated NodeArray#push] {@link module:GraphTheory.NodeArray#removeElement}
      * @return {Graph} the current graph
      */
     addEdge(edgeArg) {
@@ -147,19 +147,19 @@ class Graph {
         return this;
     }
     /**      
-     *  @see [delegated to EdgeArray#push] {@link module:graphTheory.EdgeArray#push}
+     *  @see [delegated to EdgeArray#push] {@link module:GraphTheory.EdgeArray#push}
      */
     containsEdge(argEdge) {
         return this.edges.contains(argEdge);
     }
     /**      
-     *  @see [delegated to EdgeArray#removeElement] {@link module:graphTheory.EdgeArray#removeElement}
+     *  @see [delegated to EdgeArray#removeElement] {@link module:GraphTheory.EdgeArray#removeElement}
      */
     removeEdge(argEdge) {
         this.edges.removeElement(argEdge);
     }
     /**      
-     *  @see [delegated to EdgeArray#clear] {@link module:graphTheory.EdgeArray#clear}
+     *  @see [delegated to EdgeArray#clear] {@link module:GraphTheory.EdgeArray#clear}
      * @return {Graph} the current graph
      */
     clearEdges() {
@@ -169,7 +169,7 @@ class Graph {
     /**
      * clears and reassigns nodes to those of the edge array, and sets the edges
      * functions basically as a graph reset, an easy way to explore a graph from different angles
-     * @see [calls EdgeArray#getNodes] {@link module:graphTheory.EdgeArray#getNodes}
+     * @see [calls EdgeArray#getNodes] {@link module:GraphTheory.EdgeArray#getNodes}
      * @param {EdgeArray} eArr
      * @return {Graph} the modified graph
      */
@@ -235,7 +235,7 @@ class Graph {
     }
     /**
      * returns all of the nodes neighbors not yet part explored in the component
-     * @param  {Node} nodeArg [description]
+     * @param  {Node} nodeArg
      * @param  {Component} compArg the explored component
      * @return {NodeArray}     unexplored nodes
      */
@@ -292,7 +292,7 @@ class Graph {
     }
     /**
      * adds a component to the graph if not present
-     * @param {Component} compArg [description]
+     * @param {Component} compArg
      */
     addComponent(compArg) {
         this.components.push(compArg);
@@ -318,15 +318,15 @@ class Graph {
     }
     /**
      * integrates a component into any of the graphs intersectung components
-     * @param  {Component} compArg [description]
+     * @param  {Component} compArg
      */
     integrateComponent(compArg) {
         return this.components.integrateComponent(compArg);
     }
     /**
      * checks if any current components share nodes with the argument
-     * @param  {Component}  compArg [description]
-     * @return {Boolean}         [description]
+     * @param  {Component}  compArg
+     * @return {Boolean}
      */
     hasIntersectingComponent(compArg) {
         return this.components.some(currComp => currComp.intersects(compArg));
@@ -434,6 +434,6 @@ class Graph {
 Graph.assignEdgeArray();
 module.exports = Graph;
 /**
- * [A Graph]{@link module:graphTheory.Graph}
- * @typedef {module:graphTheory.Graph} Graph
+ * [A Graph]{@link module:GraphTheory.Graph}
+ * @typedef {module:GraphTheory.Graph} Graph
  */

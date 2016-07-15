@@ -6,7 +6,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
     /**
      * Places NodeArray (and associated dependencies) in the Prototype chain for classical extension
      * @param  {Function} NAClass the NodeArray class this Class depends upon
-     * @return {Function}         [description]
+     * @return {Function}
      */
     static assignNodeArray(NAClass = NodeArray) {
         this.prototype.NodeArray = NAClass;
@@ -15,15 +15,15 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
     }
     /**
      * adds a component to the graph if not present
-     * @param {Component} compArg [description]
+     * @param {Component} compArg
      */
     push(compArg) {
         return this.integrateComponent(compArg) || super.push(compArg);
     }
     /**
      * checks if any components (excluding the argument) share nodes with the argument
-     * @param  {Component}  compArg [description]
-     * @return {Boolean}         [description]
+     * @param  {Component}  compArg
+     * @return {Boolean}
      */
     hasIntersectingComponent(compArg) {
         return this.excludeElement(compArg).some(currComp => currComp.intersects(compArg));
@@ -47,7 +47,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
     }
     /**
      * integrates a component into any of the arrays intersecting components
-     * @param  {Component} compArg [description]
+     * @param  {Component} compArg
      */
     integrateComponent(compArg) {
         let iComp = this.findIntersectingComponent(compArg);
@@ -58,7 +58,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
 
 ComponentArray.assignNodeArray();
 /**
- * [An Array of NodeArrays]{@link module:graphTheory.ComponentArray}
- * @typedef {module:graphTheory.ComponentArray} ComponentArray
+ * [An Array of NodeArrays]{@link module:GraphTheory.ComponentArray}
+ * @typedef {module:GraphTheory.ComponentArray} ComponentArray
  */
 module.exports = ComponentArray;

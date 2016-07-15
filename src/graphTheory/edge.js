@@ -4,14 +4,14 @@ var NodeArray = require('./node_array');
  * represents a connection between nodes
  * @exports Edge
  * @constructor
- * @memberOf! module:graphTheory
+ * @memberOf! module:GraphTheory
  */
 class Edge {
 
     /**
      * Places NodeArray (and associated dependencies) in the Prototype chain for runtime extension
      * @param  {Function} NAClass the NodeArray class this Class depends upon
-     * @return {Function}         [description]
+     * @return {Function}
      */
     static assignNodeArray(NAClass = NodeArray) {
         this.prototype.NodeArray = NAClass;
@@ -94,7 +94,7 @@ class Edge {
 }
 Edge.assignNodeArray();
 /**
- * [An Edge]{@link module:graphTheory.Edge}
- * @typedef {module:graphTheory.Edge} Edge
+ * [An Edge]{@link module:GraphTheory.Edge}
+ * @typedef {module:GraphTheory.Edge} Edge
  */
 module.exports = Edge;

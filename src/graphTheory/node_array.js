@@ -5,7 +5,7 @@ var RobustArray = require('./robust_array');
  * @exports NodeArray
  * @constructor
  * @extends {RobustArray}
- * @memberOf! module:graphTheory
+ * @memberOf! module:GraphTheory
  */
 class NodeArray extends RobustArray.SetifyType(Node) {
     /**
@@ -19,7 +19,7 @@ class NodeArray extends RobustArray.SetifyType(Node) {
 };
 NodeArray.assignNode();
 /**
- * [A NodeArray]{@link module:graphTheory.NodeArray}
- * @typedef {module:graphTheory.NodeArray} NodeArray
+ * [A NodeArray]{@link module:GraphTheory.NodeArray}
+ * @typedef {module:GraphTheory.NodeArray} NodeArray
  */
 module.exports = NodeArray;

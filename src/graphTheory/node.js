@@ -2,8 +2,8 @@
  * represent a Node
  * @exports Node
  * @constructor
- * @memberOf module:graphTheory
- * @param {String} label  [label property]{@link module:graphTheory.Node#label}
+ * @memberOf module:GraphTheory
+ * @param {String} label  [label property]{@link module:GraphTheory.Node#label}
  * @param {Object} data the nodes data
  */
 class Node {
@@ -44,7 +44,7 @@ class Node {
 }
 
 /**
- * [A Node]{@link module:graphTheory.Node}
- * @typedef {module:graphTheory.Node} Node
+ * [A Node]{@link module:GraphTheory.Node}
+ * @typedef {module:GraphTheory.Node} Node
  */
 module.exports = Node;

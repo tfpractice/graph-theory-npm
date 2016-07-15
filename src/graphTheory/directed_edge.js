@@ -2,7 +2,12 @@ var Node = require('./node');
 var NodeArray = require('./node_array');
 var Edge = require('./edge');
 
-
+/**
+ * represents a connection between nodes
+ * @exports DirectedEdge
+ * @constructor
+ * @memberOf! module:GraphTheory
+ */
 class DirectedEdge extends Edge {
     constructor(src = new Node(), dest = new Node(), weight = 0) {
         super(src, dest, weight);
@@ -13,8 +18,9 @@ class DirectedEdge extends Edge {
     isEquivalent(edgeArg) {
         return (edgeArg instanceof DirectedEdge) ? super.isEquivalent(edgeArg) : false;
     }
-
-    // methods
 }
-
+/**
+ * [A DirectedEdge]{@link module:GraphTheory.DirectedEdge}
+ * @typedef {module:GraphTheory.DirectedEdge} DirectedEdge
+ */
 module.exports = DirectedEdge;

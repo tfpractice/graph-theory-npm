@@ -5,7 +5,7 @@
  * @param  {Object} BaseType the data type of objects stored in this array
  * @extends {Array}
  * @return {Function}          the new class
- * @memberOf! module:graphTheory
+ * @memberOf!module: GraphTheory
  */
 var RobustArray = BaseType => class extends Array {
     /**
@@ -88,7 +88,7 @@ var RobustArray = BaseType => class extends Array {
         return this.every(myObj => altArray.contains(myObj));
     }
     /**
-     * @param  {Object}  altArray [description]
+     * @param  {Object}  altArray 
      * @return {Boolean}   do the argument nad receiver share length and elements
      */
     isEquivalent(altArray) {
@@ -188,7 +188,7 @@ var RobustArray = BaseType => class extends Array {
 
 };
 /**
- * [A RobustArray]{@link module:graphTheory.RobustArray}
- * @typedef {module:graphTheory.RobustArray} RobustArray
+ * [A RobustArray]{@link module:GraphTheory.RobustArray}
+ * @typedef {module:GraphTheory.RobustArray} RobustArray
  */
 module.exports.SetifyType = RobustArray;

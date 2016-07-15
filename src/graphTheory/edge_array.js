@@ -7,7 +7,7 @@ var RobustArray = require('./robust_array');
  * represents a set of Edges
  * @exports EdgeArray
  * @constructor
- * @memberOf! module:graphTheory
+ * @memberOf! module:GraphTheory
  * @extends {RobustArray}
  */
 class EdgeArray extends RobustArray.SetifyType(Edge) {
@@ -66,7 +66,7 @@ class EdgeArray extends RobustArray.SetifyType(Edge) {
 }
 EdgeArray.assignEdge();
 /**
- * [An EdgeArray]{@link module:graphTheory.EdgeArray}
- * @typedef {module:graphTheory.EdgeArray} EdgeArray
+ * [An EdgeArray]{@link module:GraphTheory.EdgeArray}
+ * @typedef {module:GraphTheory.EdgeArray} EdgeArray
  */
 module.exports = EdgeArray;
