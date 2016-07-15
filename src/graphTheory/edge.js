@@ -7,21 +7,24 @@ var NodeArray = require('./node_array');
  * @memberOf! module:graphTheory
  */
 class Edge {
+
+    /**
+     * Places NodeArray (and associated dependencies) in the Prototype chain for runtime extension
+     * @param  {Function} NAClass the NodeArray class this Class depends upon
+     * @return {Function}         [description]
+     */
     static assignNodeArray(NAClass = NodeArray) {
         this.prototype.NodeArray = NAClass;
         this.prototype.Node = NAClass.prototype.Node;
+        return this;
     }
     constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
-        this.establishNodes(n1, n2);
         /**
          * the weight of the edge
-         * @type {Number}
+         * @type {Number=0}
          */
         this.weight = weight;
-        /**
-         * an identifier for the Edge
-         * @type {String}
-         */
+        this.establishNodes(n1, n2);
         this.setLabel();
     }
 
@@ -33,10 +36,14 @@ class Edge {
         this.nodes = this.NodeArray.of(n1, n2);
     }
     setLabel() {
+        /**
+         * an identifier for the Edge
+         * @type {String}
+         */
         this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;
     }
     /**
-     * checks the equivalence (by nodes)of this edge against another
+     * checks the equivalence (by nodes) of this edge against another
      * @param  {Edge}  edgeArg edge to be checked
      * @return {Boolean}
      */
@@ -45,7 +52,7 @@ class Edge {
     }
 
     /**
-     * checks the equivalence (by label)of this edge against another
+     * checks the equivalence of this edge's label against another
      * @param  {Edge}  edgeArg edge to be checked
      * @return {Boolean}
      */
@@ -61,21 +68,25 @@ class Edge {
         return this.nodes.isEquivalent(edgeArg.nodes);
     }
     /**
-     * Checks for presence fo a node in this edge
+     * Checks for the presence of a node in this edge
      * @param  {Node} nodeArg
-     * @return {Node}
+     * @return {Boolean}
      */
     containsNode(nodeArg) {
         return this.nodes.contains(nodeArg);
     }
     /**
-     * returns the neighboring node
      * @param  {Node} nodeArg
      * @return {Node} the neighbor
      */
     getNeighbor(nodeArg) {
         return this.nodes.find(currNode => currNode != nodeArg);
     }
+    /**
+     * typecasts the neighboring node as a NodeArray with a single element (for method chaining)
+     * @param  {Node} nodeArg
+     * @return {NodeArray}         an Array of the neighboring node
+     */
     nabeArray(nodeArg) {
         return this.nodes.excludeElement(nodeArg);
     }
