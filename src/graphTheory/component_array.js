@@ -4,7 +4,7 @@ var RobustArray = require('./robust_array');
 class ComponentArray extends RobustArray.SetifyType(NodeArray) {
 
     /**
-     * Places dependencies in the Prototype chain for classical extension
+     * Places NodeArray (and associated dependencies) in the Prototype chain for classical extension
      * @param  {Function} NAClass the NodeArray class this Class depends upon
      * @return {Function}         [description]
      */
