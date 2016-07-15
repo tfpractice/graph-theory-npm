@@ -10,21 +10,21 @@
 var RobustArray = BaseType => class extends Array {
     /**
      * checks the data type of the new element
-     * @param  {Object | Object} argObj
+     * @param  {Object} argObj
      * @return {Boolean}
      */
     isValid(argObj) {
         return argObj instanceof BaseType;
     }
     /**
-     * @return {Boolean} if the array length is 0
+     * @return {Boolean} is the array length 0
      */
     isEmpty() {
         return this.length === 0;
     }
     /**
      * checks for presence of an element in this set
-     * @param  {Object | Object} argObj
+     * @param  {Object} argObj
      * @return {Boolean}
      */
     contains(argObj) {
@@ -32,8 +32,8 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * appends an element to this array if passes the type validator and is not already present
-     * @param  {[type]} argObj
-     * @return {RobustArray}     the current array
+     * @param  {Object} argObj
+     * @return {RobustArray}  the current array
      */
     push(argObj) {
         if ((this.isValid(argObj) && !(this.contains(argObj)))) {
@@ -43,15 +43,15 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * coerces return type to a RobustArray after delegating to Native Array#filter
-     * @param  {...[type]} args JS Native Array#filter arguments
-     * @return {[RobustArray]}
+     * @param  {...[Object]} args JS Native Array#filter arguments
+     * @return {RobustArray}
      */
     filter(...args) {
         return this.constructor.from(super.filter(...args));
     }
     /**
      * coerces return type to a RobustArray after delegating to Native Array#slice
-     * @param  {...[type]} args JS Native Array#slice arguments
+     * @param  {...[Object]} args JS Native Array#slice arguments
      * @return {[RobustArray]}
      */
     slice(...args) {
@@ -59,7 +59,7 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * coerces return type to a RobustArray after delegating to Native Array#concat
-     * @param  {...[type]} args JS Native Array#concat arguments
+     * @param  {...[Object]} args JS Native Array#concat arguments
      * @return {[RobustArray]}
      */
     concat(...args) {
@@ -67,7 +67,7 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * coerces return type to a RobustArray after delegating to Native Array#splice
-     * @param  {...[type]} args JS Native Array#splice arguments
+     * @param  {...[Object]} args JS Native Array#splice arguments
      * @return {[RobustArray]}
      */
     splice(...args) {
@@ -81,14 +81,14 @@ var RobustArray = BaseType => class extends Array {
         return this.length === altArray.length;
     }
     /**
-     * @param  {[type]}  altArray
+     * @param  {Object}  altArray
      * @return {Boolean} does the altArray contain every element of the receiver
      */
     isSubset(altArray) {
         return this.every(myObj => altArray.contains(myObj));
     }
     /**
-     * @param  {[type]}  altArray [description]
+     * @param  {Object}  altArray [description]
      * @return {Boolean}   do the argument nad receiver share length and elements
      */
     isEquivalent(altArray) {
@@ -96,7 +96,7 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * returns the first element which is equivalent to the argument
-     * @param  {[type]}  altArray
+     * @param  {Object}  altArray
      * @return {Object | undefined}
      */
     findEquivalentElement(argObj) {
@@ -104,7 +104,7 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * removes the argument from the array
-     * @param  {[type]}  argObj
+     * @param  {Object}  argObj
      * @return {Object | False}
      */
     removeElement(argObj) {
@@ -113,7 +113,7 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * removes all elements from the array
-     * @param  {[type]}  altArray
+     * @param  {Object}  altArray
      * @return {RobustArray} the newly empty array
      */
     clear() {
