@@ -2,9 +2,16 @@ var NodeArray = require('./node_array');
 var RobustArray = require('./robust_array');
 
 class ComponentArray extends RobustArray.SetifyType(NodeArray) {
+
+    /**
+     * Places dependencies in the Prototype chain for classical extension
+     * @param  {Function} NAClass the NodeArray class this Class depends upon
+     * @return {Function}         [description]
+     */
     static assignNodeArray(NAClass = NodeArray) {
         this.prototype.NodeArray = NAClass;
         this.prototype.Node = NAClass.prototype.Node;
+        return this;
     }
     /**
      * adds a component to the graph if not present
@@ -14,7 +21,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
         return this.integrateComponent(compArg) || super.push(compArg);
     }
     /**
-     * checks if any current components share nodes with the argument
+     * checks if any components (excluding the argument) share nodes with the argument
      * @param  {Component}  compArg [description]
      * @return {Boolean}         [description]
      */
@@ -22,7 +29,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
         return this.excludeElement(compArg).some(currComp => currComp.intersects(compArg));
     }
     /**
-     * returns any current components which intersect with the specified component
+     * returns the first component (excluding the argument) which intersect with compArg
      * @param  {Component} compArg the component to be checked
      * @return {Component} the first intersecting component
      */
@@ -30,16 +37,16 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
         return this.excludeElement(compArg).find(currComp => currComp.intersects(compArg));
     }
     /**
-     * combines the nodes of two intersecting components
-     * @param  {Component} origComp
-     * @param  {Component} newComp
+     * combines the nodes of two intersecting components into orrgComp, and removes newComp
+     * @param  {Component} origComp the component taking precedence
+     * @param  {Component} newComp the component to be removed
      */
     mergeComponents(origComp, newComp) {
         this.removeElement(newComp);
-        return origComp.unionize(newComp);;
+        return origComp.unionize(newComp);
     }
     /**
-     * integrates a component into any of the graphs intersectung components
+     * integrates a component into any of the arrays intersecting components
      * @param  {Component} compArg [description]
      */
     integrateComponent(compArg) {
@@ -48,5 +55,6 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
     }
 
 };
+
 ComponentArray.assignNodeArray();
 module.exports = ComponentArray;

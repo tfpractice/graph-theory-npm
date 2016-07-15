@@ -15,8 +15,8 @@ class Graph {
         this.prototype.Edge = EAClass.prototype.Edge;
         this.prototype.NodeArray = EAClass.prototype.NodeArray;
         this.prototype.Node = EAClass.prototype.Node;
-        this.prototype.ComponentArray = ComponentArray;
-        this.prototype.ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
+        this.prototype.ComponentArray = ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
+        // this.prototype.ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
     }
     constructor(nodes) {
         this.establishNodes(nodes);

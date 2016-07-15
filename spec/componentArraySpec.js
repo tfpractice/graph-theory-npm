@@ -59,6 +59,9 @@ describe('ComponentArray', function() {
                 it('sets Node property onto protoype', function() {
                     expect(SubCompArray.prototype.Node).toBe(tempNodeArray.prototype.Node);
                 });
+                it('returns the augmented function', function() {
+                    expect(SubCompArray.assignNodeArray(tempNodeArray)).toBe(SubCompArray);
+                });
             });
         });
         describe('#push', () => {
