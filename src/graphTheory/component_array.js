@@ -1,6 +1,12 @@
 var NodeArray = require('./node_array');
 var RobustArray = require('./robust_array');
-
+/**
+ * represents a set of NodeArrays
+ * @exports ComponentArray
+ * @constructor
+ * @memberOf! module:GraphTheory
+ * @extends {RobustArray}
+ */
 class ComponentArray extends RobustArray.SetifyType(NodeArray) {
 
     /**
@@ -58,7 +64,7 @@ class ComponentArray extends RobustArray.SetifyType(NodeArray) {
 
 ComponentArray.assignNodeArray();
 /**
- * [An Array of NodeArrays]{@link module:GraphTheory.ComponentArray}
+ * [An Set of mutually exclusive NodeArrays]{@link module:GraphTheory.ComponentArray}
  * @typedef {module:GraphTheory.ComponentArray} ComponentArray
  */
 module.exports = ComponentArray;

@@ -5,7 +5,7 @@
  * @param  {Object} BaseType the data type of objects stored in this array
  * @extends {Array}
  * @return {Function}          the new class
- * @memberOf!module: GraphTheory
+ * @memberOf! module:GraphTheory
  */
 var RobustArray = BaseType => class extends Array {
     /**
@@ -43,7 +43,7 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * coerces return type to a RobustArray after delegating to Native Array#filter
-     * @param  {...[Object]} args JS Native Array#filter arguments
+     * @param  {...Object} args JS Native Array#filter arguments
      * @return {RobustArray}
      */
     filter(...args) {
@@ -51,24 +51,24 @@ var RobustArray = BaseType => class extends Array {
     }
     /**
      * coerces return type to a RobustArray after delegating to Native Array#slice
-     * @param  {...[Object]} args JS Native Array#slice arguments
-     * @return {[RobustArray]}
+     * @param  {...Object} args JS Native Array#slice arguments
+     * @return {RobustArray}
      */
     slice(...args) {
         return this.constructor.from(super.slice(...args));
     }
     /**
      * coerces return type to a RobustArray after delegating to Native Array#concat
-     * @param  {...[Object]} args JS Native Array#concat arguments
-     * @return {[RobustArray]}
+     * @param  {...Object} args JS Native Array#concat arguments
+     * @return {RobustArray}
      */
     concat(...args) {
         return this.constructor.from(super.concat(...args));
     }
     /**
      * coerces return type to a RobustArray after delegating to Native Array#splice
-     * @param  {...[Object]} args JS Native Array#splice arguments
-     * @return {[RobustArray]}
+     * @param  {...Object} args JS Native Array#splice arguments
+     * @return {RobustArray}
      */
     splice(...args) {
         return this.constructor.from(super.splice(...args));
@@ -88,7 +88,7 @@ var RobustArray = BaseType => class extends Array {
         return this.every(myObj => altArray.contains(myObj));
     }
     /**
-     * @param  {Object}  altArray 
+     * @param  {Object}  altArray
      * @return {Boolean}   do the argument nad receiver share length and elements
      */
     isEquivalent(altArray) {

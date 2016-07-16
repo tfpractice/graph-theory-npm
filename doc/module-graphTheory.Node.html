@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.html">graphTheory</a></li>
+					<li><a href="module-GraphTheory.html">GraphTheory</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.Edge.html">graphTheory.Edge</a></li><li><a href="module-graphTheory.EdgeArray.html">graphTheory.EdgeArray</a></li><li><a href="module-graphTheory.Graph.html">graphTheory.Graph</a></li><li><a href="module-graphTheory.Node.html">graphTheory.Node</a></li><li><a href="module-graphTheory.NodeArray.html">graphTheory.NodeArray</a></li>
+					<li><a href="module-GraphTheory.ComponentArray.html">GraphTheory.ComponentArray</a></li><li><a href="module-GraphTheory.DirectedEdge.html">GraphTheory.DirectedEdge</a></li><li><a href="module-GraphTheory.Edge.html">GraphTheory.Edge</a></li><li><a href="module-GraphTheory.EdgeArray.html">GraphTheory.EdgeArray</a></li><li><a href="module-GraphTheory.Graph.html">GraphTheory.Graph</a></li><li><a href="module-GraphTheory.Node.html">GraphTheory.Node</a></li><li><a href="module-GraphTheory.NodeArray.html">GraphTheory.NodeArray</a></li><li><a href="module-GraphTheory.RobustArray.html">GraphTheory.RobustArray</a></li>
 				</ul>
 			</li>
 			
@@ -83,7 +83,7 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-graphTheory.html">graphTheory</a>.</span>
+            <span class="ancestors"><a href="module-GraphTheory.html">GraphTheory</a>.</span>
         
         Node
         </h2>
@@ -100,7 +100,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Node"><span class="type-signature"></span>new Node( [label], data)</h4>
+    <h4 class="name" id="Node"><span class="type-signature"></span>new Node(label, data)</h4>
     
     
 </dt>
@@ -127,11 +127,7 @@
         <th>Type</th>
 
         
-        <th>Argument</th>
-        
 
-        
-        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -157,23 +153,7 @@
             </td>
 
             
-                <td class="attributes">
-                
-                    &lt;optional><br>
-                
 
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                    'default'
-                
-                </td>
             
 
             <td class="description last"><code>label property</code></td>
@@ -197,19 +177,7 @@
             </td>
 
             
-                <td class="attributes">
-                
 
-                
-
-                
-                </td>
-            
-
-            
-                <td class="default">
-                
-                </td>
             
 
             <td class="description last">the nodes data</td>
@@ -413,7 +381,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_node.js.html">graphTheory/node.js</a>,
-				 <a href="graphTheory_node.js.html#sunlight-1-line-33">line 33</a>
+				 <a href="graphTheory_node.js.html#sunlight-1-line-41">line 41</a>
 			</li>
 		</ul>
 	</dd>
@@ -458,6 +426,282 @@
 
 
         
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setData"><span class="type-signature"></span>setData(d)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        sets the node's data attribute
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>d</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_node.js.html">graphTheory/node.js</a>,
+				 <a href="graphTheory_node.js.html#sunlight-1-line-29">line 29</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setLabel"><span class="type-signature"></span>setLabel(lbl)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        sets the node's label attribute
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>lbl</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_node.js.html">graphTheory/node.js</a>,
+				 <a href="graphTheory_node.js.html#sunlight-1-line-18">line 18</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 </dd>
@@ -514,7 +758,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Sun Jul 3rd 2016
+		on Fri Jul 15th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

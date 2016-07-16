@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.html">graphTheory</a></li>
+					<li><a href="module-GraphTheory.html">GraphTheory</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.Edge.html">graphTheory.Edge</a></li><li><a href="module-graphTheory.EdgeArray.html">graphTheory.EdgeArray</a></li><li><a href="module-graphTheory.Graph.html">graphTheory.Graph</a></li><li><a href="module-graphTheory.Node.html">graphTheory.Node</a></li><li><a href="module-graphTheory.NodeArray.html">graphTheory.NodeArray</a></li>
+					<li><a href="module-GraphTheory.ComponentArray.html">GraphTheory.ComponentArray</a></li><li><a href="module-GraphTheory.DirectedEdge.html">GraphTheory.DirectedEdge</a></li><li><a href="module-GraphTheory.Edge.html">GraphTheory.Edge</a></li><li><a href="module-GraphTheory.EdgeArray.html">GraphTheory.EdgeArray</a></li><li><a href="module-GraphTheory.Graph.html">GraphTheory.Graph</a></li><li><a href="module-GraphTheory.Node.html">GraphTheory.Node</a></li><li><a href="module-GraphTheory.NodeArray.html">GraphTheory.NodeArray</a></li><li><a href="module-GraphTheory.RobustArray.html">GraphTheory.RobustArray</a></li>
 				</ul>
 			</li>
 			
@@ -83,7 +83,7 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-graphTheory.html">graphTheory</a>.</span>
+            <span class="ancestors"><a href="module-GraphTheory.html">GraphTheory</a>.</span>
         
         Edge
         </h2>
@@ -100,109 +100,7 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Edge"><span class="type-signature"></span>new Edge()</h4>
-    
-    
-</dt>
-<dd>
-
-    
-
-    
-
-    
-
-    
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-10">line 10</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dd>
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        <dl>
-            
-<hr>
-<dt>
-    <h4 class="name" id="containsNode"><span class="type-signature"></span>containsNode(nodeArg)</h4>
+    <h4 class="name" id="Edge"><span class="type-signature"></span>new Edge(n1, n2 [, weight])</h4>
     
     
 </dt>
@@ -210,7 +108,7 @@
 
     
     <div class="description">
-        Checks for presence fo a node in this edge
+        creates an edge connecting two nodes
     </div>
     
 
@@ -233,7 +131,11 @@
         <th>Type</th>
 
         
+        <th>Argument</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -245,7 +147,7 @@
 
         <tr>
             
-                <td class="name"><code>nodeArg</code></td>
+                <td class="name"><code>n1</code></td>
             
 
             <td class="type">
@@ -259,10 +161,98 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>n2</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Node">Node</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>weight</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    0
+                
+                </td>
+            
+
+            <td class="description last">the value associated with the edge</td>
         </tr>
 
     
@@ -307,7 +297,329 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-61">line 61</a>
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-9">line 9</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="label">
+    <h4><span class="type-signature"></span>label<span class="type-signature"> :String</span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        an identifier for the Edge
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">String</span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-50">line 50</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="nodes">
+    <h4><span class="type-signature"></span>nodes<span class="type-signature"> :<a href="global.html#NodeArray">NodeArray</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        an array of nodes
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-43">line 43</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".assignNodeArray"><span class="type-signature">&lt;static> </span>assignNodeArray(NAClass)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        Places NodeArray (and associated dependencies) in the Prototype chain for runtime extension
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>NAClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the NodeArray class this Class depends upon</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-16">line 16</a>
 			</li>
 		</ul>
 	</dd>
@@ -343,7 +655,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="global.html#Node">Node</a></span>
+<span class="param-type">function</span>
 
 
 
@@ -360,7 +672,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="getNeighbor"><span class="type-signature"></span>getNeighbor(nodeArg)</h4>
+    <h4 class="name" id="containsNode"><span class="type-signature"></span>containsNode(nodeArg)</h4>
     
     
 </dt>
@@ -368,7 +680,7 @@
 
     
     <div class="description">
-        returns the neighboring node
+        Checks for the presence of a node in this edge
     </div>
     
 
@@ -465,7 +777,161 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-69">line 69</a>
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-82">line 82</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getNeighbor"><span class="type-signature"></span>getNeighbor(nodeArg)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nodeArg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Node">Node</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-89">line 89</a>
 			</li>
 		</ul>
 	</dd>
@@ -530,7 +996,7 @@
 
     
     <div class="description">
-        checks the equivalence (by label)of this edge against another
+        checks the equivalence of this edge's label against another
     </div>
     
 
@@ -627,7 +1093,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-45">line 45</a>
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-66">line 66</a>
 			</li>
 		</ul>
 	</dd>
@@ -785,7 +1251,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-53">line 53</a>
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-74">line 74</a>
 			</li>
 		</ul>
 	</dd>
@@ -846,7 +1312,7 @@
 
     
     <div class="description">
-        checks the equivalence (by label)of this edge against another
+        checks the equivalence (by nodes) of this edge against another
     </div>
     
 
@@ -943,7 +1409,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
-				 <a href="graphTheory_edge.js.html#sunlight-1-line-36">line 36</a>
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-57">line 57</a>
 			</li>
 		</ul>
 	</dd>
@@ -980,6 +1446,168 @@
     <dd>
         
 <span class="param-type">Boolean</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="nabeArray"><span class="type-signature"></span>nabeArray(nodeArg)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        typecasts the neighboring node as a NodeArray with a single element (for method chaining)
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nodeArg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Node">Node</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_edge.js.html">graphTheory/edge.js</a>,
+				 <a href="graphTheory_edge.js.html#sunlight-1-line-97">line 97</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    an Array of the neighboring node
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -1044,7 +1672,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Sun Jul 3rd 2016
+		on Fri Jul 15th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

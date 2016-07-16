@@ -18,10 +18,17 @@ class Edge {
         this.prototype.Node = NAClass.prototype.Node;
         return this;
     }
+    /**
+     * creates an edge connecting two nodes
+     * @param  {Node}   n1
+     * @param  {Node}   n2
+     * @param  {Number} [weight=0] the value associated with the edge
+     * @return {Edge} the new edge
+     */
     constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
         /**
          * the weight of the edge
-         * @type {Number=0}
+         * @type {Number}
          */
         this.weight = weight;
         this.establishNodes(n1, n2);

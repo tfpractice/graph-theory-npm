@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.html">graphTheory</a></li>
+					<li><a href="module-GraphTheory.html">GraphTheory</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.Edge.html">graphTheory.Edge</a></li><li><a href="module-graphTheory.EdgeArray.html">graphTheory.EdgeArray</a></li><li><a href="module-graphTheory.Graph.html">graphTheory.Graph</a></li><li><a href="module-graphTheory.Node.html">graphTheory.Node</a></li><li><a href="module-graphTheory.NodeArray.html">graphTheory.NodeArray</a></li>
+					<li><a href="module-GraphTheory.ComponentArray.html">GraphTheory.ComponentArray</a></li><li><a href="module-GraphTheory.DirectedEdge.html">GraphTheory.DirectedEdge</a></li><li><a href="module-GraphTheory.Edge.html">GraphTheory.Edge</a></li><li><a href="module-GraphTheory.EdgeArray.html">GraphTheory.EdgeArray</a></li><li><a href="module-GraphTheory.Graph.html">GraphTheory.Graph</a></li><li><a href="module-GraphTheory.Node.html">GraphTheory.Node</a></li><li><a href="module-GraphTheory.NodeArray.html">GraphTheory.NodeArray</a></li><li><a href="module-GraphTheory.RobustArray.html">GraphTheory.RobustArray</a></li>
 				</ul>
 			</li>
 			
@@ -83,37 +83,58 @@
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">var Node = require('./node');
-var NodeArray = require('./nodeArray');
-
+var NodeArray = require('./node_array');
 /**
  * represents a connection between nodes
  * @exports Edge
  * @constructor
- * @memberOf! module:graphTheory
+ * @memberOf! module:GraphTheory
  */
 class Edge {
+
+    /**
+     * Places NodeArray (and associated dependencies) in the Prototype chain for runtime extension
+     * @param  {Function} NAClass the NodeArray class this Class depends upon
+     * @return {Function}
+     */
+    static assignNodeArray(NAClass = NodeArray) {
+        this.prototype.NodeArray = NAClass;
+        this.prototype.Node = NAClass.prototype.Node;
+        return this;
+    }
+    /**
+     * creates an edge connecting two nodes
+     * @param  {Node}   n1
+     * @param  {Node}   n2
+     * @param  {Number} [weight=0] the value associated with the edge
+     * @return {Edge} the new edge
+     */
     constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
-        /**
-         * an array of nodes
-         * @type {NodeArray}
-         */
-        this.nodes = NodeArray.of(n1, n2);
         /**
          * the weight of the edge
          * @type {Number}
          */
         this.weight = weight;
+        this.establishNodes(n1, n2);
+        this.setLabel();
+    }
+
+    establishNodes(n1, n2) {
+        /**
+         * an array of nodes
+         * @type {NodeArray}
+         */
+        this.nodes = this.NodeArray.of(n1, n2);
+    }
+    setLabel() {
         /**
          * an identifier for the Edge
          * @type {String}
          */
-        this.setLabel();
-    }
-    setLabel() {
         this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;
     }
     /**
-     * checks the equivalence (by label)of this edge against another
+     * checks the equivalence (by nodes) of this edge against another
      * @param  {Edge}  edgeArg edge to be checked
      * @return {Boolean}
      */
@@ -122,7 +143,7 @@ class Edge {
     }
 
     /**
-     * checks the equivalence (by label)of this edge against another
+     * checks the equivalence of this edge's label against another
      * @param  {Edge}  edgeArg edge to be checked
      * @return {Boolean}
      */
@@ -135,33 +156,39 @@ class Edge {
      * @return {Boolean}
      */
     hasSameNodes(edgeArg) {
-        return this.nodes.isSubset(edgeArg.nodes);
+        return this.nodes.isEquivalent(edgeArg.nodes);
     }
     /**
-     * Checks for presence fo a node in this edge
+     * Checks for the presence of a node in this edge
      * @param  {Node} nodeArg
-     * @return {Node}
+     * @return {Boolean}
      */
     containsNode(nodeArg) {
         return this.nodes.contains(nodeArg);
     }
     /**
-     * returns the neighboring node
      * @param  {Node} nodeArg
      * @return {Node} the neighbor
      */
     getNeighbor(nodeArg) {
         return this.nodes.find(currNode => currNode != nodeArg);
     }
-    excludeNode(nodeArg) {
-        return this.nodes.nodeComplement(nodeArg);
+    /**
+     * typecasts the neighboring node as a NodeArray with a single element (for method chaining)
+     * @param  {Node} nodeArg
+     * @return {NodeArray}         an Array of the neighboring node
+     */
+    nabeArray(nodeArg) {
+        return this.nodes.excludeElement(nodeArg);
     }
+
 }
-module.exports = Edge;
+Edge.assignNodeArray();
 /**
- * [An Edge]{@link module:graphTheory.Edge}
- * @typedef {module:graphTheory.Edge} Edge
- */</pre>
+ * [An Edge]{@link module:GraphTheory.Edge}
+ * @typedef {module:GraphTheory.Edge} Edge
+ */
+module.exports = Edge;</pre>
     </article>
 </section>
 
@@ -204,7 +231,7 @@ module.exports = Edge;
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Sun Jul 3rd 2016
+		on Fri Jul 15th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

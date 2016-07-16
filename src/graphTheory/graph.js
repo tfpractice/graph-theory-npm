@@ -60,7 +60,7 @@ class Graph {
     establishComponents() {
         /**
          * the graph's components
-         * @type {Component[]}
+         * @type {ComponentArray}
          */
         this.components = new this.ComponentArray();
     }
@@ -137,7 +137,7 @@ class Graph {
     }
     /**
      * copies the nodes from the edge, then adds it to the edges array
-     * @param {[type]} edgeArg
+     * @param {Edge} edgeArg
      * @see [delegated NodeArray#push] {@link module:GraphTheory.NodeArray#removeElement}
      * @return {Graph} the current graph
      */
@@ -226,7 +226,7 @@ class Graph {
     /**
      * returns all of the Edges connected to a node whose neighbors have yet to be visited
      * @param  {Node} nodeArg the node
-     * @param  {Component} compArg the component being explored
+     * @param  {NodeArray} compArg the component being explored
      * @return {EdgeArray}         the edges with unexplored nodes
      */
     getUnvisitedEdges(nodeArg, compArg) {
@@ -236,7 +236,7 @@ class Graph {
     /**
      * returns all of the nodes neighbors not yet part explored in the component
      * @param  {Node} nodeArg
-     * @param  {Component} compArg the explored component
+     * @param  {NodeArray} compArg the explored component
      * @return {NodeArray}     unexplored nodes
      */
     getUnvisitedNeighbors(nodeArg, compArg) {
@@ -292,7 +292,7 @@ class Graph {
     }
     /**
      * adds a component to the graph if not present
-     * @param {Component} compArg
+     * @param {NodeArray} compArg
      */
     addComponent(compArg) {
         this.components.push(compArg);
@@ -302,30 +302,30 @@ class Graph {
     }
     /**
      * returns any current components which intersect with the specified component
-     * @param  {Component} compArg the component to be checked
-     * @return {Component} the first intersecting component
+     * @param  {NodeArray} compArg the component to be checked
+     * @return {NodeArray} the first intersecting component
      */
     findIntersectingComponent(compArg) {
         return this.components.findIntersectingComponent(compArg);
     }
     /**
      * combines the nodes of two intersecting components
-     * @param  {Component} origComp
-     * @param  {Component} newComp
+     * @param  {NodeArray} origComp
+     * @param  {NodeArray} newComp
      */
     mergeComponents(origComp, newComp) {
         return this.components.mergeComponents(origComp, newComp);
     }
     /**
      * integrates a component into any of the graphs intersectung components
-     * @param  {Component} compArg
+     * @param  {NodeArray} compArg
      */
     integrateComponent(compArg) {
         return this.components.integrateComponent(compArg);
     }
     /**
      * checks if any current components share nodes with the argument
-     * @param  {Component}  compArg
+     * @param  {NodeArray}  compArg
      * @return {Boolean}
      */
     hasIntersectingComponent(compArg) {

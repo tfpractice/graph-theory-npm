@@ -33,14 +33,14 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.html">graphTheory</a></li>
+					<li><a href="module-GraphTheory.html">GraphTheory</a></li>
 				</ul>
 			</li>
 			
 			<li class="dropdown">
 				<a href="classes.list.html" class="dropdown-toggle" data-toggle="dropdown">Classes<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-graphTheory.Edge.html">graphTheory.Edge</a></li><li><a href="module-graphTheory.EdgeArray.html">graphTheory.EdgeArray</a></li><li><a href="module-graphTheory.Graph.html">graphTheory.Graph</a></li><li><a href="module-graphTheory.Node.html">graphTheory.Node</a></li><li><a href="module-graphTheory.NodeArray.html">graphTheory.NodeArray</a></li>
+					<li><a href="module-GraphTheory.ComponentArray.html">GraphTheory.ComponentArray</a></li><li><a href="module-GraphTheory.DirectedEdge.html">GraphTheory.DirectedEdge</a></li><li><a href="module-GraphTheory.Edge.html">GraphTheory.Edge</a></li><li><a href="module-GraphTheory.EdgeArray.html">GraphTheory.EdgeArray</a></li><li><a href="module-GraphTheory.Graph.html">GraphTheory.Graph</a></li><li><a href="module-GraphTheory.Node.html">GraphTheory.Node</a></li><li><a href="module-GraphTheory.NodeArray.html">GraphTheory.NodeArray</a></li><li><a href="module-GraphTheory.RobustArray.html">GraphTheory.RobustArray</a></li>
 				</ul>
 			</li>
 			
@@ -83,7 +83,7 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-graphTheory.html">graphTheory</a>.</span>
+            <span class="ancestors"><a href="module-GraphTheory.html">GraphTheory</a>.</span>
         
         Graph
         </h2>
@@ -100,19 +100,73 @@
         
 <hr>
 <dt>
-    <h4 class="name" id="Graph"><span class="type-signature"></span>new Graph()</h4>
+    <h4 class="name" id="Graph"><span class="type-signature"></span>new Graph(nodes)</h4>
     
     
 </dt>
 <dd>
 
     
-
+    <div class="description">
+        creates a Graph object
+    </div>
     
 
     
 
     
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nodes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the graph's nodes</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
     
 
     
@@ -194,11 +248,420 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        <dl>
+            
+<hr>
+<dt class="name" id="components">
+    <h4><span class="type-signature"></span>components<span class="type-signature"> :<a href="global.html#ComponentArray">ComponentArray</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        the graph's components
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="global.html#ComponentArray">ComponentArray</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-65">line 65</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="edges">
+    <h4><span class="type-signature"></span>edges<span class="type-signature"> :<a href="global.html#EdgeArray">EdgeArray</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        the graph's edges
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="global.html#EdgeArray">EdgeArray</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-55">line 55</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt class="name" id="nodes">
+    <h4><span class="type-signature"></span>nodes<span class="type-signature"> :<a href="global.html#NodeArray">NodeArray</a></span></h4>
+
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        the graph's nodes
+    </div>
+    
+
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
+
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-45">line 45</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+</dd>
+
+        </dl>
+    
 
     
         <h3 class="subsection-title">Methods</h3>
 
         <dl>
+            
+<hr>
+<dt>
+    <h4 class="name" id=".assignEdgeArray"><span class="type-signature">&lt;static> </span>assignEdgeArray(EAClass)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        defines EdgeArrayClass (and associated dependencies) on the Prototype chain for runtime extension
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>EAClass</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the EdgeArray function this class depends upon</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-18">line 18</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the updated Graph class
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
             
 <hr>
 <dt>
@@ -251,7 +714,7 @@
             <td class="type">
             
                 
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -262,7 +725,7 @@
 
             
 
-            <td class="description last">[description]</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -307,7 +770,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-187">line 187</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-297">line 297</a>
 			</li>
 		</ul>
 	</dd>
@@ -340,7 +803,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="addNode"><span class="type-signature"></span>addNode(node)</h4>
+    <h4 class="name" id="addEdge"><span class="type-signature"></span>addEdge(edgeArg)</h4>
     
     
 </dt>
@@ -348,7 +811,7 @@
 
     
     <div class="description">
-        adds a node to the nodes array, if not already contained
+        copies the nodes from the edge, then adds it to the edges array
     </div>
     
 
@@ -383,13 +846,13 @@
 
         <tr>
             
-                <td class="name"><code>node</code></td>
+                <td class="name"><code>edgeArg</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="global.html#Node">Node</a></span>
+<span class="param-type"><a href="global.html#Edge">Edge</a></span>
 
 
 
@@ -400,7 +863,7 @@
 
             
 
-            <td class="description last">the new node</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -445,7 +908,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-34">line 34</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-144">line 144</a>
 			</li>
 		</ul>
 	</dd>
@@ -453,6 +916,128 @@
 
 	
 
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[delegated NodeArray#push] <code>module:GraphTheory.NodeArray#removeElement</code></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the current graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="addNode"><span class="type-signature"></span>addNode()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-70">line 70</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[delegated to NodeArray#push] <code>module:GraphTheory.NodeArray#push</code></li>
+			</ul>
+	</dd>
 	
 
 	
@@ -583,7 +1168,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-234">line 234</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-339">line 339</a>
 			</li>
 		</ul>
 	</dd>
@@ -624,6 +1209,748 @@
     <dd>
         
 <span class="param-type">Map</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="clearEdges"><span class="type-signature"></span>clearEdges()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-165">line 165</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[delegated to EdgeArray#clear] <code>module:GraphTheory.EdgeArray#clear</code></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the current graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="clearNodes"><span class="type-signature"></span>clearNodes()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        removes all edges associated with the argument, then removes all nodes the node
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-96">line 96</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[delegated NodeArray#push] <code>module:GraphTheory.NodeArray#clear</code></li>
+			
+			<li>[remove edge] <a href="module-GraphTheory.Graph.html#removeEdge"><code>module:GraphTheory.Graph#removeEdge</code></a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the current graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="containsEdge"><span class="type-signature"></span>containsEdge()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-152">line 152</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[delegated to EdgeArray#push] <code>module:GraphTheory.EdgeArray#push</code></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="containsNode"><span class="type-signature"></span>containsNode()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-77">line 77</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[delegated NodeArray#contains] <code>module:GraphTheory.NodeArray#contains</code></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="copyEdges"><span class="type-signature"></span>copyEdges(eArr)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        copies and merges the nodes from the edgeArray, then merges the edges into the current graph
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>eArr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#EdgeArray">EdgeArray</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-187">line 187</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the modified graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="copyNodes"><span class="type-signature"></span>copyNodes(nArr)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        merges the nodes from the argument into the current graphs nodes
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nArr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">nodes to merge</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-116">line 116</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the current graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
 
 
 
@@ -793,7 +2120,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-69">line 69</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-134">line 134</a>
 			</li>
 		</ul>
 	</dd>
@@ -818,6 +2145,30 @@
     
 
     
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the newly added edge
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Edge">Edge</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
 
     
 </dd>
@@ -834,7 +2185,8 @@
 
     
     <div class="description">
-        depth first search, initializes a new component of reachable nodes, and constructs a path to each of those node from the source
+        depth first search, initializes a new component of reachable nodes,
+and constructs a path to each of those node from the initNode
     </div>
     
 
@@ -886,7 +2238,7 @@
 
             
 
-            <td class="description last">inital node</td>
+            <td class="description last">the source node</td>
         </tr>
 
     
@@ -931,7 +2283,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-168">line 168</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-277">line 277</a>
 			</li>
 		</ul>
 	</dd>
@@ -971,7 +2323,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Component</span>
+<span class="param-type">Map</span>
 
 
 
@@ -988,7 +2340,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="dijkstra"><span class="type-signature"></span>dijkstra(initNode, termNode)</h4>
+    <h4 class="name" id="dijkstra"><span class="type-signature"></span>dijkstra(initNode)</h4>
     
     
 </dt>
@@ -996,7 +2348,7 @@
 
     
     <div class="description">
-        performs dijkstras algorithm for shortest paths to all nodes reachabe from initNode
+        performs dijkstras algorithm for shortest paths to all nodes reachable from initNode
     </div>
     
 
@@ -1052,30 +2404,6 @@
         </tr>
 
     
-
-        <tr>
-            
-                <td class="name"><code>termNode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Node">Node</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the terminal node</td>
-        </tr>
-
-    
     </tbody>
 </table>
 
@@ -1117,7 +2445,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-276">line 276</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-378">line 378</a>
 			</li>
 		</ul>
 	</dd>
@@ -1146,7 +2474,7 @@
     
             
 <div class="param-desc">
-    a shortest path between nodes
+    a sequence of nodes and their distances
 </div>
 
 
@@ -1157,7 +2485,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Map</span>
 
 
 
@@ -1275,7 +2603,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-60">line 60</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-124">line 124</a>
 			</li>
 		</ul>
 	</dd>
@@ -1315,7 +2643,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;<a href="global.html#Edge">Edge</a>></span>
+<span class="param-type"><a href="global.html#EdgeArray">EdgeArray</a></span>
 
 
 
@@ -1324,6 +2652,332 @@
 
 
         
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="establishComponents"><span class="type-signature"></span>establishComponents()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        assigns/typecasts the components attibute
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-60">line 60</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="establishEdges"><span class="type-signature"></span>establishEdges()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        assigns/typecasts the edges attibute
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-50">line 50</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="establishNodes"><span class="type-signature"></span>establishNodes(nArr)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        assigns/typecasts the nodes attibute
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nArr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-40">line 40</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 
     
 </dd>
@@ -1381,7 +3035,7 @@
             <td class="type">
             
                 
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -1437,7 +3091,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-199">line 199</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-308">line 308</a>
 			</li>
 		</ul>
 	</dd>
@@ -1477,7 +3131,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -1595,7 +3249,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-111">line 111</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-215">line 215</a>
 			</li>
 		</ul>
 	</dd>
@@ -1635,7 +3289,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Array.&lt;<a href="global.html#Node">Node</a>></span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -1660,7 +3314,7 @@
 
     
     <div class="description">
-        returns all of the nodes Edges which contain nodes not yet in the specified component
+        returns all of the Edges connected to a node whose neighbors have yet to be visited
     </div>
     
 
@@ -1712,7 +3366,7 @@
 
             
 
-            <td class="description last">[description]</td>
+            <td class="description last">the node</td>
         </tr>
 
     
@@ -1725,7 +3379,7 @@
             <td class="type">
             
                 
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -1736,7 +3390,7 @@
 
             
 
-            <td class="description last">[description]</td>
+            <td class="description last">the component being explored</td>
         </tr>
 
     
@@ -1781,7 +3435,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-123">line 123</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-232">line 232</a>
 			</li>
 		</ul>
 	</dd>
@@ -1810,7 +3464,7 @@
     
             
 <div class="param-desc">
-    [description]
+    the edges with unexplored nodes
 </div>
 
 
@@ -1846,7 +3500,7 @@
 
     
     <div class="description">
-        returns all of the nodes neighbors not yet part od the component
+        returns all of the nodes neighbors not yet part explored in the component
     </div>
     
 
@@ -1898,7 +3552,7 @@
 
             
 
-            <td class="description last">[description]</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -1911,7 +3565,7 @@
             <td class="type">
             
                 
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -1922,7 +3576,7 @@
 
             
 
-            <td class="description last">[description]</td>
+            <td class="description last">the explored component</td>
         </tr>
 
     
@@ -1967,7 +3621,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-133">line 133</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-242">line 242</a>
 			</li>
 		</ul>
 	</dd>
@@ -1996,7 +3650,7 @@
     
             
 <div class="param-desc">
-    [description]
+    unexplored nodes
 </div>
 
 
@@ -2073,7 +3727,7 @@
             <td class="type">
             
                 
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -2084,7 +3738,7 @@
 
             
 
-            <td class="description last">[description]</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -2129,7 +3783,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-225">line 225</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-331">line 331</a>
 			</li>
 		</ul>
 	</dd>
@@ -2157,10 +3811,6 @@
     <h5>Returns:</h5>
     
             
-<div class="param-desc">
-    [description]
-</div>
-
 
 
 <dl>
@@ -2315,7 +3965,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-267">line 267</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-370">line 370</a>
 			</li>
 		</ul>
 	</dd>
@@ -2344,7 +3994,7 @@
     
             
 <div class="param-desc">
-    a path exists between the two nodes
+    does a path exist between the two nodes
 </div>
 
 
@@ -2421,7 +4071,7 @@
             <td class="type">
             
                 
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -2432,7 +4082,7 @@
 
             
 
-            <td class="description last">[description]</td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -2477,7 +4127,7 @@
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-216">line 216</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-323">line 323</a>
 			</li>
 		</ul>
 	</dd>
@@ -2559,7 +4209,7 @@
             <td class="type">
             
                 
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -2583,7 +4233,7 @@
             <td class="type">
             
                 
-<span class="param-type">Component</span>
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
 
 
 
@@ -2595,6 +4245,1207 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-316">line 316</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="pathNodes"><span class="type-signature"></span>pathNodes(pathArg)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        typecasts a path to a NodeArray
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>pathArg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Map</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">an ordered sequence of nodes with predecessors and path weights</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-223">line 223</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    An array of the nodes
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="removeEdge"><span class="type-signature"></span>removeEdge()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-158">line 158</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[delegated to EdgeArray#removeElement] <code>module:GraphTheory.EdgeArray#removeElement</code></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="removeNode"><span class="type-signature"></span>removeNode()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        removes all edges associated with the argument, then calls removes the node
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-85">line 85</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[delegated NodeArray#push] <code>module:GraphTheory.NodeArray#removeElement</code></li>
+			
+			<li>[remove edge] <a href="module-GraphTheory.Graph.html#removeEdge"><code>module:GraphTheory.Graph#removeEdge</code></a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setEdges"><span class="type-signature"></span>setEdges(eArr)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        clears and reassigns nodes to those of the edge array, and sets the edges
+functions basically as a graph reset, an easy way to explore a graph from different angles
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>eArr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#EdgeArray">EdgeArray</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-176">line 176</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+	<dt class="tag-see method-doc-label method-doc-details-label">See:</dt>
+	<dd class="tag-see">
+		<ul>
+			<li>[calls EdgeArray#getNodes] <a href="module-GraphTheory.EdgeArray.html#getNodes"><code>module:GraphTheory.EdgeArray#getNodes</code></a></li>
+			</ul>
+	</dd>
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the modified graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="setNodes"><span class="type-signature"></span>setNodes(nArr)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        clears the nodes and reassigns them to narr
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nArr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-106">line 106</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    the current graph
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="shortestPath"><span class="type-signature"></span>shortestPath(initNode, termNode)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        composes the shortest path between two nodes by backtracing from dijkstra
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>initNode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Node">Node</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>termNode</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#Node">Node</a></span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-415">line 415</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    path of nodes
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Map</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="subGraph"><span class="type-signature"></span>subGraph(nArr)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        creates a new graph
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>nArr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#NodeArray">NodeArray</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                    &lt;nullable><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last">a potential inital set of Nodes</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-198">line 198</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    a new Graph instance
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="subGraphByEdges"><span class="type-signature"></span>subGraphByEdges( [eArr])</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        creates a new graph, and sets its edges,
+useful for exploring a graph based on different connections
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Argument</th>
+        
+
+        
+        <th>Default</th>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>eArr</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="global.html#EdgeArray">EdgeArray</a></span>
+
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    this.edges
+                
+                </td>
+            
+
+            <td class="description last">a potential inital set of Edges</td>
         </tr>
 
     
@@ -2664,173 +5515,11 @@
     
 
     
-
-    
-</dd>
-
-        
-            
-<hr>
-<dt>
-    <h4 class="name" id="shortestPath"><span class="type-signature"></span>shortestPath(initNode, termNode)</h4>
-    
-    
-</dt>
-<dd>
-
-    
-    <div class="description">
-        composes the shortest path between two nodes by backtracing dijkstra's pred attirbute
-    </div>
-    
-
-    
-
-    
-
-    
-    
-        <h5>Parameters:</h5>
-        
-
-<table class="params table table-striped">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>initNode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Node">Node</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">[description]</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>termNode</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="global.html#Node">Node</a></span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">[description]</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-    
-
-    
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
-	<dd class="tag-source">
-		<ul class="dummy">
-			<li>
-				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-313">line 313</a>
-			</li>
-		</ul>
-	</dd>
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
     <h5>Returns:</h5>
     
             
 <div class="param-desc">
-    path of nodes
+    a new Graph instance
 </div>
 
 
@@ -2841,7 +5530,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Map</span>
+<span class="param-type"><a href="global.html#Graph">Graph</a></span>
 
 
 
@@ -2858,7 +5547,7 @@
             
 <hr>
 <dt>
-    <h4 class="name" id="visitPath"><span class="type-signature"></span>visitPath(pathArg, compArg)</h4>
+    <h4 class="name" id="visitPath"><span class="type-signature"></span>visitPath(pathArg)</h4>
     
     
 </dt>
@@ -2867,7 +5556,6 @@
     
     <div class="description">
         adds all unvisited nodes in the path to the specified component
-adds each node connected to an edge to a (depth) path
     </div>
     
 
@@ -2923,30 +5611,6 @@ adds each node connected to an edge to a (depth) path
         </tr>
 
     
-
-        <tr>
-            
-                <td class="name"><code>compArg</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Component</span>
-
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">a key value store of node's and distances</td>
-        </tr>
-
-    
     </tbody>
 </table>
 
@@ -2988,7 +5652,7 @@ adds each node connected to an edge to a (depth) path
 		<ul class="dummy">
 			<li>
 				<a href="graphTheory_graph.js.html">graphTheory/graph.js</a>,
-				 <a href="graphTheory_graph.js.html#sunlight-1-line-142">line 142</a>
+				 <a href="graphTheory_graph.js.html#sunlight-1-line-249">line 249</a>
 			</li>
 		</ul>
 	</dd>
@@ -3069,7 +5733,7 @@ adds each node connected to an edge to a (depth) path
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Sun Jul 3rd 2016
+		on Fri Jul 15th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
