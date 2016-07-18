@@ -1,10 +1,11 @@
 ## Changelog
-## 4.0.0-alpha – 2016-07-09 
+## 4.0.0-alpha – 2016-07-18 
 ### Added
 * Prototypal dependency assignment via static .assign[ClassName] for greater extensibility
 * RobustArray module acts as a mixin for set theory methods
 * RobustArray#SetifyType(BaseType) creates a set of out a base type of elements
 * RobustArray#filter, #splice, #slice, #concat and #union leverage this.constructor to return an instance of the proper subclass.
+* Node, Edge, and Graph constructors call instance methods cleaner extensibility, looser coupling 
 * NodeArray extends RobustArray with Node class
 * Node constructor now calls #setData and #setLabel with args
 * Edge#constructNodes sets the #nodes attribute to NodeArray
@@ -14,12 +15,11 @@
 * EdgeArray#getNeighbors leverages Edge#nabeArray to return proper NodeArray
 * EdgeArray#edgesByArray uses this.constructor to infer proper EdgeArray
 * ComponentArray implements RobustArray with NodeArray to group separate sets of nodes
+* Graph delegates component management to the components array
 * ComponentArray#hasIntersectingComponent, #findIntersectingComponent, #mergeComponents, #integrateComponent
 * Graph#constructNodes to establish #nodes as NodeArray
 * Graph#constructEdges to establish #edges as EdgeArray
-* Graph#removeNode/removeEdge call #removeElement
-* Graph#instantiateEdge abstracts (Edge)dependency creation, returning a new Edge
-* Graph#subGraph returns a new instance with an optional set of nodes
+* Graph#subGraph returns a dynamic instance (via this.constructor) with an optional set of nodes
 * * Graph#subGraphByEdges returns a new instance with an optional set of edges
 
 ###Changed
