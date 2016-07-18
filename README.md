@@ -1,4 +1,4 @@
-# graph-theory-npm (v3.0.1-alpha)
+# graph-theory-npm (v4.0.0-alpha)
 =========
 This Node.js library provides a number of classes that facilitate exploring your data as a graph.
 
