@@ -2,7 +2,7 @@
 
 ## 4.1.0-alpha – 2016-07-18 
 ###Added
-###Added
+###Changed
 ###Removed
 * EdgeArray#nodeMap replaced by #getNodes
 
