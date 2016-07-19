@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/graphTheory.js',
+    entry: './src/graph_theory.js',
     output: {
         library: 'graph-theory-npm',
         libraryTarget: 'umd',
