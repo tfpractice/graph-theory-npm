@@ -46,21 +46,14 @@ class EdgeArray extends RobustArray.SetifyType(Edge) {
      * @return {NodeArray}      all of the nodes in this array of edges
      */
     getNodes() {
-        return this.nodeMap().reduce((pred, succ) => pred.unionize(succ), new this.NodeArray);
+        return this.reduce((prev, succ) => prev.unionize(succ.nodes), new this.NodeArray);
     }
     /**
      * @param  {NodeArray} nArg the node to be matched against
      * @return {NodeArray}      all of the nodes contained in this array
      */
     getNeighbors(nArg) {
-        let sharedEdges = this.edgesWithNode(nArg);
-        return (!sharedEdges.isEmpty() && sharedEdges.map(e => e.nabeArray(nArg)).reduce((pred, succ) => pred.unionize(succ))) || new this.NodeArray;
-    }
-    /**
-     * @return {NodeArray[]} an array of all the nodes in this collection od edges
-     */
-    nodeMap() {
-        return ((!this.isEmpty()) && this.map(e => e.nodes)) || new this.NodeArray;
+        return this.edgesWithNode(nArg).reduce((prev, succ) => prev.unionize(succ.nabeArray(nArg)), new this.NodeArray);
     }
 
 }
