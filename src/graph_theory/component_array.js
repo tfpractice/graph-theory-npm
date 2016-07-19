@@ -5,7 +5,7 @@ var RobustArray = require('./robust_array');
  * @exports ComponentArray
  * @constructor
  * @memberOf! module:GraphTheory
- * @extends {RobustArray}
+ * @extends RobustArray
  */
 class ComponentArray extends RobustArray.SetifyType(NodeArray) {
 

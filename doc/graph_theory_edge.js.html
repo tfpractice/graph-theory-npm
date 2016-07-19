@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Source: graphTheory/edge_array.js</title>
+	<title>DocStrap Source: graph_theory/edge.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-GraphTheory.html">GraphTheory</a></li>
+					<li><a href="module-GraphTheory.html">GraphTheory</a></li><li><a href="module-RobustArrayFactory.html">RobustArrayFactory</a></li>
 				</ul>
 			</li>
 			
@@ -77,83 +77,118 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: graphTheory/edge_array.js</h1>
+		<h1 class="page-title">Source: graph_theory/edge.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">var Node = require('./node');
 var NodeArray = require('./node_array');
-var Edge = require('./edge');
-// var DirectedEdge = require('./directedEdge');
-var RobustArray = require('./robust_array');
 /**
- * represents a set of Edges
- * @exports EdgeArray
+ * represents a connection between nodes
+ * @exports Edge
  * @constructor
  * @memberOf! module:GraphTheory
- * @extends {RobustArray}
  */
-class EdgeArray extends RobustArray.SetifyType(Edge) {
+class Edge {
+
     /**
-     * defines EdgeClass (and associated dependencies) on the Prototype chain for runtime extension
-     * @param  {Function} EClass the Edge function this class depends upon
-     * @return {Function} EdgeArray the updated EdgeArray class
+     * Places NodeArray (and associated dependencies) in the Prototype chain for runtime extension
+     * @param  {Function} NAClass the NodeArray class this Class depends upon
+     * @return {Function}
      */
-    static assignEdge(EClass = Edge) {
-        this.prototype.Edge = EClass;
-        this.prototype.NodeArray = EClass.prototype.NodeArray;
-        this.prototype.Node = EClass.prototype.Node;
+    static assignNodeArray(NAClass = NodeArray) {
+        this.prototype.NodeArray = NAClass;
+        this.prototype.Node = NAClass.prototype.Node;
         return this;
     }
     /**
-     * Filters the edges by those which contain the specified node
-     * @param  {Node} nArg the node in question
-     * @return {EdgeArray} the filtered array
+     * creates an edge connecting two nodes
+     * @param  {Node}   n1
+     * @param  {Node}   n2
+     * @param  {Number} [weight=0] the value associated with the edge
+     * @return {Edge} the new edge
      */
-    edgesWithNode(nArg) {
-        return this.filter(e => e.containsNode(nArg));
+    constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
+        /**
+         * the weight of the edge
+         * @type {Number}
+         */
+        this.weight = weight;
+        this.establishNodes(n1, n2);
+        this.setLabel();
     }
-    /**/
-    edgeByNodes(n1, n2) {
-        return this.find(e => (e.containsNode(n1) &amp;&amp; e.containsNode(n2)));
+
+    establishNodes(n1, n2) {
+        /**
+         * an array of nodes
+         * @type {NodeArray}
+         */
+        this.nodes = this.NodeArray.of(n1, n2);
     }
-    /**
-     *
-     * @param  {NodeArray} nArr the nodes to be matched against
-     * @return {EdgeArray}      the edges intersecting nArr
-     */
-    edgesByArray(nArr) {
-        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
-    }
-    /**
-     * @return {NodeArray}      all of the nodes in this array of edges
-     */
-    getNodes() {
-        return this.nodeMap().reduce((pred, succ) => pred.unionize(succ), new this.NodeArray);
-    }
-    /**
-     * @param  {NodeArray} nArg the node to be matched against
-     * @return {NodeArray}      all of the nodes contained in this array
-     */
-    getNeighbors(nArg) {
-        let sharedEdges = this.edgesWithNode(nArg);
-        return (!sharedEdges.isEmpty() &amp;&amp; sharedEdges.map(e => e.nabeArray(nArg)).reduce((pred, succ) => pred.unionize(succ))) || new this.NodeArray;
+    setLabel() {
+        /**
+         * an identifier for the Edge
+         * @type {String}
+         */
+        this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;
     }
     /**
-     * @return {NodeArray[]} an array of all the nodes in this collection od edges
+     * checks the equivalence (by nodes) of this edge against another
+     * @param  {Edge}  edgeArg edge to be checked
+     * @return {Boolean}
      */
-    nodeMap() {
-        return ((!this.isEmpty()) &amp;&amp; this.map(e => e.nodes)) || new this.NodeArray;
+    isEquivalent(edgeArg) {
+        return this.hasSameNodes(edgeArg);
+    }
+
+    /**
+     * checks the equivalence of this edge's label against another
+     * @param  {Edge}  edgeArg edge to be checked
+     * @return {Boolean}
+     */
+    hasSameName(edgeArg) {
+        return (this.label) ? this.label === edgeArg.label : false;
+    }
+    /**
+     * checks the equivalence of this edges nodes against another
+     * @param  {Edge}  edgeArg edge to be checked
+     * @return {Boolean}
+     */
+    hasSameNodes(edgeArg) {
+        return this.nodes.isEquivalent(edgeArg.nodes);
+    }
+    /**
+     * Checks for the presence of a node in this edge
+     * @param  {Node} nodeArg
+     * @return {Boolean}
+     */
+    containsNode(nodeArg) {
+        return this.nodes.contains(nodeArg);
+    }
+    /**
+     * @param  {Node} nodeArg
+     * @return {Node} the neighbor
+     */
+    getNeighbor(nodeArg) {
+        return this.nodes.find(currNode => currNode != nodeArg);
+    }
+    /**
+     * typecasts the neighboring node as a NodeArray with a single element (for method chaining)
+     * @param  {Node} nodeArg
+     * @return {NodeArray}         an Array of the neighboring node
+     */
+    nabeArray(nodeArg) {
+        return this.nodes.excludeElement(nodeArg);
     }
 
 }
-EdgeArray.assignEdge();
+Edge.assignNodeArray();
 /**
- * [An EdgeArray]{@link module:GraphTheory.EdgeArray}
- * @typedef {module:GraphTheory.EdgeArray} EdgeArray
+ * [An Edge]{@link module:GraphTheory.Edge}
+ * @typedef {module:GraphTheory.Edge} Edge
  */
-module.exports = EdgeArray;</pre>
+module.exports = Edge;</pre>
     </article>
 </section>
 
@@ -196,7 +231,7 @@ module.exports = EdgeArray;</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Fri Jul 15th 2016
+		on Tue Jul 19th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>
