@@ -1,4 +1,12 @@
 ## Changelog
+
+## 4.1.0-alpha – 2016-07-18 
+###Added
+###Added
+###Removed
+* EdgeArray#nodeMap replaced by #getNodes
+
+
 ## 4.0.0-alpha – 2016-07-18 
 ### Added
 * Prototypal dependency assignment via static .assign[ClassName] for greater extensibility
